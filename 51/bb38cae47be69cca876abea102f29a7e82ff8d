@@ -1,0 +1,3014 @@
+services/agent-core/tests/test_sponsored_study.py
+  s_7936d1cd23c5b8::t_b06de7b33b3438 1-384
+services/agent-core/tests/workshop_entitlement.py
+  s_7936d1cd23c5b8::t_b06de7b33b3438 1-12
+README.md
+  s_7936d1cd23c5b8::t_b06de7b33b3438 1-73
+services/agent-core/agent_core/net/study.py
+  s_7936d1cd23c5b8::t_bfe4b0fd422172 1-394
+scripts/jana_tools/sponsored_check.py
+  s_7936d1cd23c5b8::t_b06de7b33b3438 9-180
+  s_7936d1cd23c5b8::t_a2701786eb0ba9 1-8,181-193
+services/agent-core/agent_core/net/state.py
+  s_7936d1cd23c5b8::t_bfe4b0fd422172 1-157
+demo/replay_study.py
+  s_7936d1cd23c5b8::t_b06de7b33b3438 1-50
+demo/workshop.py
+  s_7936d1cd23c5b8::t_b06de7b33b3438 1-151
+services/agent-core/tests/workshop_profiles.py
+  s_7936d1cd23c5b8::t_b06de7b33b3438 1-38
+.gitignore
+  s_7936d1cd23c5b8::t_6467086ae0a8c3 1-14
+.nvmrc
+  s_7936d1cd23c5b8::t_4bf1845f46c63e 1
+.python-version
+  s_7936d1cd23c5b8::t_bf51cfa074c596 1
+LICENSE
+  s_7936d1cd23c5b8::t_a5e87e5b47d4e7 1-176
+NOTICE
+  s_7936d1cd23c5b8::t_8c13e441587719 1-5
+THIRD_PARTY_NOTICES
+  s_7936d1cd23c5b8::t_38cd1112b85cab 1-533
+apps/desktop/index.html
+  s_7936d1cd23c5b8::t_497d4239c9e040 1-12
+apps/desktop/package.json
+  s_7936d1cd23c5b8::t_e2d35e018b72a2 1-38
+apps/desktop/src/App.tsx
+  s_7936d1cd23c5b8::t_dc5938766b394f 1-1586
+apps/desktop/src/DevelopmentModels.tsx
+  s_7936d1cd23c5b8::t_3418ef49644352 1-56
+apps/desktop/src/SpeechTools.tsx
+  s_7936d1cd23c5b8::t_be7740af65f327 1-91
+apps/desktop/src/VoiceBar.tsx
+  s_7936d1cd23c5b8::t_58189e3dc9b923 1-77
+apps/desktop/src/VoiceSettings.tsx
+  s_7936d1cd23c5b8::t_e59495d366d9e2 1-33
+apps/desktop/src/app.css
+  s_7936d1cd23c5b8::t_c2066fbd118d22 1-5
+apps/desktop/src/hosted-copy.ts
+  s_7936d1cd23c5b8::t_b2eed3ab98af6f 1-10
+apps/desktop/src/launch.ts
+  s_7936d1cd23c5b8::t_6e7c4cec5b8b7a 1-82
+apps/desktop/src/learning-navigation.ts
+  s_7936d1cd23c5b8::t_65b93d3745c77b 1-32
+apps/desktop/src/local-speech.ts
+  s_7936d1cd23c5b8::t_fb8cb3196fb077 1-95
+apps/desktop/src/main.tsx
+  s_7936d1cd23c5b8::t_8693a4a8e3b239 1-47
+apps/desktop/src/podcast-audio.ts
+  s_7936d1cd23c5b8::t_fd61d2f5b67d4b 1-34
+apps/desktop/src/routes.ts
+  s_7936d1cd23c5b8::t_5196f1fe7154d3 1-17
+apps/desktop/src/visuals.tsx
+  s_7936d1cd23c5b8::t_57fc4418cf1fc3 1-45
+apps/desktop/src/voice-audio.ts
+  s_7936d1cd23c5b8::t_b542ad8319c504 1-151
+apps/desktop/src/voice-capture-worklet.js
+  s_7936d1cd23c5b8::t_2bc7a7dc5911ad 1-36
+apps/desktop/tsconfig.json
+  s_7936d1cd23c5b8::t_95976f646a516e 1-17
+apps/desktop/vite.config.ts
+  s_7936d1cd23c5b8::t_3320dee658cc62 1-23
+content/agent/families/gemma.md
+  s_7936d1cd23c5b8::t_c35a069962062d 1-13
+content/agent/families/qwen.md
+  s_7936d1cd23c5b8::t_2d8d6e01266e1a 1-14
+content/agent/glossary/en.yaml
+  s_7936d1cd23c5b8::t_e14617ddecd1c9 1-5762
+content/agent/guidance/hint-rung-discipline.md
+  s_7936d1cd23c5b8::t_10832a5200990a 1-15
+content/agent/guidance/numbers-from-checks.md
+  s_7936d1cd23c5b8::t_aa29956d4f4e88 1-13
+content/agent/guidance/one-question-per-turn.md
+  s_7936d1cd23c5b8::t_71607f9d398390 1-15
+content/agent/guidance/solver-tool-discipline.md
+  s_7936d1cd23c5b8::t_04650686f0063d 1-18
+content/agent/guidance/spoken-form.md
+  s_7936d1cd23c5b8::t_17b918a07b9759 1-18
+content/agent/memory/capture.en.yaml
+  s_7936d1cd23c5b8::t_8c06b50ae6ffce 1-1132
+content/agent/notices/capability.en.yaml
+  s_7936d1cd23c5b8::t_d56e3ce59c5908 1-17
+content/agent/notices/notices.json
+  s_7936d1cd23c5b8::t_9baf59239ca4dc 1-47
+content/agent/roles.json
+  s_7936d1cd23c5b8::t_ae47de394f6ab1 1-560
+content/agent/roles/auxiliary/compaction.md
+  s_7936d1cd23c5b8::t_34a2a6b109e431 1-49
+content/agent/roles/auxiliary/input_guard.md
+  s_7936d1cd23c5b8::t_736ced393b2a8e 1-51
+content/agent/roles/auxiliary/judge.md
+  s_7936d1cd23c5b8::t_fe8721021b5e30 1-52
+content/agent/roles/auxiliary/rule_matcher.md
+  s_7936d1cd23c5b8::t_9b77474d02f963 1-50
+content/agent/roles/auxiliary/title.md
+  s_7936d1cd23c5b8::t_2bd011d1d2e40e 1-48
+content/agent/roles/auxiliary/vision.md
+  s_7936d1cd23c5b8::t_a2733d8dcc8920 1-50
+content/agent/roles/checker.md
+  s_7936d1cd23c5b8::t_84a448f96f9791 1-63
+content/agent/roles/coach.md
+  s_7936d1cd23c5b8::t_bc1a84f76d8eb7 1-77
+content/agent/roles/companion.md
+  s_7936d1cd23c5b8::t_69a4ad24c37537 1-70
+content/agent/roles/diagnoser.md
+  s_7936d1cd23c5b8::t_30cdc8e1d0e0b3 1-77
+content/agent/roles/reflector.md
+  s_7936d1cd23c5b8::t_977b65ae57e683 1-59
+content/agent/roles/solver.md
+  s_7936d1cd23c5b8::t_8f68602e9f20ce 1-81
+content/agent/rules/core-pedagogy.yaml
+  s_7936d1cd23c5b8::t_38281a8cf3c8c3 1-898
+content/agent/rules/scenarios.yaml
+  s_7936d1cd23c5b8::t_2c964624e6b44a 1-360
+content/agent/safety/resources.yaml
+  s_7936d1cd23c5b8::t_a8c2f486fea82b 1-9
+content/agent/soul/IDENTITY.yaml
+  s_7936d1cd23c5b8::t_4b390132909316 1-6
+content/agent/soul/SOUL.md
+  s_7936d1cd23c5b8::t_af9dd33c2f6fae 1-26
+content/agent/templates/en.yaml
+  s_7936d1cd23c5b8::t_4b527c73bc9196 1-35
+content/agent/templates/engine.en.yaml
+  s_7936d1cd23c5b8::t_5e653ad4467af2 1-145
+demo/chemistry.json
+  s_7936d1cd23c5b8::t_d2e3f68aa28f53 1-177
+package.json
+  s_7936d1cd23c5b8::t_1ea63df05cec7c 1-33
+packages/client-core/package.json
+  s_7936d1cd23c5b8::t_a8e74287012617 1-22
+packages/client-core/src/ask-anything.ts
+  s_7936d1cd23c5b8::t_8ee36ad96b565e 1-214
+packages/client-core/src/assessments.ts
+  s_7936d1cd23c5b8::t_bdbae7bca79c01 1-153
+packages/client-core/src/blocks.ts
+  s_7936d1cd23c5b8::t_b2235d202e02c9 1-51
+packages/client-core/src/capture.ts
+  s_7936d1cd23c5b8::t_6b6a30bc271f4a 1-69
+packages/client-core/src/chips.ts
+  s_7936d1cd23c5b8::t_16c028d5f476ee 1-71
+packages/client-core/src/companion.ts
+  s_7936d1cd23c5b8::t_b6b878c6f9ed74 1-506
+packages/client-core/src/concept-map.ts
+  s_7936d1cd23c5b8::t_6200664f75e7e2 1-355
+packages/client-core/src/connectivity.ts
+  s_7936d1cd23c5b8::t_f3f139562d2480 1-320
+packages/client-core/src/diagram-drill.ts
+  s_7936d1cd23c5b8::t_3c2a5eb452218f 1-113
+packages/client-core/src/drafts.ts
+  s_7936d1cd23c5b8::t_3b9accfe09cfb6 1-69
+packages/client-core/src/generated/keys.ts
+  s_7936d1cd23c5b8::t_edfe97db95417a 1-142
+packages/client-core/src/goal.ts
+  s_7936d1cd23c5b8::t_9c3a0cce1f74e6 1-78
+packages/client-core/src/health.ts
+  s_7936d1cd23c5b8::t_828f6847b462dd 1-238
+packages/client-core/src/help.ts
+  s_7936d1cd23c5b8::t_de6cb093f90658 1-58
+packages/client-core/src/history.ts
+  s_7936d1cd23c5b8::t_fb69880434ee35 1-240
+packages/client-core/src/hydrate.ts
+  s_7936d1cd23c5b8::t_4eb494e2a8be96 1-210
+packages/client-core/src/idle.ts
+  s_7936d1cd23c5b8::t_ee30780c6e6f7b 1-101
+packages/client-core/src/ids.ts
+  s_7936d1cd23c5b8::t_df06356e40d839 1-41
+packages/client-core/src/index.ts
+  s_7936d1cd23c5b8::t_8ad85d61eb259e 1-128
+packages/client-core/src/input.ts
+  s_7936d1cd23c5b8::t_d5ffd2d9b616f0 1-41
+packages/client-core/src/installations.ts
+  s_7936d1cd23c5b8::t_78b84758d9ff89 1-123
+packages/client-core/src/interview.ts
+  s_7936d1cd23c5b8::t_0ed0fd1ebc6476 1-29
+packages/client-core/src/jobs.ts
+  s_7936d1cd23c5b8::t_6f6b4e1d5d57f0 1-19
+packages/client-core/src/journal.ts
+  s_7936d1cd23c5b8::t_8c26592b4dc437 1-94
+packages/client-core/src/learn.ts
+  s_7936d1cd23c5b8::t_63cb28d934bc98 1-511
+packages/client-core/src/learning-journey.ts
+  s_7936d1cd23c5b8::t_7227760a9d1a94 1-50
+packages/client-core/src/ledger.ts
+  s_7936d1cd23c5b8::t_0c2eb85d552d95 1-76
+packages/client-core/src/maths-input.ts
+  s_7936d1cd23c5b8::t_30cacff6bf3a50 1-293
+packages/client-core/src/memory.ts
+  s_7936d1cd23c5b8::t_16bec0deb5c15b 1-427
+packages/client-core/src/mocks.ts
+  s_7936d1cd23c5b8::t_b404312bf48d23 1-411
+packages/client-core/src/models.ts
+  s_7936d1cd23c5b8::t_803a7e84511617 1-130
+packages/client-core/src/mouth.ts
+  s_7936d1cd23c5b8::t_0ddcf499e67a4b 1-87
+packages/client-core/src/observable.ts
+  s_7936d1cd23c5b8::t_37296a0822b033 1-21
+packages/client-core/src/parents.ts
+  s_7936d1cd23c5b8::t_55db62d5993a09 1-218
+packages/client-core/src/past-papers.ts
+  s_7936d1cd23c5b8::t_660a282e9b1ea4 1-276
+packages/client-core/src/photo-header.ts
+  s_7936d1cd23c5b8::t_d5b8936a93d167 1-33
+packages/client-core/src/photo.ts
+  s_7936d1cd23c5b8::t_15a45ab64c03dc 1-23
+packages/client-core/src/plans.ts
+  s_7936d1cd23c5b8::t_13c1990754ad96 1-246
+packages/client-core/src/pointer.ts
+  s_7936d1cd23c5b8::t_457261f6d812d9 1-243
+packages/client-core/src/practice.ts
+  s_7936d1cd23c5b8::t_68016c7c2ea5be 1-265
+packages/client-core/src/profiles.ts
+  s_7936d1cd23c5b8::t_ad9057c31e6764 1-402
+packages/client-core/src/queue.ts
+  s_7936d1cd23c5b8::t_6c49288d7a5bfd 1-146
+packages/client-core/src/recent.ts
+  s_7936d1cd23c5b8::t_1684bb82d15d7b 1-98
+packages/client-core/src/reducer.ts
+  s_7936d1cd23c5b8::t_e5d42d1b37daa2 1-372
+packages/client-core/src/reports.ts
+  s_7936d1cd23c5b8::t_cd138fe1088218 1-42
+packages/client-core/src/saved-questions.ts
+  s_7936d1cd23c5b8::t_16b42573eb0f7b 1-82
+packages/client-core/src/search.ts
+  s_7936d1cd23c5b8::t_f1688f9fd31ae6 1-152
+packages/client-core/src/session-notes.ts
+  s_7936d1cd23c5b8::t_c53c901744559d 1-106
+packages/client-core/src/session.ts
+  s_7936d1cd23c5b8::t_71ceadbfbb97e2 1-538
+packages/client-core/src/settings-sections.ts
+  s_7936d1cd23c5b8::t_b4a7eecc605e57 1-38
+packages/client-core/src/setup.ts
+  s_7936d1cd23c5b8::t_625cd6f9262be9 1-79
+packages/client-core/src/shapes.ts
+  s_7936d1cd23c5b8::t_637b0b8722dab2 1-44
+packages/client-core/src/speech.ts
+  s_7936d1cd23c5b8::t_13fa41c2c95c7f 1-395
+packages/client-core/src/store.ts
+  s_7936d1cd23c5b8::t_6bdee48f181233 1-249
+packages/client-core/src/stream/client.ts
+  s_7936d1cd23c5b8::t_901239b4d30687 1-257
+packages/client-core/src/stream/commands.ts
+  s_7936d1cd23c5b8::t_5f199d3b8e0719 1-112
+packages/client-core/src/stream/index.ts
+  s_7936d1cd23c5b8::t_f70969b3a03d12 1-2
+packages/client-core/src/stream/sse.ts
+  s_7936d1cd23c5b8::t_7cac64cfbcf592 1-42
+packages/client-core/src/studies.ts
+  s_7936d1cd23c5b8::t_372753d7d0176c 1-104
+packages/client-core/src/study-workspace.ts
+  s_7936d1cd23c5b8::t_cdb50e881f0e93 1-1011
+packages/client-core/src/subject-input.ts
+  s_7936d1cd23c5b8::t_7d9201e1a434da 1-106
+packages/client-core/src/support.ts
+  s_7936d1cd23c5b8::t_3520829a98d548 1-102
+packages/client-core/src/tolerant.ts
+  s_7936d1cd23c5b8::t_de6b8d592babb3 1-57
+packages/client-core/src/visuals.ts
+  s_7936d1cd23c5b8::t_f3362f62024de1 1-73
+packages/client-core/src/voice.ts
+  s_7936d1cd23c5b8::t_e38179f5aa3aad 1-548
+packages/client-core/tsconfig.json
+  s_7936d1cd23c5b8::t_b71cc1f2a02d76 1-4
+packages/contracts-ts/package.json
+  s_7936d1cd23c5b8::t_675c38602a1529 1-24
+packages/contracts-ts/src/client.ts
+  s_7936d1cd23c5b8::t_8eb5c55ff8d2f6 1-37
+packages/contracts-ts/src/generated/agents/aux_compaction.ts
+  s_7936d1cd23c5b8::t_22360a25798583 1-7
+packages/contracts-ts/src/generated/agents/aux_input_guard.ts
+  s_7936d1cd23c5b8::t_36fb82e0959d55 1-18
+packages/contracts-ts/src/generated/agents/aux_judge.ts
+  s_7936d1cd23c5b8::t_c2a4ddad9652ee 1-15
+packages/contracts-ts/src/generated/agents/aux_rule_match.ts
+  s_7936d1cd23c5b8::t_06966b134eb004 1-14
+packages/contracts-ts/src/generated/agents/aux_title.ts
+  s_7936d1cd23c5b8::t_6e3ffe8f643e3d 1-7
+packages/contracts-ts/src/generated/agents/aux_vision_regions.ts
+  s_7936d1cd23c5b8::t_91ef2b301a599b 1-26
+packages/contracts-ts/src/generated/agents/commitment.ts
+  s_7936d1cd23c5b8::t_f52c69860f08b6 1-12
+packages/contracts-ts/src/generated/agents/companion_turn.ts
+  s_7936d1cd23c5b8::t_8eddde29d1e0a4 1-24
+packages/contracts-ts/src/generated/agents/delegation_result.ts
+  s_7936d1cd23c5b8::t_23e8bd4a537bd7 1-67
+packages/contracts-ts/src/generated/agents/diagnosis.ts
+  s_7936d1cd23c5b8::t_9406f90a1743b1 1-51
+packages/contracts-ts/src/generated/agents/guidance_block.ts
+  s_7936d1cd23c5b8::t_c00ee8fa50f13f 1-39
+packages/contracts-ts/src/generated/agents/model_recommendations.ts
+  s_7936d1cd23c5b8::t_b48976e1d3bcd2 1-77
+packages/contracts-ts/src/generated/agents/reflection.ts
+  s_7936d1cd23c5b8::t_dd2e8b432bb56a 1-25
+packages/contracts-ts/src/generated/agents/role_manifest.ts
+  s_7936d1cd23c5b8::t_4b7c353f6827db 1-46
+packages/contracts-ts/src/generated/agents/router_config.ts
+  s_7936d1cd23c5b8::t_89f69f73209f4a 1-188
+packages/contracts-ts/src/generated/agents/solution_plan.ts
+  s_7936d1cd23c5b8::t_07131fbe3474d7 1-33
+packages/contracts-ts/src/generated/agents/tutor_turn.ts
+  s_7936d1cd23c5b8::t_ef1715d75fb4cd 1-527
+packages/contracts-ts/src/generated/agents/verdict.ts
+  s_7936d1cd23c5b8::t_067b1e5796d1ac 1-49
+packages/contracts-ts/src/generated/api/commands.ts
+  s_7936d1cd23c5b8::t_96cbcb12fccebf 1-5481
+packages/contracts-ts/src/generated/api/endpoints.ts
+  s_7936d1cd23c5b8::t_b50cb1076660bc 1-3501
+packages/contracts-ts/src/generated/api/events.ts
+  s_7936d1cd23c5b8::t_88f310eb879256 1-1696
+packages/contracts-ts/src/generated/authoring/review_record.ts
+  s_7936d1cd23c5b8::t_c810f1e65f7b74 1-120
+packages/contracts-ts/src/generated/client-validators.d.ts
+  s_7936d1cd23c5b8::t_01b2f29548c7e8 1-467
+packages/contracts-ts/src/generated/client-validators.js
+  s_7936d1cd23c5b8::t_2e8913e92a5cdb 1-10
+packages/contracts-ts/src/generated/client.ts
+  s_7936d1cd23c5b8::t_3f64d1c0d4eda0 1-604
+packages/contracts-ts/src/generated/cloud/catalogue.ts
+  s_7936d1cd23c5b8::t_ac1fcc0a042a69 1-78
+packages/contracts-ts/src/generated/cloud/gateway.ts
+  s_7936d1cd23c5b8::t_2e6a068ba3fd70 1-998
+packages/contracts-ts/src/generated/cloud/outbox.ts
+  s_7936d1cd23c5b8::t_5c3ca8b4a062f5 1-340
+packages/contracts-ts/src/generated/compat.ts
+  s_7936d1cd23c5b8::t_a4261c1855565b 1-7
+packages/contracts-ts/src/generated/content/content_pack.ts
+  s_7936d1cd23c5b8::t_6a2b32bbe03272 1-1952
+packages/contracts-ts/src/generated/content/safety_resources.ts
+  s_7936d1cd23c5b8::t_30a5d3b1bb3bb9 1-22
+packages/contracts-ts/src/generated/content/science_assets.ts
+  s_7936d1cd23c5b8::t_e362f9fd8a1bfd 1-202
+packages/contracts-ts/src/generated/control/control.ts
+  s_7936d1cd23c5b8::t_d695c415d375c6 1-263
+packages/contracts-ts/src/generated/design/gallery_state.ts
+  s_7936d1cd23c5b8::t_28fe3952e4d2ee 1-72
+packages/contracts-ts/src/generated/evals/rubric.ts
+  s_7936d1cd23c5b8::t_fdc2c8a8715a03 1-95
+packages/contracts-ts/src/generated/evals/scenario.ts
+  s_7936d1cd23c5b8::t_343a37c0a4e9b1 1-257
+packages/contracts-ts/src/generated/index.ts
+  s_7936d1cd23c5b8::t_7e11cb43715943 1-1071
+packages/contracts-ts/src/generated/input/captured_question.ts
+  s_7936d1cd23c5b8::t_585fe74555d8e1 1-217
+packages/contracts-ts/src/generated/lan/lan_compute.ts
+  s_7936d1cd23c5b8::t_aa813a554919e0 1-1075
+packages/contracts-ts/src/generated/learning/journey.ts
+  s_7936d1cd23c5b8::t_7093fb92598a0f 1-62
+packages/contracts-ts/src/generated/learning/learner_model.ts
+  s_7936d1cd23c5b8::t_742501b935b6ed 1-227
+packages/contracts-ts/src/generated/learning/learning_event.ts
+  s_7936d1cd23c5b8::t_5f5b09c51bf95b 1-563
+packages/contracts-ts/src/generated/learning/mastery_params.ts
+  s_7936d1cd23c5b8::t_4f63d9267dadbe 1-73
+packages/contracts-ts/src/generated/learning/mock_exam.ts
+  s_7936d1cd23c5b8::t_15e819e103e8c1 1-221
+packages/contracts-ts/src/generated/learning/rule.ts
+  s_7936d1cd23c5b8::t_2a6b9672b1e2ae 1-122
+packages/contracts-ts/src/generated/learning/student_records.ts
+  s_7936d1cd23c5b8::t_60b0a46bea3519 1-945
+packages/contracts-ts/src/generated/ops/cloud_switch.ts
+  s_7936d1cd23c5b8::t_18b392bbd1dfa8 1-12
+packages/contracts-ts/src/generated/ops/compatibility_matrix.ts
+  s_7936d1cd23c5b8::t_d119c8890ee565 1-203
+packages/contracts-ts/src/generated/ops/dpia_list.ts
+  s_7936d1cd23c5b8::t_7279127ec7bed0 1-40
+packages/contracts-ts/src/generated/ops/field_evidence.ts
+  s_7936d1cd23c5b8::t_ebd4c4cb5a14ad 1-34
+packages/contracts-ts/src/generated/ops/governance_records.ts
+  s_7936d1cd23c5b8::t_35c30f8d79c2a5 1-450
+packages/contracts-ts/src/generated/ops/licence.ts
+  s_7936d1cd23c5b8::t_c761d870ffe401 1-115
+packages/contracts-ts/src/generated/ops/model_pack.ts
+  s_7936d1cd23c5b8::t_a44f6470c6ee52 1-58
+packages/contracts-ts/src/generated/ops/perception_pack.ts
+  s_7936d1cd23c5b8::t_a4cbc51ed22a24 1-48
+packages/contracts-ts/src/generated/ops/pilot_country.ts
+  s_7936d1cd23c5b8::t_f0363f00d7d8d1 1-37
+packages/contracts-ts/src/generated/ops/probe_record.ts
+  s_7936d1cd23c5b8::t_10fa49e882f9d0 1-17
+packages/contracts-ts/src/generated/ops/revocation_list.ts
+  s_7936d1cd23c5b8::t_15f5119d6686cd 1-21
+packages/contracts-ts/src/generated/ops/safety_configuration.ts
+  s_7936d1cd23c5b8::t_71dc37babd0a8c 1-69
+packages/contracts-ts/src/generated/ops/speech_pack.ts
+  s_7936d1cd23c5b8::t_f9a21f6b791e18 1-100
+packages/contracts-ts/src/generated/ops/support_bundle.ts
+  s_7936d1cd23c5b8::t_a0144107d9dd45 1-15
+packages/contracts-ts/src/generated/ops/support_upload.ts
+  s_7936d1cd23c5b8::t_24e9a1e1325050 1-42
+packages/contracts-ts/src/generated/ops/update_manifest.ts
+  s_7936d1cd23c5b8::t_8a6c15c4219b63 1-34
+packages/contracts-ts/src/generated/ops/usb_kit.ts
+  s_7936d1cd23c5b8::t_8f1faf72c0b785 1-70
+packages/contracts-ts/src/generated/ops/web_deployment.ts
+  s_7936d1cd23c5b8::t_ce0db9081b1eb5 1-25
+packages/contracts-ts/src/generated/personal_sync/personal_sync.ts
+  s_7936d1cd23c5b8::t_b16f75764d92f5 1-1006
+packages/contracts-ts/src/generated/skills/skill_frontmatter.ts
+  s_7936d1cd23c5b8::t_3ac02fd9ab9844 1-91
+packages/contracts-ts/src/generated/study/research.ts
+  s_7936d1cd23c5b8::t_bb66272c1cc6ee 1-214
+packages/contracts-ts/src/generated/study/workspace.ts
+  s_7936d1cd23c5b8::t_0aa1ce16ec3c11 1-1538
+packages/contracts-ts/src/generated/tools/science_compute.ts
+  s_7936d1cd23c5b8::t_328646db1c4057 1-294
+packages/contracts-ts/src/generated/tools/tool_result.ts
+  s_7936d1cd23c5b8::t_9c55f59ae7cf22 1-74
+packages/contracts-ts/src/generated/tools/worker_protocol.ts
+  s_7936d1cd23c5b8::t_a3fc9a9d46e9fb 1-279
+packages/contracts-ts/src/generated/trace/telemetry.ts
+  s_7936d1cd23c5b8::t_07bf56ae5901fa 1-239
+packages/contracts-ts/src/generated/trace/turn_trace.ts
+  s_7936d1cd23c5b8::t_eacf1d08c4ae1f 1-521
+packages/contracts-ts/src/generated/training/dataset_card.ts
+  s_7936d1cd23c5b8::t_d1cd89ebca8bf8 1-183
+packages/contracts-ts/src/generated/validators.d.ts
+  s_7936d1cd23c5b8::t_8b9673128c96f3 1-934
+packages/contracts-ts/src/generated/validators.js
+  s_7936d1cd23c5b8::t_a6a1c1f3f7b9be 1-10
+packages/contracts-ts/src/generated/visuals/diagram_entry.ts
+  s_7936d1cd23c5b8::t_c7d931afddcb2b 1-166
+packages/contracts-ts/src/generated/visuals/kinds/balanced_equation.ts
+  s_7936d1cd23c5b8::t_13f143b0c9926b 1-40
+packages/contracts-ts/src/generated/visuals/kinds/born_haber_cycle.ts
+  s_7936d1cd23c5b8::t_15c8c8bcae7df9 1-20
+packages/contracts-ts/src/generated/visuals/kinds/circuit.ts
+  s_7936d1cd23c5b8::t_43c2ec29af4629 1-66
+packages/contracts-ts/src/generated/visuals/kinds/classification_key.ts
+  s_7936d1cd23c5b8::t_6be6548417fd0e 1-8
+packages/contracts-ts/src/generated/visuals/kinds/concentration_time.ts
+  s_7936d1cd23c5b8::t_641559e9c559b4 1-72
+packages/contracts-ts/src/generated/visuals/kinds/cycle_diagram.ts
+  s_7936d1cd23c5b8::t_804357ec4afa3f 1-8
+packages/contracts-ts/src/generated/visuals/kinds/data_plot.ts
+  s_7936d1cd23c5b8::t_53938519948a8d 1-22
+packages/contracts-ts/src/generated/visuals/kinds/diagram_comparison.ts
+  s_7936d1cd23c5b8::t_9ba2053e6e418b 1-9
+packages/contracts-ts/src/generated/visuals/kinds/distribution_curve.ts
+  s_7936d1cd23c5b8::t_954574d595a985 1-26
+packages/contracts-ts/src/generated/visuals/kinds/electrolysis_sim.ts
+  s_7936d1cd23c5b8::t_4289c93a5aed5b 1-17
+packages/contracts-ts/src/generated/visuals/kinds/energy_levels.ts
+  s_7936d1cd23c5b8::t_ecdd6fe57fafa8 1-26
+packages/contracts-ts/src/generated/visuals/kinds/enzyme_sim.ts
+  s_7936d1cd23c5b8::t_737721c56549fd 1-12
+packages/contracts-ts/src/generated/visuals/kinds/equilibrium_sim.ts
+  s_7936d1cd23c5b8::t_69c7e87428b28f 1-46
+packages/contracts-ts/src/generated/visuals/kinds/exponential_curve.ts
+  s_7936d1cd23c5b8::t_97f170a62c4f53 1-17
+packages/contracts-ts/src/generated/visuals/kinds/food_web.ts
+  s_7936d1cd23c5b8::t_fa26d9e44be4b9 1-25
+packages/contracts-ts/src/generated/visuals/kinds/free_body.ts
+  s_7936d1cd23c5b8::t_c9a3edce37b21a 1-46
+packages/contracts-ts/src/generated/visuals/kinds/function_graph.ts
+  s_7936d1cd23c5b8::t_f72c168b522ebb 1-77
+packages/contracts-ts/src/generated/visuals/kinds/function_transform_sim.ts
+  s_7936d1cd23c5b8::t_e7462d311f8001 1-48
+packages/contracts-ts/src/generated/visuals/kinds/gas_laws_sim.ts
+  s_7936d1cd23c5b8::t_a86d52d979cf80 1-12
+packages/contracts-ts/src/generated/visuals/kinds/gel_electrophoresis.ts
+  s_7936d1cd23c5b8::t_3fc06862502c38 1-26
+packages/contracts-ts/src/generated/visuals/kinds/library_diagram.ts
+  s_7936d1cd23c5b8::t_893efddada98c6 1-26
+packages/contracts-ts/src/generated/visuals/kinds/maxwell_boltzmann.ts
+  s_7936d1cd23c5b8::t_e09411b8d0a55b 1-13
+packages/contracts-ts/src/generated/visuals/kinds/microscope_view.ts
+  s_7936d1cd23c5b8::t_ad83ea18b1d14c 1-11
+packages/contracts-ts/src/generated/visuals/kinds/orbital_boxes.ts
+  s_7936d1cd23c5b8::t_292ccdc08467d0 1-8
+packages/contracts-ts/src/generated/visuals/kinds/organic_structure.ts
+  s_7936d1cd23c5b8::t_6b668133500e41 1-23
+packages/contracts-ts/src/generated/visuals/kinds/osmosis_sim.ts
+  s_7936d1cd23c5b8::t_7908c7ad20fabd 1-11
+packages/contracts-ts/src/generated/visuals/kinds/pedigree_chart.ts
+  s_7936d1cd23c5b8::t_f7422635fa6354 1-28
+packages/contracts-ts/src/generated/visuals/kinds/population_sim.ts
+  s_7936d1cd23c5b8::t_41cce1f7087ed5 1-15
+packages/contracts-ts/src/generated/visuals/kinds/punnett_square.ts
+  s_7936d1cd23c5b8::t_ac6431b44f6bb8 1-32
+packages/contracts-ts/src/generated/visuals/kinds/rates_sim.ts
+  s_7936d1cd23c5b8::t_1557cbe97f83db 1-16
+packages/contracts-ts/src/generated/visuals/kinds/ray_diagram.ts
+  s_7936d1cd23c5b8::t_9acce221f13681 1-34
+packages/contracts-ts/src/generated/visuals/kinds/reaction_mechanism.ts
+  s_7936d1cd23c5b8::t_8fc467b327821a 1-9
+packages/contracts-ts/src/generated/visuals/kinds/spectrum_chart.ts
+  s_7936d1cd23c5b8::t_480d68ed598984 1-13
+packages/contracts-ts/src/generated/visuals/kinds/t_account.ts
+  s_7936d1cd23c5b8::t_45a530a7f51337 1-45
+packages/contracts-ts/src/generated/visuals/kinds/titration_curve.ts
+  s_7936d1cd23c5b8::t_e1c1c23ec65449 1-41
+packages/contracts-ts/src/generated/visuals/kinds/trial_balance.ts
+  s_7936d1cd23c5b8::t_f7908a251e1cc6 1-33
+packages/contracts-ts/src/generated/visuals/sketch.ts
+  s_7936d1cd23c5b8::t_0710a5b13532d2 1-170
+packages/contracts-ts/src/generated/visuals/visual_spec.ts
+  s_7936d1cd23c5b8::t_88e4f79cbe3e01 1-587
+packages/contracts-ts/src/generated/voice/activities.ts
+  s_7936d1cd23c5b8::t_da56d03a11e73f 1-87
+packages/contracts-ts/src/generated/voice/engine_llm_adapter.ts
+  s_7936d1cd23c5b8::t_7b2afc3a978db9 1-94
+packages/contracts-ts/src/generated/voice/realtime_events.ts
+  s_7936d1cd23c5b8::t_10589f43d14af3 1-267
+packages/contracts-ts/src/index.ts
+  s_7936d1cd23c5b8::t_8d2b652d30b83f 1-37
+packages/contracts-ts/tsconfig.json
+  s_7936d1cd23c5b8::t_4b47b3042cdff9 1-5
+packages/i18n/locales/en.json
+  s_7936d1cd23c5b8::t_cc0b1d312bf37c 1-3321
+packages/i18n/package.json
+  s_7936d1cd23c5b8::t_4967dfc8c8a41a 1-20
+packages/i18n/src/check.ts
+  s_7936d1cd23c5b8::t_6cf922b48847b2 1-100
+packages/i18n/src/index.ts
+  s_7936d1cd23c5b8::t_a7a2b43a8898b3 1-67
+packages/i18n/src/pseudo.ts
+  s_7936d1cd23c5b8::t_80da2282f399f7 1-37
+packages/i18n/tsconfig.json
+  s_7936d1cd23c5b8::t_c74d6c8735a2c4 1-4
+packages/renderers/package.json
+  s_7936d1cd23c5b8::t_d6cd889351a846 1-26
+packages/renderers/src/accounting.tsx
+  s_7936d1cd23c5b8::t_2ebfdfa1ab8dc7 1-245
+packages/renderers/src/biology.tsx
+  s_7936d1cd23c5b8::t_85339cf91450b5 1-638
+packages/renderers/src/chemistry.tsx
+  s_7936d1cd23c5b8::t_878afd5f4f2648 1-376
+packages/renderers/src/chemistry_a_level.tsx
+  s_7936d1cd23c5b8::t_672d72eb1d9840 1-551
+packages/renderers/src/conceptmap/ConceptMapSvg.tsx
+  s_7936d1cd23c5b8::t_e23437bc7c0fec 1-314
+packages/renderers/src/conceptmap/layout.ts
+  s_7936d1cd23c5b8::t_80902faa4f2565 1-320
+packages/renderers/src/contract.ts
+  s_7936d1cd23c5b8::t_92636fde3d9e92 1-82
+packages/renderers/src/curves.tsx
+  s_7936d1cd23c5b8::t_0474a4e795b9a4 1-283
+packages/renderers/src/define.ts
+  s_7936d1cd23c5b8::t_6ee3c658a5ff24 1-43
+packages/renderers/src/expr.ts
+  s_7936d1cd23c5b8::t_86f85a29547dea 1-131
+packages/renderers/src/generated/content_colours.ts
+  s_7936d1cd23c5b8::t_62fc9612250b66 1-69
+packages/renderers/src/generated/keys.ts
+  s_7936d1cd23c5b8::t_f58f8ceaa8376f 1-142
+packages/renderers/src/generated/theme.ts
+  s_7936d1cd23c5b8::t_ef1060b0e46ed8 1-454
+packages/renderers/src/graphs.tsx
+  s_7936d1cd23c5b8::t_0e4b4bb6d880d0 1-472
+packages/renderers/src/index.ts
+  s_7936d1cd23c5b8::t_35234717d57f23 1-56
+packages/renderers/src/kit.tsx
+  s_7936d1cd23c5b8::t_f2a08fa02f0466 1-311
+packages/renderers/src/library.tsx
+  s_7936d1cd23c5b8::t_4968c4fbf02a5c 1-166
+packages/renderers/src/library_svg.ts
+  s_7936d1cd23c5b8::t_e56b6e8e518bd3 1-114
+packages/renderers/src/maths.tsx
+  s_7936d1cd23c5b8::t_6e63d0e35c214e 1-625
+packages/renderers/src/must.ts
+  s_7936d1cd23c5b8::t_b473f53c047264 1-5
+packages/renderers/src/notation.ts
+  s_7936d1cd23c5b8::t_68d30227e0223e 1-11
+packages/renderers/src/physics.tsx
+  s_7936d1cd23c5b8::t_d1197fd64a6c34 1-506
+packages/renderers/src/schema.ts
+  s_7936d1cd23c5b8::t_e75d6346dcafdf 1-84
+packages/renderers/src/schemas/bank_reconciliation.schema.json
+  s_7936d1cd23c5b8::t_d3d96ebd73b39d 1-132
+packages/renderers/src/schemas/bearing_diagram.schema.json
+  s_7936d1cd23c5b8::t_c6a314b4c0541c 1-78
+packages/renderers/src/schemas/break_even_chart.schema.json
+  s_7936d1cd23c5b8::t_0163db0fcd05ff 1-74
+packages/renderers/src/schemas/circuit_sim.schema.json
+  s_7936d1cd23c5b8::t_8b4f941726fca3 1-107
+packages/renderers/src/schemas/electron_shells.schema.json
+  s_7936d1cd23c5b8::t_706057536b5093 1-64
+packages/renderers/src/schemas/energy_profile.schema.json
+  s_7936d1cd23c5b8::t_f21dd98dbf0e05 1-73
+packages/renderers/src/schemas/financial_statements.schema.json
+  s_7936d1cd23c5b8::t_0270e50de6d528 1-146
+packages/renderers/src/schemas/geometry_figure.schema.json
+  s_7936d1cd23c5b8::t_7a8f49d4b05512 1-157
+packages/renderers/src/schemas/journal_entry.schema.json
+  s_7936d1cd23c5b8::t_79bcd86980ffc9 1-92
+packages/renderers/src/schemas/matrix_table.schema.json
+  s_7936d1cd23c5b8::t_8469c763d7c241 1-102
+packages/renderers/src/schemas/motion_diagram.schema.json
+  s_7936d1cd23c5b8::t_bc2b8cdb8717c0 1-86
+packages/renderers/src/schemas/motion_graph.schema.json
+  s_7936d1cd23c5b8::t_7e35bdaa93e2ab 1-174
+packages/renderers/src/schemas/number_line.schema.json
+  s_7936d1cd23c5b8::t_95e6d044bcca0a 1-116
+packages/renderers/src/schemas/particle_diagram.schema.json
+  s_7936d1cd23c5b8::t_87a6a202e04e61 1-62
+packages/renderers/src/schemas/periodic_table.schema.json
+  s_7936d1cd23c5b8::t_9badc32cd3fbe9 1-83
+packages/renderers/src/schemas/probability_tree.schema.json
+  s_7936d1cd23c5b8::t_eaff55f7b1afd0 1-89
+packages/renderers/src/schemas/projectile_sim.schema.json
+  s_7936d1cd23c5b8::t_4f2b87d6eceaa1 1-107
+packages/renderers/src/schemas/statistics_chart.schema.json
+  s_7936d1cd23c5b8::t_c8239a0e42ae0d 1-171
+packages/renderers/src/schemas/titration_sim.schema.json
+  s_7936d1cd23c5b8::t_80b71dccf3753c 1-120
+packages/renderers/src/schemas/transformation_grid.schema.json
+  s_7936d1cd23c5b8::t_083fdfa184c047 1-162
+packages/renderers/src/schemas/unit_circle.schema.json
+  s_7936d1cd23c5b8::t_ebe8f79f486fd5 1-63
+packages/renderers/src/schemas/venn_diagram.schema.json
+  s_7936d1cd23c5b8::t_df41722de115c4 1-104
+packages/renderers/src/schemas/wave_diagram.schema.json
+  s_7936d1cd23c5b8::t_e9a0c86646225f 1-83
+packages/renderers/src/sims/PredictFlow.tsx
+  s_7936d1cd23c5b8::t_8a68c939d716a7 1-327
+packages/renderers/src/sims/SimView.tsx
+  s_7936d1cd23c5b8::t_b88c7cad9b3b4d 1-281
+packages/renderers/src/sims/biology.ts
+  s_7936d1cd23c5b8::t_26493b31edc4c9 1-113
+packages/renderers/src/sims/electrolysis.tsx
+  s_7936d1cd23c5b8::t_e4d1ddcdf24b1d 1-129
+packages/renderers/src/sims/equilibrium.tsx
+  s_7936d1cd23c5b8::t_a96092c6d52a38 1-125
+packages/renderers/src/sims/functions.tsx
+  s_7936d1cd23c5b8::t_32605d42578d62 1-101
+packages/renderers/src/sims/gas.tsx
+  s_7936d1cd23c5b8::t_35f52813e8891b 1-83
+packages/renderers/src/sims/index.tsx
+  s_7936d1cd23c5b8::t_8bab182ea745c7 1-145
+packages/renderers/src/sims/models.ts
+  s_7936d1cd23c5b8::t_e4be1dd38383d3 1-272
+packages/renderers/src/sims/population.tsx
+  s_7936d1cd23c5b8::t_54ce412e8bef36 1-91
+packages/renderers/src/sims/predict.ts
+  s_7936d1cd23c5b8::t_1ebf85c8348185 1-116
+packages/renderers/src/sims/presets.json
+  s_7936d1cd23c5b8::t_92af6e15c63b80 1-62
+packages/renderers/src/sims/rates.tsx
+  s_7936d1cd23c5b8::t_f96a9695d11952 1-84
+packages/renderers/src/sims/run.ts
+  s_7936d1cd23c5b8::t_bfb7ffd03dd280 1-17
+packages/renderers/src/sims/scenarios.json
+  s_7936d1cd23c5b8::t_cd8d468bf6d3a2 1-187
+packages/renderers/src/sims/science.ts
+  s_7936d1cd23c5b8::t_e458d833bbb8c0 1-521
+packages/renderers/src/sketch.tsx
+  s_7936d1cd23c5b8::t_a3bc2160f4ffb9 1-105
+packages/renderers/src/steps.ts
+  s_7936d1cd23c5b8::t_9b649434e236d5 1-64
+packages/renderers/tsconfig.json
+  s_7936d1cd23c5b8::t_781a39568d0d9c 1-5
+packages/ui/assets/brand/jana-app-icon-small.svg
+  s_7936d1cd23c5b8::t_96f9f34d0151a5 1
+packages/ui/assets/brand/jana-app-icon.svg
+  s_7936d1cd23c5b8::t_61f8723dbff75d 1
+packages/ui/assets/brand/jana-lockup-black.svg
+  s_7936d1cd23c5b8::t_1099a061a442a2 1
+packages/ui/assets/brand/jana-lockup-on-dark.svg
+  s_7936d1cd23c5b8::t_d4fe03408b30ce 1
+packages/ui/assets/brand/jana-lockup-white.svg
+  s_7936d1cd23c5b8::t_5739c1b65f39a7 1
+packages/ui/assets/brand/jana-lockup.svg
+  s_7936d1cd23c5b8::t_26738582d227d8 1
+packages/ui/assets/brand/jana-mark-black.svg
+  s_7936d1cd23c5b8::t_a7316c0f99843b 1
+packages/ui/assets/brand/jana-mark-on-dark.svg
+  s_7936d1cd23c5b8::t_e29f94d64009e6 1
+packages/ui/assets/brand/jana-mark-white.svg
+  s_7936d1cd23c5b8::t_772621394ea0ab 1
+packages/ui/assets/brand/jana-mark.svg
+  s_7936d1cd23c5b8::t_1807a69250b1ca 1
+packages/ui/assets/fonts/fonts.css
+  s_7936d1cd23c5b8::t_c05241e505d5c0 1-79
+packages/ui/assets/fonts/funnel-display/LICENSE
+  s_7936d1cd23c5b8::t_e34dcf91e2b764 1-93
+packages/ui/assets/fonts/funnel-sans/LICENSE
+  s_7936d1cd23c5b8::t_0af746b53dfa90 1-93
+packages/ui/assets/fonts/geist-mono/LICENSE
+  s_7936d1cd23c5b8::t_eebeebdeb07f54 1-93
+packages/ui/assets/fonts/vendored.json
+  s_7936d1cd23c5b8::t_c055e91dbcbdeb 1-40
+packages/ui/package.json
+  s_7936d1cd23c5b8::t_ed727bb4270253 1-52
+packages/ui/src/TutorScreen.tsx
+  s_7936d1cd23c5b8::t_2a098a8a433836 1-268
+packages/ui/src/board/Annotation.tsx
+  s_7936d1cd23c5b8::t_e9f0154a258a7f 1-45
+packages/ui/src/board/Board.tsx
+  s_7936d1cd23c5b8::t_453a48437ed2dc 1-434
+packages/ui/src/board/Manipulation.tsx
+  s_7936d1cd23c5b8::t_1409da75eb28ba 1-82
+packages/ui/src/board/Pen.tsx
+  s_7936d1cd23c5b8::t_25b5d2c97b1d6c 1-39
+packages/ui/src/board/PhotoRegions.tsx
+  s_7936d1cd23c5b8::t_998a2487f49c7a 1-67
+packages/ui/src/board/TermCarry.tsx
+  s_7936d1cd23c5b8::t_67673e2e56cb4a 1-69
+packages/ui/src/board/WorkingEntry.tsx
+  s_7936d1cd23c5b8::t_98815be68b9adb 1-73
+packages/ui/src/caches.ts
+  s_7936d1cd23c5b8::t_f1c5359fd537da 1-7
+packages/ui/src/chips/NextStepChips.tsx
+  s_7936d1cd23c5b8::t_0d87a7a7c29492 1-78
+packages/ui/src/composer/CaptureDiagrams.tsx
+  s_7936d1cd23c5b8::t_0860e83cd0df39 1-32
+packages/ui/src/composer/Composer.tsx
+  s_7936d1cd23c5b8::t_6ddb77fe542053 1-247
+packages/ui/src/composer/DiagramDrill.tsx
+  s_7936d1cd23c5b8::t_041ae853291b40 1-147
+packages/ui/src/composer/EntryEditor.tsx
+  s_7936d1cd23c5b8::t_d3ebfce99ac4a1 1-297
+packages/ui/src/composer/HintDock.tsx
+  s_7936d1cd23c5b8::t_eb90303e8c7c1d 1-62
+packages/ui/src/composer/LedgerNode.tsx
+  s_7936d1cd23c5b8::t_a491b33c7f0f83 1-61
+packages/ui/src/composer/NoTutor.tsx
+  s_7936d1cd23c5b8::t_b4d4e083ed1ca8 1-25
+packages/ui/src/composer/PhotoCapture.tsx
+  s_7936d1cd23c5b8::t_1e69cca6efd285 1-284
+packages/ui/src/composer/QuestionDock.tsx
+  s_7936d1cd23c5b8::t_54ac6ca8ea3814 1-8
+packages/ui/src/composer/TutoringUsage.tsx
+  s_7936d1cd23c5b8::t_cfa6f0bc6a0158 1-106
+packages/ui/src/composer/editor.tsx
+  s_7936d1cd23c5b8::t_00b82c96c7d548 1-247
+packages/ui/src/composer/input-error.ts
+  s_7936d1cd23c5b8::t_86f39583860f62 1-13
+packages/ui/src/composer/maths.ts
+  s_7936d1cd23c5b8::t_35447bc1587824 1-63
+packages/ui/src/composer/paste.ts
+  s_7936d1cd23c5b8::t_acdfd04221c752 1-51
+packages/ui/src/composer/requests.tsx
+  s_7936d1cd23c5b8::t_6b37430dbf26f5 1-33
+packages/ui/src/connectivity/AppFrame.tsx
+  s_7936d1cd23c5b8::t_8f61929ee55545 1-73
+packages/ui/src/connectivity/ConnectivityIndicator.tsx
+  s_7936d1cd23c5b8::t_aba1d25dc1da25 1-107
+packages/ui/src/connectivity/EgressNotice.tsx
+  s_7936d1cd23c5b8::t_d9241b0c219d0a 1-43
+packages/ui/src/connectivity/Ledger.tsx
+  s_7936d1cd23c5b8::t_f6408dc3969b05 1-100
+packages/ui/src/connectivity/context.tsx
+  s_7936d1cd23c5b8::t_2b6fe31e93cffe 1-36
+packages/ui/src/frame/Frame.tsx
+  s_7936d1cd23c5b8::t_afd3c087371be2 1-333
+packages/ui/src/frame/KeyboardHelp.tsx
+  s_7936d1cd23c5b8::t_18719b8108443b 1-72
+packages/ui/src/frame/layout.ts
+  s_7936d1cd23c5b8::t_cd190559ab489a 1-45
+packages/ui/src/frame/shortcuts.ts
+  s_7936d1cd23c5b8::t_aaf761a398dfce 1-127
+packages/ui/src/generated/theme.css
+  s_7936d1cd23c5b8::t_1ce5c21dae6451 1-196
+packages/ui/src/generated/tokens.css
+  s_7936d1cd23c5b8::t_d945f38889159d 1-535
+packages/ui/src/generated/tokens.ts
+  s_7936d1cd23c5b8::t_0c92dab2985f48 1-1433
+packages/ui/src/generated/tools.ts
+  s_7936d1cd23c5b8::t_0426de523f1b5b 1-64
+packages/ui/src/home/AskAnswer.tsx
+  s_7936d1cd23c5b8::t_fe3bde947e440d 1-140
+packages/ui/src/home/CheckinCard.tsx
+  s_7936d1cd23c5b8::t_3e32a416ff3366 1-31
+packages/ui/src/home/CourseAsk.tsx
+  s_7936d1cd23c5b8::t_2790615ad4eaed 1-15
+packages/ui/src/home/DailyGoal.tsx
+  s_7936d1cd23c5b8::t_1937c09993411c 1-32
+packages/ui/src/home/DueToday.tsx
+  s_7936d1cd23c5b8::t_fb64c8eff2250b 1-36
+packages/ui/src/home/Home.tsx
+  s_7936d1cd23c5b8::t_c9417527ba97f2 1-275
+packages/ui/src/home/LastTimeCard.tsx
+  s_7936d1cd23c5b8::t_7e33a11d698981 1-38
+packages/ui/src/home/PlanCard.tsx
+  s_7936d1cd23c5b8::t_aa1e8e5026917b 1-207
+packages/ui/src/home/data.ts
+  s_7936d1cd23c5b8::t_760100c905c74d 1-53
+packages/ui/src/i18n.tsx
+  s_7936d1cd23c5b8::t_4306dabe8e2a3d 1-19
+packages/ui/src/icons.tsx
+  s_7936d1cd23c5b8::t_722e0af9363284 1-115
+packages/ui/src/index.ts
+  s_7936d1cd23c5b8::t_29d07a4fcc4726 1-117
+packages/ui/src/learn/Assessment.tsx
+  s_7936d1cd23c5b8::t_ff25ca05c84e88 1-172
+packages/ui/src/learn/CompanionThread.tsx
+  s_7936d1cd23c5b8::t_d8b0f0ee7d739a 1-195
+packages/ui/src/learn/ConceptMap.tsx
+  s_7936d1cd23c5b8::t_8b3513ead1edaf 1-602
+packages/ui/src/learn/LearningJourney.tsx
+  s_7936d1cd23c5b8::t_9dceed56f6dd30 1-63
+packages/ui/src/learn/LessonPlayer.tsx
+  s_7936d1cd23c5b8::t_23ccb897c7303a 1-361
+packages/ui/src/learn/Mastery.tsx
+  s_7936d1cd23c5b8::t_2b3e1ed511fb70 1-135
+packages/ui/src/learn/PackText.tsx
+  s_7936d1cd23c5b8::t_87efc5823b3dcc 1-40
+packages/ui/src/learn/Practice.tsx
+  s_7936d1cd23c5b8::t_ecee4372201b59 1-346
+packages/ui/src/learn/SavedQuestions.tsx
+  s_7936d1cd23c5b8::t_53a4e3a1c123dd 1-113
+packages/ui/src/learn/SessionNotes.tsx
+  s_7936d1cd23c5b8::t_654784dc49ff05 1-135
+packages/ui/src/learn/SponsoredPlace.tsx
+  s_7936d1cd23c5b8::t_0f6d277f2527bd 1-47
+packages/ui/src/learn/StepLesson.tsx
+  s_7936d1cd23c5b8::t_b27a46af5158ed 1-313
+packages/ui/src/learn/StudyCitation.tsx
+  s_7936d1cd23c5b8::t_b473f94be48102 1-71
+packages/ui/src/learn/StudyConceptMap.tsx
+  s_7936d1cd23c5b8::t_a76a2b34288609 1-200
+packages/ui/src/learn/StudyGenerate.tsx
+  s_7936d1cd23c5b8::t_3d6b6dc036e1d5 1-140
+packages/ui/src/learn/StudyJourney.tsx
+  s_7936d1cd23c5b8::t_eab787b7b8262d 1-32
+packages/ui/src/learn/StudyLibrary.tsx
+  s_7936d1cd23c5b8::t_f974993a865995 1-73
+packages/ui/src/learn/StudyLinkAdd.tsx
+  s_7936d1cd23c5b8::t_33a43616ab33a0 1-38
+packages/ui/src/learn/StudyOutline.tsx
+  s_7936d1cd23c5b8::t_7f9ba351c79dad 1-71
+packages/ui/src/learn/StudyPdfReader.tsx
+  s_7936d1cd23c5b8::t_20568dbf9cd8e8 1-33
+packages/ui/src/learn/StudyPlayer.tsx
+  s_7936d1cd23c5b8::t_d66d53db2a6404 1-142
+packages/ui/src/learn/StudyQuiz.tsx
+  s_7936d1cd23c5b8::t_61dc7ca8f535b0 1-206
+packages/ui/src/learn/StudyResearch.tsx
+  s_7936d1cd23c5b8::t_4976a2b5a95d59 1-238
+packages/ui/src/learn/StudyText.tsx
+  s_7936d1cd23c5b8::t_8b30171e10eb6c 1-53
+packages/ui/src/learn/StudyWorkspace.tsx
+  s_7936d1cd23c5b8::t_af36e395dadfbd 1-558
+packages/ui/src/learn/SubjectInputs.tsx
+  s_7936d1cd23c5b8::t_e05ec2c61870f4 1-75
+packages/ui/src/learn/SubjectMap.tsx
+  s_7936d1cd23c5b8::t_029c03ddd8f0ce 1-509
+packages/ui/src/learn/items.tsx
+  s_7936d1cd23c5b8::t_42ea5a2505c78d 1-240
+packages/ui/src/learn/link.tsx
+  s_7936d1cd23c5b8::t_328195105cbace 1-57
+packages/ui/src/learn/mastery.css
+  s_7936d1cd23c5b8::t_25ec2694d51279 1-36
+packages/ui/src/learn/study.css
+  s_7936d1cd23c5b8::t_8a2cce676bd621 1-17
+packages/ui/src/markdown/Markdown.tsx
+  s_7936d1cd23c5b8::t_215dcf82985332 1-98
+packages/ui/src/markdown/lexer.ts
+  s_7936d1cd23c5b8::t_a4536de2f14b75 1-65
+packages/ui/src/maths/Tex.tsx
+  s_7936d1cd23c5b8::t_d89fb11630d7f1 1-20
+packages/ui/src/maths/katex.ts
+  s_7936d1cd23c5b8::t_952d2eb4fa573c 1-66
+packages/ui/src/memory/KnowsPage.tsx
+  s_7936d1cd23c5b8::t_671e6a0cf3ee45 1-401
+packages/ui/src/memory/MemoryChip.tsx
+  s_7936d1cd23c5b8::t_9edb051dcd2c2d 1-94
+packages/ui/src/memory/link.tsx
+  s_7936d1cd23c5b8::t_4bedb2ad9a89e4 1-13
+packages/ui/src/mock/MockExam.tsx
+  s_7936d1cd23c5b8::t_899d3eac5ef421 1-907
+packages/ui/src/mock/PastPapers.tsx
+  s_7936d1cd23c5b8::t_4fe199a568ce0b 1-299
+packages/ui/src/primitives/BrandMark.tsx
+  s_7936d1cd23c5b8::t_11046e7c4a56bc 1-71
+packages/ui/src/primitives/ComposerShell.tsx
+  s_7936d1cd23c5b8::t_7d21196be57236 1-30
+packages/ui/src/primitives/autogrow.ts
+  s_7936d1cd23c5b8::t_7f8738b4f31f69 1-13
+packages/ui/src/primitives/index.tsx
+  s_7936d1cd23c5b8::t_b125c3994f8cc6 1-536
+packages/ui/src/primitives/motion.css
+  s_7936d1cd23c5b8::t_8b89351c19ec73 1-174
+packages/ui/src/profiles/Avatar.tsx
+  s_7936d1cd23c5b8::t_51ea109a388d0e 1-24
+packages/ui/src/profiles/ProfilePicker.tsx
+  s_7936d1cd23c5b8::t_29582bf0c26692 1-166
+packages/ui/src/profiles/ProfileRecovery.tsx
+  s_7936d1cd23c5b8::t_afbfeb82a47717 1-129
+packages/ui/src/progress/MapOverview.tsx
+  s_7936d1cd23c5b8::t_82f3645d6485f1 1-110
+packages/ui/src/progress/Progress.tsx
+  s_7936d1cd23c5b8::t_f110c0e3a7d3b2 1-372
+packages/ui/src/progress/SessionHistory.tsx
+  s_7936d1cd23c5b8::t_c4e240dd959d58 1-108
+packages/ui/src/registry/registry.tsx
+  s_7936d1cd23c5b8::t_7369d540b4d201 1-116
+packages/ui/src/safety/CalmScreen.tsx
+  s_7936d1cd23c5b8::t_f22837cdd43ddb 1-48
+packages/ui/src/search/Search.tsx
+  s_7936d1cd23c5b8::t_ae6dcd0386a581 1-188
+packages/ui/src/settings/DataExport.tsx
+  s_7936d1cd23c5b8::t_15038e3c4628ad 1-65
+packages/ui/src/settings/FamilyControls.tsx
+  s_7936d1cd23c5b8::t_dfda591e7384bc 1-168
+packages/ui/src/settings/HealthPanel.tsx
+  s_7936d1cd23c5b8::t_a2394682cc8f09 1-155
+packages/ui/src/settings/Help.tsx
+  s_7936d1cd23c5b8::t_c17c29074ecfaa 1-186
+packages/ui/src/settings/Installations.tsx
+  s_7936d1cd23c5b8::t_71970b9e431850 1-142
+packages/ui/src/settings/ModelManager.tsx
+  s_7936d1cd23c5b8::t_f4dc2553187a39 1-131
+packages/ui/src/settings/OnlineFeatures.tsx
+  s_7936d1cd23c5b8::t_bf0bac0ef124a7 1-291
+packages/ui/src/settings/ParentSummary.tsx
+  s_7936d1cd23c5b8::t_b9325b6e77f2b7 1-237
+packages/ui/src/settings/ReportSchema.tsx
+  s_7936d1cd23c5b8::t_b984d0957dceed 1-65
+packages/ui/src/settings/Settings.tsx
+  s_7936d1cd23c5b8::t_f5ac62c8d65f62 1-392
+packages/ui/src/settings/Studies.tsx
+  s_7936d1cd23c5b8::t_cacfadced1ca6d 1-197
+packages/ui/src/settings/Support.tsx
+  s_7936d1cd23c5b8::t_5446ff53df5dfd 1-152
+packages/ui/src/settings/TutorSection.tsx
+  s_7936d1cd23c5b8::t_86941bbf8377e2 1-44
+packages/ui/src/settings/preferences.ts
+  s_7936d1cd23c5b8::t_b250ee645bdf58 1-41
+packages/ui/src/settings/theme.ts
+  s_7936d1cd23c5b8::t_8e2922d51e0c01 1-79
+packages/ui/src/setup/AgeField.tsx
+  s_7936d1cd23c5b8::t_8ee46fabcb10f6 1-37
+packages/ui/src/setup/FirstRun.tsx
+  s_7936d1cd23c5b8::t_d38f1a74932cb4 1-97
+packages/ui/src/setup/FirstRunInterview.tsx
+  s_7936d1cd23c5b8::t_4df9b1992d76b6 1-85
+packages/ui/src/setup/FirstRunTutor.tsx
+  s_7936d1cd23c5b8::t_a6102ef87c94c0 1-73
+packages/ui/src/setup/StudyFocusField.tsx
+  s_7936d1cd23c5b8::t_851da805d3b123 1-21
+packages/ui/src/setup/Welcome.tsx
+  s_7936d1cd23c5b8::t_5a6a874e6e9349 1-17
+packages/ui/src/status/DegradedNotices.tsx
+  s_7936d1cd23c5b8::t_3f0afbf713c19a 1-46
+packages/ui/src/status/StatusLine.tsx
+  s_7936d1cd23c5b8::t_91384e23c7f348 1-109
+packages/ui/src/status/TurnFailure.tsx
+  s_7936d1cd23c5b8::t_521e0ee2b35d60 1-24
+packages/ui/src/status/faster.tsx
+  s_7936d1cd23c5b8::t_529a3f98eb3297 1-13
+packages/ui/src/status/idle.ts
+  s_7936d1cd23c5b8::t_c144cd0cf5645f 1-35
+packages/ui/src/store.tsx
+  s_7936d1cd23c5b8::t_22f7af76a1e3ec 1-55
+packages/ui/src/styles/ui.css
+  s_7936d1cd23c5b8::t_57338f7f001370 1-270
+packages/ui/src/transcript/Announcements.tsx
+  s_7936d1cd23c5b8::t_855b4a663d8d90 1-41
+packages/ui/src/transcript/Message.tsx
+  s_7936d1cd23c5b8::t_9291f8bc708c6d 1-50
+packages/ui/src/transcript/ReportProblem.tsx
+  s_7936d1cd23c5b8::t_9ea2a515696bfc 1-94
+packages/ui/src/transcript/Transcript.tsx
+  s_7936d1cd23c5b8::t_d2fa63f2f5bc1a 1-163
+packages/ui/src/transcript/Turn.tsx
+  s_7936d1cd23c5b8::t_56e3320aeb8c83 1-204
+packages/ui/src/transcript/parts.tsx
+  s_7936d1cd23c5b8::t_984552f893622a 1-422
+packages/ui/src/transcript/tools.ts
+  s_7936d1cd23c5b8::t_04003fec24f20d 1-55
+packages/ui/src/transcript/window.tsx
+  s_7936d1cd23c5b8::t_b1dd5ecf4c644f 1-135
+packages/ui/src/tutor/Character.tsx
+  s_7936d1cd23c5b8::t_e55b9c972a7ad5 1-257
+packages/ui/src/tutor/LearningState.tsx
+  s_7936d1cd23c5b8::t_c4338046191920 1-31
+packages/ui/src/tutor/TutorPick.tsx
+  s_7936d1cd23c5b8::t_ebb580c43305bc 1-182
+packages/ui/src/tutor/VoicePresence.tsx
+  s_7936d1cd23c5b8::t_4c4c4f8df51a25 1-49
+packages/ui/src/tutor/art.tsx
+  s_7936d1cd23c5b8::t_289aaba42ac696 1-121
+packages/ui/src/tutor/characters.ts
+  s_7936d1cd23c5b8::t_ec3e7bfeae655a 1-45
+packages/ui/src/tutor/look.tsx
+  s_7936d1cd23c5b8::t_b5bfcedc4c8c8c 1-51
+packages/ui/src/tutor/presence.css
+  s_7936d1cd23c5b8::t_2efc1d74bc12b1 1-235
+packages/ui/src/visuals/VisualViewer.tsx
+  s_7936d1cd23c5b8::t_d09c0956609e73 1-247
+packages/ui/src/voice/SpeechTools.tsx
+  s_7936d1cd23c5b8::t_1bcdd2493ce607 1-130
+packages/ui/src/voice/StudyNotes.tsx
+  s_7936d1cd23c5b8::t_0088fc6bdcfb04 1-92
+packages/ui/src/voice/VoiceBar.tsx
+  s_7936d1cd23c5b8::t_55b886923287d5 1-92
+packages/ui/tokens.json
+  s_7936d1cd23c5b8::t_b06145fb3ace58 1-1429
+packages/ui/tsconfig.json
+  s_7936d1cd23c5b8::t_74af213632283f 1-5
+pnpm-lock.yaml
+  s_7936d1cd23c5b8::t_226eb02ad0de5b 1-3196
+pnpm-workspace.yaml
+  s_7936d1cd23c5b8::t_bf76af7c72d439 1-6
+pyproject.toml
+  s_7936d1cd23c5b8::t_a60473da53c248 1-87
+scripts/jana_tools/__init__.py
+  s_7936d1cd23c5b8::t_851157d63d4378 1-10
+scripts/jana_tools/adult_workshop.py
+  s_7936d1cd23c5b8::t_ff68e4fb7ec5fa 1-382
+scripts/jana_tools/hosted.py
+  s_7936d1cd23c5b8::t_035c0506b820d6 1-862
+scripts/jana_tools/hosted_accounts.py
+  s_7936d1cd23c5b8::t_f0e948db1a3848 1-204
+scripts/jana_tools/hosted_core.py
+  s_7936d1cd23c5b8::t_3ce36ca913d019 1-296
+scripts/jana_tools/hosted_landing.html
+  s_7936d1cd23c5b8::t_3ecc631631aff7 1-16
+scripts/jana_tools/hosted_signin.html
+  s_7936d1cd23c5b8::t_74a15fb969ebb6 1-18
+scripts/jana_tools/hosted_sponsorship.py
+  s_7936d1cd23c5b8::t_e410409e9de78f 1-472
+scripts/jana_tools/model_dev.py
+  s_7936d1cd23c5b8::t_bed07ba01e0a1a 1-110
+scripts/jana_tools/prepaid_signer.py
+  s_7936d1cd23c5b8::t_483405ed0e235a 1-61
+scripts/jana_tools/sponsored_places.py
+  s_7936d1cd23c5b8::t_d8b9f06b329e90 1-436
+scripts/pyproject.toml
+  s_7936d1cd23c5b8::t_bf8a8861b6dc6f 1-18
+services/agent-core/agent_core/__init__.py
+  s_7936d1cd23c5b8::t_599b2c5f1b11f8 1
+services/agent-core/agent_core/api/__init__.py
+  s_7936d1cd23c5b8::t_1a0a983313a8d6 1
+services/agent-core/agent_core/api/__main__.py
+  s_7936d1cd23c5b8::t_e5839df7f7d091 1-522
+services/agent-core/agent_core/api/app.py
+  s_7936d1cd23c5b8::t_b7d36d1c06f226 1-302
+services/agent-core/agent_core/api/app_channel.py
+  s_7936d1cd23c5b8::t_832ec501320b96 1-82
+services/agent-core/agent_core/api/ask.py
+  s_7936d1cd23c5b8::t_7e75d624b6b41b 1-139
+services/agent-core/agent_core/api/assessment.py
+  s_7936d1cd23c5b8::t_a8b73dd249f278 1-368
+services/agent-core/agent_core/api/captures.py
+  s_7936d1cd23c5b8::t_b9236e2ba82d61 1-1026
+services/agent-core/agent_core/api/companion.py
+  s_7936d1cd23c5b8::t_e8ef0f913ae9a2 1-154
+services/agent-core/agent_core/api/connectivity.py
+  s_7936d1cd23c5b8::t_59fbc93898fc23 1-248
+services/agent-core/agent_core/api/core.py
+  s_7936d1cd23c5b8::t_3ef46ec6a67b6d 1-1857
+services/agent-core/agent_core/api/drafts.py
+  s_7936d1cd23c5b8::t_c182499934ceb0 1-153
+services/agent-core/agent_core/api/errors.py
+  s_7936d1cd23c5b8::t_b02d5cf7289dfa 1-135
+services/agent-core/agent_core/api/exports.py
+  s_7936d1cd23c5b8::t_f856acafc47a01 1-394
+services/agent-core/agent_core/api/exposure.py
+  s_7936d1cd23c5b8::t_88f583324e0914 1-33
+services/agent-core/agent_core/api/interview.py
+  s_7936d1cd23c5b8::t_cbb5db22d44856 1-47
+services/agent-core/agent_core/api/journal.py
+  s_7936d1cd23c5b8::t_e6cd1fa9796a24 1-118
+services/agent-core/agent_core/api/learn.py
+  s_7936d1cd23c5b8::t_fe7c974154f1b0 1-155
+services/agent-core/agent_core/api/learning_journey.py
+  s_7936d1cd23c5b8::t_c691f88d5b39ec 1-54
+services/agent-core/agent_core/api/licence.py
+  s_7936d1cd23c5b8::t_73675af1b776ac 1-67
+services/agent-core/agent_core/api/operations.py
+  s_7936d1cd23c5b8::t_9adc34845fd614 1-62
+services/agent-core/agent_core/api/packs.py
+  s_7936d1cd23c5b8::t_036abc24ef4f31 1-698
+services/agent-core/agent_core/api/parents.py
+  s_7936d1cd23c5b8::t_946d3868c7b988 1-69
+services/agent-core/agent_core/api/plans.py
+  s_7936d1cd23c5b8::t_a05ac5aeec46ee 1-137
+services/agent-core/agent_core/api/profiles.py
+  s_7936d1cd23c5b8::t_f3bf4e5fd370f4 1-499
+services/agent-core/agent_core/api/projection.py
+  s_7936d1cd23c5b8::t_edd0b073ce7e03 1-286
+services/agent-core/agent_core/api/records.py
+  s_7936d1cd23c5b8::t_613a86a894a7f4 1-346
+services/agent-core/agent_core/api/research.py
+  s_7936d1cd23c5b8::t_8be61e093e0db4 1-430
+services/agent-core/agent_core/api/screening.py
+  s_7936d1cd23c5b8::t_676a38d6a5d1af 1-361
+services/agent-core/agent_core/api/security.py
+  s_7936d1cd23c5b8::t_af933e46f7e382 1-147
+services/agent-core/agent_core/api/session_notes.py
+  s_7936d1cd23c5b8::t_830f4b766009f9 1-126
+services/agent-core/agent_core/api/setup.py
+  s_7936d1cd23c5b8::t_d3b08743464761 1-65
+services/agent-core/agent_core/api/stream.py
+  s_7936d1cd23c5b8::t_f8958e16466ac0 1-268
+services/agent-core/agent_core/api/study.py
+  s_7936d1cd23c5b8::t_326c242271f5ca 1-860
+services/agent-core/agent_core/api/study_notes.py
+  s_7936d1cd23c5b8::t_9d212b4dcf334c 1-285
+services/agent-core/agent_core/api/support.py
+  s_7936d1cd23c5b8::t_c57ba36f0416e0 1-142
+services/agent-core/agent_core/api/updates.py
+  s_7936d1cd23c5b8::t_25b176378b165e 1-290
+services/agent-core/agent_core/api/voice.py
+  s_7936d1cd23c5b8::t_ee210181064fd4 1-498
+services/agent-core/agent_core/api/voice_activities.py
+  s_7936d1cd23c5b8::t_1bb94555d0aab4 1-457
+services/agent-core/agent_core/api/voice_adapter.py
+  s_7936d1cd23c5b8::t_9c113920e2bdbf 1-896
+services/agent-core/agent_core/assets/__init__.py
+  s_7936d1cd23c5b8::t_2a15f4341a1adc 1
+services/agent-core/agent_core/assets/agent.py
+  s_7936d1cd23c5b8::t_bf1d9439954ef7 1-247
+services/agent-core/agent_core/assets/bundle.py
+  s_7936d1cd23c5b8::t_94225f4f1fc3f8 1-211
+services/agent-core/agent_core/assets/chemistry_kinds.py
+  s_7936d1cd23c5b8::t_aaa46062a9a46d 1-544
+services/agent-core/agent_core/assets/generated/__init__.py
+  s_7936d1cd23c5b8::t_ac41ffd1d6e843 1-3
+services/agent-core/agent_core/assets/generated/kind_schemas.py
+  s_7936d1cd23c5b8::t_8cdb92a141d28e 1-1260
+services/agent-core/agent_core/assets/generated/sim_presets.py
+  s_7936d1cd23c5b8::t_6df1a3932bc384 1-151
+services/agent-core/agent_core/assets/generated/sim_scenarios.py
+  s_7936d1cd23c5b8::t_4b00fbed0687cb 1-197
+services/agent-core/agent_core/assets/generated/visual_catalogue.py
+  s_7936d1cd23c5b8::t_b4baf821ea79ab 1-1183
+services/agent-core/agent_core/assets/glossary.py
+  s_7936d1cd23c5b8::t_2ed5af50cf7ce7 1-113
+services/agent-core/agent_core/assets/relations.py
+  s_7936d1cd23c5b8::t_51a26b791627f7 1-61
+services/agent-core/agent_core/assets/resolvers.py
+  s_7936d1cd23c5b8::t_014fb890253c69 1-1992
+services/agent-core/agent_core/assets/rules.py
+  s_7936d1cd23c5b8::t_ac6f4344708dd3 1-435
+services/agent-core/agent_core/assets/skills.py
+  s_7936d1cd23c5b8::t_9a6431c5b60421 1-431
+services/agent-core/agent_core/assets/visual_kinds.py
+  s_7936d1cd23c5b8::t_f6e88fb2b41c7e 1-1401
+services/agent-core/agent_core/assets/visual_text.en.json
+  s_7936d1cd23c5b8::t_0ea39fec4f73f5 1-394
+services/agent-core/agent_core/assets/visuals.py
+  s_7936d1cd23c5b8::t_db6001f77c5662 1-961
+services/agent-core/agent_core/config/__init__.py
+  s_7936d1cd23c5b8::t_6ad9b1d0843016 1-30
+services/agent-core/agent_core/config/ask_sources.json
+  s_7936d1cd23c5b8::t_6135b6e8cc5256 1-33
+services/agent-core/agent_core/config/environments.py
+  s_7936d1cd23c5b8::t_48e814ef9b4aa9 1-78
+services/agent-core/agent_core/config/keys.py
+  s_7936d1cd23c5b8::t_4a65572b05dd41 1-1516
+services/agent-core/agent_core/config/layers.py
+  s_7936d1cd23c5b8::t_22ee3882231441 1-16
+services/agent-core/agent_core/config/offline_help.json
+  s_7936d1cd23c5b8::t_484bfa92dc03a0 1-46
+services/agent-core/agent_core/config/operations.py
+  s_7936d1cd23c5b8::t_5acd3d3ebf3a9a 1-438
+services/agent-core/agent_core/config/personal_data.py
+  s_7936d1cd23c5b8::t_de95f0a2e81810 1-102
+services/agent-core/agent_core/config/pilot.py
+  s_7936d1cd23c5b8::t_2874e5be7048f1 1-98
+services/agent-core/agent_core/config/resolve.py
+  s_7936d1cd23c5b8::t_875981a23b8c7a 1-147
+services/agent-core/agent_core/config/revocation.py
+  s_7936d1cd23c5b8::t_4452abd3e72616 1-120
+services/agent-core/agent_core/config/support.py
+  s_7936d1cd23c5b8::t_7f6cff51d7ffec 1-252
+services/agent-core/agent_core/config/telemetry_schema.py
+  s_7936d1cd23c5b8::t_914b094d9efa66 1-125
+services/agent-core/agent_core/config/trust.py
+  s_7936d1cd23c5b8::t_afa3e6e72c3d9a 1-233
+services/agent-core/agent_core/config/trust_anchors.json
+  s_7936d1cd23c5b8::t_1773528460a8ff 1
+services/agent-core/agent_core/contracts/__init__.py
+  s_7936d1cd23c5b8::t_246fe33e13ac5b 1-11
+services/agent-core/agent_core/contracts/_compat.py
+  s_7936d1cd23c5b8::t_49dce22ab0c51b 1-112
+services/agent-core/agent_core/contracts/_validation.py
+  s_7936d1cd23c5b8::t_7d0b497425014d 1-127
+services/agent-core/agent_core/contracts/agents/__init__.py
+  s_7936d1cd23c5b8::t_a17806811ee0f0 1-3
+services/agent-core/agent_core/contracts/agents/aux_compaction.py
+  s_7936d1cd23c5b8::t_9709824287da3f 1-16
+services/agent-core/agent_core/contracts/agents/aux_input_guard.py
+  s_7936d1cd23c5b8::t_442a6e080ff305 1-31
+services/agent-core/agent_core/contracts/agents/aux_judge.py
+  s_7936d1cd23c5b8::t_bf4c74254720d4 1-25
+services/agent-core/agent_core/contracts/agents/aux_rule_match.py
+  s_7936d1cd23c5b8::t_b01914c6cdae10 1-24
+services/agent-core/agent_core/contracts/agents/aux_title.py
+  s_7936d1cd23c5b8::t_390d77a6cec6ea 1-16
+services/agent-core/agent_core/contracts/agents/aux_vision_regions.py
+  s_7936d1cd23c5b8::t_a8cc2f176c4a2f 1-40
+services/agent-core/agent_core/contracts/agents/commitment.py
+  s_7936d1cd23c5b8::t_d826ba696c34a8 1-21
+services/agent-core/agent_core/contracts/agents/companion_turn.py
+  s_7936d1cd23c5b8::t_d6a6a5f1474bd5 1-40
+services/agent-core/agent_core/contracts/agents/delegation_result.py
+  s_7936d1cd23c5b8::t_c77138b57efa2c 1-92
+services/agent-core/agent_core/contracts/agents/diagnosis.py
+  s_7936d1cd23c5b8::t_b478adb5848242 1-60
+services/agent-core/agent_core/contracts/agents/guidance_block.py
+  s_7936d1cd23c5b8::t_968dcdc17c957a 1-58
+services/agent-core/agent_core/contracts/agents/model_recommendations.py
+  s_7936d1cd23c5b8::t_d8050d168b9d09 1-103
+services/agent-core/agent_core/contracts/agents/reflection.py
+  s_7936d1cd23c5b8::t_bf9252e7bc17c3 1-32
+services/agent-core/agent_core/contracts/agents/role_manifest.py
+  s_7936d1cd23c5b8::t_f09e19577d99a0 1-74
+services/agent-core/agent_core/contracts/agents/router_config.py
+  s_7936d1cd23c5b8::t_bc96a014c226fc 1-261
+services/agent-core/agent_core/contracts/agents/solution_plan.py
+  s_7936d1cd23c5b8::t_d87215746af177 1-45
+services/agent-core/agent_core/contracts/agents/tutor_turn.py
+  s_7936d1cd23c5b8::t_0280a6a4b63a7a 1-566
+services/agent-core/agent_core/contracts/agents/verdict.py
+  s_7936d1cd23c5b8::t_b6e26e5d93bc23 1-60
+services/agent-core/agent_core/contracts/api/__init__.py
+  s_7936d1cd23c5b8::t_eff0fb9979a10c 1-3
+services/agent-core/agent_core/contracts/api/commands.py
+  s_7936d1cd23c5b8::t_917a7cd345c5a4 1-6234
+services/agent-core/agent_core/contracts/api/endpoints.py
+  s_7936d1cd23c5b8::t_e7d92962e1b24e 1-3493
+services/agent-core/agent_core/contracts/api/events.py
+  s_7936d1cd23c5b8::t_e4f044b84fa9bd 1-1881
+services/agent-core/agent_core/contracts/authoring/__init__.py
+  s_7936d1cd23c5b8::t_7d0e635b8e746a 1-3
+services/agent-core/agent_core/contracts/authoring/review_record.py
+  s_7936d1cd23c5b8::t_244d8e3f81b53e 1-159
+services/agent-core/agent_core/contracts/cloud/__init__.py
+  s_7936d1cd23c5b8::t_ade190af96c1e9 1-3
+services/agent-core/agent_core/contracts/cloud/catalogue.py
+  s_7936d1cd23c5b8::t_2edf542b58e576 1-162
+services/agent-core/agent_core/contracts/cloud/gateway.py
+  s_7936d1cd23c5b8::t_97aae80668d640 1-851
+services/agent-core/agent_core/contracts/cloud/outbox.py
+  s_7936d1cd23c5b8::t_1431edab88f5a4 1-420
+services/agent-core/agent_core/contracts/compat.json
+  s_7936d1cd23c5b8::t_d5775d38033083 1-472
+services/agent-core/agent_core/contracts/content/__init__.py
+  s_7936d1cd23c5b8::t_fb282416e22ffb 1-3
+services/agent-core/agent_core/contracts/content/content_pack.py
+  s_7936d1cd23c5b8::t_c1d25a7cb39cb2 1-2211
+services/agent-core/agent_core/contracts/content/safety_resources.py
+  s_7936d1cd23c5b8::t_459ef5b3a074b7 1-37
+services/agent-core/agent_core/contracts/content/science_assets.py
+  s_7936d1cd23c5b8::t_df3cfcd4216de0 1-199
+services/agent-core/agent_core/contracts/control/__init__.py
+  s_7936d1cd23c5b8::t_7bfa8677d0aa64 1-3
+services/agent-core/agent_core/contracts/control/control.py
+  s_7936d1cd23c5b8::t_ba1ee630687d09 1-427
+services/agent-core/agent_core/contracts/design/__init__.py
+  s_7936d1cd23c5b8::t_34e6702c9e086b 1-3
+services/agent-core/agent_core/contracts/design/gallery_state.py
+  s_7936d1cd23c5b8::t_8d8bf327bd95a3 1-119
+services/agent-core/agent_core/contracts/evals/__init__.py
+  s_7936d1cd23c5b8::t_339f10ca5c310a 1-3
+services/agent-core/agent_core/contracts/evals/rubric.py
+  s_7936d1cd23c5b8::t_a7a6e078866621 1-126
+services/agent-core/agent_core/contracts/evals/scenario.py
+  s_7936d1cd23c5b8::t_3949d3ec8dcf8e 1-381
+services/agent-core/agent_core/contracts/input/__init__.py
+  s_7936d1cd23c5b8::t_10f647b40d7d66 1-3
+services/agent-core/agent_core/contracts/input/captured_question.py
+  s_7936d1cd23c5b8::t_02e8c5b87aeb85 1-313
+services/agent-core/agent_core/contracts/lan/__init__.py
+  s_7936d1cd23c5b8::t_96949dd1ec1531 1-3
+services/agent-core/agent_core/contracts/lan/lan_compute.py
+  s_7936d1cd23c5b8::t_c55bb0d0b87c75 1-1255
+services/agent-core/agent_core/contracts/learning/__init__.py
+  s_7936d1cd23c5b8::t_c2ba75473bdb5b 1-3
+services/agent-core/agent_core/contracts/learning/journey.py
+  s_7936d1cd23c5b8::t_bf47269328901e 1-84
+services/agent-core/agent_core/contracts/learning/learner_model.py
+  s_7936d1cd23c5b8::t_e633bc078ce87b 1-259
+services/agent-core/agent_core/contracts/learning/learning_event.py
+  s_7936d1cd23c5b8::t_c4ba54a71f6fed 1-856
+services/agent-core/agent_core/contracts/learning/mastery_params.py
+  s_7936d1cd23c5b8::t_eb565cb1439d10 1-133
+services/agent-core/agent_core/contracts/learning/mock_exam.py
+  s_7936d1cd23c5b8::t_a6c25ef0ff701d 1-311
+services/agent-core/agent_core/contracts/learning/rule.py
+  s_7936d1cd23c5b8::t_781ccf9c0d27ba 1-160
+services/agent-core/agent_core/contracts/learning/student_records.py
+  s_7936d1cd23c5b8::t_b84692ccb6f2aa 1-1103
+services/agent-core/agent_core/contracts/ops/__init__.py
+  s_7936d1cd23c5b8::t_14370ea723ee69 1-3
+services/agent-core/agent_core/contracts/ops/cloud_switch.py
+  s_7936d1cd23c5b8::t_28467c0036583d 1-21
+services/agent-core/agent_core/contracts/ops/compatibility_matrix.py
+  s_7936d1cd23c5b8::t_744706e3a87ce6 1-211
+services/agent-core/agent_core/contracts/ops/dpia_list.py
+  s_7936d1cd23c5b8::t_877ea0eac5fd5d 1-59
+services/agent-core/agent_core/contracts/ops/field_evidence.py
+  s_7936d1cd23c5b8::t_a9133cd35a9eeb 1-40
+services/agent-core/agent_core/contracts/ops/governance_records.py
+  s_7936d1cd23c5b8::t_f7a35f5bcc1a38 1-627
+services/agent-core/agent_core/contracts/ops/licence.py
+  s_7936d1cd23c5b8::t_74ab87c0e8969e 1-120
+services/agent-core/agent_core/contracts/ops/model_pack.py
+  s_7936d1cd23c5b8::t_22907b62df3a87 1-85
+services/agent-core/agent_core/contracts/ops/perception_pack.py
+  s_7936d1cd23c5b8::t_bcbfda485cbd8f 1-61
+services/agent-core/agent_core/contracts/ops/pilot_country.py
+  s_7936d1cd23c5b8::t_d70043173426a8 1-64
+services/agent-core/agent_core/contracts/ops/probe_record.py
+  s_7936d1cd23c5b8::t_1e215d3306d971 1-23
+services/agent-core/agent_core/contracts/ops/revocation_list.py
+  s_7936d1cd23c5b8::t_fb4241be06c0e7 1-38
+services/agent-core/agent_core/contracts/ops/safety_configuration.py
+  s_7936d1cd23c5b8::t_b1d1e5e419d42d 1-90
+services/agent-core/agent_core/contracts/ops/speech_pack.py
+  s_7936d1cd23c5b8::t_756b5d29d4940e 1-190
+services/agent-core/agent_core/contracts/ops/support_bundle.py
+  s_7936d1cd23c5b8::t_7131b762b5e4a3 1-32
+services/agent-core/agent_core/contracts/ops/support_upload.py
+  s_7936d1cd23c5b8::t_c2fadc9ff1dba4 1-54
+services/agent-core/agent_core/contracts/ops/update_manifest.py
+  s_7936d1cd23c5b8::t_d421df2ccf9ef6 1-48
+services/agent-core/agent_core/contracts/ops/usb_kit.py
+  s_7936d1cd23c5b8::t_2067f09bf72000 1-92
+services/agent-core/agent_core/contracts/ops/web_deployment.py
+  s_7936d1cd23c5b8::t_5a8c3a1de76bc1 1-42
+services/agent-core/agent_core/contracts/personal_sync/__init__.py
+  s_7936d1cd23c5b8::t_fce32e8b5ac719 1-3
+services/agent-core/agent_core/contracts/personal_sync/personal_sync.py
+  s_7936d1cd23c5b8::t_9452387321c452 1-1171
+services/agent-core/agent_core/contracts/schemas/agents/aux-compaction.schema.json
+  s_7936d1cd23c5b8::t_1d30ed99c463fd 1-17
+services/agent-core/agent_core/contracts/schemas/agents/aux-input-guard.schema.json
+  s_7936d1cd23c5b8::t_0e607879a8f7cf 1-33
+services/agent-core/agent_core/contracts/schemas/agents/aux-judge.schema.json
+  s_7936d1cd23c5b8::t_bbf966a3fb45ff 1-39
+services/agent-core/agent_core/contracts/schemas/agents/aux-rule-match.schema.json
+  s_7936d1cd23c5b8::t_86092907c0be96 1-35
+services/agent-core/agent_core/contracts/schemas/agents/aux-title.schema.json
+  s_7936d1cd23c5b8::t_f3a0706ab24b05 1-18
+services/agent-core/agent_core/contracts/schemas/agents/aux-vision-regions.schema.json
+  s_7936d1cd23c5b8::t_5ade7d274f2418 1-91
+services/agent-core/agent_core/contracts/schemas/agents/commitment.schema.json
+  s_7936d1cd23c5b8::t_40418b4a5ef5fd 1-71
+services/agent-core/agent_core/contracts/schemas/agents/companion-turn.schema.json
+  s_7936d1cd23c5b8::t_f65d98a6526522 1-70
+services/agent-core/agent_core/contracts/schemas/agents/delegation-result.schema.json
+  s_7936d1cd23c5b8::t_da5d0e856bba17 1-250
+services/agent-core/agent_core/contracts/schemas/agents/diagnosis.schema.json
+  s_7936d1cd23c5b8::t_d219d7fb37a341 1-166
+services/agent-core/agent_core/contracts/schemas/agents/guidance-block.schema.json
+  s_7936d1cd23c5b8::t_f099097caf027f 1-175
+services/agent-core/agent_core/contracts/schemas/agents/model-recommendations.schema.json
+  s_7936d1cd23c5b8::t_bc5155d80138aa 1-253
+services/agent-core/agent_core/contracts/schemas/agents/reflection.schema.json
+  s_7936d1cd23c5b8::t_2e9f39338b770b 1-104
+services/agent-core/agent_core/contracts/schemas/agents/role-manifest.schema.json
+  s_7936d1cd23c5b8::t_7a31ec90532b2d 1-293
+services/agent-core/agent_core/contracts/schemas/agents/router-config.schema.json
+  s_7936d1cd23c5b8::t_9ba5999d6803c1 1-529
+services/agent-core/agent_core/contracts/schemas/agents/solution-plan.schema.json
+  s_7936d1cd23c5b8::t_e11e7e193ad993 1-183
+services/agent-core/agent_core/contracts/schemas/agents/tutor-turn.schema.json
+  s_7936d1cd23c5b8::t_71915f0c821328 1-516
+services/agent-core/agent_core/contracts/schemas/agents/verdict.schema.json
+  s_7936d1cd23c5b8::t_4dbe204f86d295 1-198
+services/agent-core/agent_core/contracts/schemas/api/commands.schema.json
+  s_7936d1cd23c5b8::t_f823338c044697 1-10773
+services/agent-core/agent_core/contracts/schemas/api/events.schema.json
+  s_7936d1cd23c5b8::t_dcf0ac5cba98b0 1-3390
+services/agent-core/agent_core/contracts/schemas/authoring/review-record.schema.json
+  s_7936d1cd23c5b8::t_30e051c8fbf614 1-371
+services/agent-core/agent_core/contracts/schemas/cloud/catalogue.schema.json
+  s_7936d1cd23c5b8::t_9590f28fb3288e 1-286
+services/agent-core/agent_core/contracts/schemas/cloud/gateway.schema.json
+  s_7936d1cd23c5b8::t_dd016c0258f57b 1-391
+services/agent-core/agent_core/contracts/schemas/cloud/outbox.schema.json
+  s_7936d1cd23c5b8::t_cd0704053e1cad 1-273
+services/agent-core/agent_core/contracts/schemas/content/content-pack.schema.json
+  s_7936d1cd23c5b8::t_625fd96ef921e7 1-4056
+services/agent-core/agent_core/contracts/schemas/content/safety-resources.schema.json
+  s_7936d1cd23c5b8::t_164fe91789f4a7 1-87
+services/agent-core/agent_core/contracts/schemas/content/science-assets.schema.json
+  s_7936d1cd23c5b8::t_c6ab5684d9ac74 1-528
+services/agent-core/agent_core/contracts/schemas/control/control.schema.json
+  s_7936d1cd23c5b8::t_4816ee93f14e21 1-992
+services/agent-core/agent_core/contracts/schemas/design/gallery-state.schema.json
+  s_7936d1cd23c5b8::t_08ecd96e302d95 1-231
+services/agent-core/agent_core/contracts/schemas/evals/rubric.schema.json
+  s_7936d1cd23c5b8::t_9fa024a9dcfd59 1-277
+services/agent-core/agent_core/contracts/schemas/evals/scenario.schema.json
+  s_7936d1cd23c5b8::t_2cb02f719be1fc 1-777
+services/agent-core/agent_core/contracts/schemas/input/captured-question.schema.json
+  s_7936d1cd23c5b8::t_0a897716a5ecbf 1-861
+services/agent-core/agent_core/contracts/schemas/lan/lan-compute.schema.json
+  s_7936d1cd23c5b8::t_34cbaac08b21b6 1-722
+services/agent-core/agent_core/contracts/schemas/learning/journey.schema.json
+  s_7936d1cd23c5b8::t_b30fb74fba0695 1-228
+services/agent-core/agent_core/contracts/schemas/learning/learner-model.schema.json
+  s_7936d1cd23c5b8::t_6af0fa1fa963b6 1-771
+services/agent-core/agent_core/contracts/schemas/learning/learning-event.schema.json
+  s_7936d1cd23c5b8::t_e62cb4da7e0618 1-1969
+services/agent-core/agent_core/contracts/schemas/learning/mastery-params.schema.json
+  s_7936d1cd23c5b8::t_5ad8a7e9e24bb6 1-208
+services/agent-core/agent_core/contracts/schemas/learning/mock-exam.schema.json
+  s_7936d1cd23c5b8::t_97dfe24b7a1815 1-803
+services/agent-core/agent_core/contracts/schemas/learning/rule.schema.json
+  s_7936d1cd23c5b8::t_73a2886c0a21f4 1-374
+services/agent-core/agent_core/contracts/schemas/learning/student-records.schema.json
+  s_7936d1cd23c5b8::t_393ecc137b14bb 1-571
+services/agent-core/agent_core/contracts/schemas/ops/cloud-switch.schema.json
+  s_7936d1cd23c5b8::t_befc43aebe2d1a 1-67
+services/agent-core/agent_core/contracts/schemas/ops/compatibility-matrix.schema.json
+  s_7936d1cd23c5b8::t_2389d366e9454b 1-555
+services/agent-core/agent_core/contracts/schemas/ops/dpia-list.schema.json
+  s_7936d1cd23c5b8::t_8bdc84668102f1 1-100
+services/agent-core/agent_core/contracts/schemas/ops/field-evidence.schema.json
+  s_7936d1cd23c5b8::t_287b8c64b48ec1 1-91
+services/agent-core/agent_core/contracts/schemas/ops/governance-records.schema.json
+  s_7936d1cd23c5b8::t_bf15e185e77b07 1-1684
+services/agent-core/agent_core/contracts/schemas/ops/licence.schema.json
+  s_7936d1cd23c5b8::t_3a27e7636c235e 1-326
+services/agent-core/agent_core/contracts/schemas/ops/model-pack.schema.json
+  s_7936d1cd23c5b8::t_26d7ddeb1b2aab 1-215
+services/agent-core/agent_core/contracts/schemas/ops/perception-pack.schema.json
+  s_7936d1cd23c5b8::t_6d2ab2099454ba 1-174
+services/agent-core/agent_core/contracts/schemas/ops/pilot-country.schema.json
+  s_7936d1cd23c5b8::t_89181e08d6db78 1-150
+services/agent-core/agent_core/contracts/schemas/ops/probe-record.schema.json
+  s_7936d1cd23c5b8::t_01dac26f7fc416 1-50
+services/agent-core/agent_core/contracts/schemas/ops/revocation-list.schema.json
+  s_7936d1cd23c5b8::t_7b68d32334c943 1-77
+services/agent-core/agent_core/contracts/schemas/ops/safety-configuration.schema.json
+  s_7936d1cd23c5b8::t_dfe4eb2a4b763b 1-470
+services/agent-core/agent_core/contracts/schemas/ops/speech-pack.schema.json
+  s_7936d1cd23c5b8::t_38f3fcfbbe107f 1-314
+services/agent-core/agent_core/contracts/schemas/ops/support-bundle.schema.json
+  s_7936d1cd23c5b8::t_c214344e76edf1 1-73
+services/agent-core/agent_core/contracts/schemas/ops/support-upload.schema.json
+  s_7936d1cd23c5b8::t_2f5f0d291ed81a 1-72
+services/agent-core/agent_core/contracts/schemas/ops/update-manifest.schema.json
+  s_7936d1cd23c5b8::t_fd3c2bcfc2b5b2 1-112
+services/agent-core/agent_core/contracts/schemas/ops/usb-kit.schema.json
+  s_7936d1cd23c5b8::t_0052430ff8ba84 1-130
+services/agent-core/agent_core/contracts/schemas/ops/web-deployment.schema.json
+  s_7936d1cd23c5b8::t_766ecec2dbd8e7 1-99
+services/agent-core/agent_core/contracts/schemas/personal-sync/personal-sync.schema.json
+  s_7936d1cd23c5b8::t_4f9483e46b3b8c 1-807
+services/agent-core/agent_core/contracts/schemas/skills/skill-frontmatter.schema.json
+  s_7936d1cd23c5b8::t_94a9cb8a8af56a 1-406
+services/agent-core/agent_core/contracts/schemas/study/research.schema.json
+  s_7936d1cd23c5b8::t_532a5541566596 1-637
+services/agent-core/agent_core/contracts/schemas/study/workspace.schema.json
+  s_7936d1cd23c5b8::t_b853b918774dca 1-4733
+services/agent-core/agent_core/contracts/schemas/tools/science-compute.schema.json
+  s_7936d1cd23c5b8::t_1b316843fcb1d6 1-1354
+services/agent-core/agent_core/contracts/schemas/tools/tool-result.schema.json
+  s_7936d1cd23c5b8::t_e37307ebc44191 1-230
+services/agent-core/agent_core/contracts/schemas/tools/worker-protocol.schema.json
+  s_7936d1cd23c5b8::t_254f0e621b27dd 1-1119
+services/agent-core/agent_core/contracts/schemas/trace/telemetry.schema.json
+  s_7936d1cd23c5b8::t_f95b574ae827c6 1-571
+services/agent-core/agent_core/contracts/schemas/trace/turn-trace.schema.json
+  s_7936d1cd23c5b8::t_1fbd23c3497e34 1-1611
+services/agent-core/agent_core/contracts/schemas/training/dataset-card.schema.json
+  s_7936d1cd23c5b8::t_5ae14e52976830 1-748
+services/agent-core/agent_core/contracts/schemas/visuals/diagram-entry.schema.json
+  s_7936d1cd23c5b8::t_99c08176e55a41 1-371
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/balanced_equation.schema.json
+  s_7936d1cd23c5b8::t_53707a68ea73ea 1-107
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/born_haber_cycle.schema.json
+  s_7936d1cd23c5b8::t_26a92813d7e62f 1-70
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/circuit.schema.json
+  s_7936d1cd23c5b8::t_723879556ad978 1-146
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/classification_key.schema.json
+  s_7936d1cd23c5b8::t_cf4431798fcfb1 1-23
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/concentration_time.schema.json
+  s_7936d1cd23c5b8::t_e169e384c5bfea 1-335
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/cycle_diagram.schema.json
+  s_7936d1cd23c5b8::t_5f9dae60c79d80 1-23
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/data_plot.schema.json
+  s_7936d1cd23c5b8::t_794ad359f5a124 1-74
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/diagram_comparison.schema.json
+  s_7936d1cd23c5b8::t_013a45c8cefc5d 1-32
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/distribution_curve.schema.json
+  s_7936d1cd23c5b8::t_65c20b9664c2f4 1-182
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/electrolysis_sim.schema.json
+  s_7936d1cd23c5b8::t_6dc3159c4b3d40 1-62
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/energy_levels.schema.json
+  s_7936d1cd23c5b8::t_e03eb09eb98c0c 1-68
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/enzyme_sim.schema.json
+  s_7936d1cd23c5b8::t_c3a8b9f6e9d08e 1-44
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/equilibrium_sim.schema.json
+  s_7936d1cd23c5b8::t_773bbc8e74085e 1-92
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/exponential_curve.schema.json
+  s_7936d1cd23c5b8::t_851c2b3016cd32 1-58
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/food_web.schema.json
+  s_7936d1cd23c5b8::t_df57176e749588 1-72
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/free_body.schema.json
+  s_7936d1cd23c5b8::t_a1cf31e1de00df 1-145
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/function_graph.schema.json
+  s_7936d1cd23c5b8::t_e4f62290768bfe 1-219
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/function_transform_sim.schema.json
+  s_7936d1cd23c5b8::t_35b140e82cb66d 1-157
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/gas_laws_sim.schema.json
+  s_7936d1cd23c5b8::t_2a992601b479f4 1-44
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/gel_electrophoresis.schema.json
+  s_7936d1cd23c5b8::t_be10806688a98d 1-60
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/library_diagram.schema.json
+  s_7936d1cd23c5b8::t_dc8314159ef5e8 1-70
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/maxwell_boltzmann.schema.json
+  s_7936d1cd23c5b8::t_664cb8fcca4a36 1-31
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/microscope_view.schema.json
+  s_7936d1cd23c5b8::t_c4db7576d61880 1-36
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/orbital_boxes.schema.json
+  s_7936d1cd23c5b8::t_b4a137cf7b5265 1-24
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/organic_structure.schema.json
+  s_7936d1cd23c5b8::t_5520858c37daf0 1-89
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/osmosis_sim.schema.json
+  s_7936d1cd23c5b8::t_4049b7701c3342 1-40
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/pedigree_chart.schema.json
+  s_7936d1cd23c5b8::t_c4f48c6ba9ac6c 1-88
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/population_sim.schema.json
+  s_7936d1cd23c5b8::t_3ae393a87829a1 1-125
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/punnett_square.schema.json
+  s_7936d1cd23c5b8::t_b43be38f83fb84 1-108
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/rates_sim.schema.json
+  s_7936d1cd23c5b8::t_f3af786167286d 1-54
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/ray_diagram.schema.json
+  s_7936d1cd23c5b8::t_00b0a86579318e 1-92
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/reaction_mechanism.schema.json
+  s_7936d1cd23c5b8::t_2ad67103eb0900 1-31
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/spectrum_chart.schema.json
+  s_7936d1cd23c5b8::t_9ed3ddb3cbc3f8 1-36
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/t_account.schema.json
+  s_7936d1cd23c5b8::t_1b100c68b7bb57 1-144
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/titration_curve.schema.json
+  s_7936d1cd23c5b8::t_85e423036f48b2 1-118
+services/agent-core/agent_core/contracts/schemas/visuals/kinds/trial_balance.schema.json
+  s_7936d1cd23c5b8::t_7d587aeaa127bc 1-102
+services/agent-core/agent_core/contracts/schemas/visuals/sketch.schema.json
+  s_7936d1cd23c5b8::t_7916595a503ddd 1-466
+services/agent-core/agent_core/contracts/schemas/visuals/visual-spec.schema.json
+  s_7936d1cd23c5b8::t_1df9ec32eb16a1 1-936
+services/agent-core/agent_core/contracts/schemas/voice/activities.schema.json
+  s_7936d1cd23c5b8::t_62ba74e41a15ae 1-397
+services/agent-core/agent_core/contracts/schemas/voice/engine-llm-adapter.schema.json
+  s_7936d1cd23c5b8::t_d2554a0eaf16c2 1-398
+services/agent-core/agent_core/contracts/schemas/voice/realtime-events.schema.json
+  s_7936d1cd23c5b8::t_04a8f62e95d0ec 1-1083
+services/agent-core/agent_core/contracts/skills/__init__.py
+  s_7936d1cd23c5b8::t_f7dc8c09664271 1-3
+services/agent-core/agent_core/contracts/skills/skill_frontmatter.py
+  s_7936d1cd23c5b8::t_5adfd5a21da563 1-118
+services/agent-core/agent_core/contracts/study/__init__.py
+  s_7936d1cd23c5b8::t_0f263ff17e018b 1-3
+services/agent-core/agent_core/contracts/study/research.py
+  s_7936d1cd23c5b8::t_b0df2729e2d862 1-211
+services/agent-core/agent_core/contracts/study/workspace.py
+  s_7936d1cd23c5b8::t_5bb464ad0894a2 1-1447
+services/agent-core/agent_core/contracts/tools/__init__.py
+  s_7936d1cd23c5b8::t_b7c112776f6a99 1-3
+services/agent-core/agent_core/contracts/tools/science_compute.py
+  s_7936d1cd23c5b8::t_7c710d19b2ec79 1-317
+services/agent-core/agent_core/contracts/tools/tool_result.py
+  s_7936d1cd23c5b8::t_3553957fb166bc 1-105
+services/agent-core/agent_core/contracts/tools/worker_protocol.py
+  s_7936d1cd23c5b8::t_dbd37eb5b92f4c 1-470
+services/agent-core/agent_core/contracts/trace/__init__.py
+  s_7936d1cd23c5b8::t_bec53b25f52872 1-3
+services/agent-core/agent_core/contracts/trace/telemetry.py
+  s_7936d1cd23c5b8::t_d98bb16f6eb1ad 1-309
+services/agent-core/agent_core/contracts/trace/turn_trace.py
+  s_7936d1cd23c5b8::t_57d3103c7d35e1 1-669
+services/agent-core/agent_core/contracts/training/__init__.py
+  s_7936d1cd23c5b8::t_9d9b1a167eef3f 1-3
+services/agent-core/agent_core/contracts/training/dataset_card.py
+  s_7936d1cd23c5b8::t_28c984e3268e7b 1-263
+services/agent-core/agent_core/contracts/visuals/__init__.py
+  s_7936d1cd23c5b8::t_4478e741b49df8 1-3
+services/agent-core/agent_core/contracts/visuals/diagram_entry.py
+  s_7936d1cd23c5b8::t_4e36decb7a2935 1-182
+services/agent-core/agent_core/contracts/visuals/kinds/__init__.py
+  s_7936d1cd23c5b8::t_d92d2eb64b7880 1-3
+services/agent-core/agent_core/contracts/visuals/kinds/balanced_equation.py
+  s_7936d1cd23c5b8::t_3bb7df76d7c4a8 1-43
+services/agent-core/agent_core/contracts/visuals/kinds/born_haber_cycle.py
+  s_7936d1cd23c5b8::t_afe4866c05b4c6 1-29
+services/agent-core/agent_core/contracts/visuals/kinds/circuit.py
+  s_7936d1cd23c5b8::t_5dc7f0b8835f33 1-89
+services/agent-core/agent_core/contracts/visuals/kinds/classification_key.py
+  s_7936d1cd23c5b8::t_889fc438ebee8e 1-20
+services/agent-core/agent_core/contracts/visuals/kinds/concentration_time.py
+  s_7936d1cd23c5b8::t_94489978c98a8c 1-90
+services/agent-core/agent_core/contracts/visuals/kinds/cycle_diagram.py
+  s_7936d1cd23c5b8::t_7ebf36738e1e88 1-20
+services/agent-core/agent_core/contracts/visuals/kinds/data_plot.py
+  s_7936d1cd23c5b8::t_5686368248f149 1-31
+services/agent-core/agent_core/contracts/visuals/kinds/diagram_comparison.py
+  s_7936d1cd23c5b8::t_eb442bbbde124b 1-18
+services/agent-core/agent_core/contracts/visuals/kinds/distribution_curve.py
+  s_7936d1cd23c5b8::t_99bdb79ae11514 1-44
+services/agent-core/agent_core/contracts/visuals/kinds/electrolysis_sim.py
+  s_7936d1cd23c5b8::t_88f47bd996e0db 1-23
+services/agent-core/agent_core/contracts/visuals/kinds/energy_levels.py
+  s_7936d1cd23c5b8::t_a3a3f0243e2eb1 1-35
+services/agent-core/agent_core/contracts/visuals/kinds/enzyme_sim.py
+  s_7936d1cd23c5b8::t_e36d247e7c205d 1-21
+services/agent-core/agent_core/contracts/visuals/kinds/equilibrium_sim.py
+  s_7936d1cd23c5b8::t_205b9c3636868b 1-54
+services/agent-core/agent_core/contracts/visuals/kinds/exponential_curve.py
+  s_7936d1cd23c5b8::t_68d30a32a9b4a5 1-24
+services/agent-core/agent_core/contracts/visuals/kinds/food_web.py
+  s_7936d1cd23c5b8::t_3a9ae8e684d376 1-42
+services/agent-core/agent_core/contracts/visuals/kinds/free_body.py
+  s_7936d1cd23c5b8::t_6c2ddfec5bae8f 1-66
+services/agent-core/agent_core/contracts/visuals/kinds/function_graph.py
+  s_7936d1cd23c5b8::t_b106d7ffc5e819 1-88
+services/agent-core/agent_core/contracts/visuals/kinds/function_transform_sim.py
+  s_7936d1cd23c5b8::t_f64aca73278766 1-70
+services/agent-core/agent_core/contracts/visuals/kinds/gas_laws_sim.py
+  s_7936d1cd23c5b8::t_6f4686697381f4 1-21
+services/agent-core/agent_core/contracts/visuals/kinds/gel_electrophoresis.py
+  s_7936d1cd23c5b8::t_d0e1ccc076f04e 1-32
+services/agent-core/agent_core/contracts/visuals/kinds/library_diagram.py
+  s_7936d1cd23c5b8::t_68bd2e678447fd 1-37
+services/agent-core/agent_core/contracts/visuals/kinds/maxwell_boltzmann.py
+  s_7936d1cd23c5b8::t_0d3d725fcc263e 1-20
+services/agent-core/agent_core/contracts/visuals/kinds/microscope_view.py
+  s_7936d1cd23c5b8::t_f75440c4b5a237 1-20
+services/agent-core/agent_core/contracts/visuals/kinds/orbital_boxes.py
+  s_7936d1cd23c5b8::t_f4a506172b84d8 1-17
+services/agent-core/agent_core/contracts/visuals/kinds/organic_structure.py
+  s_7936d1cd23c5b8::t_514d256444df9c 1-30
+services/agent-core/agent_core/contracts/visuals/kinds/osmosis_sim.py
+  s_7936d1cd23c5b8::t_6872ea9e181313 1-20
+services/agent-core/agent_core/contracts/visuals/kinds/pedigree_chart.py
+  s_7936d1cd23c5b8::t_eb0987998a8ce0 1-37
+services/agent-core/agent_core/contracts/visuals/kinds/population_sim.py
+  s_7936d1cd23c5b8::t_c0d6f45d822c2f 1-24
+services/agent-core/agent_core/contracts/visuals/kinds/punnett_square.py
+  s_7936d1cd23c5b8::t_f0432f702cfd5c 1-50
+services/agent-core/agent_core/contracts/visuals/kinds/rates_sim.py
+  s_7936d1cd23c5b8::t_a7ad0f7b746c5c 1-25
+services/agent-core/agent_core/contracts/visuals/kinds/ray_diagram.py
+  s_7936d1cd23c5b8::t_3e0a8e6970a42b 1-48
+services/agent-core/agent_core/contracts/visuals/kinds/reaction_mechanism.py
+  s_7936d1cd23c5b8::t_4368b14727734b 1-18
+services/agent-core/agent_core/contracts/visuals/kinds/spectrum_chart.py
+  s_7936d1cd23c5b8::t_ec785e750c9dcb 1-20
+services/agent-core/agent_core/contracts/visuals/kinds/t_account.py
+  s_7936d1cd23c5b8::t_5569d115630a83 1-58
+services/agent-core/agent_core/contracts/visuals/kinds/titration_curve.py
+  s_7936d1cd23c5b8::t_9252066b421984 1-61
+services/agent-core/agent_core/contracts/visuals/kinds/trial_balance.py
+  s_7936d1cd23c5b8::t_f5fd9b28992534 1-46
+services/agent-core/agent_core/contracts/visuals/sketch.py
+  s_7936d1cd23c5b8::t_8b608149fb3b1d 1-173
+services/agent-core/agent_core/contracts/visuals/visual_spec.py
+  s_7936d1cd23c5b8::t_d5403526500e6f 1-638
+services/agent-core/agent_core/contracts/voice/__init__.py
+  s_7936d1cd23c5b8::t_db6c1f3ab1cddb 1-3
+services/agent-core/agent_core/contracts/voice/activities.py
+  s_7936d1cd23c5b8::t_526fc878c86293 1-158
+services/agent-core/agent_core/contracts/voice/engine_llm_adapter.py
+  s_7936d1cd23c5b8::t_8338f191cab388 1-205
+services/agent-core/agent_core/contracts/voice/realtime_events.py
+  s_7936d1cd23c5b8::t_4e02ccd5d129c8 1-465
+services/agent-core/agent_core/engine/__init__.py
+  s_7936d1cd23c5b8::t_bd2d7541bf2665 1-22
+services/agent-core/agent_core/engine/adaptation.py
+  s_7936d1cd23c5b8::t_56b97d9b1d4694 1-157
+services/agent-core/agent_core/engine/annotations.py
+  s_7936d1cd23c5b8::t_4ecf9924414028 1-155
+services/agent-core/agent_core/engine/answer_policy.py
+  s_7936d1cd23c5b8::t_c8aca502cbb506 1-67
+services/agent-core/agent_core/engine/ask_anything.py
+  s_7936d1cd23c5b8::t_ec93f0fe89f9e5 1-293
+services/agent-core/agent_core/engine/ask_route.py
+  s_7936d1cd23c5b8::t_85729ddc36d6b4 1-177
+services/agent-core/agent_core/engine/assembly.py
+  s_7936d1cd23c5b8::t_c7091d28676607 1-1541
+services/agent-core/agent_core/engine/assessment/__init__.py
+  s_7936d1cd23c5b8::t_4469ee96cbebad 1
+services/agent-core/agent_core/engine/assessment/adaptive.py
+  s_7936d1cd23c5b8::t_54b1fc2cdefcc9 1-73
+services/agent-core/agent_core/engine/assessment/bands.py
+  s_7936d1cd23c5b8::t_5fc2ee40bf917a 1-85
+services/agent-core/agent_core/engine/assessment/criteria.py
+  s_7936d1cd23c5b8::t_8c76d75f48b443 1-95
+services/agent-core/agent_core/engine/assessment/diagrams.py
+  s_7936d1cd23c5b8::t_deae211b9392f8 1-129
+services/agent-core/agent_core/engine/assessment/errors.py
+  s_7936d1cd23c5b8::t_cb3d0b4c56b85d 1-7
+services/agent-core/agent_core/engine/assessment/evidence.py
+  s_7936d1cd23c5b8::t_a1672d2eae0a5e 1-84
+services/agent-core/agent_core/engine/assessment/explain.py
+  s_7936d1cd23c5b8::t_4568746b55a270 1-161
+services/agent-core/agent_core/engine/assessment/items.py
+  s_7936d1cd23c5b8::t_4e0a004fca71d5 1-313
+services/agent-core/agent_core/engine/assessment/mocks.py
+  s_7936d1cd23c5b8::t_07f9cdaa48d276 1-926
+services/agent-core/agent_core/engine/assessment/past_papers.py
+  s_7936d1cd23c5b8::t_8d1a2b04e8fafd 1-700
+services/agent-core/agent_core/engine/assessment/probes.py
+  s_7936d1cd23c5b8::t_bc222e5257327e 1-94
+services/agent-core/agent_core/engine/assessment/remark.py
+  s_7936d1cd23c5b8::t_1fbc51f0b70b73 1-163
+services/agent-core/agent_core/engine/assessment/service.py
+  s_7936d1cd23c5b8::t_b721adbc6a1e34 1-1143
+services/agent-core/agent_core/engine/assessment/tutor.py
+  s_7936d1cd23c5b8::t_a1c9fe39b49ec2 1-40
+services/agent-core/agent_core/engine/assessment/variants.py
+  s_7936d1cd23c5b8::t_f212cb8ed55d48 1-70
+services/agent-core/agent_core/engine/auxiliary.py
+  s_7936d1cd23c5b8::t_791446a4866802 1-320
+services/agent-core/agent_core/engine/board_input.py
+  s_7936d1cd23c5b8::t_dde8fd26b76d63 1-151
+services/agent-core/agent_core/engine/calculation_draft.py
+  s_7936d1cd23c5b8::t_67b9855e52d55d 1-296
+services/agent-core/agent_core/engine/capture_observability.py
+  s_7936d1cd23c5b8::t_2b28eb4f2b7f7e 1-32
+services/agent-core/agent_core/engine/checked_reply.py
+  s_7936d1cd23c5b8::t_823de2155f78bb 1-32
+services/agent-core/agent_core/engine/checkins.py
+  s_7936d1cd23c5b8::t_67bbd24af7f96a 1-437
+services/agent-core/agent_core/engine/claims.py
+  s_7936d1cd23c5b8::t_fa84477f59e4ce 1-447
+services/agent-core/agent_core/engine/compaction.py
+  s_7936d1cd23c5b8::t_5acdbf02b2d792 1-139
+services/agent-core/agent_core/engine/companion.py
+  s_7936d1cd23c5b8::t_6a163724a19d80 1-1499
+services/agent-core/agent_core/engine/companion_facts.py
+  s_7936d1cd23c5b8::t_bd8bfa14abceaa 1-181
+services/agent-core/agent_core/engine/companion_history.py
+  s_7936d1cd23c5b8::t_0f69cf1d2c0bda 1-119
+services/agent-core/agent_core/engine/companion_import.py
+  s_7936d1cd23c5b8::t_673c96b8168661 1-25
+services/agent-core/agent_core/engine/companion_memory.py
+  s_7936d1cd23c5b8::t_3769f6b2447d27 1-163
+services/agent-core/agent_core/engine/companion_opener.py
+  s_7936d1cd23c5b8::t_d7e31c3b36827d 1-198
+services/agent-core/agent_core/engine/concept_map.py
+  s_7936d1cd23c5b8::t_b62f96dece9f03 1-238
+services/agent-core/agent_core/engine/concept_questions.py
+  s_7936d1cd23c5b8::t_dea775092642f3 1-207
+services/agent-core/agent_core/engine/coordination.py
+  s_7936d1cd23c5b8::t_95cf61d6d4fd81 1-162
+services/agent-core/agent_core/engine/crash_capture.py
+  s_7936d1cd23c5b8::t_df65d19d224ce7 1-23
+services/agent-core/agent_core/engine/curriculum_relation.py
+  s_7936d1cd23c5b8::t_52e515b78457e7 1-199
+services/agent-core/agent_core/engine/devscript.py
+  s_7936d1cd23c5b8::t_f92ab920763e1c 1-127
+services/agent-core/agent_core/engine/events.py
+  s_7936d1cd23c5b8::t_5fb0a0fe69f336 1-161
+services/agent-core/agent_core/engine/exam_dates.py
+  s_7936d1cd23c5b8::t_701491fbd5267a 1-182
+services/agent-core/agent_core/engine/feedback_guidance.py
+  s_7936d1cd23c5b8::t_2d0252d9dbae9c 1-401
+services/agent-core/agent_core/engine/figures.py
+  s_7936d1cd23c5b8::t_b6cc6ebf3db3e9 1-110
+services/agent-core/agent_core/engine/gates.py
+  s_7936d1cd23c5b8::t_e5f0355b775b5a 1-595
+services/agent-core/agent_core/engine/health.py
+  s_7936d1cd23c5b8::t_277b0379271ec4 1-133
+services/agent-core/agent_core/engine/history.py
+  s_7936d1cd23c5b8::t_07176ac041c523 1-97
+services/agent-core/agent_core/engine/input.py
+  s_7936d1cd23c5b8::t_3e10e8f20a5f4e 1-63
+services/agent-core/agent_core/engine/integrity.py
+  s_7936d1cd23c5b8::t_80fd6a9f569554 1-52
+services/agent-core/agent_core/engine/interview.py
+  s_7936d1cd23c5b8::t_2f933de1c03e23 1-112
+services/agent-core/agent_core/engine/knowledge_tools.py
+  s_7936d1cd23c5b8::t_26c33a06c23570 1-57
+services/agent-core/agent_core/engine/knows.py
+  s_7936d1cd23c5b8::t_3094cf8ae94814 1-202
+services/agent-core/agent_core/engine/lean.py
+  s_7936d1cd23c5b8::t_695ca44b4d1e3a 1-80
+services/agent-core/agent_core/engine/learn.py
+  s_7936d1cd23c5b8::t_f1c0e7d87787ac 1-717
+services/agent-core/agent_core/engine/learner_map.py
+  s_7936d1cd23c5b8::t_ee133293991722 1-554
+services/agent-core/agent_core/engine/learning_journey.py
+  s_7936d1cd23c5b8::t_d776ff45dc7bc4 1-232
+services/agent-core/agent_core/engine/ledger_input.py
+  s_7936d1cd23c5b8::t_a45c1812e75e12 1-148
+services/agent-core/agent_core/engine/lessons.py
+  s_7936d1cd23c5b8::t_add08e42023d66 1-160
+services/agent-core/agent_core/engine/live_flows.py
+  s_7936d1cd23c5b8::t_cd188bac9b628f 1-304
+services/agent-core/agent_core/engine/manipulation.py
+  s_7936d1cd23c5b8::t_fdae15057306ea 1-148
+services/agent-core/agent_core/engine/marking.py
+  s_7936d1cd23c5b8::t_06229020d1c1a0 1-1255
+services/agent-core/agent_core/engine/memory_session.py
+  s_7936d1cd23c5b8::t_e0ad0eba9bff2c 1-309
+services/agent-core/agent_core/engine/memory_tools.py
+  s_7936d1cd23c5b8::t_8eb6d0bfdd5b26 1-514
+services/agent-core/agent_core/engine/offers.py
+  s_7936d1cd23c5b8::t_bd373c2fc550e9 1-384
+services/agent-core/agent_core/engine/operations.py
+  s_7936d1cd23c5b8::t_420910635e0b1c 1-120
+services/agent-core/agent_core/engine/parents.py
+  s_7936d1cd23c5b8::t_27766b200962a0 1-303
+services/agent-core/agent_core/engine/pedagogy.py
+  s_7936d1cd23c5b8::t_463c9a04491b95 1-378
+services/agent-core/agent_core/engine/percentage_evidence.py
+  s_7936d1cd23c5b8::t_4f281ced439afd 1-188
+services/agent-core/agent_core/engine/photo_regions.py
+  s_7936d1cd23c5b8::t_808cae6eac9786 1-184
+services/agent-core/agent_core/engine/plans.py
+  s_7936d1cd23c5b8::t_14c68ebf64dc2b 1-596
+services/agent-core/agent_core/engine/pointing.py
+  s_7936d1cd23c5b8::t_097716b54cf55b 1-296
+services/agent-core/agent_core/engine/pointing_back.py
+  s_7936d1cd23c5b8::t_b852fa257d563a 1-64
+services/agent-core/agent_core/engine/predictions.py
+  s_7936d1cd23c5b8::t_e5136cc860a4d8 1-122
+services/agent-core/agent_core/engine/profile_scope.py
+  s_7936d1cd23c5b8::t_5c84086d6e76fd 1-29
+services/agent-core/agent_core/engine/prompt_inputs.py
+  s_7936d1cd23c5b8::t_efea92ed754b3c 1-121
+services/agent-core/agent_core/engine/receipts.py
+  s_7936d1cd23c5b8::t_5838220586c275 1-58
+services/agent-core/agent_core/engine/records.py
+  s_7936d1cd23c5b8::t_d0649cabce38ec 1-286
+services/agent-core/agent_core/engine/reflection.py
+  s_7936d1cd23c5b8::t_efdfb4444baa26 1-1155
+services/agent-core/agent_core/engine/replay.py
+  s_7936d1cd23c5b8::t_1f0b71dd7fe187 1-61
+services/agent-core/agent_core/engine/reply_checks.py
+  s_7936d1cd23c5b8::t_f526385201803e 1-189
+services/agent-core/agent_core/engine/reply_provenance.py
+  s_7936d1cd23c5b8::t_6fbd32858bd2dd 1-32
+services/agent-core/agent_core/engine/research.py
+  s_7936d1cd23c5b8::t_c1641a0b57eb5a 1-18
+services/agent-core/agent_core/engine/research_chat.py
+  s_7936d1cd23c5b8::t_527da55ba360d5 1-347
+services/agent-core/agent_core/engine/research_links.py
+  s_7936d1cd23c5b8::t_f24749358688b5 1-124
+services/agent-core/agent_core/engine/roster.py
+  s_7936d1cd23c5b8::t_49b0c79b5a70ae 1-53
+services/agent-core/agent_core/engine/runtime_link.py
+  s_7936d1cd23c5b8::t_8c8ba1c71baee2 1-315
+services/agent-core/agent_core/engine/safety.py
+  s_7936d1cd23c5b8::t_371d0cda5334b7 1-563
+services/agent-core/agent_core/engine/session_notes.py
+  s_7936d1cd23c5b8::t_00b477f4e5e56e 1-324
+services/agent-core/agent_core/engine/side.py
+  s_7936d1cd23c5b8::t_7ef9dae98c28c7 1-87
+services/agent-core/agent_core/engine/signatures.py
+  s_7936d1cd23c5b8::t_7e827605924d3a 1-419
+services/agent-core/agent_core/engine/sketch.py
+  s_7936d1cd23c5b8::t_b6672dbf70a988 1-235
+services/agent-core/agent_core/engine/sketch_flow.py
+  s_7936d1cd23c5b8::t_12ffae512697cf 1-250
+services/agent-core/agent_core/engine/sketch_photo.py
+  s_7936d1cd23c5b8::t_93c0d3e866a2f2 1-364
+services/agent-core/agent_core/engine/slice.py
+  s_7936d1cd23c5b8::t_4efa9999a08df7 1-687
+services/agent-core/agent_core/engine/soft_rules.py
+  s_7936d1cd23c5b8::t_a7bb2cf1a9e677 1-166
+services/agent-core/agent_core/engine/spoken.py
+  s_7936d1cd23c5b8::t_c74fc352fcb53f 1-198
+services/agent-core/agent_core/engine/state.py
+  s_7936d1cd23c5b8::t_c9a8c43bb727bf 1-339
+services/agent-core/agent_core/engine/steering.py
+  s_7936d1cd23c5b8::t_55c2bcc1d5a9de 1-71
+services/agent-core/agent_core/engine/study.py
+  s_7936d1cd23c5b8::t_5b588132734982 1-2752
+services/agent-core/agent_core/engine/study_concepts.py
+  s_7936d1cd23c5b8::t_d1d128f2e0653e 1-369
+services/agent-core/agent_core/engine/study_journey.py
+  s_7936d1cd23c5b8::t_02e41cebcf6dfb 1-213
+services/agent-core/agent_core/engine/study_links.py
+  s_7936d1cd23c5b8::t_33c4463b435d2c 1-177
+services/agent-core/agent_core/engine/study_outline.py
+  s_7936d1cd23c5b8::t_c732aec15640d1 1-162
+services/agent-core/agent_core/engine/study_session.py
+  s_7936d1cd23c5b8::t_6911ba6bd4cb4a 1-425
+services/agent-core/agent_core/engine/study_topics.py
+  s_7936d1cd23c5b8::t_f27bfaacccef66 1-222
+services/agent-core/agent_core/engine/team.py
+  s_7936d1cd23c5b8::t_acaf183cecba91 1-594
+services/agent-core/agent_core/engine/titles.py
+  s_7936d1cd23c5b8::t_e6880d810f176c 1-30
+services/agent-core/agent_core/engine/tone.py
+  s_7936d1cd23c5b8::t_1c4df65ebf28ac 1-75
+services/agent-core/agent_core/engine/tool_drawings.py
+  s_7936d1cd23c5b8::t_3c749d3c498b27 1-35
+services/agent-core/agent_core/engine/toolround.py
+  s_7936d1cd23c5b8::t_36edb40176d665 1-455
+services/agent-core/agent_core/engine/turn.py
+  s_7936d1cd23c5b8::t_5ca7c111a80759 1-4754
+services/agent-core/agent_core/engine/tutor_flows.py
+  s_7936d1cd23c5b8::t_44aaab1a74f2dc 1-643
+services/agent-core/agent_core/engine/tutoring_usage.py
+  s_7936d1cd23c5b8::t_d75822ad258e56 1-54
+services/agent-core/agent_core/engine/ui.py
+  s_7936d1cd23c5b8::t_964dcfc84a05c8 1-286
+services/agent-core/agent_core/engine/unit_format.py
+  s_7936d1cd23c5b8::t_c4f14dff9fe727 1-59
+services/agent-core/agent_core/engine/verbaliser.py
+  s_7936d1cd23c5b8::t_1ba52898e2bae4 1-561
+services/agent-core/agent_core/engine/vision.py
+  s_7936d1cd23c5b8::t_e77372d5d38a11 1-333
+services/agent-core/agent_core/engine/visual_claims.py
+  s_7936d1cd23c5b8::t_4b855113a9b0d5 1-46
+services/agent-core/agent_core/engine/voice_bindings.py
+  s_7936d1cd23c5b8::t_a9c5910572419e 1-81
+services/agent-core/agent_core/engine/voice_bridge.py
+  s_7936d1cd23c5b8::t_2bc39697a12acc 1-1064
+services/agent-core/agent_core/engine/voice_dictation.py
+  s_7936d1cd23c5b8::t_643d39a1ccad3b 1-635
+services/agent-core/agent_core/engine/voice_place.py
+  s_7936d1cd23c5b8::t_95b8125ae82e4f 1-118
+services/agent-core/agent_core/engine/voice_turn.py
+  s_7936d1cd23c5b8::t_0acb363b24a0bd 1-503
+services/agent-core/agent_core/learner/__init__.py
+  s_7936d1cd23c5b8::t_4da8c5c5877896 1
+services/agent-core/agent_core/learner/fsrs.py
+  s_7936d1cd23c5b8::t_4a647668918ba8 1-182
+services/agent-core/agent_core/learner/kc_migrations.py
+  s_7936d1cd23c5b8::t_9297ca17731051 1-141
+services/agent-core/agent_core/learner/mastery.py
+  s_7936d1cd23c5b8::t_ccdacac6cdcf0e 1-469
+services/agent-core/agent_core/learner/model.py
+  s_7936d1cd23c5b8::t_1bb07e7cc493c1 1-160
+services/agent-core/agent_core/learner/personal.py
+  s_7936d1cd23c5b8::t_40dfe086a808cf 1-234
+services/agent-core/agent_core/learner/planner.py
+  s_7936d1cd23c5b8::t_80ed127d5c8286 1-363
+services/agent-core/agent_core/learner/policies.py
+  s_7936d1cd23c5b8::t_33f7605796c79b 1-475
+services/agent-core/agent_core/learner/profile.py
+  s_7936d1cd23c5b8::t_b406b38f7e87b5 1-52
+services/agent-core/agent_core/learner/projections.py
+  s_7936d1cd23c5b8::t_3ab8b4fffbb048 1-1412
+services/agent-core/agent_core/learner/remark.py
+  s_7936d1cd23c5b8::t_cdb89b71ff292a 1-181
+services/agent-core/agent_core/learner/service.py
+  s_7936d1cd23c5b8::t_2514a8df669289 1-173
+services/agent-core/agent_core/memory/__init__.py
+  s_7936d1cd23c5b8::t_ec3d84106c65e0 1-2
+services/agent-core/agent_core/memory/capture.py
+  s_7936d1cd23c5b8::t_692973f19dffc9 1-431
+services/agent-core/agent_core/memory/observations.py
+  s_7936d1cd23c5b8::t_99540f354f07ba 1-126
+services/agent-core/agent_core/memory/policy.py
+  s_7936d1cd23c5b8::t_2662863a849f13 1-328
+services/agent-core/agent_core/memory/queries.py
+  s_7936d1cd23c5b8::t_9a66039f82b2af 1-736
+services/agent-core/agent_core/memory/recall.py
+  s_7936d1cd23c5b8::t_4748ad88da0260 1-323
+services/agent-core/agent_core/memory/reflect_input.py
+  s_7936d1cd23c5b8::t_a0045c7278081c 1-261
+services/agent-core/agent_core/memory/refs.py
+  s_7936d1cd23c5b8::t_c940dc396aee16 1-51
+services/agent-core/agent_core/memory/render.py
+  s_7936d1cd23c5b8::t_7c54d9ff970fc6 1-312
+services/agent-core/agent_core/memory/scrub.py
+  s_7936d1cd23c5b8::t_ef2d15dcc24afa 1-48
+services/agent-core/agent_core/memory/snapshot.py
+  s_7936d1cd23c5b8::t_cb77d432982124 1-325
+services/agent-core/agent_core/memory/view.py
+  s_7936d1cd23c5b8::t_b3b65635c92248 1-110
+services/agent-core/agent_core/memory/visibility.py
+  s_7936d1cd23c5b8::t_c1c94fcd9a3df8 1-15
+services/agent-core/agent_core/memory/write.py
+  s_7936d1cd23c5b8::t_1f17d44595942f 1-922
+services/agent-core/agent_core/net/__init__.py
+  s_7936d1cd23c5b8::t_b657419aebb139 1
+services/agent-core/agent_core/net/ask.py
+  s_7936d1cd23c5b8::t_bbde59dc13d1a6 1-76
+services/agent-core/agent_core/net/catalogue.py
+  s_7936d1cd23c5b8::t_d7738cd64091b7 1-50
+services/agent-core/agent_core/net/client.py
+  s_7936d1cd23c5b8::t_9eed5a0458160f 1-410
+services/agent-core/agent_core/net/crash_reports.py
+  s_7936d1cd23c5b8::t_875c14d4c833ec 1-87
+services/agent-core/agent_core/net/credentials.py
+  s_7936d1cd23c5b8::t_304533d376af37 1-153
+services/agent-core/agent_core/net/dpia.py
+  s_7936d1cd23c5b8::t_1947da152119f8 1-77
+services/agent-core/agent_core/net/layer.py
+  s_7936d1cd23c5b8::t_9c7933061e64ab 1-389
+services/agent-core/agent_core/net/local_address.py
+  s_7936d1cd23c5b8::t_9b0df3baaaf0c3 1-19
+services/agent-core/agent_core/net/loopback.py
+  s_7936d1cd23c5b8::t_fd2d66e0a4247d 1-117
+services/agent-core/agent_core/net/outbox.py
+  s_7936d1cd23c5b8::t_7e1ac23f5fdf5f 1-134
+services/agent-core/agent_core/net/policy.json
+  s_7936d1cd23c5b8::t_a7c76c4c26ad0f 1-187
+services/agent-core/agent_core/net/policy.py
+  s_7936d1cd23c5b8::t_7207df2ecfaac2 1-230
+services/agent-core/agent_core/net/redaction.py
+  s_7936d1cd23c5b8::t_4134a6ac7a2db2 1-10
+services/agent-core/agent_core/net/telemetry.py
+  s_7936d1cd23c5b8::t_674ad9c3570dc5 1-160
+services/agent-core/agent_core/net/voice.py
+  s_7936d1cd23c5b8::t_81e671daff2596 1-93
+services/agent-core/agent_core/net/voice_cloud.py
+  s_7936d1cd23c5b8::t_c73bb237a1b796 1-289
+services/agent-core/agent_core/net/voice_g2p.py
+  s_7936d1cd23c5b8::t_38fafe8b3d51b6 1-108
+services/agent-core/agent_core/net/voice_launch.py
+  s_7936d1cd23c5b8::t_77d58bccb9af70 1-368
+services/agent-core/agent_core/net/voice_sidecar.py
+  s_7936d1cd23c5b8::t_3d94abeba8c7e1 1-528
+services/agent-core/agent_core/net/voice_speech.py
+  s_7936d1cd23c5b8::t_b02da5a4d551df 1-388
+services/agent-core/agent_core/prompts/__init__.py
+  s_7936d1cd23c5b8::t_228c77aeefec0e 1
+services/agent-core/agent_core/prompts/builder.py
+  s_7936d1cd23c5b8::t_edfad2bdbbd2ea 1-613
+services/agent-core/agent_core/prompts/lint.py
+  s_7936d1cd23c5b8::t_44ff40e8cc2469 1-53
+services/agent-core/agent_core/prompts/reminders.py
+  s_7936d1cd23c5b8::t_29321e5649750d 1-103
+services/agent-core/agent_core/prompts/untrusted.py
+  s_7936d1cd23c5b8::t_55445ce5ebe277 1-168
+services/agent-core/agent_core/providers/__init__.py
+  s_7936d1cd23c5b8::t_e2082e7f89eeba 1
+services/agent-core/agent_core/providers/base.py
+  s_7936d1cd23c5b8::t_73e40234705483 1-169
+services/agent-core/agent_core/providers/errors.py
+  s_7936d1cd23c5b8::t_bb1fb34331fcba 1-140
+services/agent-core/agent_core/providers/gateway.py
+  s_7936d1cd23c5b8::t_d7a1f4ace3db28 1-284
+services/agent-core/agent_core/providers/gguf.py
+  s_7936d1cd23c5b8::t_d359a787cf590c 1-182
+services/agent-core/agent_core/providers/llama.py
+  s_7936d1cd23c5b8::t_354424b28f8bf1 1-306
+services/agent-core/agent_core/providers/model_json.py
+  s_7936d1cd23c5b8::t_1f19ae1e4afc51 1-63
+services/agent-core/agent_core/providers/openai_compat.py
+  s_7936d1cd23c5b8::t_ee2608137d5526 1-304
+services/agent-core/agent_core/providers/scripted.py
+  s_7936d1cd23c5b8::t_912c408fa07f1d 1-186
+services/agent-core/agent_core/retrieval/__init__.py
+  s_7936d1cd23c5b8::t_ba82d813a2b0fc 1-2
+services/agent-core/agent_core/retrieval/classify.py
+  s_7936d1cd23c5b8::t_04bde99086fc47 1-103
+services/agent-core/agent_core/retrieval/embedding.py
+  s_7936d1cd23c5b8::t_d0ed0776d416c7 1-86
+services/agent-core/agent_core/retrieval/index.py
+  s_7936d1cd23c5b8::t_d84b9551e48cb1 1-429
+services/agent-core/agent_core/retrieval/knowledge.py
+  s_7936d1cd23c5b8::t_4c53b785baf944 1-180
+services/agent-core/agent_core/retrieval/passages.py
+  s_7936d1cd23c5b8::t_377c57b3af2c2b 1-129
+services/agent-core/agent_core/roles/__init__.py
+  s_7936d1cd23c5b8::t_9ff46d4ee1c480 1
+services/agent-core/agent_core/router/__init__.py
+  s_7936d1cd23c5b8::t_f41faa5c1bfbb9 1-84
+services/agent-core/agent_core/router/budget.py
+  s_7936d1cd23c5b8::t_e92119464dbeeb 1-77
+services/agent-core/agent_core/router/capabilities.py
+  s_7936d1cd23c5b8::t_9cc9a129b0f62a 1-76
+services/agent-core/agent_core/router/cloud_models.json
+  s_7936d1cd23c5b8::t_dd352958ff232a 1-3
+services/agent-core/agent_core/router/config.py
+  s_7936d1cd23c5b8::t_6e5eaefde07ae6 1-96
+services/agent-core/agent_core/router/core.py
+  s_7936d1cd23c5b8::t_240a273cdf4e50 1-922
+services/agent-core/agent_core/router/effort.py
+  s_7936d1cd23c5b8::t_cb106cc2224a85 1-77
+services/agent-core/agent_core/router/features.py
+  s_7936d1cd23c5b8::t_100a6fcc04e615 1-35
+services/agent-core/agent_core/router/fit.py
+  s_7936d1cd23c5b8::t_466ed3d21b0d86 1-141
+services/agent-core/agent_core/router/hardware.py
+  s_7936d1cd23c5b8::t_45d1a153044dec 1-232
+services/agent-core/agent_core/router/launch_plan.py
+  s_7936d1cd23c5b8::t_2eea032e8caadf 1-72
+services/agent-core/agent_core/router/normalise.py
+  s_7936d1cd23c5b8::t_aa064906bd6e4f 1-189
+services/agent-core/agent_core/router/online.py
+  s_7936d1cd23c5b8::t_67685afcd5d327 1-97
+services/agent-core/agent_core/router/power.py
+  s_7936d1cd23c5b8::t_870ec24e0aa992 1-104
+services/agent-core/agent_core/router/probe.py
+  s_7936d1cd23c5b8::t_f9093f3113f45a 1-326
+services/agent-core/agent_core/router/recommended_models.json
+  s_7936d1cd23c5b8::t_1ea4467fd61880 1-5
+services/agent-core/agent_core/router/recovery.py
+  s_7936d1cd23c5b8::t_b07243fe56d811 1-81
+services/agent-core/agent_core/router/router.yaml
+  s_7936d1cd23c5b8::t_e46ed6eccad640 1-228
+services/agent-core/agent_core/router/schedule.py
+  s_7936d1cd23c5b8::t_e9cd5c2f06c750 1-130
+services/agent-core/agent_core/router/structured.py
+  s_7936d1cd23c5b8::t_7c544f13d845b8 1-222
+services/agent-core/agent_core/router/trace.py
+  s_7936d1cd23c5b8::t_28ec1c82268ac1 1-137
+services/agent-core/agent_core/router/voice.py
+  s_7936d1cd23c5b8::t_13366e3c8008db 1-6
+services/agent-core/agent_core/store/__init__.py
+  s_7936d1cd23c5b8::t_ffc05caccec5a9 1
+services/agent-core/agent_core/store/assessment.py
+  s_7936d1cd23c5b8::t_444159393ed718 1-37
+services/agent-core/agent_core/store/catalogue.py
+  s_7936d1cd23c5b8::t_3713a061f5e480 1-185
+services/agent-core/agent_core/store/channels.py
+  s_7936d1cd23c5b8::t_2decdad268c9b3 1-20
+services/agent-core/agent_core/store/checkpoints.py
+  s_7936d1cd23c5b8::t_7813a9a5ba8ed1 1-108
+services/agent-core/agent_core/store/companion_archive.py
+  s_7936d1cd23c5b8::t_7c43f6fa9da394 1-160
+services/agent-core/agent_core/store/companion_summary.py
+  s_7936d1cd23c5b8::t_022f9fb09fcbbd 1-14
+services/agent-core/agent_core/store/consents.py
+  s_7936d1cd23c5b8::t_fbf8f46193daa8 1-178
+services/agent-core/agent_core/store/egress.py
+  s_7936d1cd23c5b8::t_6896126fc39ec4 1-264
+services/agent-core/agent_core/store/entitlements.py
+  s_7936d1cd23c5b8::t_09603292c872dd 1-89
+services/agent-core/agent_core/store/events.py
+  s_7936d1cd23c5b8::t_01be183028bb32 1-299
+services/agent-core/agent_core/store/exports.py
+  s_7936d1cd23c5b8::t_e142a1dfeb7a10 1-368
+services/agent-core/agent_core/store/generated/__init__.py
+  s_7936d1cd23c5b8::t_8cae9149dc9bcb 1-2
+services/agent-core/agent_core/store/generated/availability.py
+  s_7936d1cd23c5b8::t_c5980144907dfc 1-83
+services/agent-core/agent_core/store/generated/event_registry.py
+  s_7936d1cd23c5b8::t_06408f9be57c7d 1-36
+services/agent-core/agent_core/store/generated/item_types.py
+  s_7936d1cd23c5b8::t_67cdb363bcbdf9 1-60
+services/agent-core/agent_core/store/generated/schema.py
+  s_7936d1cd23c5b8::t_19f367b6a5575b 1-12
+services/agent-core/agent_core/store/hlc.py
+  s_7936d1cd23c5b8::t_06b4c4d6934a87 1-98
+services/agent-core/agent_core/store/ids.py
+  s_7936d1cd23c5b8::t_7ba2da21bd4988 1-15
+services/agent-core/agent_core/store/images.py
+  s_7936d1cd23c5b8::t_392811ef4e21e8 1-65
+services/agent-core/agent_core/store/integrity.py
+  s_7936d1cd23c5b8::t_f0a4f59670c4ff 1-141
+services/agent-core/agent_core/store/keystore.py
+  s_7936d1cd23c5b8::t_2505faa16f8a94 1-150
+services/agent-core/agent_core/store/kit_install.py
+  s_7936d1cd23c5b8::t_a15472749c4aed 1-146
+services/agent-core/agent_core/store/licence.py
+  s_7936d1cd23c5b8::t_f45988be7d5466 1-221
+services/agent-core/agent_core/store/local.py
+  s_7936d1cd23c5b8::t_316b8b5f152601 1-121
+services/agent-core/agent_core/store/mastery_params.py
+  s_7936d1cd23c5b8::t_ec872d5005747e 1-85
+services/agent-core/agent_core/store/memory_context.py
+  s_7936d1cd23c5b8::t_23a265791a45d4 1-41
+services/agent-core/agent_core/store/migration_v10.py
+  s_7936d1cd23c5b8::t_ab60c2ea9fd5c9 1-107
+services/agent-core/agent_core/store/migration_v11.py
+  s_7936d1cd23c5b8::t_b0f241b9a416cb 1-15
+services/agent-core/agent_core/store/migration_v12.py
+  s_7936d1cd23c5b8::t_3dc014c273b561 1-22
+services/agent-core/agent_core/store/migration_v13.py
+  s_7936d1cd23c5b8::t_76299d31a06ce4 1-7
+services/agent-core/agent_core/store/migration_v14.py
+  s_7936d1cd23c5b8::t_18e5f69e84df3a 1-9
+services/agent-core/agent_core/store/migration_v15.py
+  s_7936d1cd23c5b8::t_159a6b881cdebf 1-11
+services/agent-core/agent_core/store/migration_v16.py
+  s_7936d1cd23c5b8::t_ae891691001dc0 1-36
+services/agent-core/agent_core/store/migration_v17.py
+  s_7936d1cd23c5b8::t_ab960312557087 1-11
+services/agent-core/agent_core/store/migration_v18.py
+  s_7936d1cd23c5b8::t_5ed11bbd5c1865 1-13
+services/agent-core/agent_core/store/migration_v19.py
+  s_7936d1cd23c5b8::t_ca370615a3e68e 1-16
+services/agent-core/agent_core/store/migration_v2.py
+  s_7936d1cd23c5b8::t_87caa7478846dd 1-550
+services/agent-core/agent_core/store/migration_v20.py
+  s_7936d1cd23c5b8::t_26740784bbbaf2 1-21
+services/agent-core/agent_core/store/migration_v21.py
+  s_7936d1cd23c5b8::t_ba82150dff8503 1-70
+services/agent-core/agent_core/store/migration_v22.py
+  s_7936d1cd23c5b8::t_ac29b6d07555c8 1-10
+services/agent-core/agent_core/store/migration_v23.py
+  s_7936d1cd23c5b8::t_39fd1c91fe5226 1-14
+services/agent-core/agent_core/store/migration_v3.py
+  s_7936d1cd23c5b8::t_278761c69a1b73 1-22
+services/agent-core/agent_core/store/migration_v4.py
+  s_7936d1cd23c5b8::t_102587794e5f6d 1-26
+services/agent-core/agent_core/store/migration_v5.py
+  s_7936d1cd23c5b8::t_986c2937d88e1b 1-22
+services/agent-core/agent_core/store/migration_v6.py
+  s_7936d1cd23c5b8::t_029d8a26702f70 1-23
+services/agent-core/agent_core/store/migration_v7.py
+  s_7936d1cd23c5b8::t_77694b73a2c9ae 1-29
+services/agent-core/agent_core/store/migration_v8.py
+  s_7936d1cd23c5b8::t_8f164daf1ad265 1-41
+services/agent-core/agent_core/store/migration_v9.py
+  s_7936d1cd23c5b8::t_783943603f9d88 1-23
+services/agent-core/agent_core/store/model_pack_store.py
+  s_7936d1cd23c5b8::t_7e4e40d5964ca0 1-403
+services/agent-core/agent_core/store/model_packs.py
+  s_7936d1cd23c5b8::t_4270875b647432 1-142
+services/agent-core/agent_core/store/moments.py
+  s_7936d1cd23c5b8::t_1f660be18d062f 1-56
+services/agent-core/agent_core/store/offers.json
+  s_7936d1cd23c5b8::t_aea10ecc0d3187 1-31
+services/agent-core/agent_core/store/pack_channels.py
+  s_7936d1cd23c5b8::t_7c6503eb21fc08 1-131
+services/agent-core/agent_core/store/pack_diff.py
+  s_7936d1cd23c5b8::t_8fcab6864cbfd9 1-94
+services/agent-core/agent_core/store/pack_index.py
+  s_7936d1cd23c5b8::t_f2cea4daee0a56 1-312
+services/agent-core/agent_core/store/pack_store.py
+  s_7936d1cd23c5b8::t_d87aa5c7b89906 1-371
+services/agent-core/agent_core/store/packs.py
+  s_7936d1cd23c5b8::t_574f272de98575 1-379
+services/agent-core/agent_core/store/perception_packs.py
+  s_7936d1cd23c5b8::t_5b0de6d46b90f5 1-317
+services/agent-core/agent_core/store/profile_stores.py
+  s_7936d1cd23c5b8::t_1f6025573beab3 1-197
+services/agent-core/agent_core/store/profiles.py
+  s_7936d1cd23c5b8::t_3e31826f64cfd0 1-332
+services/agent-core/agent_core/store/retention.py
+  s_7936d1cd23c5b8::t_ae7ffe63e2b6f2 1-587
+services/agent-core/agent_core/store/schema_v1.py
+  s_7936d1cd23c5b8::t_ee2adad9837e7b 1-1218
+services/agent-core/agent_core/store/sessions.py
+  s_7936d1cd23c5b8::t_7b05749e8683a5 1-87
+services/agent-core/agent_core/store/settings.py
+  s_7936d1cd23c5b8::t_4396dd3303730b 1-112
+services/agent-core/agent_core/store/speech_packs.py
+  s_7936d1cd23c5b8::t_c220e1d237f66e 1-566
+services/agent-core/agent_core/store/sqlite.py
+  s_7936d1cd23c5b8::t_722750c4f07e93 1-234
+services/agent-core/agent_core/store/study_archive.py
+  s_7936d1cd23c5b8::t_a295cf85219f55 1-266
+services/agent-core/agent_core/store/study_sponsorship.py
+  s_7936d1cd23c5b8::t_59c6bfc9d1e3a3 1-45
+services/agent-core/agent_core/store/subscription.py
+  s_7936d1cd23c5b8::t_50161f534220d4 1-189
+services/agent-core/agent_core/store/supersession.py
+  s_7936d1cd23c5b8::t_08e2240f0434da 1-145
+services/agent-core/agent_core/store/svg.py
+  s_7936d1cd23c5b8::t_951eb8461d2590 1-361
+services/agent-core/agent_core/store/tokens.py
+  s_7936d1cd23c5b8::t_e374743bbfb0f7 1-72
+services/agent-core/agent_core/store/transcript.py
+  s_7936d1cd23c5b8::t_628fe9776e724c 1-205
+services/agent-core/agent_core/store/uninstall.py
+  s_7936d1cd23c5b8::t_095350ea178f48 1-87
+services/agent-core/agent_core/store/updates.py
+  s_7936d1cd23c5b8::t_48c1e0559a1d2d 1-462
+services/agent-core/agent_core/store/voice_captures.py
+  s_7936d1cd23c5b8::t_2c666b3b8c10ac 1-16
+services/agent-core/agent_core/tools/__init__.py
+  s_7936d1cd23c5b8::t_8d53de9e9d3e7f 1
+services/agent-core/agent_core/tools/catalogue.py
+  s_7936d1cd23c5b8::t_47193aa286c2a6 1-237
+services/agent-core/agent_core/tools/dedupe.py
+  s_7936d1cd23c5b8::t_947a270c110f4a 1-103
+services/agent-core/agent_core/tools/executor.py
+  s_7936d1cd23c5b8::t_828c17c07ea3cf 1-318
+services/agent-core/agent_core/tools/fixtures/acc_break_even.yaml
+  s_7936d1cd23c5b8::t_0dc87d425cde52 1-89
+services/agent-core/agent_core/tools/fixtures/acc_depreciation.yaml
+  s_7936d1cd23c5b8::t_9fadd6611ec3ba 1-88
+services/agent-core/agent_core/tools/fixtures/acc_double_entry.yaml
+  s_7936d1cd23c5b8::t_a6cae85e8f1105 1-101
+services/agent-core/agent_core/tools/fixtures/acc_inventory.yaml
+  s_7936d1cd23c5b8::t_cfbf93834ea4b4 1-98
+services/agent-core/agent_core/tools/fixtures/acc_ratios.yaml
+  s_7936d1cd23c5b8::t_215fb4a1e10adc 1-89
+services/agent-core/agent_core/tools/fixtures/acc_statements.yaml
+  s_7936d1cd23c5b8::t_0232bfa7bb63af 1-111
+services/agent-core/agent_core/tools/fixtures/ask_student.yaml
+  s_7936d1cd23c5b8::t_46e734568d5d8d 1-81
+services/agent-core/agent_core/tools/fixtures/chem_acid_base.yaml
+  s_7936d1cd23c5b8::t_1f0a7a2f95660b 1-85
+services/agent-core/agent_core/tools/fixtures/chem_balance.yaml
+  s_7936d1cd23c5b8::t_3b2a0ecefde72c 1-85
+services/agent-core/agent_core/tools/fixtures/chem_energetics.yaml
+  s_7936d1cd23c5b8::t_479a6559b03b76 1-91
+services/agent-core/agent_core/tools/fixtures/chem_molar_mass.yaml
+  s_7936d1cd23c5b8::t_9166a371025375 1-89
+services/agent-core/agent_core/tools/fixtures/chem_stoichiometry.yaml
+  s_7936d1cd23c5b8::t_db66db1a6e68a5 1-100
+services/agent-core/agent_core/tools/fixtures/content_search.yaml
+  s_7936d1cd23c5b8::t_6a1cd7af282bf1 1-82
+services/agent-core/agent_core/tools/fixtures/curriculum_lookup.yaml
+  s_7936d1cd23c5b8::t_17a02b0be6d64b 1-82
+services/agent-core/agent_core/tools/fixtures/geom_figure.yaml
+  s_7936d1cd23c5b8::t_23410e75591ba5 1-83
+services/agent-core/agent_core/tools/fixtures/invalid.yaml
+  s_7936d1cd23c5b8::t_50421a758fbe0c 1-73
+services/agent-core/agent_core/tools/fixtures/make_aid.yaml
+  s_7936d1cd23c5b8::t_b60b5a8093feae 1-87
+services/agent-core/agent_core/tools/fixtures/math_check_answer.yaml
+  s_7936d1cd23c5b8::t_cbb73ea00527e0 1-86
+services/agent-core/agent_core/tools/fixtures/math_check_equivalence.yaml
+  s_7936d1cd23c5b8::t_997d9dbb7d5e13 1-74
+services/agent-core/agent_core/tools/fixtures/math_check_step.yaml
+  s_7936d1cd23c5b8::t_b1a19a6f3992bc 1-78
+services/agent-core/agent_core/tools/fixtures/math_differentiate.yaml
+  s_7936d1cd23c5b8::t_0f8722c70604ab 1-81
+services/agent-core/agent_core/tools/fixtures/math_evaluate.yaml
+  s_7936d1cd23c5b8::t_9f87997b5edd54 1-88
+services/agent-core/agent_core/tools/fixtures/math_integrate.yaml
+  s_7936d1cd23c5b8::t_cb27caf002366c 1-81
+services/agent-core/agent_core/tools/fixtures/math_parse.yaml
+  s_7936d1cd23c5b8::t_6d51c4d30bc460 1-78
+services/agent-core/agent_core/tools/fixtures/math_plot_points.yaml
+  s_7936d1cd23c5b8::t_0e836a52f5a2e2 1-97
+services/agent-core/agent_core/tools/fixtures/math_simplify.yaml
+  s_7936d1cd23c5b8::t_aa87badd2ffcf8 1-75
+services/agent-core/agent_core/tools/fixtures/math_solve.yaml
+  s_7936d1cd23c5b8::t_8732e8ff0c5088 1-131
+services/agent-core/agent_core/tools/fixtures/memory_note.yaml
+  s_7936d1cd23c5b8::t_eea1db7ca80e76 1-94
+services/agent-core/agent_core/tools/fixtures/memory_recall.yaml
+  s_7936d1cd23c5b8::t_8aa62811af44bc 1-80
+services/agent-core/agent_core/tools/fixtures/phys_circuit.yaml
+  s_7936d1cd23c5b8::t_3f80838338ddbd 1-91
+services/agent-core/agent_core/tools/fixtures/phys_optics.yaml
+  s_7936d1cd23c5b8::t_573bc3bc03d84c 1-87
+services/agent-core/agent_core/tools/fixtures/phys_projectile.yaml
+  s_7936d1cd23c5b8::t_e197338463a2eb 1-101
+services/agent-core/agent_core/tools/fixtures/plan.yaml
+  s_7936d1cd23c5b8::t_f94e6b1b649f71 1-73
+services/agent-core/agent_core/tools/fixtures/progress_read.yaml
+  s_7936d1cd23c5b8::t_118145211c54ec 1-73
+services/agent-core/agent_core/tools/fixtures/progress_update.yaml
+  s_7936d1cd23c5b8::t_930062bedd8dc9 1-76
+services/agent-core/agent_core/tools/fixtures/session_recall.yaml
+  s_7936d1cd23c5b8::t_136826a38529bc 1-84
+services/agent-core/agent_core/tools/fixtures/skill.yaml
+  s_7936d1cd23c5b8::t_4d50cff8396882 1-78
+services/agent-core/agent_core/tools/fixtures/start_research.yaml
+  s_7936d1cd23c5b8::t_8c8f68f9ddf88d 1-76
+services/agent-core/agent_core/tools/fixtures/stats_compute.yaml
+  s_7936d1cd23c5b8::t_cab7482a0ff9df 1-90
+services/agent-core/agent_core/tools/fixtures/study_search.yaml
+  s_7936d1cd23c5b8::t_c1f0e2b05cd384 1-76
+services/agent-core/agent_core/tools/fixtures/units_check_dimensions.yaml
+  s_7936d1cd23c5b8::t_891fab85cc6167 1-74
+services/agent-core/agent_core/tools/fixtures/units_convert.yaml
+  s_7936d1cd23c5b8::t_87f3aff67f9499 1-77
+services/agent-core/agent_core/tools/fixtures/update_board.yaml
+  s_7936d1cd23c5b8::t_480082dee7a4d9 1-73
+services/agent-core/agent_core/tools/generated/__init__.py
+  s_7936d1cd23c5b8::t_2e2a1ac57737c0 1-2
+services/agent-core/agent_core/tools/generated/register.py
+  s_7936d1cd23c5b8::t_0bfae54927c573 1-1134
+services/agent-core/agent_core/tools/generated/worker_schemas.py
+  s_7936d1cd23c5b8::t_b7418edeb976e6 1-3713
+services/agent-core/agent_core/tools/perception.py
+  s_7936d1cd23c5b8::t_c45bfcc2b6bb02 1-127
+services/agent-core/agent_core/tools/policy.py
+  s_7936d1cd23c5b8::t_13353638d14166 1-60
+services/agent-core/agent_core/tools/registry.py
+  s_7936d1cd23c5b8::t_afc2595db77555 1-177
+services/agent-core/agent_core/tools/registry.snapshot.json
+  s_7936d1cd23c5b8::t_8386af2166b90d 1-217
+services/agent-core/agent_core/tools/repair.py
+  s_7936d1cd23c5b8::t_c1e9e928a19d8d 1-284
+services/agent-core/agent_core/tools/results.py
+  s_7936d1cd23c5b8::t_7794fdb8209373 1-87
+services/agent-core/agent_core/tools/spec.py
+  s_7936d1cd23c5b8::t_67b9a6525b35dc 1-150
+services/agent-core/agent_core/tools/specs.py
+  s_7936d1cd23c5b8::t_8717cddb6e19cb 1-767
+services/agent-core/agent_core/tools/spill.py
+  s_7936d1cd23c5b8::t_0593038a436ab8 1-55
+services/agent-core/agent_core/tools/study_document.py
+  s_7936d1cd23c5b8::t_b262c3effe4332 1-137
+services/agent-core/agent_core/tools/unroll.py
+  s_7936d1cd23c5b8::t_1e6c043da37036 1-108
+services/agent-core/agent_core/tools/worker/__init__.py
+  s_7936d1cd23c5b8::t_dfd29e4c9703ab 1-14
+services/agent-core/agent_core/tools/worker/client.py
+  s_7936d1cd23c5b8::t_242d78f1139089 1-169
+services/agent-core/agent_core/tools/worker/errors.py
+  s_7936d1cd23c5b8::t_b776a41a77a719 1-34
+services/agent-core/agent_core/tools/worker/landlock.py
+  s_7936d1cd23c5b8::t_1bdddc73f41bdf 1-248
+services/agent-core/agent_core/tools/worker/launch.py
+  s_7936d1cd23c5b8::t_2776169d17907d 1-97
+services/agent-core/agent_core/tools/worker/sandbox.py
+  s_7936d1cd23c5b8::t_150c43fd08d273 1-227
+services/agent-core/agent_core/tools/worker/seccomp.py
+  s_7936d1cd23c5b8::t_664007de36b9db 1-119
+services/agent-core/agent_core/tools/worker/supervisor.py
+  s_7936d1cd23c5b8::t_ce4ce95aa81cfc 1-258
+services/agent-core/agent_core/tools/worker/winsandbox.py
+  s_7936d1cd23c5b8::t_2879b63bec2ca2 1-606
+services/agent-core/agent_core/trace/__init__.py
+  s_7936d1cd23c5b8::t_1b0503ce9b1557 1-6
+services/agent-core/agent_core/trace/context.py
+  s_7936d1cd23c5b8::t_bd66f4740ba467 1-38
+services/agent-core/agent_core/trace/crashes.py
+  s_7936d1cd23c5b8::t_a20dcec6b0e069 1-252
+services/agent-core/agent_core/trace/debug_bundle.py
+  s_7936d1cd23c5b8::t_c18f3c75931793 1-218
+services/agent-core/agent_core/trace/diagnostic_words.json
+  s_7936d1cd23c5b8::t_e07f1a5c36b9fc 1-630
+services/agent-core/agent_core/trace/ids.py
+  s_7936d1cd23c5b8::t_6a101b78f87d33 1-5
+services/agent-core/agent_core/trace/logs.py
+  s_7936d1cd23c5b8::t_73fb7422c38016 1-200
+services/agent-core/agent_core/trace/metrics.py
+  s_7936d1cd23c5b8::t_9f7d6233dda3e5 1-209
+services/agent-core/agent_core/trace/payloads.py
+  s_7936d1cd23c5b8::t_26aa520d3a68f7 1-60
+services/agent-core/agent_core/trace/perception.py
+  s_7936d1cd23c5b8::t_f435bc88969886 1-60
+services/agent-core/agent_core/trace/record.py
+  s_7936d1cd23c5b8::t_a6f8bbd3805d20 1-228
+services/agent-core/agent_core/trace/research.py
+  s_7936d1cd23c5b8::t_b93925fc76fec8 1-163
+services/agent-core/agent_core/trace/store.py
+  s_7936d1cd23c5b8::t_c6d22eb72f650c 1-228
+services/agent-core/agent_core/trace/telemetry.py
+  s_7936d1cd23c5b8::t_74e98f91b03933 1-43
+services/agent-core/pyproject.toml
+  s_7936d1cd23c5b8::t_c40b15db66a120 1-52
+services/agent-core/tests/api_harness.py
+  s_7936d1cd23c5b8::t_2a722317414a73 1-194
+services/agent-core/tests/catalogue_fixture.py
+  s_7936d1cd23c5b8::t_60a0dc84c1b85a 1-28
+services/agent-core/tests/net_harness.py
+  s_7936d1cd23c5b8::t_cca4d7103eefdc 1-296
+services/cloud-gateway/cloud_gateway/__init__.py
+  s_7936d1cd23c5b8::t_b1590c8cf03553 1-5
+services/cloud-gateway/cloud_gateway/__main__.py
+  s_7936d1cd23c5b8::t_b8b2ee185a711a 1-30
+services/cloud-gateway/cloud_gateway/app.py
+  s_7936d1cd23c5b8::t_7b0ce6da4bce9d 1-680
+services/cloud-gateway/cloud_gateway/ask.py
+  s_7936d1cd23c5b8::t_04ae2e597e7fc2 1-388
+services/cloud-gateway/cloud_gateway/auth.py
+  s_7936d1cd23c5b8::t_b56f1ca52c9a51 1-249
+services/cloud-gateway/cloud_gateway/catalogue.py
+  s_7936d1cd23c5b8::t_c28fa9ece49cc7 1-103
+services/cloud-gateway/cloud_gateway/companion.py
+  s_7936d1cd23c5b8::t_58511e3f121a4c 1-173
+services/cloud-gateway/cloud_gateway/config.py
+  s_7936d1cd23c5b8::t_bf3042da5f981c 1-694
+services/cloud-gateway/cloud_gateway/contracts/__init__.py
+  s_7936d1cd23c5b8::t_fe52be73635328 1-18
+services/cloud-gateway/cloud_gateway/contracts/_validation.py
+  s_7936d1cd23c5b8::t_32e9c35f79e226 1-127
+services/cloud-gateway/cloud_gateway/contracts/cloud/__init__.py
+  s_7936d1cd23c5b8::t_f8f75c0e84ea87 1-3
+services/cloud-gateway/cloud_gateway/contracts/cloud/gateway.py
+  s_7936d1cd23c5b8::t_e69adcbdb6ddb9 1-851
+services/cloud-gateway/cloud_gateway/contracts/ops/__init__.py
+  s_7936d1cd23c5b8::t_0ff0dffbae009b 1-3
+services/cloud-gateway/cloud_gateway/contracts/ops/licence.py
+  s_7936d1cd23c5b8::t_371796cdd39737 1-120
+services/cloud-gateway/cloud_gateway/contracts/schemas/cloud/gateway.schema.json
+  s_7936d1cd23c5b8::t_9ec17619a90019 1-391
+services/cloud-gateway/cloud_gateway/contracts/schemas/ops/licence.schema.json
+  s_7936d1cd23c5b8::t_06520f7004f03f 1-326
+services/cloud-gateway/cloud_gateway/contracts/schemas/study/research.schema.json
+  s_7936d1cd23c5b8::t_265b51c1d472d0 1-637
+services/cloud-gateway/cloud_gateway/contracts/schemas/study/workspace.schema.json
+  s_7936d1cd23c5b8::t_2bfda6ea7f2770 1-4733
+services/cloud-gateway/cloud_gateway/custody.py
+  s_7936d1cd23c5b8::t_8e1f714b36e24e 1-151
+services/cloud-gateway/cloud_gateway/defaults.toml
+  s_7936d1cd23c5b8::t_084da816d9ed31 1-62
+services/cloud-gateway/cloud_gateway/errors.py
+  s_7936d1cd23c5b8::t_075b10797addd2 1-124
+services/cloud-gateway/cloud_gateway/health.py
+  s_7936d1cd23c5b8::t_2b240b420b27c8 1-59
+services/cloud-gateway/cloud_gateway/holds.py
+  s_7936d1cd23c5b8::t_169120bd6af42e 1-85
+services/cloud-gateway/cloud_gateway/inference_budget.py
+  s_7936d1cd23c5b8::t_90aa121084f4aa 1-391
+services/cloud-gateway/cloud_gateway/kokoro_worker.py
+  s_7936d1cd23c5b8::t_ad15e3a74f93a6 1-53
+services/cloud-gateway/cloud_gateway/migration_companion_v2.py
+  s_7936d1cd23c5b8::t_1a803c78b1c0e5 1-8
+services/cloud-gateway/cloud_gateway/minimise.py
+  s_7936d1cd23c5b8::t_b7afae646b265a 1-90
+services/cloud-gateway/cloud_gateway/operations.py
+  s_7936d1cd23c5b8::t_cd835d83dc5d41 1-207
+services/cloud-gateway/cloud_gateway/plans.py
+  s_7936d1cd23c5b8::t_e4f97db4d431e6 1-129
+services/cloud-gateway/cloud_gateway/plans.toml
+  s_7936d1cd23c5b8::t_257623914d8e4c 1-94
+services/cloud-gateway/cloud_gateway/podcast_speech.py
+  s_7936d1cd23c5b8::t_f02260bfcc790f 1-200
+services/cloud-gateway/cloud_gateway/providers/__init__.py
+  s_7936d1cd23c5b8::t_d0f7326bbf569a 1-102
+services/cloud-gateway/cloud_gateway/providers/base.py
+  s_7936d1cd23c5b8::t_de02aa4570a234 1-75
+services/cloud-gateway/cloud_gateway/providers/gemini.py
+  s_7936d1cd23c5b8::t_f29913366daf33 1-366
+services/cloud-gateway/cloud_gateway/providers/gemini_live.py
+  s_7936d1cd23c5b8::t_7253d7117fe4d2 1-166
+services/cloud-gateway/cloud_gateway/providers/google_speech.py
+  s_7936d1cd23c5b8::t_d1dd8727f35d5a 1-291
+services/cloud-gateway/cloud_gateway/providers/http.py
+  s_7936d1cd23c5b8::t_79c81b4c702370 1-122
+services/cloud-gateway/cloud_gateway/providers/json_segment.py
+  s_7936d1cd23c5b8::t_543b904a70012a 1-159
+services/cloud-gateway/cloud_gateway/providers/kokoro_speech.py
+  s_7936d1cd23c5b8::t_2c11406c2050e2 1-147
+services/cloud-gateway/cloud_gateway/providers/meta.py
+  s_7936d1cd23c5b8::t_fcd6f926b92b0e 1-101
+services/cloud-gateway/cloud_gateway/providers/meta_responses.py
+  s_7936d1cd23c5b8::t_5660e05ac4b7da 1-141
+services/cloud-gateway/cloud_gateway/providers/meta_speech.py
+  s_7936d1cd23c5b8::t_7331194a486c2d 1-286
+services/cloud-gateway/cloud_gateway/providers/openai_compat.py
+  s_7936d1cd23c5b8::t_ad52f8b3e21a02 1-88
+services/cloud-gateway/cloud_gateway/providers/policy.py
+  s_7936d1cd23c5b8::t_84465075f85b34 1-67
+services/cloud-gateway/cloud_gateway/providers/sam.py
+  s_7936d1cd23c5b8::t_b45ab5c80181ac 1-173
+services/cloud-gateway/cloud_gateway/providers/search.py
+  s_7936d1cd23c5b8::t_1a246bcf45a370 1-144
+services/cloud-gateway/cloud_gateway/providers/segmentation.py
+  s_7936d1cd23c5b8::t_6ff063b51e8da9 1-66
+services/cloud-gateway/cloud_gateway/providers/speech.py
+  s_7936d1cd23c5b8::t_763a68ff392568 1-111
+services/cloud-gateway/cloud_gateway/providers/speech_selection.py
+  s_7936d1cd23c5b8::t_0d47cb29f4a13c 1-173
+services/cloud-gateway/cloud_gateway/providers/vertex.py
+  s_7936d1cd23c5b8::t_931d4a96bce1d5 1-76
+services/cloud-gateway/cloud_gateway/providers/vocabulary.py
+  s_7936d1cd23c5b8::t_d0bac12cc5fbd0 1-35
+services/cloud-gateway/cloud_gateway/quotas.py
+  s_7936d1cd23c5b8::t_9d778df2ab8dbe 1-125
+services/cloud-gateway/cloud_gateway/research.py
+  s_7936d1cd23c5b8::t_5f67b631bf119d 1-658
+services/cloud-gateway/cloud_gateway/research_fetch.py
+  s_7936d1cd23c5b8::t_82920022cd2c40 1-358
+services/cloud-gateway/cloud_gateway/secret_scan.py
+  s_7936d1cd23c5b8::t_5252c1247f3157 1-145
+services/cloud-gateway/cloud_gateway/segment.py
+  s_7936d1cd23c5b8::t_09b99dff506a2a 1-238
+services/cloud-gateway/cloud_gateway/speech_fakes.py
+  s_7936d1cd23c5b8::t_bba9161795d2af 1-203
+services/cloud-gateway/cloud_gateway/store.py
+  s_7936d1cd23c5b8::t_886e2e46f9c7a8 1-343
+services/cloud-gateway/cloud_gateway/study.py
+  s_7936d1cd23c5b8::t_39623d24c795a1 1-2546
+services/cloud-gateway/cloud_gateway/study_reconcile.py
+  s_7936d1cd23c5b8::t_502224df9f0b4c 1-87
+services/cloud-gateway/cloud_gateway/study_recording.py
+  s_7936d1cd23c5b8::t_ef1f90ebefc255 1-236
+services/cloud-gateway/cloud_gateway/study_sandbox.py
+  s_7936d1cd23c5b8::t_7788259dfa9cdf 1-78
+services/cloud-gateway/cloud_gateway/tier.py
+  s_7936d1cd23c5b8::t_22e354bda4839c 1-142
+services/cloud-gateway/cloud_gateway/voice.py
+  s_7936d1cd23c5b8::t_f73cc046b97098 1-1226
+services/cloud-gateway/cloud_gateway/voice_keywords.txt
+  s_7936d1cd23c5b8::t_71f2f988f653e0 1-1446
+services/cloud-gateway/pyproject.toml
+  s_7936d1cd23c5b8::t_a1d5de83c70bbc 1-43
+services/ingest/ingest/__init__.py
+  s_7936d1cd23c5b8::t_d5871b4d0bc73e 1-7
+services/ingest/ingest/__main__.py
+  s_7936d1cd23c5b8::t_0e2dde43296542 1-30
+services/ingest/ingest/app.py
+  s_7936d1cd23c5b8::t_96d3c6fc4c541b 1-404
+services/ingest/ingest/config.py
+  s_7936d1cd23c5b8::t_26d751b04ebe36 1-110
+services/ingest/ingest/contracts/__init__.py
+  s_7936d1cd23c5b8::t_4d26655b050b7f 1-11
+services/ingest/ingest/contracts/_validation.py
+  s_7936d1cd23c5b8::t_8325c6d1f2a78c 1-127
+services/ingest/ingest/contracts/cloud/__init__.py
+  s_7936d1cd23c5b8::t_d1b471cef8cf86 1-3
+services/ingest/ingest/contracts/cloud/outbox.py
+  s_7936d1cd23c5b8::t_9c0c341ba10504 1-420
+services/ingest/ingest/contracts/ops/__init__.py
+  s_7936d1cd23c5b8::t_b2bce65670dcbd 1-3
+services/ingest/ingest/contracts/ops/support_bundle.py
+  s_7936d1cd23c5b8::t_a11bb40eed3930 1-32
+services/ingest/ingest/contracts/ops/support_upload.py
+  s_7936d1cd23c5b8::t_7f4ad2aea9afcc 1-54
+services/ingest/ingest/contracts/schemas/cloud/outbox.schema.json
+  s_7936d1cd23c5b8::t_40c380e068d78f 1-273
+services/ingest/ingest/contracts/schemas/ops/support-bundle.schema.json
+  s_7936d1cd23c5b8::t_4ac43401c2d320 1-73
+services/ingest/ingest/contracts/schemas/ops/support-upload.schema.json
+  s_7936d1cd23c5b8::t_96e27a1504ca3d 1-72
+services/ingest/ingest/contracts/schemas/trace/telemetry.schema.json
+  s_7936d1cd23c5b8::t_178f228b400d25 1-571
+services/ingest/ingest/contracts/trace/__init__.py
+  s_7936d1cd23c5b8::t_36b9da73517e32 1-3
+services/ingest/ingest/contracts/trace/telemetry.py
+  s_7936d1cd23c5b8::t_c796dbb6aba773 1-309
+services/ingest/ingest/custody.py
+  s_7936d1cd23c5b8::t_26c8e0ddc0a570 1-109
+services/ingest/ingest/defaults.toml
+  s_7936d1cd23c5b8::t_9326e9008c2d5a 1-5
+services/ingest/ingest/redaction.py
+  s_7936d1cd23c5b8::t_53f5469c0fbcbc 1-61
+services/ingest/ingest/store.py
+  s_7936d1cd23c5b8::t_b83cd86f24707a 1-247
+services/ingest/ingest/support.py
+  s_7936d1cd23c5b8::t_61f948ae73c395 1-285
+services/ingest/ingest/validation.py
+  s_7936d1cd23c5b8::t_f0d0b27e8a6dc9 1-103
+services/ingest/pyproject.toml
+  s_7936d1cd23c5b8::t_5638f3d16fd2cf 1-31
+services/pack-builder/pack_builder/__init__.py
+  s_7936d1cd23c5b8::t_82cfc0ef0aba1b 1
+services/pack-builder/pack_builder/__main__.py
+  s_7936d1cd23c5b8::t_221c462884af90 1-25
+services/pack-builder/pack_builder/accounts.py
+  s_7936d1cd23c5b8::t_ca67764bca99c1 1-188
+services/pack-builder/pack_builder/analytics.py
+  s_7936d1cd23c5b8::t_2250834e01acb9 1-430
+services/pack-builder/pack_builder/api.py
+  s_7936d1cd23c5b8::t_8f5cf36d2fb05c 1-669
+services/pack-builder/pack_builder/build.py
+  s_7936d1cd23c5b8::t_b2f242d5e3540f 1-379
+services/pack-builder/pack_builder/cli.py
+  s_7936d1cd23c5b8::t_cc44056de5f909 1-265
+services/pack-builder/pack_builder/coverage.py
+  s_7936d1cd23c5b8::t_7482f960a81155 1-81
+services/pack-builder/pack_builder/curriculum.py
+  s_7936d1cd23c5b8::t_37b426e336a705 1-238
+services/pack-builder/pack_builder/diagrams.py
+  s_7936d1cd23c5b8::t_b230346910a4a6 1-166
+services/pack-builder/pack_builder/drafting.py
+  s_7936d1cd23c5b8::t_9c8535043652d3 1-297
+services/pack-builder/pack_builder/figures.py
+  s_7936d1cd23c5b8::t_b381af0222b795 1-169
+services/pack-builder/pack_builder/follow_through.py
+  s_7936d1cd23c5b8::t_31f93d29726d3d 1-89
+services/pack-builder/pack_builder/form_schema.py
+  s_7936d1cd23c5b8::t_54e657383c6c22 1-68
+services/pack-builder/pack_builder/heldout.py
+  s_7936d1cd23c5b8::t_811237660673f1 1-149
+services/pack-builder/pack_builder/licence.py
+  s_7936d1cd23c5b8::t_8bec86e9735190 1-84
+services/pack-builder/pack_builder/mocks.py
+  s_7936d1cd23c5b8::t_b2f6d4e09378bb 1-143
+services/pack-builder/pack_builder/pipeline.py
+  s_7936d1cd23c5b8::t_c61aef7cd7c3bd 1-75
+services/pack-builder/pack_builder/preview.py
+  s_7936d1cd23c5b8::t_cf0898c231b353 1-67
+services/pack-builder/pack_builder/problem_inbox.py
+  s_7936d1cd23c5b8::t_707cd06270432b 1-124
+services/pack-builder/pack_builder/proposals.py
+  s_7936d1cd23c5b8::t_15f76b399e0741 1-361
+services/pack-builder/pack_builder/qa.py
+  s_7936d1cd23c5b8::t_66083a137f8e0f 1-555
+services/pack-builder/pack_builder/quantities.py
+  s_7936d1cd23c5b8::t_030d2f34d95d0e 1-1399
+services/pack-builder/pack_builder/roles.py
+  s_7936d1cd23c5b8::t_db20daba03d5ec 1-51
+services/pack-builder/pack_builder/safety_review.py
+  s_7936d1cd23c5b8::t_8a67c1b27e2f7e 1-112
+services/pack-builder/pack_builder/scan.py
+  s_7936d1cd23c5b8::t_2b210284b79172 1-151
+services/pack-builder/pack_builder/signing.py
+  s_7936d1cd23c5b8::t_06bcaa2f94a4f9 1-25
+services/pack-builder/pack_builder/source.py
+  s_7936d1cd23c5b8::t_b24483613cfa1d 1-303
+services/pack-builder/pack_builder/structure.py
+  s_7936d1cd23c5b8::t_ca9d8344a58076 1-369
+services/pack-builder/pack_builder/studio.py
+  s_7936d1cd23c5b8::t_eee5ad123707fc 1-692
+services/pack-builder/pack_builder/studio_analytics.py
+  s_7936d1cd23c5b8::t_02f5d8d7a2d704 1-82
+services/pack-builder/pack_builder/studio_bench.py
+  s_7936d1cd23c5b8::t_d37d5d44686cf2 1-293
+services/pack-builder/pack_builder/studio_changes.py
+  s_7936d1cd23c5b8::t_eb92b34dc888d7 1-293
+services/pack-builder/pack_builder/studio_diagrams.py
+  s_7936d1cd23c5b8::t_aaadb030079420 1-193
+services/pack-builder/pack_builder/studio_import.py
+  s_7936d1cd23c5b8::t_a9cee1fcea035e 1-344
+services/pack-builder/pack_builder/studio_io.py
+  s_7936d1cd23c5b8::t_587d93b95c9ef4 1-127
+services/pack-builder/pack_builder/studio_jobs.py
+  s_7936d1cd23c5b8::t_9f8ccc64023c03 1-415
+services/pack-builder/pack_builder/studio_reference.py
+  s_7936d1cd23c5b8::t_4131b1663799d6 1-45
+services/pack-builder/pack_builder/studio_replay.py
+  s_7936d1cd23c5b8::t_7cc1b44adb245f 1-143
+services/pack-builder/pack_builder/studio_skills.py
+  s_7936d1cd23c5b8::t_603eca9ec057bc 1-203
+services/pack-builder/pack_builder/studio_templates.py
+  s_7936d1cd23c5b8::t_99e7d5af38f1ed 1-108
+services/pack-builder/pack_builder/studio_workflow.py
+  s_7936d1cd23c5b8::t_dfa2a3c6910abc 1-426
+services/pack-builder/pack_builder/verify.py
+  s_7936d1cd23c5b8::t_94defb58e88197 1-520
+services/pack-builder/pack_builder/versioning.py
+  s_7936d1cd23c5b8::t_614ddb215caae1 1-232
+services/pack-builder/pyproject.toml
+  s_7936d1cd23c5b8::t_9062f783cf6a01 1-32
+services/perception-worker/licences/cysignals-LICENSE
+  s_7936d1cd23c5b8::t_31ce1e0bcec929 1-165
+services/perception-worker/licences/numpy-COPYING
+  s_7936d1cd23c5b8::t_0df744248ec524 1-14
+services/perception-worker/licences/numpy-LICENSE
+  s_7936d1cd23c5b8::t_1321f21f71b69e 1-371
+services/perception-worker/licences/numpy-LICENSE.md
+  s_7936d1cd23c5b8::t_5896dbabe6fe54 1-28
+services/perception-worker/licences/numpy-LICENSE.txt
+  s_7936d1cd23c5b8::t_0f6ce3e0ac0230 1-935
+services/perception-worker/licences/numpy-dragon4_LICENSE.txt
+  s_7936d1cd23c5b8::t_5f1151ea95b70f 1-27
+services/perception-worker/licences/opencv-python-headless-LICENSE-3RD-PARTY.txt
+  s_7936d1cd23c5b8::t_5d6da0b3ccc9be 1-3603
+services/perception-worker/licences/opencv-python-headless-LICENSE.txt
+  s_7936d1cd23c5b8::t_3a13a652551ab9 1-21
+services/perception-worker/licences/opencv_zoo-face_detection_yunet-LICENSE
+  s_7936d1cd23c5b8::t_f53bc0d11a000d 1-21
+services/perception-worker/licences/tesserocr-LICENSE
+  s_7936d1cd23c5b8::t_5ad3c10ae19e7a 1-22
+services/perception-worker/perception_worker/__init__.py
+  s_7936d1cd23c5b8::t_dc5c3992ddc204 1
+services/perception-worker/perception_worker/__main__.py
+  s_7936d1cd23c5b8::t_dc91d7ee12a289 1-43
+services/perception-worker/perception_worker/detectors.json
+  s_7936d1cd23c5b8::t_ab154730607d8a 1-33
+services/perception-worker/perception_worker/image.py
+  s_7936d1cd23c5b8::t_84ddd94eefa7eb 1-260
+services/perception-worker/perception_worker/ocr-assets.json
+  s_7936d1cd23c5b8::t_912d0e247f0685 1-8
+services/perception-worker/perception_worker/ocr.py
+  s_7936d1cd23c5b8::t_7b23c0753720dc 1-72
+services/perception-worker/perception_worker/policy.py
+  s_7936d1cd23c5b8::t_faa6b8d4501139 1-58
+services/perception-worker/pyproject.toml
+  s_7936d1cd23c5b8::t_e5017065daf784 1-24
+services/signing-service/pyproject.toml
+  s_7936d1cd23c5b8::t_f3511af84eca5f 1-27
+services/signing-service/signing_service/__init__.py
+  s_7936d1cd23c5b8::t_ca9e047f843e12 1
+services/signing-service/signing_service/__main__.py
+  s_7936d1cd23c5b8::t_051c70ea18f1d7 1-127
+services/signing-service/signing_service/bundles.py
+  s_7936d1cd23c5b8::t_63640d4eb087bb 1-26
+services/signing-service/signing_service/ceremony.py
+  s_7936d1cd23c5b8::t_b121a080cb9b07 1-302
+services/signing-service/signing_service/hierarchy.py
+  s_7936d1cd23c5b8::t_13b5dfe59ede8c 1-229
+services/signing-service/signing_service/keys.py
+  s_7936d1cd23c5b8::t_f12baeff85bfd8 1-26
+services/signing-service/signing_service/licences.py
+  s_7936d1cd23c5b8::t_999dc2178724fb 1-76
+services/signing-service/signing_service/operations.py
+  s_7936d1cd23c5b8::t_b45193914f9213 1-82
+services/signing-service/signing_service/revocation.py
+  s_7936d1cd23c5b8::t_662f46ee78ba4c 1-52
+services/signing-service/signing_service/safety_review.py
+  s_7936d1cd23c5b8::t_ed5a8716bb3af7 1-95
+services/signing-service/signing_service/safety_reviewers.json
+  s_7936d1cd23c5b8::t_64cdcd0e033f0a 1-4
+services/signing-service/signing_service/service.py
+  s_7936d1cd23c5b8::t_863b4e6880c5d3 1-377
+services/signing-service/signing_service/speech.py
+  s_7936d1cd23c5b8::t_05410610fdd1d5 1-42
+services/signing-service/signing_service/updater.py
+  s_7936d1cd23c5b8::t_d258b397fe2127 1-390
+services/study-worker/pyproject.toml
+  s_7936d1cd23c5b8::t_6c0fc3aa2f6cf6 1-21
+services/study-worker/study_worker/__init__.py
+  s_7936d1cd23c5b8::t_cb52780cff18ae 1-187
+services/study-worker/study_worker/__main__.py
+  s_7936d1cd23c5b8::t_b2cd69d242a59d 1-86
+services/study-worker/study_worker/media.py
+  s_7936d1cd23c5b8::t_6fdd4b511d0bf5 1-261
+services/study-worker/study_worker/pdf_text.py
+  s_7936d1cd23c5b8::t_2e5285cf841134 1-18
+services/tool-worker/pyproject.toml
+  s_7936d1cd23c5b8::t_2c1f57e2f940e7 1-18
+services/tool-worker/tool_worker/__init__.py
+  s_7936d1cd23c5b8::t_b8867f15d67211 1
+services/tool-worker/tool_worker/__main__.py
+  s_7936d1cd23c5b8::t_98de2f3c111e83 1-41
+services/tool-worker/tool_worker/budget.py
+  s_7936d1cd23c5b8::t_140717e6ce3b0b 1-181
+services/tool-worker/tool_worker/closure.py
+  s_7936d1cd23c5b8::t_d0beca671fa93d 1-132
+services/tool-worker/tool_worker/contracts/__init__.py
+  s_7936d1cd23c5b8::t_742c89b8ca246b 1-11
+services/tool-worker/tool_worker/contracts/_validation.py
+  s_7936d1cd23c5b8::t_dec9d0a016cd43 1-127
+services/tool-worker/tool_worker/contracts/schemas/tools/science-compute.schema.json
+  s_7936d1cd23c5b8::t_2f9c5a530bf587 1-1354
+services/tool-worker/tool_worker/contracts/schemas/tools/tool-result.schema.json
+  s_7936d1cd23c5b8::t_961fd2f1032eca 1-230
+services/tool-worker/tool_worker/contracts/schemas/tools/worker-protocol.schema.json
+  s_7936d1cd23c5b8::t_c9462391e126a0 1-1119
+services/tool-worker/tool_worker/contracts/tools/__init__.py
+  s_7936d1cd23c5b8::t_545faae40bf03d 1-3
+services/tool-worker/tool_worker/contracts/tools/science_compute.py
+  s_7936d1cd23c5b8::t_53d8a6e2f81d2d 1-317
+services/tool-worker/tool_worker/contracts/tools/tool_result.py
+  s_7936d1cd23c5b8::t_c659d1b09105d9 1-105
+services/tool-worker/tool_worker/contracts/tools/worker_protocol.py
+  s_7936d1cd23c5b8::t_b2e0560cffb734 1-470
+services/tool-worker/tool_worker/functions/__init__.py
+  s_7936d1cd23c5b8::t_ec64e49f1c4d8c 1-184
+services/tool-worker/tool_worker/functions/acidbase.py
+  s_7936d1cd23c5b8::t_252b1b894f8716 1-363
+services/tool-worker/tool_worker/functions/alevel.py
+  s_7936d1cd23c5b8::t_fc9755babfed42 1-401
+services/tool-worker/tool_worker/functions/alevel_calculus.py
+  s_7936d1cd23c5b8::t_370dcc99dcaf19 1-533
+services/tool-worker/tool_worker/functions/answers.py
+  s_7936d1cd23c5b8::t_14573604e90202 1-446
+services/tool-worker/tool_worker/functions/appraisal.py
+  s_7936d1cd23c5b8::t_bead549ce335d8 1-134
+services/tool-worker/tool_worker/functions/biology.py
+  s_7936d1cd23c5b8::t_1cfaf301e5a57d 1-206
+services/tool-worker/tool_worker/functions/calculus.py
+  s_7936d1cd23c5b8::t_565db76c5255ce 1-291
+services/tool-worker/tool_worker/functions/cashflow.py
+  s_7936d1cd23c5b8::t_5af8a6902dcbf3 1-219
+services/tool-worker/tool_worker/functions/chemistry.py
+  s_7936d1cd23c5b8::t_b968ed03ddb713 1-307
+services/tool-worker/tool_worker/functions/circuits.py
+  s_7936d1cd23c5b8::t_eac5736a4fb907 1-435
+services/tool-worker/tool_worker/functions/common.py
+  s_7936d1cd23c5b8::t_cefd3d77f1ced0 1-80
+services/tool-worker/tool_worker/functions/constants.py
+  s_7936d1cd23c5b8::t_21cbee72d5447c 1-93
+services/tool-worker/tool_worker/functions/control.py
+  s_7936d1cd23c5b8::t_b83dfa6097cad7 1-81
+services/tool-worker/tool_worker/functions/distributions.py
+  s_7936d1cd23c5b8::t_b3e35490b85221 1-915
+services/tool-worker/tool_worker/functions/elements.py
+  s_7936d1cd23c5b8::t_1b2f11d63292f8 1-189
+services/tool-worker/tool_worker/functions/energetics.py
+  s_7936d1cd23c5b8::t_634f35cb36552e 1-157
+services/tool-worker/tool_worker/functions/equilibrium.py
+  s_7936d1cd23c5b8::t_62f8873c84f737 1-215
+services/tool-worker/tool_worker/functions/formula.py
+  s_7936d1cd23c5b8::t_a16e6d40696cc1 1-260
+services/tool-worker/tool_worker/functions/geometry.py
+  s_7936d1cd23c5b8::t_1ad744f09082cd 1-492
+services/tool-worker/tool_worker/functions/ledger.py
+  s_7936d1cd23c5b8::t_4585703dcc7099 1-607
+services/tool-worker/tool_worker/functions/maths.py
+  s_7936d1cd23c5b8::t_175e28272f15c5 1-1307
+services/tool-worker/tool_worker/functions/mechanics.py
+  s_7936d1cd23c5b8::t_676c8c0583330e 1-979
+services/tool-worker/tool_worker/functions/money.py
+  s_7936d1cd23c5b8::t_445af2f7cc18e2 1-128
+services/tool-worker/tool_worker/functions/numeric.py
+  s_7936d1cd23c5b8::t_138b1716530260 1-212
+services/tool-worker/tool_worker/functions/optics.py
+  s_7936d1cd23c5b8::t_8a7e8118df948c 1-249
+services/tool-worker/tool_worker/functions/plotting.py
+  s_7936d1cd23c5b8::t_3c317d762b2adb 1-385
+services/tool-worker/tool_worker/functions/projectile.py
+  s_7936d1cd23c5b8::t_053e5b788e06b9 1-124
+services/tool-worker/tool_worker/functions/quantities.py
+  s_7936d1cd23c5b8::t_b9d9e09fd21d4a 1-180
+services/tool-worker/tool_worker/functions/ratios.py
+  s_7936d1cd23c5b8::t_d6d470486df2f6 1-275
+services/tool-worker/tool_worker/functions/statements.py
+  s_7936d1cd23c5b8::t_3a7341d1539373 1-495
+services/tool-worker/tool_worker/functions/stats.py
+  s_7936d1cd23c5b8::t_6d7b291ef5958b 1-282
+services/tool-worker/tool_worker/functions/steps.py
+  s_7936d1cd23c5b8::t_49e01c228ae228 1-441
+services/tool-worker/tool_worker/functions/stoichiometry.py
+  s_7936d1cd23c5b8::t_33687bec241261 1-332
+services/tool-worker/tool_worker/functions/units.py
+  s_7936d1cd23c5b8::t_be308376231762 1-198
+services/tool-worker/tool_worker/functions/valuation.py
+  s_7936d1cd23c5b8::t_f24440a9589bb7 1-240
+services/tool-worker/tool_worker/grammar.py
+  s_7936d1cd23c5b8::t_a8c58b5c7f3958 1-705
+services/tool-worker/tool_worker/guard.py
+  s_7936d1cd23c5b8::t_dbc4991945ecb8 1-383
+services/tool-worker/tool_worker/plausibility.py
+  s_7936d1cd23c5b8::t_aabb11107b9d12 1-227
+services/tool-worker/tool_worker/protocol.py
+  s_7936d1cd23c5b8::t_82618fdd54d484 1-66
+services/tool-worker/tool_worker/registry.py
+  s_7936d1cd23c5b8::t_7e32a1067e3cec 1-54
+services/tool-worker/tool_worker/schemas/acc_appraisal.json
+  s_7936d1cd23c5b8::t_4b8c55945de471 1-122
+services/tool-worker/tool_worker/schemas/acc_break_even.json
+  s_7936d1cd23c5b8::t_3e2e2497d480e8 1-59
+services/tool-worker/tool_worker/schemas/acc_cash_flow.json
+  s_7936d1cd23c5b8::t_37bb587b6b9561 1-379
+services/tool-worker/tool_worker/schemas/acc_depreciation.json
+  s_7936d1cd23c5b8::t_7967eafe955310 1-95
+services/tool-worker/tool_worker/schemas/acc_double_entry.json
+  s_7936d1cd23c5b8::t_31586f4c48b5a1 1-558
+services/tool-worker/tool_worker/schemas/acc_inventory.json
+  s_7936d1cd23c5b8::t_ddaf060925ebbe 1-92
+services/tool-worker/tool_worker/schemas/acc_ratios.json
+  s_7936d1cd23c5b8::t_7e0b7a23edc5bf 1-247
+services/tool-worker/tool_worker/schemas/acc_statements.json
+  s_7936d1cd23c5b8::t_3b42cf2f7e8b00 1-1019
+services/tool-worker/tool_worker/schemas/bio_calc.json
+  s_7936d1cd23c5b8::t_235e909378b5c6 1-141
+services/tool-worker/tool_worker/schemas/bio_genetics.json
+  s_7936d1cd23c5b8::t_c4360dc3919732 1-201
+services/tool-worker/tool_worker/schemas/chem_acid_base.json
+  s_7936d1cd23c5b8::t_534ca5e471b007 1-160
+services/tool-worker/tool_worker/schemas/chem_balance.json
+  s_7936d1cd23c5b8::t_80d7eb9309790c 1-29
+services/tool-worker/tool_worker/schemas/chem_energetics.json
+  s_7936d1cd23c5b8::t_c8908e26a64e03 1-190
+services/tool-worker/tool_worker/schemas/chem_equilibrium.json
+  s_7936d1cd23c5b8::t_209b5dee105cc0 1-354
+services/tool-worker/tool_worker/schemas/chem_molar_mass.json
+  s_7936d1cd23c5b8::t_927fe9cc4f35f6 1-53
+services/tool-worker/tool_worker/schemas/chem_stoichiometry.json
+  s_7936d1cd23c5b8::t_3fedd07d9c7191 1-262
+services/tool-worker/tool_worker/schemas/geom_figure.json
+  s_7936d1cd23c5b8::t_fafc2e9e187ac8 1-512
+services/tool-worker/tool_worker/schemas/math_check_answer.json
+  s_7936d1cd23c5b8::t_3213de02999132 1-170
+services/tool-worker/tool_worker/schemas/math_check_equivalence.json
+  s_7936d1cd23c5b8::t_27af01abbc4f4e 1-61
+services/tool-worker/tool_worker/schemas/math_check_step.json
+  s_7936d1cd23c5b8::t_ad905315b871d7 1-74
+services/tool-worker/tool_worker/schemas/math_differentiate.json
+  s_7936d1cd23c5b8::t_e5eaaa89322c99 1-153
+services/tool-worker/tool_worker/schemas/math_evaluate.json
+  s_7936d1cd23c5b8::t_93a898bac3a057 1-119
+services/tool-worker/tool_worker/schemas/math_integrate.json
+  s_7936d1cd23c5b8::t_e2163fb069c491 1-147
+services/tool-worker/tool_worker/schemas/math_parse.json
+  s_7936d1cd23c5b8::t_e0566fa8e6b02d 1-17
+services/tool-worker/tool_worker/schemas/math_plot_points.json
+  s_7936d1cd23c5b8::t_2236487841bf98 1-100
+services/tool-worker/tool_worker/schemas/math_simplify.json
+  s_7936d1cd23c5b8::t_fbd8fea53d20a0 1-89
+services/tool-worker/tool_worker/schemas/math_solve.json
+  s_7936d1cd23c5b8::t_9abe243bd09186 1-201
+services/tool-worker/tool_worker/schemas/math_solve_ode.json
+  s_7936d1cd23c5b8::t_7b75667c5047f4 1-93
+services/tool-worker/tool_worker/schemas/phys_circuit.json
+  s_7936d1cd23c5b8::t_c6458ee8be6dd6 1-123
+services/tool-worker/tool_worker/schemas/phys_mechanics.json
+  s_7936d1cd23c5b8::t_4930dd2c3259a2 1-715
+services/tool-worker/tool_worker/schemas/phys_optics.json
+  s_7936d1cd23c5b8::t_9e1c9c56269379 1-97
+services/tool-worker/tool_worker/schemas/phys_projectile.json
+  s_7936d1cd23c5b8::t_44c83fafac6031 1-134
+services/tool-worker/tool_worker/schemas/stats_compute.json
+  s_7936d1cd23c5b8::t_5d04e0d25478ea 1-145
+services/tool-worker/tool_worker/schemas/stats_distribution.json
+  s_7936d1cd23c5b8::t_6e573f932332f7 1-754
+services/tool-worker/tool_worker/schemas/units_check_dimensions.json
+  s_7936d1cd23c5b8::t_3db827851425ad 1-21
+services/tool-worker/tool_worker/schemas/units_convert.json
+  s_7936d1cd23c5b8::t_662736111e77e3 1-24
+services/tool-worker/tool_worker/server.py
+  s_7936d1cd23c5b8::t_5e607b6a8d7d7d 1-357
+skills/agent/agent-check-plan/SKILL.md
+  s_7936d1cd23c5b8::t_49c189b9363cdb 1-62
+skills/agent/agent-diagnose-question/SKILL.md
+  s_7936d1cd23c5b8::t_fd7d246a25a1d3 1-64
+skills/agent/agent-plan-solution/SKILL.md
+  s_7936d1cd23c5b8::t_f3c8c4af1c7e47 1-63
+skills/counts.toml
+  s_7936d1cd23c5b8::t_ffaaf611a73e28 1-5
+skills/pedagogy/pedagogy-guided-solve/SKILL.md
+  s_7936d1cd23c5b8::t_9de17c7936f3da 1-99
+skills/pedagogy/pedagogy-worked-example-fade/SKILL.md
+  s_7936d1cd23c5b8::t_982aa4c8b96e48 1-86
+skills/teaching/chm/chm-o-acids/SKILL.md
+  s_7936d1cd23c5b8::t_f8c255d4ec6560 1-149
+skills/teaching/chm/chm-o-analysis/SKILL.md
+  s_7936d1cd23c5b8::t_032c703bd08302 1-150
+skills/teaching/chm/chm-o-atoms/SKILL.md
+  s_7936d1cd23c5b8::t_36884d15a6f66a 1-150
+skills/teaching/chm/chm-o-electrolysis/SKILL.md
+  s_7936d1cd23c5b8::t_164c3b1ca66f5d 1-157
+skills/teaching/chm/chm-o-energetics/SKILL.md
+  s_7936d1cd23c5b8::t_f2c61ed532a29b 1-151
+skills/teaching/chm/chm-o-environment/SKILL.md
+  s_7936d1cd23c5b8::t_caf2f87b3797aa 1-135
+skills/teaching/chm/chm-o-metals/SKILL.md
+  s_7936d1cd23c5b8::t_0fb45463160d14 1-139
+skills/teaching/chm/chm-o-organic/SKILL.md
+  s_7936d1cd23c5b8::t_26edb1ac11b2ee 1-141
+skills/teaching/chm/chm-o-periodic/SKILL.md
+  s_7936d1cd23c5b8::t_fe72af65de5db5 1-131
+skills/teaching/chm/chm-o-reactions/SKILL.md
+  s_7936d1cd23c5b8::t_95af0fbe1d07ba 1-159
+skills/teaching/chm/chm-o-states/SKILL.md
+  s_7936d1cd23c5b8::t_12cc84835360bf 1-124
+skills/teaching/chm/chm-o-stoichiometry/SKILL.md
+  s_7936d1cd23c5b8::t_2656cf039c59fd 1-184
+tsconfig.base.json
+  s_7936d1cd23c5b8::t_c2c6693bea7172 1-16
+uv.lock
+  s_7936d1cd23c5b8::t_3b926d9718d9f9 1-1787
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "51bb38cae47be69cca876abea102f29a7e82ff8d",
+  "prompts": {},
+  "sessions": {
+    "s_7936d1cd23c5b8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14c2b-824a-7022-bb86-0bc2c1b99e22",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
