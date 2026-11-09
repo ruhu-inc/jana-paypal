@@ -1,0 +1,371 @@
+{
+ "$comment": "GENERATED from contracts/authoring/review-record.schema.json sha256 4540154feca6a6dedf9639a626cba183a857dc83c4cb20828f83cbb6cbe71e09; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/authoring/review-record",
+ "title": "ReviewRecord",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "review_record_id",
+  "record",
+  "action",
+  "from_state",
+  "to_state",
+  "actor",
+  "authors",
+  "scope",
+  "created_at",
+  "previous_review_sha256"
+ ],
+ "properties": {
+  "review_record_id": {
+   "type": "string",
+   "pattern": "^rr_[0-9a-z]{20,40}$"
+  },
+  "record": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "record_type",
+    "record_id",
+    "version",
+    "content_sha256"
+   ],
+   "properties": {
+    "record_type": {
+     "type": "string",
+     "enum": [
+      "curriculum_node",
+      "kc",
+      "lesson",
+      "worked_example",
+      "item",
+      "item_template",
+      "misconception",
+      "diagram",
+      "visual_preset",
+      "skill",
+      "pedagogy_rule",
+      "kc_migration",
+      "translation",
+      "glossary_entry",
+      "simulation_preset"
+     ]
+    },
+    "record_id": {
+     "type": "string",
+     "minLength": 3,
+     "maxLength": 160,
+     "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+    },
+    "version": {
+     "type": "string",
+     "pattern": "^\\d+\\.\\d+(\\.\\d+)?$"
+    },
+    "language": {
+     "type": "string",
+     "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+    },
+    "content_sha256": {
+     "$ref": "#/$defs/Sha256"
+    }
+   }
+  },
+  "action": {
+   "type": "string",
+   "enum": [
+    "submit",
+    "approve",
+    "request_changes",
+    "escalate",
+    "lead_decision",
+    "publish_request",
+    "published",
+    "retire",
+    "withdraw_urgent",
+    "moderation_approve",
+    "moderation_reject",
+    "appeal"
+   ]
+  },
+  "from_state": {
+   "$ref": "#/$defs/PipelineState"
+  },
+  "to_state": {
+   "$ref": "#/$defs/PipelineState"
+  },
+  "actor": {
+   "$ref": "#/$defs/Actor"
+  },
+  "authors": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "$ref": "#/$defs/RoleId"
+   }
+  },
+  "checklist": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "check",
+     "result"
+    ],
+    "properties": {
+     "check": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{2,60}$"
+     },
+     "result": {
+      "type": "string",
+      "enum": [
+       "pass",
+       "fail",
+       "not_applicable"
+      ]
+     },
+     "note": {
+      "type": "string",
+      "maxLength": 500
+     }
+    },
+    "if": {
+     "properties": {
+      "result": {
+       "const": "not_applicable"
+      }
+     }
+    },
+    "then": {
+     "required": [
+      "note"
+     ]
+    }
+   }
+  },
+  "evidence": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "verification_run_id": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "lint_run_id": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "eval_run_ids": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 80
+     }
+    },
+    "qa_report_sha256": {
+     "$ref": "#/$defs/Sha256"
+    },
+    "commit": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{40,64}$"
+    }
+   }
+  },
+  "comment_thread_ids": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "pattern": "^ct_[0-9a-z]{8,40}$"
+   }
+  },
+  "ai_assistance": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "drafted_with_ai"
+   ],
+   "properties": {
+    "drafted_with_ai": {
+     "type": "boolean"
+    },
+    "models": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 120
+     }
+    },
+    "prompt_template_ids": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 120
+     }
+    },
+    "fields": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 160
+     }
+    }
+   },
+   "if": {
+    "properties": {
+     "drafted_with_ai": {
+      "const": true
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "models",
+     "fields"
+    ]
+   }
+  },
+  "reason": {
+   "type": "string",
+   "maxLength": 500
+  },
+  "moderation_reason": {
+   "type": "string",
+   "enum": [
+    "incorrect",
+    "unsafe",
+    "licence",
+    "personal_data",
+    "shadows_publisher",
+    "out_of_scope"
+   ]
+  },
+  "replaced_by": {
+   "type": "string",
+   "maxLength": 160
+  },
+  "scope": {
+   "type": "string",
+   "enum": [
+    "core"
+   ]
+  },
+  "created_at": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "previous_review_sha256": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/Sha256"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "enum": [
+       "request_changes",
+       "retire",
+       "withdraw_urgent",
+       "moderation_reject",
+       "lead_decision"
+      ]
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "reason"
+    ]
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "moderation_reject"
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "moderation_reason"
+    ]
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "approve"
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "checklist"
+    ]
+   }
+  }
+ ],
+ "$defs": {
+  "Sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "RoleId": {
+   "type": "string",
+   "pattern": "^rev_[a-z0-9_]{2,40}$"
+  },
+  "Actor": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "role_id",
+    "role"
+   ],
+   "properties": {
+    "role_id": {
+     "$ref": "#/$defs/RoleId"
+    },
+    "role": {
+     "type": "string",
+     "enum": [
+      "curriculum_lead",
+      "subject_lead",
+      "subject_author",
+      "reviewer",
+      "specialist_reviewer",
+      "language_reviewer",
+      "signing_service"
+     ]
+    }
+   }
+  },
+  "PipelineState": {
+   "type": "string",
+   "enum": [
+    "drafted",
+    "verified",
+    "in_review",
+    "changes_requested",
+    "approved",
+    "held_out",
+    "in_eval_bank",
+    "published",
+    "retired",
+    "draft",
+    "reviewed"
+   ]
+  }
+ }
+}

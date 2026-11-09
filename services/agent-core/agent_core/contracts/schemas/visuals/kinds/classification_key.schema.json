@@ -1,0 +1,23 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/classification_key.schema.json sha256 9f98d9568f34ce5feda0d6d95886e7cfc620f0e94bba5352ee8ae076e43365a3; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/classification_key",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "key_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100
+  },
+  "start_node": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 64,
+   "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+  }
+ },
+ "required": [
+  "key_id"
+ ]
+}

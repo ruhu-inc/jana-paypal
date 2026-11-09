@@ -1,0 +1,174 @@
+{
+ "$comment": "GENERATED from contracts/ops/perception-pack.schema.json sha256 16f129911e781c0f430ed04c9c1a5e70aec50423c34282921bcae352635f3d73; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/perception-pack",
+ "title": "PerceptionPackManifest",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "format": {
+   "const": "jana.perception.1"
+  },
+  "perception_pack_id": {
+   "type": "string",
+   "pattern": "^pp\\.[a-z0-9_]+\\.[a-z0-9_]+\\.(windows|macos|linux)\\.(x86_64|arm64)$"
+  },
+  "version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+(-rc\\.\\d+)?$"
+  },
+  "channel": {
+   "enum": [
+    "dev",
+    "pilot",
+    "stable"
+   ]
+  },
+  "os": {
+   "enum": [
+    "windows",
+    "macos",
+    "linux"
+   ]
+  },
+  "arch": {
+   "enum": [
+    "x86_64",
+    "arm64"
+   ]
+  },
+  "hardware_classes": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "low",
+     "mid",
+     "high"
+    ]
+   }
+  },
+  "executable": {
+   "type": "string",
+   "maxLength": 240
+  },
+  "min_app_version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+(-rc\\.\\d+)?$"
+  },
+  "evaluation_report_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 160
+  },
+  "created_at": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "signature": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "alg",
+    "key_id",
+    "value"
+   ],
+   "properties": {
+    "alg": {
+     "const": "ed25519"
+    },
+    "key_id": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  },
+  "files": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 4096,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "path",
+     "size_bytes",
+     "sha256",
+     "executable"
+    ],
+    "properties": {
+     "path": {
+      "type": "string",
+      "maxLength": 240
+     },
+     "size_bytes": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1073741824
+     },
+     "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "executable": {
+      "type": "boolean"
+     }
+    }
+   }
+  },
+  "licences": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 100,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "attribution",
+     "path"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+     },
+     "attribution": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+     },
+     "path": {
+      "type": "string",
+      "maxLength": 240
+     },
+     "review": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+     }
+    }
+   }
+  }
+ },
+ "required": [
+  "format",
+  "perception_pack_id",
+  "version",
+  "channel",
+  "os",
+  "arch",
+  "hardware_classes",
+  "executable",
+  "min_app_version",
+  "evaluation_report_id",
+  "created_at",
+  "signature",
+  "files",
+  "licences"
+ ]
+}

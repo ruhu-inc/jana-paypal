@@ -1,0 +1,360 @@
+# Scenario tests of the soft rule catalogue (PED-16, PED-17): one situation per rule (signals, the student's
+# message, scripted judged answers) and the rules expected active and inactive after matching. Synthetic.
+scenarios:
+- id: scn_wrong_step_ask_intent
+  rule: wrong_step_ask_intent
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    step.verdict: incorrect
+    step.misconception_matched: false
+  expect_active:
+  - wrong_step_ask_intent
+  expect_inactive:
+  - misconception_name_gently
+- id: scn_misconception_name_gently
+  rule: misconception_name_gently
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    step.verdict: incorrect
+    step.misconception_matched: true
+  expect_active:
+  - misconception_name_gently
+  expect_inactive:
+  - wrong_step_ask_intent
+- id: scn_revisit_misconception_check
+  rule: revisit_misconception_check
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    kc.active_misconception: true
+    step.verdict: correct
+  expect_active:
+  - revisit_misconception_check
+- id: scn_praise_method_not_person
+  rule: praise_method_not_person
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    step.verdict: correct
+    step.wrong_attempts: 0
+  expect_active:
+  - praise_method_not_person
+  expect_inactive:
+  - praise_persistence
+- id: scn_praise_persistence
+  rule: praise_persistence
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    step.verdict: correct
+    step.wrong_attempts: 2
+  expect_active:
+  - praise_persistence
+  expect_inactive:
+  - praise_method_not_person
+- id: scn_hint_burst_ask_attempt
+  rule: hint_burst_ask_attempt
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    hints.requests_last_10s: 2
+    engine.idle_offer_due: true
+  expect_active:
+  - hint_burst_ask_attempt
+  expect_inactive:
+  - unprompted_offer_when_idle
+- id: scn_answer_request_in_guided
+  rule: answer_request_in_guided
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    student.requested_answer: true
+    mode: guided
+  expect_active:
+  - answer_request_in_guided
+- id: scn_bare_answer_ask_method
+  rule: bare_answer_ask_method
+  mode: guided
+  subject: physics
+  level: O
+  signals: {}
+  text: the answer is 12
+  expect_active:
+  - bare_answer_ask_method
+- id: scn_own_notation_mirror
+  rule: own_notation_mirror
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    answer.notation_nonstandard: true
+  expect_active:
+  - own_notation_mirror
+- id: scn_confused_twice_switch_representation
+  rule: confused_twice_switch_representation
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    student.confused_count_step: 2
+  expect_active:
+  - confused_twice_switch_representation
+- id: scn_offer_visual_if_catalogue
+  rule: offer_visual_if_catalogue
+  mode: guided
+  subject: physics
+  level: O
+  signals: {}
+  judged:
+    offer_visual_if_catalogue: true
+  expect_active:
+  - offer_visual_if_catalogue
+- id: scn_self_explain_prompt_due
+  rule: self_explain_prompt_due
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    engine.self_explanation_due: true
+  expect_active:
+  - self_explain_prompt_due
+- id: scn_worked_example_first
+  rule: worked_example_first
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    kc.mastery: 0.3
+    step.verdict: none
+  expect_active:
+  - worked_example_first
+  expect_inactive:
+  - skip_examples_high_mastery
+- id: scn_faded_example_next_blank
+  rule: faded_example_next_blank
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    kc.fading_active: true
+  expect_active:
+  - faded_example_next_blank
+- id: scn_skip_examples_high_mastery
+  rule: skip_examples_high_mastery
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    kc.mastery: 0.8
+    step.verdict: none
+  expect_active:
+  - skip_examples_high_mastery
+  expect_inactive:
+  - worked_example_first
+- id: scn_unprompted_offer_when_idle
+  rule: unprompted_offer_when_idle
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    engine.idle_offer_due: true
+  expect_active:
+  - unprompted_offer_when_idle
+  expect_inactive:
+  - hint_burst_ask_attempt
+- id: scn_detour_offer
+  rule: detour_offer
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    engine.detour_eligible: true
+  expect_active:
+  - detour_offer
+- id: scn_stuck_cap_move_on
+  rule: stuck_cap_move_on
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    engine.stuck_cap_reached: true
+  expect_active:
+  - stuck_cap_move_on
+- id: scn_bottom_out_followup
+  rule: bottom_out_followup
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    engine.bottom_out_shown: true
+  expect_active:
+  - bottom_out_followup
+- id: scn_check_working_first_error_only
+  rule: check_working_first_error_only
+  mode: check_working
+  subject: physics
+  level: O
+  signals:
+    mode: check_working
+    step.verdict: incorrect
+  expect_active:
+  - check_working_first_error_only
+- id: scn_units_missing
+  rule: units_missing
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    answer.units_missing: true
+  expect_active:
+  - units_missing
+- id: scn_sig_figs_convention
+  rule: sig_figs_convention
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    answer.sigfig_mismatch: true
+  expect_active:
+  - sig_figs_convention
+- id: scn_command_word_meaning
+  rule: command_word_meaning
+  mode: guided
+  subject: physics
+  level: O
+  signals: {}
+  judged:
+    command_word_meaning: true
+  expect_active:
+  - command_word_meaning
+- id: scn_physics_sign_convention
+  rule: physics_sign_convention
+  mode: guided
+  subject: physics
+  level: O
+  signals: {}
+  text: the ball goes upwards then down
+  expect_active:
+  - physics_sign_convention
+- id: scn_accounting_sides
+  rule: accounting_sides
+  mode: guided
+  subject: accounting
+  level: O
+  signals: {}
+  judged:
+    accounting_sides: true
+  expect_active:
+  - accounting_sides
+- id: scn_local_context_examples
+  rule: local_context_examples
+  mode: guided
+  subject: physics
+  level: O
+  signals: {}
+  text: can you give me an example with money
+  expect_active:
+  - local_context_examples
+- id: scn_frustration_acknowledge
+  rule: frustration_acknowledge
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    engagement.frustration: 0.7
+  expect_active:
+  - frustration_acknowledge
+- id: scn_break_suggestion
+  rule: break_suggestion
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    session.minutes: 50
+    engagement.frustration: 0.5
+  expect_active:
+  - break_suggestion
+- id: scn_confidence_check
+  rule: confidence_check
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    step.verdict: correct
+    kc.mastery: 0.3
+  expect_active:
+  - confidence_check
+- id: scn_high_confidence_wrong
+  rule: high_confidence_wrong
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    confidence.rating: 3
+    step.verdict: incorrect
+  expect_active:
+  - high_confidence_wrong
+- id: scn_low_confidence_right
+  rule: low_confidence_right
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    confidence.rating: 1
+    step.verdict: correct
+  expect_active:
+  - low_confidence_right
+- id: scn_tool_disagreement_honest
+  rule: tool_disagreement_honest
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    engine.tool_model_disagreement: true
+  expect_active:
+  - tool_disagreement_honest
+- id: scn_not_sure_cite
+  rule: not_sure_cite
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    content.out_of_pack: true
+  expect_active:
+  - not_sure_cite
+- id: scn_simplify_language
+  rule: simplify_language
+  mode: guided
+  subject: physics
+  level: O
+  signals: {}
+  text: can you say it in simpler words please
+  expect_active:
+  - simplify_language
+- id: scn_bulk_paste_one_at_a_time
+  rule: bulk_paste_one_at_a_time
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    student.bulk_questions: true
+  expect_active:
+  - bulk_paste_one_at_a_time
+- id: scn_off_topic_gentle_return
+  rule: off_topic_gentle_return
+  mode: guided
+  subject: physics
+  level: O
+  signals:
+    student.off_topic_mild: true
+  expect_active:
+  - off_topic_gentle_return

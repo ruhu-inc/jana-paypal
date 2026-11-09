@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "expression"
+  ],
+  "properties": {
+    "expression": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "values": {
+      "type": "object",
+      "maxProperties": 20,
+      "additionalProperties": {
+        "type": [
+          "number",
+          "string"
+        ]
+      }
+    },
+    "sf": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 15
+    },
+    "dp": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 15
+    },
+    "angle_unit": {
+      "enum": [
+        "degrees",
+        "radians"
+      ]
+    },
+    "variables": {
+      "type": "array",
+      "maxItems": 20,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}(_[A-Za-z0-9]{1,8})?$"
+      }
+    },
+    "assumptions": {
+      "type": "object",
+      "maxProperties": 20,
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "enum": [
+            "positive",
+            "nonzero",
+            "integer",
+            "nonnegative"
+          ]
+        }
+      }
+    },
+    "level": {
+      "enum": [
+        "O",
+        "A"
+      ]
+    },
+    "log_base": {
+      "enum": [
+        2,
+        10
+      ]
+    },
+    "decimal_comma": {
+      "type": "boolean"
+    },
+    "constants": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "symbol",
+          "source"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}(_[A-Za-z0-9]{1,8})?$"
+          },
+          "value": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+            "maxLength": 40
+          },
+          "unit": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "source": {
+            "enum": [
+              "question",
+              "item",
+              "pack",
+              "default"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

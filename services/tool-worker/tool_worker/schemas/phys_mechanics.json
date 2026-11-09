@@ -1,0 +1,715 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task"
+  ],
+  "dependentRequired": {
+    "g": [
+      "g_source"
+    ],
+    "g_source": [
+      "g"
+    ],
+    "acceleration": [
+      "direction"
+    ]
+  },
+  "properties": {
+    "task": {
+      "enum": [
+        "projectile_angle",
+        "moments",
+        "incline_friction",
+        "connected_particles",
+        "work_energy_power",
+        "momentum_impulse",
+        "circular_motion",
+        "shm"
+      ]
+    },
+    "part": {
+      "enum": [
+        "work_energy",
+        "power",
+        "efficiency",
+        "collision",
+        "impulse",
+        "horizontal",
+        "conical_pendulum"
+      ]
+    },
+    "g": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+      "maxLength": 40
+    },
+    "g_source": {
+      "enum": [
+        "question",
+        "item",
+        "pack"
+      ]
+    },
+    "constants": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "symbol",
+          "source"
+        ],
+        "properties": {
+          "symbol": {
+            "const": "g"
+          },
+          "value": {
+            "$ref": "#/$defs/number"
+          },
+          "unit": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "source": {
+            "enum": [
+              "question",
+              "item",
+              "pack",
+              "default"
+            ]
+          }
+        }
+      }
+    },
+    "speed": {
+      "$ref": "#/$defs/quantity"
+    },
+    "angle": {
+      "$ref": "#/$defs/number"
+    },
+    "tan_angle": {
+      "$ref": "#/$defs/ratio"
+    },
+    "sin_angle": {
+      "$ref": "#/$defs/ratio"
+    },
+    "height": {
+      "$ref": "#/$defs/quantity"
+    },
+    "time": {
+      "$ref": "#/$defs/quantity"
+    },
+    "horizontal_distance": {
+      "$ref": "#/$defs/quantity"
+    },
+    "length": {
+      "$ref": "#/$defs/quantity"
+    },
+    "beam_mass": {
+      "$ref": "#/$defs/quantity"
+    },
+    "beam_weight": {
+      "$ref": "#/$defs/quantity"
+    },
+    "loads": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "distance"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "distance": {
+            "$ref": "#/$defs/quantity"
+          },
+          "force": {
+            "$ref": "#/$defs/quantity"
+          },
+          "mass": {
+            "$ref": "#/$defs/quantity"
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "force"
+            ]
+          },
+          {
+            "required": [
+              "mass"
+            ]
+          }
+        ]
+      }
+    },
+    "supports": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "distance"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "distance": {
+            "$ref": "#/$defs/quantity"
+          },
+          "reaction": {
+            "$ref": "#/$defs/quantity"
+          }
+        }
+      }
+    },
+    "mass": {
+      "$ref": "#/$defs/quantity"
+    },
+    "mu": {
+      "$ref": "#/$defs/ratio"
+    },
+    "applied_force": {
+      "$ref": "#/$defs/quantity"
+    },
+    "applied_angle": {
+      "$ref": "#/$defs/number"
+    },
+    "applied_tan_angle": {
+      "$ref": "#/$defs/ratio"
+    },
+    "acceleration": {
+      "$ref": "#/$defs/quantity"
+    },
+    "direction": {
+      "enum": [
+        "up_slope",
+        "down_slope"
+      ]
+    },
+    "arrangement": {
+      "enum": [
+        "hanging",
+        "table",
+        "incline"
+      ]
+    },
+    "mass_a": {
+      "$ref": "#/$defs/quantity"
+    },
+    "mass_b": {
+      "$ref": "#/$defs/quantity"
+    },
+    "surface": {
+      "enum": [
+        "smooth",
+        "rough"
+      ]
+    },
+    "find": {
+      "enum": [
+        "final_speed",
+        "driving_force",
+        "resistance"
+      ]
+    },
+    "initial_speed": {
+      "$ref": "#/$defs/quantity"
+    },
+    "final_speed": {
+      "$ref": "#/$defs/quantity"
+    },
+    "height_gain": {
+      "$ref": "#/$defs/quantity"
+    },
+    "distance": {
+      "$ref": "#/$defs/quantity"
+    },
+    "driving_force": {
+      "$ref": "#/$defs/quantity"
+    },
+    "force_angle": {
+      "$ref": "#/$defs/number"
+    },
+    "force_tan_angle": {
+      "$ref": "#/$defs/ratio"
+    },
+    "resistance": {
+      "$ref": "#/$defs/quantity"
+    },
+    "power": {
+      "$ref": "#/$defs/quantity"
+    },
+    "input": {
+      "$ref": "#/$defs/quantity"
+    },
+    "useful_output": {
+      "$ref": "#/$defs/quantity"
+    },
+    "efficiency": {
+      "$ref": "#/$defs/ratio"
+    },
+    "velocity_a": {
+      "$ref": "#/$defs/quantity"
+    },
+    "velocity_b": {
+      "$ref": "#/$defs/quantity"
+    },
+    "restitution": {
+      "$ref": "#/$defs/ratio"
+    },
+    "final_velocity_a": {
+      "$ref": "#/$defs/quantity"
+    },
+    "final_velocity_b": {
+      "$ref": "#/$defs/quantity"
+    },
+    "initial_velocity": {
+      "$ref": "#/$defs/quantity"
+    },
+    "final_velocity": {
+      "$ref": "#/$defs/quantity"
+    },
+    "impulse": {
+      "$ref": "#/$defs/quantity"
+    },
+    "force": {
+      "$ref": "#/$defs/quantity"
+    },
+    "radius": {
+      "$ref": "#/$defs/quantity"
+    },
+    "angular_speed": {
+      "$ref": "#/$defs/quantity"
+    },
+    "period": {
+      "$ref": "#/$defs/quantity"
+    },
+    "frequency": {
+      "$ref": "#/$defs/quantity"
+    },
+    "amplitude": {
+      "$ref": "#/$defs/quantity"
+    },
+    "angular_frequency": {
+      "$ref": "#/$defs/quantity"
+    },
+    "max_speed": {
+      "$ref": "#/$defs/quantity"
+    },
+    "max_acceleration": {
+      "$ref": "#/$defs/quantity"
+    },
+    "displacement": {
+      "$ref": "#/$defs/quantity"
+    },
+    "start": {
+      "enum": [
+        "centre",
+        "extreme"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "projectile_angle"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "speed"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "angle"
+            ]
+          },
+          {
+            "required": [
+              "tan_angle"
+            ]
+          },
+          {
+            "required": [
+              "sin_angle"
+            ]
+          }
+        ],
+        "not": {
+          "required": [
+            "part"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "moments"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "length",
+          "supports"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "part"
+              ]
+            },
+            {
+              "required": [
+                "beam_mass",
+                "beam_weight"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "incline_friction"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "mass"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "angle"
+            ]
+          },
+          {
+            "required": [
+              "tan_angle"
+            ]
+          },
+          {
+            "required": [
+              "sin_angle"
+            ]
+          }
+        ],
+        "not": {
+          "required": [
+            "part"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "connected_particles"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "arrangement",
+          "mass_a",
+          "mass_b"
+        ],
+        "not": {
+          "required": [
+            "part"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "connected_particles"
+          },
+          "arrangement": {
+            "const": "incline"
+          }
+        },
+        "required": [
+          "task",
+          "arrangement"
+        ]
+      },
+      "then": {
+        "oneOf": [
+          {
+            "required": [
+              "angle"
+            ]
+          },
+          {
+            "required": [
+              "tan_angle"
+            ]
+          },
+          {
+            "required": [
+              "sin_angle"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "work_energy_power"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "part"
+        ],
+        "properties": {
+          "part": {
+            "enum": [
+              "work_energy",
+              "power",
+              "efficiency"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "work_energy_power"
+          },
+          "part": {
+            "const": "work_energy"
+          }
+        },
+        "required": [
+          "task",
+          "part"
+        ]
+      },
+      "then": {
+        "required": [
+          "find",
+          "mass",
+          "initial_speed"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "momentum_impulse"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "part"
+        ],
+        "properties": {
+          "part": {
+            "enum": [
+              "collision",
+              "impulse"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "momentum_impulse"
+          },
+          "part": {
+            "const": "collision"
+          }
+        },
+        "required": [
+          "task",
+          "part"
+        ]
+      },
+      "then": {
+        "required": [
+          "mass_a",
+          "mass_b",
+          "velocity_a",
+          "velocity_b"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "momentum_impulse"
+          },
+          "part": {
+            "const": "impulse"
+          }
+        },
+        "required": [
+          "task",
+          "part"
+        ]
+      },
+      "then": {
+        "required": [
+          "mass",
+          "initial_velocity"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "circular_motion"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "properties": {
+          "part": {
+            "enum": [
+              "horizontal",
+              "conical_pendulum"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "circular_motion"
+          },
+          "part": {
+            "const": "conical_pendulum"
+          }
+        },
+        "required": [
+          "task",
+          "part"
+        ]
+      },
+      "then": {
+        "required": [
+          "length"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "shm"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "not": {
+          "required": [
+            "part"
+          ]
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "quantity": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "a number in SI units, or a value with its unit such as \"72 km/h\"; \"?\" marks an unknown in moments"
+    },
+    "number": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+      "maxLength": 40,
+      "description": "an angle in degrees"
+    },
+    "ratio": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)(\\s*/\\s*(\\d+(\\.\\d*)?|\\.\\d+))?$",
+      "maxLength": 40
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]{0,5}$"
+    }
+  }
+}

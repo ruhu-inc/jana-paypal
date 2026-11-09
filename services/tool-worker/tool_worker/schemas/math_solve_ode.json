@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rhs"
+  ],
+  "properties": {
+    "rhs": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "independent": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}(_[A-Za-z0-9]{1,8})?$"
+    },
+    "dependent": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}(_[A-Za-z0-9]{1,8})?$"
+    },
+    "constant": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}(_[A-Za-z0-9]{1,8})?$"
+    },
+    "condition": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": [
+          "number",
+          "string"
+        ],
+        "pattern": "^([0-9+\\-*/^(). ]|pi|e|sqrt|ln|log|exp)+$",
+        "maxLength": 40
+      }
+    },
+    "at": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^([0-9+\\-*/^(). ]|pi|e|sqrt|ln|log|exp)+$",
+      "maxLength": 40
+    },
+    "student": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "variables": {
+      "type": "array",
+      "maxItems": 20,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}(_[A-Za-z0-9]{1,8})?$"
+      }
+    },
+    "assumptions": {
+      "type": "object",
+      "maxProperties": 20,
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "enum": [
+            "positive",
+            "nonzero",
+            "integer",
+            "nonnegative"
+          ]
+        }
+      }
+    },
+    "level": {
+      "enum": [
+        "O",
+        "A"
+      ]
+    },
+    "log_base": {
+      "enum": [
+        2,
+        10
+      ]
+    },
+    "decimal_comma": {
+      "type": "boolean"
+    }
+  }
+}

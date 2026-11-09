@@ -1,0 +1,31 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/maxwell_boltzmann.schema.json sha256 e9835583f49b6d8ffc4e541843907cbab0adcec865c4082cccf9a36baf401978; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/maxwell_boltzmann",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "temperatures_k": {
+   "type": "array",
+   "items": {
+    "type": "number",
+    "minimum": 1e-06
+   },
+   "minItems": 1,
+   "maxItems": 3
+  },
+  "activation_energy_j_mol": {
+   "type": "number",
+   "minimum": 0
+  },
+  "energy_max_j_mol": {
+   "type": "number",
+   "minimum": 1e-06
+  }
+ },
+ "required": [
+  "temperatures_k",
+  "activation_energy_j_mol",
+  "energy_max_j_mol"
+ ]
+}

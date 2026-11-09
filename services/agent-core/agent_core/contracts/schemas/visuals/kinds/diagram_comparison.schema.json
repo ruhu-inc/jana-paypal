@@ -1,0 +1,32 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/diagram_comparison.schema.json sha256 6217b3273c2a9c8492329aca81867535fdf3885c4b6b4373fa0c024a306c6daa; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/diagram_comparison",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "left_ref": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100,
+   "pattern": "^dgm\\."
+  },
+  "right_ref": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100,
+   "pattern": "^dgm\\."
+  },
+  "pair_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 64,
+   "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+  }
+ },
+ "required": [
+  "left_ref",
+  "right_ref",
+  "pair_id"
+ ]
+}

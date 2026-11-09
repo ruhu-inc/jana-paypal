@@ -1,0 +1,36 @@
+/* Mastery patterns (DSN-23, DSN-04): every mastery fill also carries a pattern drawn in its label ink at 40%, so a
+   state survives greyscale. The ink is the element's own text colour (its `text-mastery-*-ink` class); stroke width
+   and spacing come from tokens.json's `mastery.patternStroke` through the custom properties the component sets. */
+.mastery-pattern-none,
+.mastery-pattern-solid {
+  background-image: none;
+}
+
+.mastery-pattern-dots-sparse,
+.mastery-pattern-dots-dense {
+  --mastery-pattern-ink: color-mix(in srgb, currentColor 40%, transparent);
+  background-image: radial-gradient(var(--mastery-pattern-ink) var(--mastery-pattern-width), transparent calc(var(--mastery-pattern-width) + 0.5px));
+  background-size: var(--mastery-pattern-gap) var(--mastery-pattern-gap);
+}
+
+.mastery-pattern-dots-dense {
+  background-size: calc(var(--mastery-pattern-gap) / 2) calc(var(--mastery-pattern-gap) / 2);
+}
+
+.mastery-pattern-hatch-diagonal {
+  --mastery-pattern-ink: color-mix(in srgb, currentColor 40%, transparent);
+  background-image: repeating-linear-gradient(45deg, var(--mastery-pattern-ink) 0 var(--mastery-pattern-width), transparent var(--mastery-pattern-width) var(--mastery-pattern-gap));
+}
+
+.mastery-pattern-cross-hatch {
+  --mastery-pattern-ink: color-mix(in srgb, currentColor 40%, transparent);
+  background-image:
+    repeating-linear-gradient(45deg, var(--mastery-pattern-ink) 0 var(--mastery-pattern-width), transparent var(--mastery-pattern-width) var(--mastery-pattern-gap)),
+    repeating-linear-gradient(-45deg, var(--mastery-pattern-ink) 0 var(--mastery-pattern-width), transparent var(--mastery-pattern-width) var(--mastery-pattern-gap));
+}
+
+/* The concept map's boxes (UXS-22 map view): the keyboard focus ring is drawn on the box itself, never only by
+   colour change; the tutor's pointer and a lit gap path ring the box in the renderer. */
+[data-kc-node]:focus-visible .concept-focus {
+  opacity: 1;
+}

@@ -1,0 +1,175 @@
+{
+ "$comment": "GENERATED from contracts/agents/guidance-block.schema.json sha256 54d47ee8e6313ef76c8a7da27630e4981c214b779b1231407618fbe26b302b0a; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/guidance-block",
+ "title": "Guidance block front matter",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "id",
+  "version",
+  "kind",
+  "applies_to",
+  "models",
+  "priority",
+  "max_chars",
+  "owner",
+  "status"
+ ],
+ "properties": {
+  "id": {
+   "type": "string",
+   "pattern": "^[a-z0-9][a-z0-9-]{1,60}$"
+  },
+  "version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+$"
+  },
+  "kind": {
+   "enum": [
+    "technique",
+    "family_overlay",
+    "locale_overlay",
+    "spoken_form",
+    "capability_notice"
+   ]
+  },
+  "applies_to": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "coach",
+     "diagnoser",
+     "solver",
+     "checker",
+     "reflector",
+     "rule_matcher",
+     "input_guard",
+     "vision",
+     "title",
+     "compaction",
+     "judge",
+     "*"
+    ]
+   }
+  },
+  "models": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "pattern": "^([a-z0-9][a-z0-9.-]{0,40}|\\*)$"
+   }
+  },
+  "requires_tools": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "pattern": "^[a-z][a-z0-9_]{1,40}$"
+   },
+   "default": []
+  },
+  "modes": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "guided",
+     "solution",
+     "check_working",
+     "lesson",
+     "practice",
+     "exam_review",
+     "side_question"
+    ]
+   }
+  },
+  "prompt_modes": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "full",
+     "compact",
+     "minimal"
+    ]
+   }
+  },
+  "locales": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "pattern": "^(en|fr|pt|ar)(-[A-Z]{2})?$"
+   }
+  },
+  "essential": {
+   "type": "boolean",
+   "default": false
+  },
+  "priority": {
+   "type": "integer",
+   "minimum": 0,
+   "maximum": 100
+  },
+  "max_chars": {
+   "type": "integer",
+   "minimum": 50,
+   "maximum": 1500
+  },
+  "owner": {
+   "type": "string",
+   "minLength": 1
+  },
+  "status": {
+   "enum": [
+    "draft",
+    "reviewed",
+    "retired"
+   ]
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "kind": {
+      "const": "family_overlay"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "models": {
+      "not": {
+       "contains": {
+        "const": "*"
+       }
+      }
+     },
+     "max_chars": {
+      "maximum": 600
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "kind": {
+      "const": "locale_overlay"
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "locales"
+    ]
+   }
+  }
+ ]
+}

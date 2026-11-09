@@ -1,0 +1,228 @@
+{
+ "$comment": "GENERATED from contracts/learning/journey.schema.json sha256 4a88c431cb8565c2b2b14e9dc7537693fb1869e2288cadfbabae39dbfcbd594c; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/learning/journey",
+ "title": "Local curriculum learning journey",
+ "$defs": {
+  "Start": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "node_id",
+    "kc_id"
+   ],
+   "properties": {
+    "node_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    },
+    "kc_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    },
+    "source": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "source_id",
+      "revision"
+     ],
+     "properties": {
+      "source_id": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 40
+      },
+      "revision": {
+       "type": "integer",
+       "minimum": 1
+      }
+     }
+    },
+    "lesson_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    }
+   }
+  },
+  "Step": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "action"
+   ],
+   "properties": {
+    "action": {
+     "enum": [
+      "practice",
+      "review",
+      "check"
+     ]
+    }
+   }
+  },
+  "View": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "goal",
+    "source",
+    "source_changed",
+    "phase",
+    "evidence",
+    "prior_attempts",
+    "practice_set_id",
+    "lesson_id",
+    "lesson_opened",
+    "stage"
+   ],
+   "properties": {
+    "goal": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "node_id",
+      "kc_id",
+      "title",
+      "objective",
+      "subject"
+     ],
+     "properties": {
+      "node_id": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200
+      },
+      "kc_id": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200
+      },
+      "title": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200
+      },
+      "objective": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200
+      },
+      "subject": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200
+      }
+     }
+    },
+    "source": {
+     "anyOf": [
+      {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "source_id",
+        "revision"
+       ],
+       "properties": {
+        "source_id": {
+         "type": "string",
+         "minLength": 1,
+         "maxLength": 40
+        },
+        "revision": {
+         "type": "integer",
+         "minimum": 1
+        }
+       }
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "source_changed": {
+     "type": "boolean"
+    },
+    "phase": {
+     "enum": [
+      "ready",
+      "question",
+      "repair",
+      "ready_check",
+      "complete",
+      "unavailable"
+     ]
+    },
+    "evidence": {
+     "enum": [
+      "none",
+      "incorrect",
+      "assisted",
+      "independent_correct",
+      "not_checked"
+     ]
+    },
+    "prior_attempts": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "practice_set_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "lesson_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "lesson_opened": {
+     "type": "boolean"
+    },
+    "stage": {
+     "enum": [
+      "starting",
+      "check"
+     ]
+    }
+   }
+  },
+  "Reply": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "journey"
+   ],
+   "properties": {
+    "journey": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/View"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   }
+  }
+ }
+}

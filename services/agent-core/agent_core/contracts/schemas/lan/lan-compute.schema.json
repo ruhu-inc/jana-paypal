@@ -1,0 +1,722 @@
+{
+ "$comment": "GENERATED from contracts/lan/lan-compute.schema.json sha256 5e49066564b60292110bb1787092305d198e78220e141c4904eaf6621a33f66f; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/lan/lan-compute",
+ "title": "LAN compute server contract",
+ "$defs": {
+  "ulid": {
+   "type": "string",
+   "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "device_id": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{32}$"
+  },
+  "datetime": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "protocol_version": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "major": {
+     "const": 1
+    },
+    "minor": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "major",
+    "minor"
+   ]
+  },
+  "host": {
+   "type": "string",
+   "maxLength": 253,
+   "pattern": "^([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*|[0-9]{1,3}(\\.[0-9]{1,3}){3}|\\[[0-9a-f:]+\\])$"
+  },
+  "port": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 65535
+  },
+  "spki_sha256": {
+   "$ref": "#/$defs/sha256"
+  },
+  "fingerprint_display": {
+   "type": "string",
+   "pattern": "^([0-9A-HJKMNP-TV-Z]{4}-){12}[0-9A-HJKMNP-TV-Z]{4}$"
+  },
+  "profile_handle": {
+   "type": "string",
+   "pattern": "^[0-9A-HJKMNP-TV-Z]{8}$"
+  },
+  "enrolment_record": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "protocol": {
+     "$ref": "#/$defs/protocol_version"
+    },
+    "server_device_id": {
+     "$ref": "#/$defs/device_id"
+    },
+    "display_name": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 40
+    },
+    "host": {
+     "$ref": "#/$defs/host"
+    },
+    "port": {
+     "$ref": "#/$defs/port"
+    },
+    "spki_sha256": {
+     "$ref": "#/$defs/spki_sha256"
+    },
+    "pinned_at": {
+     "$ref": "#/$defs/datetime"
+    },
+    "audit_id": {
+     "type": "string",
+     "maxLength": 128
+    },
+    "offline_fallback": {
+     "type": "boolean"
+    },
+    "status": {
+     "enum": [
+      "pinned",
+      "server_changed"
+     ]
+    },
+    "last_seen_at": {
+     "$ref": "#/$defs/datetime"
+    }
+   },
+   "required": [
+    "protocol",
+    "server_device_id",
+    "display_name",
+    "host",
+    "port",
+    "spki_sha256",
+    "pinned_at",
+    "offline_fallback",
+    "status"
+   ]
+  },
+  "LanServerProbe": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "host": {
+     "$ref": "#/$defs/host"
+    },
+    "port": {
+     "$ref": "#/$defs/port",
+     "default": 8443
+    }
+   },
+   "required": [
+    "host"
+   ]
+  },
+  "LanServerProbeResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "host": {
+     "$ref": "#/$defs/host"
+    },
+    "port": {
+     "$ref": "#/$defs/port"
+    },
+    "server_device_id": {
+     "$ref": "#/$defs/device_id"
+    },
+    "spki_sha256": {
+     "$ref": "#/$defs/spki_sha256"
+    },
+    "fingerprint_display": {
+     "$ref": "#/$defs/fingerprint_display"
+    },
+    "protocol": {
+     "$ref": "#/$defs/protocol_version"
+    },
+    "app_version": {
+     "type": "string",
+     "maxLength": 32
+    },
+    "local_install": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "host",
+    "port",
+    "server_device_id",
+    "spki_sha256",
+    "fingerprint_display",
+    "protocol",
+    "app_version",
+    "local_install"
+   ]
+  },
+  "LanServerConfig": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "host": {
+     "$ref": "#/$defs/host"
+    },
+    "port": {
+     "$ref": "#/$defs/port"
+    },
+    "confirmed_spki_sha256": {
+     "$ref": "#/$defs/spki_sha256"
+    },
+    "display_name": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 40
+    },
+    "offline_fallback": {
+     "type": "boolean",
+     "default": false
+    }
+   },
+   "required": [
+    "host",
+    "port",
+    "confirmed_spki_sha256"
+   ]
+  },
+  "LanServerStatus": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "configured": {
+     "type": "boolean"
+    },
+    "record": {
+     "$ref": "#/$defs/enrolment_record"
+    },
+    "reachability": {
+     "enum": [
+      "unknown",
+      "reachable",
+      "unreachable",
+      "server_changed"
+     ]
+    },
+    "mode": {
+     "enum": [
+      "none",
+      "hosted",
+      "local_fallback"
+     ]
+    },
+    "queue_position": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "pending_segments": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "configured",
+    "reachability",
+    "mode"
+   ]
+  },
+  "hello": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "protocol": {
+     "$ref": "#/$defs/protocol_version"
+    },
+    "client_device_id": {
+     "$ref": "#/$defs/device_id"
+    },
+    "app_version": {
+     "type": "string",
+     "maxLength": 32
+    },
+    "contract_version": {
+     "$ref": "#/$defs/protocol_version"
+    },
+    "hardware_class": {
+     "enum": [
+      "content_only",
+      "low",
+      "mid",
+      "high"
+     ]
+    },
+    "install_kind": {
+     "enum": [
+      "family",
+      "school_lab"
+     ]
+    },
+    "capabilities": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "enum": [
+       "replica",
+       "photo_reading"
+      ]
+     }
+    }
+   },
+   "required": [
+    "protocol",
+    "client_device_id",
+    "app_version",
+    "contract_version",
+    "hardware_class",
+    "install_kind",
+    "capabilities"
+   ]
+  },
+  "hello_reply": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "protocol": {
+     "$ref": "#/$defs/protocol_version"
+    },
+    "server_device_id": {
+     "$ref": "#/$defs/device_id"
+    },
+    "accepted": {
+     "type": "boolean"
+    },
+    "reason": {
+     "$ref": "#/$defs/lan_error_code"
+    },
+    "capacity": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "active_sessions": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "limit": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "queue_length": {
+       "type": "integer",
+       "minimum": 0
+      }
+     },
+     "required": [
+      "active_sessions",
+      "limit",
+      "queue_length"
+     ]
+    },
+    "replica_supported": {
+     "type": "boolean"
+    },
+    "server_time": {
+     "$ref": "#/$defs/datetime"
+    }
+   },
+   "required": [
+    "protocol",
+    "server_device_id",
+    "accepted",
+    "capacity",
+    "replica_supported",
+    "server_time"
+   ]
+  },
+  "profile_open": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "profile_handle": {
+     "$ref": "#/$defs/profile_handle"
+    },
+    "client_device_id": {
+     "$ref": "#/$defs/device_id"
+    }
+   },
+   "required": [
+    "profile_handle",
+    "client_device_id"
+   ]
+  },
+  "lan_profile_token": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "profile_id": {
+     "$ref": "#/$defs/ulid"
+    },
+    "lan_profile_token": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9_-]{43,86}$"
+    },
+    "expires_at": {
+     "$ref": "#/$defs/datetime"
+    },
+    "display_name": {
+     "type": "string",
+     "maxLength": 40
+    },
+    "avatar": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "replica_cursor": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "profile_id",
+    "lan_profile_token",
+    "expires_at",
+    "display_name",
+    "avatar"
+   ]
+  },
+  "closed": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "closed": {
+     "const": true
+    }
+   },
+   "required": [
+    "closed"
+   ]
+  },
+  "replica_bootstrap": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "profile_id": {
+     "$ref": "#/$defs/ulid"
+    },
+    "profile_handle": {
+     "$ref": "#/$defs/profile_handle"
+    },
+    "display_name": {
+     "type": "string",
+     "maxLength": 40
+    },
+    "avatar": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "age_band": {
+     "type": "string",
+     "maxLength": 16
+    },
+    "server_seq_head": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "device_heads": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "origin_device_id": {
+        "$ref": "#/$defs/device_id"
+       },
+       "origin_seq_head": {
+        "type": "integer",
+        "minimum": 0
+       }
+      },
+      "required": [
+       "origin_device_id",
+       "origin_seq_head"
+      ]
+     }
+    },
+    "server_time": {
+     "$ref": "#/$defs/datetime"
+    }
+   },
+   "required": [
+    "profile_id",
+    "profile_handle",
+    "display_name",
+    "avatar",
+    "server_seq_head",
+    "device_heads",
+    "server_time"
+   ]
+  },
+  "segment_pull": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "after": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "limit": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 5000,
+     "default": 1000
+    }
+   },
+   "required": [
+    "after"
+   ]
+  },
+  "segment_page": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "segments": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/personal-sync/personal-sync#/$defs/segment"
+     }
+    },
+    "next_after": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "complete": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "segments",
+    "next_after",
+    "complete"
+   ]
+  },
+  "maintenance_window": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "days": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "enum": [
+       "mon",
+       "tue",
+       "wed",
+       "thu",
+       "fri",
+       "sat",
+       "sun"
+      ]
+     }
+    },
+    "start": {
+     "type": "string",
+     "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "end": {
+     "type": "string",
+     "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "timezone": {
+     "type": "string",
+     "maxLength": 64
+    }
+   },
+   "required": [
+    "days",
+    "start",
+    "end",
+    "timezone"
+   ]
+  },
+  "status_snapshot": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "at": {
+     "$ref": "#/$defs/datetime"
+    },
+    "server_device_id": {
+     "$ref": "#/$defs/device_id"
+    },
+    "fingerprint_display": {
+     "$ref": "#/$defs/fingerprint_display"
+    },
+    "app_version": {
+     "type": "string",
+     "maxLength": 32
+    },
+    "queue_length": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "active_sessions": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "concurrent_turns": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "capacity_limit": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "per_client_latency": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "client_device_id": {
+        "$ref": "#/$defs/device_id"
+       },
+       "first_token_ms_p50": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "first_token_ms_p95": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "last_seen_at": {
+        "$ref": "#/$defs/datetime"
+       }
+      },
+      "required": [
+       "client_device_id",
+       "first_token_ms_p50",
+       "first_token_ms_p95",
+       "last_seen_at"
+      ]
+     }
+    },
+    "model_tokens_per_s": {
+     "type": "number",
+     "minimum": 0
+    },
+    "disk_free_bytes": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "backup": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "destination": {
+       "type": "string",
+       "maxLength": 128
+      },
+      "last_backup_at": {
+       "$ref": "#/$defs/datetime"
+      },
+      "last_backup_result": {
+       "enum": [
+        "ok",
+        "failed",
+        "never"
+       ]
+      },
+      "last_test_restore_at": {
+       "$ref": "#/$defs/datetime"
+      },
+      "last_test_restore_result": {
+       "enum": [
+        "ok",
+        "failed",
+        "never"
+       ]
+      }
+     },
+     "required": [
+      "destination",
+      "last_backup_result",
+      "last_test_restore_result"
+     ]
+    },
+    "crash_count_7d": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "maintenance_window": {
+     "$ref": "#/$defs/maintenance_window"
+    },
+    "pending_update": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "version": {
+       "type": "string",
+       "maxLength": 32
+      },
+      "deferred_reason": {
+       "enum": [
+        "outside_window",
+        "mock_exam_in_progress"
+       ]
+      },
+      "next_window_at": {
+       "$ref": "#/$defs/datetime"
+      }
+     },
+     "required": [
+      "version"
+     ]
+    },
+    "mock_exams_in_progress": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "at",
+    "server_device_id",
+    "fingerprint_display",
+    "app_version",
+    "queue_length",
+    "active_sessions",
+    "concurrent_turns",
+    "capacity_limit",
+    "per_client_latency",
+    "model_tokens_per_s",
+    "disk_free_bytes",
+    "backup",
+    "crash_count_7d",
+    "mock_exams_in_progress"
+   ]
+  },
+  "lan_error_code": {
+   "enum": [
+    "lan_server_unpinned",
+    "lan_fingerprint_mismatch",
+    "lan_server_unreachable",
+    "lan_protocol_unsupported",
+    "replica_disabled"
+   ]
+  }
+ }
+}

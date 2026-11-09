@@ -1,0 +1,529 @@
+{
+ "$comment": "GENERATED from contracts/agents/router-config.schema.json sha256 0f7712c0dd66317ed470ac4af4d174c629697aa215c319ba1cfaff5f99a1bac3; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/router-config",
+ "title": "Router configuration",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "version",
+  "tiers",
+  "roles",
+  "auxiliary",
+  "retry",
+  "fallback",
+  "local",
+  "cloud",
+  "budget"
+ ],
+ "$defs": {
+  "candidate": {
+   "type": "string",
+   "pattern": "^(local:[a-z0-9][a-z0-9._-]{1,60}|cloud:[a-z0-9-]{2,30}/[a-zA-Z0-9][a-zA-Z0-9._:-]{1,80})$"
+  },
+  "tierList": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "$ref": "#/$defs/candidate"
+   },
+   "contains": {
+    "type": "string",
+    "pattern": "^local:"
+   }
+  },
+  "effort": {
+   "enum": [
+    "none",
+    "low",
+    "medium",
+    "high"
+   ]
+  },
+  "requires": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "tools": {
+     "type": "boolean"
+    },
+    "vision": {
+     "type": "boolean"
+    },
+    "structured": {
+     "type": "boolean"
+    },
+    "min_context": {
+     "type": "integer",
+     "minimum": 2048
+    }
+   }
+  },
+  "role": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "tier",
+    "reasoning"
+   ],
+   "properties": {
+    "tier": {
+     "enum": [
+      "fast",
+      "strong",
+      "judge"
+     ]
+    },
+    "prefer": {
+     "enum": [
+      "local",
+      "cloud"
+     ],
+     "default": "local"
+    },
+    "reasoning": {
+     "$ref": "#/$defs/effort"
+    },
+    "stream": {
+     "type": "boolean",
+     "default": false
+    },
+    "temperature": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1.5
+    },
+    "max_iter": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 20
+    },
+    "output": {
+     "type": "string",
+     "pattern": "^[a-z0-9_./-]+\\.schema\\.json$"
+    },
+    "output_retries": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "prompt_mode": {
+     "enum": [
+      "by_class",
+      "full",
+      "compact",
+      "minimal"
+     ]
+    },
+    "requires": {
+     "$ref": "#/$defs/requires"
+    },
+    "background": {
+     "type": "boolean",
+     "default": false
+    },
+    "concurrency": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 8
+    },
+    "priority": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 9
+    }
+   }
+  },
+  "slot": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "inherit": {
+     "type": "boolean",
+     "default": true
+    },
+    "tier": {
+     "enum": [
+      "fast",
+      "strong",
+      "judge"
+     ]
+    },
+    "model": {
+     "$ref": "#/$defs/candidate"
+    },
+    "reasoning": {
+     "$ref": "#/$defs/effort"
+    },
+    "requires": {
+     "$ref": "#/$defs/requires"
+    },
+    "priority": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 9
+    }
+   }
+  }
+ },
+ "properties": {
+  "version": {
+   "const": 1
+  },
+  "tiers": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "fast",
+    "strong",
+    "judge"
+   ],
+   "properties": {
+    "fast": {
+     "$ref": "#/$defs/tierList"
+    },
+    "strong": {
+     "$ref": "#/$defs/tierList"
+    },
+    "judge": {
+     "$ref": "#/$defs/tierList"
+    }
+   }
+  },
+  "roles": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "coach",
+    "diagnoser",
+    "solver",
+    "checker",
+    "reflector"
+   ],
+   "properties": {
+    "coach": {
+     "$ref": "#/$defs/role"
+    },
+    "diagnoser": {
+     "$ref": "#/$defs/role"
+    },
+    "solver": {
+     "$ref": "#/$defs/role"
+    },
+    "checker": {
+     "$ref": "#/$defs/role"
+    },
+    "reflector": {
+     "$ref": "#/$defs/role"
+    },
+    "companion": {
+     "$ref": "#/$defs/role"
+    }
+   }
+  },
+  "auxiliary": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "rule_matcher": {
+     "$ref": "#/$defs/slot"
+    },
+    "input_guard": {
+     "$ref": "#/$defs/slot"
+    },
+    "title": {
+     "$ref": "#/$defs/slot"
+    },
+    "compaction": {
+     "$ref": "#/$defs/slot"
+    },
+    "judge": {
+     "$ref": "#/$defs/slot"
+    },
+    "reflection": {
+     "$ref": "#/$defs/slot"
+    },
+    "vision": {
+     "$ref": "#/$defs/slot"
+    },
+    "research_chat": {
+     "$ref": "#/$defs/slot"
+    },
+    "checkin": {
+     "$ref": "#/$defs/slot"
+    }
+   }
+  },
+  "retry": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "same_model",
+    "backoff",
+    "honor_retry_after"
+   ],
+   "properties": {
+    "same_model": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 5
+    },
+    "backoff": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "initial_s",
+      "factor",
+      "max_s",
+      "jitter"
+     ],
+     "properties": {
+      "initial_s": {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      "factor": {
+       "type": "number",
+       "minimum": 1
+      },
+      "max_s": {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      "jitter": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      }
+     }
+    },
+    "honor_retry_after": {
+     "type": "boolean"
+    }
+   }
+  },
+  "fallback": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "triggers",
+    "never_after_tool_side_effect",
+    "offline_to_local"
+   ],
+   "properties": {
+    "triggers": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "enum": [
+       "rate_limit",
+       "overloaded",
+       "server_error",
+       "timeout",
+       "network_unavailable",
+       "auth",
+       "quota_or_billing",
+       "model_not_found",
+       "content_filter",
+       "format_error",
+       "runtime_down",
+       "out_of_memory",
+       "schema_invalid_twice",
+       "empty_twice",
+       "unparsed_tool_call_twice",
+       "unknown"
+      ]
+     }
+    },
+    "never_after_tool_side_effect": {
+     "const": true
+    },
+    "offline_to_local": {
+     "const": true
+    }
+   }
+  },
+  "local": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "readiness",
+    "context",
+    "context_shift",
+    "ladder",
+    "min_agent_context",
+    "memory_headroom_gb",
+    "restart"
+   ],
+   "properties": {
+    "readiness": {
+     "const": "real_generation"
+    },
+    "context": {
+     "enum": [
+      "auto_by_memory"
+     ]
+    },
+    "context_shift": {
+     "const": false
+    },
+    "ladder": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "integer",
+      "minimum": 2048
+     }
+    },
+    "min_agent_context": {
+     "type": "integer",
+     "minimum": 2048
+    },
+    "memory_headroom_gb": {
+     "type": "number",
+     "minimum": 0
+    },
+    "slots": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "low": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "mid": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "high": {
+       "type": "integer",
+       "minimum": 1
+      }
+     }
+    },
+    "thinking_budget": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "low": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "mid": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "high": {
+       "type": "integer",
+       "minimum": 0
+      }
+     }
+    },
+    "restart": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "backoff_s",
+      "max_restarts",
+      "window_s"
+     ],
+     "properties": {
+      "backoff_s": {
+       "type": "array",
+       "items": {
+        "type": "number",
+        "exclusiveMinimum": 0
+       }
+      },
+      "max_restarts": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "window_s": {
+       "type": "integer",
+       "minimum": 1
+      }
+     }
+    }
+   }
+  },
+  "cloud": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "enabled",
+    "probe_interval_s",
+    "send_photos",
+    "redaction_check"
+   ],
+   "properties": {
+    "enabled": {
+     "type": "boolean"
+    },
+    "probe_interval_s": {
+     "type": "integer",
+     "minimum": 5
+    },
+    "send_photos": {
+     "type": "boolean"
+    },
+    "redaction_check": {
+     "const": true
+    },
+    "roles_allowed": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "enum": [
+       "coach",
+       "diagnoser",
+       "solver",
+       "checker",
+       "rule_matcher",
+       "input_guard",
+       "title",
+       "compaction",
+       "judge",
+       "vision",
+       "research_chat",
+       "companion",
+       "reflector",
+       "checkin"
+      ]
+     }
+    }
+   }
+  },
+  "budget": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "per_session_usd",
+    "reminders_at"
+   ],
+   "properties": {
+    "per_session_usd": {
+     "type": "number",
+     "minimum": 0
+    },
+    "per_student_day_usd": {
+     "type": "number",
+     "minimum": 0
+    },
+    "per_school_month_usd": {
+     "type": "number",
+     "minimum": 0
+    },
+    "reminders_at": {
+     "type": "array",
+     "items": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 1
+     }
+    }
+   }
+  }
+ }
+}

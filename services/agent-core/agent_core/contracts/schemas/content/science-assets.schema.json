@@ -1,0 +1,528 @@
+{
+ "$comment": "GENERATED from contracts/content/science-assets.schema.json sha256 7a4ed93da388f906f7af9b311b46d57ccb442881736ba4f3c56f1c5dfee54e25; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/content/science-assets",
+ "$defs": {
+  "Cycle": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "stages": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "id": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,63}$"
+       },
+       "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+       },
+       "description": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+       }
+      },
+      "required": [
+       "id",
+       "label",
+       "description"
+      ]
+     },
+     "minItems": 2,
+     "maxItems": 40
+    },
+    "links": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "from": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,63}$"
+       },
+       "to": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,63}$"
+       }
+      },
+      "required": [
+       "from",
+       "to"
+      ]
+     },
+     "minItems": 2,
+     "maxItems": 80
+    }
+   },
+   "required": [
+    "stages",
+    "links"
+   ]
+  },
+  "Key": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "root": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_]{0,63}$"
+    },
+    "nodes": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "id": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,63}$"
+       },
+       "question": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+       },
+       "yes": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,63}$"
+       },
+       "no": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,63}$"
+       }
+      },
+      "required": [
+       "id",
+       "question",
+       "yes",
+       "no"
+      ]
+     },
+     "minItems": 1,
+     "maxItems": 100
+    },
+    "terminals": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "id": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,63}$"
+       },
+       "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+       }
+      },
+      "required": [
+       "id",
+       "label"
+      ]
+     },
+     "minItems": 2,
+     "maxItems": 101
+    }
+   },
+   "required": [
+    "root",
+    "nodes",
+    "terminals"
+   ]
+  },
+  "Spectrum": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "enum": [
+      "mass",
+      "infrared",
+      "proton_nmr"
+     ]
+    },
+    "x_unit": {
+     "enum": [
+      "m/z",
+      "cm^-1",
+      "ppm"
+     ]
+    },
+    "y_unit": {
+     "enum": [
+      "relative_intensity",
+      "transmittance",
+      "absorbance"
+     ]
+    },
+    "peaks": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "id": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,63}$"
+       },
+       "position": {
+        "type": "number",
+        "minimum": 0
+       },
+       "intensity": {
+        "type": "number",
+        "minimum": 0
+       },
+       "assignment": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+       },
+       "multiplicity": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 40
+       },
+       "integration": {
+        "type": "number",
+        "exclusiveMinimum": 0
+       }
+      },
+      "required": [
+       "id",
+       "position",
+       "intensity",
+       "assignment"
+      ]
+     },
+     "minItems": 1,
+     "maxItems": 500
+    }
+   },
+   "required": [
+    "type",
+    "x_unit",
+    "y_unit",
+    "peaks"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "proton_nmr"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "peaks": {
+        "items": {
+         "required": [
+          "multiplicity",
+          "integration"
+         ]
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  "Enzyme": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "rate_unit": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 40
+    },
+    "substrate_unit": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 40
+    },
+    "temperature_factors": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "temperature_c": {
+        "type": "number"
+       },
+       "factor": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       }
+      },
+      "required": [
+       "temperature_c",
+       "factor"
+      ]
+     },
+     "minItems": 2,
+     "maxItems": 100
+    },
+    "ph_factors": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "ph": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 14
+       },
+       "factor": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       }
+      },
+      "required": [
+       "ph",
+       "factor"
+      ]
+     },
+     "minItems": 2,
+     "maxItems": 100
+    },
+    "interpolation": {
+     "const": "linear"
+    },
+    "valid_temperature_range": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "valid_ph_range": {
+     "type": "array",
+     "items": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 14
+     },
+     "minItems": 2,
+     "maxItems": 2
+    }
+   },
+   "required": [
+    "rate_unit",
+    "substrate_unit",
+    "temperature_factors",
+    "ph_factors",
+    "interpolation",
+    "valid_temperature_range",
+    "valid_ph_range"
+   ]
+  },
+  "Osmosis": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "concentration_unit": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 30
+    },
+    "water_permeability": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    },
+    "initial_volume": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    },
+    "minimum_volume": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    },
+    "maximum_volume": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    },
+    "volume_unit": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 30
+    },
+    "model": {
+     "const": "schematic_direction_only"
+    }
+   },
+   "required": [
+    "concentration_unit",
+    "water_permeability",
+    "initial_volume",
+    "minimum_volume",
+    "maximum_volume",
+    "volume_unit",
+    "model"
+   ]
+  },
+  "Asset": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "$ref": "https://jana.dev/contracts/content/content-pack#/$defs/DiagramId"
+    },
+    "version": {
+     "$ref": "https://jana.dev/contracts/content/content-pack#/$defs/SemVer"
+    },
+    "subject": {
+     "$ref": "https://jana.dev/contracts/content/content-pack#/$defs/SubjectSlug"
+    },
+    "kind": {
+     "enum": [
+      "cycle",
+      "classification_key",
+      "spectrum",
+      "enzyme",
+      "osmosis"
+     ]
+    },
+    "kc_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/content/content-pack#/$defs/KcId"
+     },
+     "minItems": 1,
+     "maxItems": 40
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    },
+    "definition": {},
+    "sources": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/content/content-pack#/$defs/Source"
+     },
+     "minItems": 1,
+     "maxItems": 20
+    },
+    "licence": {
+     "$ref": "https://jana.dev/contracts/content/content-pack#/$defs/DiagramLicenceId"
+    },
+    "attribution": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 500
+    }
+   },
+   "required": [
+    "id",
+    "version",
+    "subject",
+    "kind",
+    "kc_ids",
+    "title",
+    "definition",
+    "sources",
+    "licence",
+    "attribution"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "cycle"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "definition": {
+        "$ref": "https://jana.dev/contracts/content/science-assets#/$defs/Cycle"
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "classification_key"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "definition": {
+        "$ref": "https://jana.dev/contracts/content/science-assets#/$defs/Key"
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "spectrum"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "definition": {
+        "$ref": "https://jana.dev/contracts/content/science-assets#/$defs/Spectrum"
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "enzyme"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "definition": {
+        "$ref": "https://jana.dev/contracts/content/science-assets#/$defs/Enzyme"
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "osmosis"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "definition": {
+        "$ref": "https://jana.dev/contracts/content/science-assets#/$defs/Osmosis"
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

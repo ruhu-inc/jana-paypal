@@ -1,0 +1,326 @@
+{
+ "$comment": "GENERATED from contracts/ops/licence.schema.json sha256 308c66e0e412f47d2f5a4e562824f7c6cf65b6343b5a3961f70ba363405f277f; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/licence",
+ "title": "Licence documents",
+ "$defs": {
+  "LicenceId": {
+   "type": "string",
+   "pattern": "^lic_[A-Za-z0-9_-]{1,60}$"
+  },
+  "SchoolLicenceFile": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "licence_id",
+    "kind",
+    "seats",
+    "features",
+    "channel",
+    "policy",
+    "expires_at",
+    "created_at",
+    "signature"
+   ],
+   "properties": {
+    "licence_id": {
+     "$ref": "#/$defs/LicenceId"
+    },
+    "kind": {
+     "enum": [
+      "school_seat",
+      "lab_bundle"
+     ]
+    },
+    "seats": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 100000
+    },
+    "features": {
+     "type": "array",
+     "maxItems": 16,
+     "uniqueItems": true,
+     "items": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,39}$"
+     }
+    },
+    "channel": {
+     "enum": [
+      "stable",
+      "pilot",
+      "dev"
+     ]
+    },
+    "policy": {
+     "type": "object",
+     "maxProperties": 0
+    },
+    "expires_at": {
+     "anyOf": [
+      {
+       "type": "string",
+       "format": "date-time",
+       "maxLength": 40
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "created_at": {
+     "type": "string",
+     "format": "date-time",
+     "maxLength": 40
+    },
+    "signature": {
+     "$ref": "#/$defs/Signature"
+    }
+   }
+  },
+  "CloudTierEntitlement": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind",
+    "subscription_id",
+    "licence_id",
+    "period_start",
+    "period_end",
+    "plan",
+    "band",
+    "billing",
+    "seats",
+    "allowance_tokens",
+    "features",
+    "limits",
+    "created_at",
+    "signature"
+   ],
+   "properties": {
+    "kind": {
+     "const": "cloud_tier_subscription"
+    },
+    "subscription_id": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+    },
+    "licence_id": {
+     "$ref": "#/$defs/LicenceId"
+    },
+    "period_start": {
+     "type": "string",
+     "format": "date-time",
+     "maxLength": 40
+    },
+    "period_end": {
+     "type": "string",
+     "format": "date-time",
+     "maxLength": 40
+    },
+    "plan": {
+     "enum": [
+      "jana_online",
+      "jana_family"
+     ]
+    },
+    "band": {
+     "enum": [
+      "nigeria",
+      "purchasing_power",
+      "international"
+     ]
+    },
+    "billing": {
+     "enum": [
+      "month",
+      "term",
+      "year"
+     ]
+    },
+    "seats": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 20
+    },
+    "allowance_tokens": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "features": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 16,
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/PlanFeature"
+     }
+    },
+    "limits": {
+     "$ref": "#/$defs/PlanLimits"
+    },
+    "profile_ids": {
+     "type": "array",
+     "maxItems": 20,
+     "uniqueItems": true,
+     "items": {
+      "type": "string",
+      "pattern": "^prf_[0-9A-HJKMNP-TV-Z]{26}$"
+     }
+    },
+    "study_material_consents": {
+     "type": "array",
+     "maxItems": 20,
+     "uniqueItems": true,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "profile_id",
+       "notice_version",
+       "actor_role"
+      ],
+      "properties": {
+       "profile_id": {
+        "type": "string",
+        "pattern": "^prf_[0-9A-HJKMNP-TV-Z]{26}$"
+       },
+       "notice_version": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+       },
+       "actor_role": {
+        "enum": [
+         "guardian",
+         "student_18_plus"
+        ]
+       }
+      }
+     }
+    },
+    "created_at": {
+     "type": "string",
+     "format": "date-time",
+     "maxLength": 40
+    },
+    "signature": {
+     "$ref": "#/$defs/Signature"
+    },
+    "cloud_tier_consents": {
+     "type": "array",
+     "maxItems": 20,
+     "uniqueItems": true,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "profile_id",
+       "notice_version",
+       "actor_role"
+      ],
+      "properties": {
+       "profile_id": {
+        "type": "string",
+        "pattern": "^prf_[0-9A-HJKMNP-TV-Z]{26}$"
+       },
+       "notice_version": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+       },
+       "actor_role": {
+        "enum": [
+         "guardian"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "PlanFeature": {
+   "enum": [
+    "cloud_tier",
+    "ask_anything",
+    "study_area",
+    "uploads",
+    "recordings",
+    "podcasts",
+    "past_paper_import",
+    "online_voice",
+    "exam_reminders"
+   ]
+  },
+  "PlanLimits": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "ask_anything_per_day": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100000
+    },
+    "uploads_per_day": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100000
+    },
+    "uploads_per_week": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100000
+    },
+    "upload_max_pages": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100000
+    },
+    "upload_max_mb": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100000
+    },
+    "recording_hours_per_month": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 1000
+    },
+    "podcasts_per_day": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100000
+    },
+    "voice_minutes_per_month": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100000
+    }
+   }
+  },
+  "Signature": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "alg",
+    "key_id",
+    "value"
+   ],
+   "properties": {
+    "alg": {
+     "const": "ed25519"
+    },
+    "key_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 80
+    },
+    "value": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9+/=_-]{40,200}$"
+    }
+   }
+  }
+ }
+}

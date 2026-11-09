@@ -1,0 +1,391 @@
+{
+ "$comment": "GENERATED from contracts/cloud/gateway.schema.json sha256 d82a01d8c9421fa0be998ca25cf698c2308f00bc81c855321c61d6c46e36692d; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/cloud/gateway",
+ "title": "Cloud gateway",
+ "$defs": {
+  "CredentialId": {
+   "type": "string",
+   "pattern": "^dcr_[A-Za-z0-9_-]{8,64}$"
+  },
+  "DeviceRegistration": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "public_key",
+    "entitlement"
+   ],
+   "properties": {
+    "public_key": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9+/]{43}=$"
+    },
+    "entitlement": {
+     "$ref": "https://jana.dev/contracts/ops/licence#/$defs/CloudTierEntitlement"
+    },
+    "licence_id": {
+     "anyOf": [
+      {
+       "$ref": "https://jana.dev/contracts/ops/licence#/$defs/LicenceId"
+      },
+      {
+       "const": ""
+      }
+     ]
+    }
+   }
+  },
+  "DeviceRegistered": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "credential_id"
+   ],
+   "properties": {
+    "credential_id": {
+     "$ref": "#/$defs/CredentialId"
+    }
+   }
+  },
+  "ChallengeRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "credential_id"
+   ],
+   "properties": {
+    "credential_id": {
+     "$ref": "#/$defs/CredentialId"
+    }
+   }
+  },
+  "Challenge": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "nonce",
+    "expires_in"
+   ],
+   "properties": {
+    "nonce": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9+/]{43}=$"
+    },
+    "expires_in": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 3600
+    }
+   }
+  },
+  "TokenRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "credential_id",
+    "nonce",
+    "signature"
+   ],
+   "properties": {
+    "credential_id": {
+     "$ref": "#/$defs/CredentialId"
+    },
+    "nonce": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9+/]{43}=$"
+    },
+    "signature": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9+/]{86}==$"
+    }
+   }
+  },
+  "AccessToken": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "access_token",
+    "token_type",
+    "expires_in"
+   ],
+   "properties": {
+    "access_token": {
+     "type": "string",
+     "minLength": 16,
+     "maxLength": 512
+    },
+    "token_type": {
+     "const": "Bearer"
+    },
+    "expires_in": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 3600
+    }
+   }
+  },
+  "ChatMessage": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "role"
+   ],
+   "properties": {
+    "role": {
+     "enum": [
+      "system",
+      "user",
+      "assistant",
+      "tool"
+     ]
+    },
+    "content": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "array",
+       "maxItems": 64,
+       "items": {
+        "type": "object"
+       }
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "tool_calls": {
+     "type": "array",
+     "maxItems": 64,
+     "items": {
+      "type": "object"
+     }
+    },
+    "tool_call_id": {
+     "type": "string",
+     "maxLength": 120
+    },
+    "name": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9_-]{1,64}$"
+    }
+   }
+  },
+  "ChatCompletionRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "model",
+    "messages"
+   ],
+   "properties": {
+    "model": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_]{0,31}/[A-Za-z0-9._-]{1,80}$"
+    },
+    "messages": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 1024,
+     "items": {
+      "$ref": "#/$defs/ChatMessage"
+     }
+    },
+    "stream": {
+     "type": "boolean"
+    },
+    "stream_options": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "include_usage": {
+       "type": "boolean"
+      }
+     }
+    },
+    "tools": {
+     "type": "array",
+     "maxItems": 64,
+     "items": {
+      "type": "object"
+     }
+    },
+    "tool_choice": {
+     "anyOf": [
+      {
+       "enum": [
+        "none",
+        "auto",
+        "required"
+       ]
+      },
+      {
+       "type": "object"
+      }
+     ]
+    },
+    "parallel_tool_calls": {
+     "type": "boolean"
+    },
+    "temperature": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 2
+    },
+    "top_p": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "max_tokens": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "max_completion_tokens": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "stop": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "array",
+       "maxItems": 4,
+       "items": {
+        "type": "string"
+       }
+      }
+     ]
+    },
+    "seed": {
+     "type": "integer"
+    },
+    "response_format": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "type": {
+       "enum": [
+        "text",
+        "json_object",
+        "json_schema"
+       ]
+      },
+      "json_schema": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "name": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_-]{1,64}$"
+        },
+        "description": {
+         "type": "string"
+        },
+        "strict": {
+         "type": "boolean"
+        },
+        "schema": {
+         "type": "object"
+        }
+       }
+      }
+     }
+    },
+    "reasoning_effort": {
+     "enum": [
+      "low",
+      "medium",
+      "high"
+     ]
+    }
+   }
+  },
+  "GatewayStatus": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "status"
+   ],
+   "properties": {
+    "status": {
+     "enum": [
+      "ok",
+      "degraded",
+      "outage"
+     ]
+    }
+   }
+  },
+  "GatewayError": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "error"
+   ],
+   "properties": {
+    "error": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "code",
+      "type",
+      "message"
+     ],
+     "properties": {
+      "code": {
+       "type": "string",
+       "pattern": "^[a-z_]{1,40}$"
+      },
+      "type": {
+       "type": "string",
+       "pattern": "^[a-z_]{1,40}$"
+      },
+      "message": {
+       "type": "string",
+       "maxLength": 300
+      },
+      "param": {
+       "type": "string",
+       "maxLength": 80
+      }
+     }
+    }
+   }
+  },
+  "StudyProcessingRequest": {
+   "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ProcessingRequest"
+  },
+  "StudyProcessingResponse": {
+   "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ProcessingResponse"
+  },
+  "StudyUploadCreate": {
+   "$ref": "https://jana.dev/contracts/study/workspace#/$defs/CloudUploadCreate"
+  },
+  "StudyUploadGrant": {
+   "$ref": "https://jana.dev/contracts/study/workspace#/$defs/CloudUploadGrant"
+  },
+  "StudyUploadChunk": {
+   "$ref": "https://jana.dev/contracts/study/workspace#/$defs/UploadChunk"
+  },
+  "StudyUploadReceipt": {
+   "$ref": "https://jana.dev/contracts/study/workspace#/$defs/UploadReceipt"
+  },
+  "StudyExtractionRequest": {
+   "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ExtractionRequest"
+  },
+  "StudyExtractionResponse": {
+   "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ExtractionResponse"
+  },
+  "ResearchRequest": {
+   "$ref": "https://jana.dev/contracts/study/research#/$defs/JobRequest"
+  },
+  "ResearchJob": {
+   "$ref": "https://jana.dev/contracts/study/research#/$defs/Job"
+  }
+ }
+}

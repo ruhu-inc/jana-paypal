@@ -1,0 +1,20 @@
+{
+  "name": "@jana/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "description": "ICU message catalogues, CLDR formatting, the pseudo-locale and catalogue checks (M5; LOC-01 to LOC-04).",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests"
+  },
+  "jana": {
+    "layer": "experience"
+  },
+  "dependencies": {
+    "@formatjs/icu-messageformat-parser": "3.5.21",
+    "intl-messageformat": "12.1.3"
+  }
+}

@@ -1,0 +1,68 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/energy_levels.schema.json sha256 72be152781d208aa5c35301e3d5567404d6871d5aef2dd91df585be04d93c10b; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/energy_levels",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "levels": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+     },
+     "energy_ev": {
+      "type": "number"
+     },
+     "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+     }
+    },
+    "required": [
+     "id",
+     "energy_ev",
+     "label"
+    ]
+   },
+   "minItems": 2,
+   "maxItems": 30
+  },
+  "transitions": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "from": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+     },
+     "to": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+     }
+    },
+    "required": [
+     "from",
+     "to"
+    ]
+   },
+   "minItems": 1,
+   "maxItems": 100
+  },
+  "show_photon_energy": {
+   "type": "boolean"
+  }
+ },
+ "required": [
+  "levels",
+  "transitions",
+  "show_photon_energy"
+ ]
+}

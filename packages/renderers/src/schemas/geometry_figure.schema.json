@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/geometry_figure",
+  "$comment": "Params for geometry_figure, owned by the vetted renderer (VSL-03, VSL-29). Lengths and angles are computed by geom_figure (VER-15) during resolution; parallel_lines draws angle letters and relations, never derived numbers. Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "geometry_figure params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "figure"
+  ],
+  "properties": {
+    "figure": {
+      "enum": [
+        "triangle",
+        "circle",
+        "circle_theorem",
+        "parallel_lines"
+      ]
+    },
+    "givens": {
+      "type": "object",
+      "maxProperties": 8,
+      "propertyNames": {
+        "enum": [
+          "a",
+          "b",
+          "c",
+          "A",
+          "B",
+          "C",
+          "r",
+          "d",
+          "angle",
+          "chord",
+          "arc"
+        ]
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 24,
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?(/[0-9]+)?$"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      }
+    },
+    "right_angle": {
+      "enum": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    "theorem": {
+      "enum": [
+        "angle_at_centre",
+        "angle_at_circumference",
+        "same_segment",
+        "semicircle",
+        "cyclic_quadrilateral",
+        "tangent_radius",
+        "alternate_segment",
+        "isosceles_radii"
+      ]
+    },
+    "vertices": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][a-z0-9']{0,2}$"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "uniqueItems": true
+    },
+    "label": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+        "maxLength": 64
+      },
+      "maxItems": 12,
+      "uniqueItems": true
+    },
+    "mark_equal": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "maxItems": 4,
+        "minItems": 2,
+        "uniqueItems": true
+      },
+      "maxItems": 4
+    },
+    "unknown": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+      "maxLength": 64
+    },
+    "pairs": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "corresponding",
+          "alternate",
+          "co_interior",
+          "vertically_opposite"
+        ]
+      },
+      "maxItems": 4,
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "angle_marker",
+            "equal_marks"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+# Tool fixtures (TOL-05): synthetic, hand-written.
+tool: math_solve
+version: 4
+valid_args:
+- equations:
+  - v = u + a*t
+  unknowns:
+  - v
+  quantities:
+    u: 72 km/h
+    a: 2 m/s^2
+    t: 5 s
+  units:
+    v: m/s
+  positive_direction: forwards
+- equations:
+  - 2x+3=7
+- equations:
+  - x+y=5
+  - x-y=1
+- equations:
+  - 0 = 20 - g*t
+  unknowns:
+  - t
+  constants:
+  - symbol: g
+    value: 10
+    unit: m/s^2
+    source: question
+  positive_direction: up
+- equations:
+  - z^2 - 2z + 5 = 0
+  domain: complex
+- equations:
+  - x^3 - 2x - 5 = 0
+  method: newton_raphson
+  start: 2
+  steps: 4
+  dp: 6
+- equations:
+  - x^3 + x - 1 = 0
+  method: sign_change
+  interval:
+  - 0
+  - 1
+invalid_args:
+- equations:
+  - s = u*t
+  quantities:
+    u: 20
+- equations: []
+- equations: 2x=4
+- equations:
+  - 0 = 20 - g*t
+  constants:
+  - symbol: g
+    source: textbook
+- equations:
+  - x^2 = 2
+  method: bisection
+  start: 1
+- equations:
+  - x^2 = 2
+  method: newton_raphson
+  start: one
+description_lint:
+  sections:
+  - what
+  - use_when
+  - parameters
+  - returns
+  - limits
+  - recovery
+  max_chars_full: 600
+repairs:
+- mistake: arguments sent as a JSON string
+  input: '{"text": "x+1"}'
+  repaired:
+    note: same pattern on this tool's arguments
+- mistake: argument names in camelCase
+  input:
+    Text: x+1
+  repaired:
+    note: same pattern on this tool's arguments
+envelopes:
+  unknown_tool:
+    first_clause: No action was taken.
+    retryable: false
+  unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  invalid_args:
+    first_clause: No action was taken.
+    retryable: true
+  truncated_args:
+    first_clause: No action was taken.
+    retryable: true
+  policy_denied:
+    first_clause: No action was taken.
+    retryable: false
+  student_declined:
+    first_clause: The action completed, but
+    retryable: false
+  timeout:
+    first_clause: No action was taken.
+    retryable: true
+  cancelled:
+    first_clause: No action was taken.
+    retryable: false
+  worker_crashed:
+    first_clause: No action was taken.
+    retryable: true
+  worker_unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  limit_exceeded:
+    first_clause: No action was taken.
+    retryable: false
+  domain_error:
+    first_clause: No action was taken.
+    retryable: false
+  execution_error:
+    first_clause: No action was taken.
+    retryable: false
+  result_too_large:
+    first_clause: The action completed, but
+    retryable: false
+  repeated_failure_blocked:
+    first_clause: No action was taken.
+    retryable: false
+golden: services/tool-worker/tool_worker/golden/math_solve.yaml

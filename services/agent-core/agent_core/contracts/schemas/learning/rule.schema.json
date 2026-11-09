@@ -1,0 +1,374 @@
+{
+ "$comment": "GENERATED from contracts/learning/rule.schema.json sha256 51e395047cff37770082048f66a68854dc46d6a28982976575f89f439b40d7cc; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/learning/rule",
+ "title": "SoftRuleFile",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "schema_version",
+  "rules"
+ ],
+ "properties": {
+  "schema_version": {
+   "const": "1.0"
+  },
+  "pack": {
+   "type": "string",
+   "maxLength": 64
+  },
+  "rules": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "$ref": "#/$defs/rule"
+   }
+  }
+ },
+ "$defs": {
+  "rule_id": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9_]{2,63}$"
+  },
+  "predicate": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "all"
+     ],
+     "properties": {
+      "all": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "$ref": "#/$defs/predicate"
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "any"
+     ],
+     "properties": {
+      "any": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "$ref": "#/$defs/predicate"
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "not"
+     ],
+     "properties": {
+      "not": {
+       "$ref": "#/$defs/predicate"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "signal",
+      "op",
+      "value"
+     ],
+     "properties": {
+      "signal": {
+       "enum": [
+        "mode",
+        "subject",
+        "level",
+        "step.verdict",
+        "step.misconception_matched",
+        "step.wrong_attempts",
+        "step.hint_rung",
+        "hints.requests_last_10s",
+        "student.confused_count_step",
+        "student.requested_answer",
+        "student.off_topic_mild",
+        "student.bulk_questions",
+        "kc.mastery",
+        "kc.fading_active",
+        "kc.active_misconception",
+        "engine.self_explanation_due",
+        "engine.idle_offer_due",
+        "engine.detour_eligible",
+        "engine.stuck_cap_reached",
+        "engine.bottom_out_shown",
+        "engine.tool_model_disagreement",
+        "content.out_of_pack",
+        "engagement.frustration",
+        "session.minutes",
+        "confidence.rating",
+        "answer.units_missing",
+        "answer.sigfig_mismatch",
+        "answer.notation_nonstandard"
+       ]
+      },
+      "op": {
+       "enum": [
+        "eq",
+        "ne",
+        "lt",
+        "le",
+        "gt",
+        "ge",
+        "in"
+       ]
+      },
+      "value": {
+       "type": [
+        "string",
+        "number",
+        "boolean",
+        "array"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "rule": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "version",
+    "status",
+    "condition",
+    "action",
+    "priority_class",
+    "priority",
+    "scope",
+    "criticality",
+    "frequency",
+    "tests",
+    "owner"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/rule_id"
+    },
+    "version": {
+     "type": "string",
+     "pattern": "^\\d+\\.\\d+$"
+    },
+    "status": {
+     "enum": [
+      "draft",
+      "active",
+      "retired"
+     ]
+    },
+    "description": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "condition": {
+     "type": "object",
+     "additionalProperties": false,
+     "minProperties": 1,
+     "properties": {
+      "predicate": {
+       "$ref": "#/$defs/predicate"
+      },
+      "question": {
+       "type": "string",
+       "maxLength": 160
+      }
+     }
+    },
+    "action": {
+     "type": "string",
+     "minLength": 10,
+     "maxLength": 200
+    },
+    "priority_class": {
+     "enum": [
+      "safety",
+      "answer_policy",
+      "withholding",
+      "honesty",
+      "wellbeing",
+      "pedagogy",
+      "style"
+     ]
+    },
+    "priority": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    },
+    "scope": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "modes"
+     ],
+     "properties": {
+      "modes": {
+       "type": "array",
+       "minItems": 1,
+       "uniqueItems": true,
+       "items": {
+        "enum": [
+         "guided",
+         "solution",
+         "check_working",
+         "learn",
+         "practice",
+         "mock",
+         "revision"
+        ]
+       }
+      },
+      "subjects": {
+       "type": "array",
+       "uniqueItems": true,
+       "items": {
+        "enum": [
+         "mathematics",
+         "physics",
+         "chemistry",
+         "biology",
+         "accounting"
+        ]
+       }
+      },
+      "levels": {
+       "type": "array",
+       "uniqueItems": true,
+       "items": {
+        "enum": [
+         "O",
+         "A"
+        ]
+       }
+      },
+      "roles": {
+       "type": "array",
+       "uniqueItems": true,
+       "items": {
+        "enum": [
+         "coach",
+         "checker"
+        ]
+       }
+      }
+     }
+    },
+    "relationships": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "type",
+       "target"
+      ],
+      "properties": {
+       "type": {
+        "enum": [
+         "entails",
+         "overrides",
+         "excludes",
+         "depends_on"
+        ]
+       },
+       "target": {
+        "$ref": "#/$defs/rule_id"
+       }
+      }
+     }
+    },
+    "criticality": {
+     "enum": [
+      "high",
+      "normal"
+     ]
+    },
+    "frequency": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "max_per_session": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "min_turns_between": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "once_per_step": {
+       "type": "boolean"
+      }
+     }
+    },
+    "fallback_keywords": {
+     "type": "array",
+     "maxItems": 30,
+     "items": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 40
+     }
+    },
+    "evidence": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 40
+     }
+    },
+    "tests": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+     }
+    },
+    "owner": {
+     "type": "string",
+     "maxLength": 40
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "condition": {
+        "not": {
+         "required": [
+          "predicate"
+         ]
+        }
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "condition": {
+        "required": [
+         "question"
+        ]
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,47 @@
+{
+  "$comment": "Plain-words consent notices (PRV-05, PRV-12). Every consent row records the version of the notice shown; draft notices wait for counsel's review under D13 before any pilot.",
+  "notices": [
+    {
+      "id": "cloud_tier",
+      "version": "2026-10.d1",
+      "status": "draft",
+      "text": "Get help from the online tutor when this computer is slow. Your question and the steps so far are sent to our online service to answer it. They are never used to train a model."
+    },
+    {
+      "id": "research_use",
+      "version": "2026-10.d1",
+      "status": "draft",
+      "text": "Help a study find out whether the tutor helps students learn. Only progress data without your name or conversations is shared, as a file an adult gives to the study team."
+    },
+    {
+      "id": "telemetry",
+      "version": "2026-10.d1",
+      "status": "draft",
+      "text": "Send anonymous counts that help us make the app faster. No questions, answers or names are sent."
+    },
+    {
+      "id": "crash_reports",
+      "version": "2026-10.d1",
+      "status": "draft",
+      "text": "When the app crashes, send a report about the crash. Your work is never in it."
+    },
+    {
+      "id": "study_materials",
+      "version": "2026-10.d1",
+      "status": "draft",
+      "text": "Use the online study service for material you choose. Selected files or passages and your question are sent to our service to extract text and make cited notes, flashcards and quizzes. Service copies are deleted when processing ends, or after at most 15 minutes without activity. Your material stays on this device until you delete it. It is never used to train a model. This switch is separate from the online tutor, and you give your own consent: Jana is for learners aged 18 or over."
+    },
+    {
+      "id": "cloud_voice",
+      "version": "2026-10.d1",
+      "status": "draft",
+      "text": "Talk with the tutor using the online voice service. While you talk, your voice is sent to our online voice service to be turned into text, and the tutor's words to be turned into speech. Neither is stored there, and your learning record stays on this computer."
+    },
+    {
+      "id": "tutor_memory_online",
+      "version": "2026-10.d1",
+      "status": "draft",
+      "text": "Let the online tutor remember how you learn. What leaves this computer: your tutor's short notes about how you learn, and one-line records of what you practised, so the online tutor can remember you. Never your documents, your conversations, your name or your exam dates. Meta does not store these requests or train on them. This switch needs the online tutor, and you can turn it off at any time."
+    }
+  ]
+}

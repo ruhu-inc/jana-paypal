@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/venn_diagram",
+  "$comment": "Params for venn_diagram, owned by the vetted renderer (VSL-03). Region counts are givens (N1, known ids). Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "venn_diagram params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sets",
+    "regions"
+  ],
+  "properties": {
+    "sets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-C]$"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 24
+          }
+        }
+      },
+      "maxItems": 3,
+      "minItems": 2
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(A|B|C|AB|AC|BC|ABC|none)$"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 24,
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?(/[0-9]+)?$"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 24
+            },
+            "maxItems": 12
+          }
+        }
+      },
+      "maxItems": 8,
+      "minItems": 1
+    },
+    "universal_label": {
+      "type": "string",
+      "maxLength": 24
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "region_total"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

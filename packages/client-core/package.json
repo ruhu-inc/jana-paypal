@@ -1,0 +1,22 @@
+{
+  "name": "@jana/client-core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Client store, pure reducer, delta queue, stream client and commands (M5).",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests"
+  },
+  "jana": {
+    "modules": {
+      "src": "experience",
+      "src/stream": "streaming"
+    }
+  },
+  "dependencies": {
+    "@jana/contracts-ts": "workspace:*"
+  }
+}

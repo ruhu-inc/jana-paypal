@@ -1,0 +1,208 @@
+{
+ "$comment": "GENERATED from contracts/learning/mastery-params.schema.json sha256 5778070f68925f45545472ecc8bf209aead70f287f36a314b1563750f98c252f; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/learning/mastery-params",
+ "title": "Mastery parameters shipped in a content pack",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "schema_version",
+  "pack",
+  "params_version",
+  "fitted",
+  "mastery"
+ ],
+ "properties": {
+  "kind": {
+   "const": "mastery_params"
+  },
+  "version": {
+   "type": "string",
+   "maxLength": 40
+  },
+  "signature": {
+   "type": "object"
+  },
+  "schema_version": {
+   "type": "string",
+   "maxLength": 16
+  },
+  "pack": {
+   "type": "string",
+   "pattern": "^pack\\.(mth|phy|chm|bio|acc)\\.(o|a)$"
+  },
+  "params_version": {
+   "type": "string",
+   "maxLength": 32
+  },
+  "fitted": {
+   "type": "boolean"
+  },
+  "mastery": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "model"
+   ],
+   "properties": {
+    "model": {
+     "enum": [
+      "pfa_elo",
+      "bkt"
+     ]
+    },
+    "count_half_life_days": {
+     "type": "number",
+     "minimum": 0.01,
+     "maximum": 3650
+    },
+    "elo": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "k_a": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 5
+      },
+      "k_c": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 5
+      },
+      "local_item_offsets": {
+       "const": false
+      },
+      "local_offset_cap": {
+       "type": "number",
+       "minimum": 0
+      }
+     }
+    },
+    "kc_defaults": {
+     "$ref": "#/$defs/kc_values"
+    },
+    "kc_overrides": {
+     "type": "object",
+     "propertyNames": {
+      "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+     },
+     "additionalProperties": {
+      "$ref": "#/$defs/kc_values"
+     }
+    },
+    "bkt_baseline": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "p_init": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "p_transit": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "p_slip": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 0.5
+      },
+      "p_guess": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 0.5
+      }
+     }
+    },
+    "thresholds": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "ready_to_check": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "ready_min_n_eff": {
+       "type": "number",
+       "minimum": 0
+      },
+      "needs_review_retrievability": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "block_until": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "stuck_progress": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      }
+     }
+    }
+   }
+  },
+  "evidence_weights": {
+   "type": "object"
+  },
+  "personal_calibration": {
+   "type": "object"
+  },
+  "fsrs": {
+   "type": "object"
+  },
+  "adaptation": {
+   "type": "object"
+  },
+  "planner": {
+   "type": "object"
+  },
+  "engagement": {
+   "type": "object"
+  },
+  "notes": {
+   "type": "object"
+  },
+  "motivation": {
+   "type": "object"
+  },
+  "assessment": {
+   "type": "object"
+  }
+ },
+ "$defs": {
+  "kc_values": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "beta",
+    "gamma",
+    "rho"
+   ],
+   "properties": {
+    "beta": {
+     "type": "number",
+     "minimum": -10,
+     "maximum": 10
+    },
+    "gamma": {
+     "type": "number",
+     "minimum": -10,
+     "maximum": 10
+    },
+    "rho": {
+     "type": "number",
+     "minimum": -10,
+     "maximum": 10
+    }
+   }
+  }
+ }
+}

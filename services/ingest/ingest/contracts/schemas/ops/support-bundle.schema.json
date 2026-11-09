@@ -1,0 +1,73 @@
+{
+ "$comment": "GENERATED from contracts/ops/support-bundle.schema.json sha256 06219a09d8a6b6829b01def9a90a35c9e65fbbdeea4cff46dc1be44676fcafe6; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/support-bundle",
+ "title": "Support bundle metadata",
+ "additionalProperties": false,
+ "properties": {
+  "device_id": {
+   "pattern": "^dev_[a-zA-Z0-9_-]+$",
+   "type": "string"
+  },
+  "licence_id": {
+   "anyOf": [
+    {
+     "pattern": "^lic_[a-zA-Z0-9_-]+$",
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "app_version": {
+   "pattern": "^\\d+\\.\\d+\\.\\d+$",
+   "type": "string"
+  },
+  "channel": {
+   "enum": [
+    "dev",
+    "pilot",
+    "stable"
+   ],
+   "type": "string"
+  },
+  "health": {
+   "additionalProperties": {
+    "enum": [
+     "ok",
+     "unavailable",
+     "error",
+     "starting"
+    ],
+    "type": "string"
+   },
+   "propertyNames": {
+    "enum": [
+     "core",
+     "worker",
+     "runtime",
+     "storage",
+     "updates"
+    ]
+   },
+   "type": "object"
+  },
+  "error_codes": {
+   "items": {
+    "type": "string",
+    "pattern": "^[a-z][a-z0-9_]*$",
+    "maxLength": 64
+   },
+   "type": "array"
+  }
+ },
+ "required": [
+  "device_id",
+  "app_version",
+  "channel",
+  "health",
+  "error_codes"
+ ],
+ "type": "object"
+}

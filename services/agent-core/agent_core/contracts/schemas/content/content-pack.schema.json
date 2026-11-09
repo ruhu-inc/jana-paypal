@@ -1,0 +1,4056 @@
+{
+ "$comment": "GENERATED from contracts/content/content-pack.schema.json sha256 b603e5b108d47645f0de956cd2139e8b6416e3f904e104d648115bce65c24e70; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/content/content-pack",
+ "title": "Content pack",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "manifest",
+  "curriculum_nodes",
+  "kcs",
+  "lessons",
+  "worked_examples",
+  "items",
+  "misconceptions",
+  "diagrams",
+  "conventions"
+ ],
+ "properties": {
+  "manifest": {
+   "$ref": "#/$defs/Manifest"
+  },
+  "curriculum_nodes": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/CurriculumNode"
+   }
+  },
+  "kcs": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/KnowledgeComponent"
+   }
+  },
+  "lessons": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/Lesson"
+   }
+  },
+  "worked_examples": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/WorkedExample"
+   }
+  },
+  "items": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/Item"
+   }
+  },
+  "item_templates": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/ItemTemplate"
+   }
+  },
+  "misconceptions": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/Misconception"
+   }
+  },
+  "diagrams": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/DiagramRef"
+   }
+  },
+  "conventions": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/Convention"
+   }
+  },
+  "kc_migrations": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/KcMigration"
+   }
+  },
+  "mock_papers": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/MockPaper"
+   }
+  },
+  "search_fts": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/SearchPassage"
+   }
+  },
+  "search_vectors": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/SearchVector"
+   }
+  },
+  "visual_presets": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/VisualPreset"
+   }
+  },
+  "charts_of_accounts": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/ChartOfAccounts"
+   }
+  },
+  "science_assets": {
+   "type": "array",
+   "items": {
+    "$ref": "https://jana.dev/contracts/content/science-assets#/$defs/Asset"
+   },
+   "minItems": 0,
+   "maxItems": 1000
+  }
+ },
+ "$defs": {
+  "SubjectSlug": {
+   "type": "string",
+   "enum": [
+    "mth",
+    "phy",
+    "chm",
+    "bio",
+    "acc"
+   ]
+  },
+  "LevelSlug": {
+   "type": "string",
+   "enum": [
+    "o",
+    "a"
+   ]
+  },
+  "SemVer": {
+   "type": "string",
+   "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+  },
+  "Sha256": {
+   "type": "string",
+   "pattern": "^[a-f0-9]{64}$"
+  },
+  "NodeId": {
+   "type": "string",
+   "pattern": "^cur\\.(mth|phy|chm|bio|acc)\\.(o|a)(\\.[a-z0-9_]+){0,3}$"
+  },
+  "KcId": {
+   "type": "string",
+   "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+  },
+  "LessonId": {
+   "type": "string",
+   "pattern": "^les\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+  },
+  "WorkedExampleId": {
+   "type": "string",
+   "pattern": "^wex\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[0-9]{4}$"
+  },
+  "ItemId": {
+   "type": "string",
+   "pattern": "^itm\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[0-9]{4}$"
+  },
+  "TemplateId": {
+   "type": "string",
+   "pattern": "^itpl\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[0-9]{4}$"
+  },
+  "MisconceptionId": {
+   "type": "string",
+   "pattern": "^mc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+$"
+  },
+  "DiagramId": {
+   "type": "string",
+   "pattern": "^dgm\\.(mth|phy|chm|bio|acc)\\.[a-z0-9_]+\\.v[0-9]+$"
+  },
+  "PackId": {
+   "type": "string",
+   "pattern": "^pack\\.((mth|phy|chm|bio|acc)\\.(o|a)|ref)$"
+  },
+  "CheckId": {
+   "type": "string",
+   "pattern": "^chk_build_[a-z0-9_]+$"
+  },
+  "PartId": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9_]{0,31}$"
+  },
+  "ToolName": {
+   "type": "string",
+   "pattern": "^(math|stats|units|geom|phys|chem|acc|bio)_[a-z0-9_]{2,40}$"
+  },
+  "RichText": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 4000
+  },
+  "Latex": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 2000
+  },
+  "LanguageTag": {
+   "type": "string",
+   "enum": [
+    "en",
+    "fr",
+    "pt",
+    "ar"
+   ]
+  },
+  "LocalisedText": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "en"
+   ],
+   "properties": {
+    "en": {
+     "$ref": "#/$defs/RichText"
+    },
+    "fr": {
+     "$ref": "#/$defs/RichText"
+    },
+    "pt": {
+     "$ref": "#/$defs/RichText"
+    },
+    "ar": {
+     "$ref": "#/$defs/RichText"
+    }
+   }
+  },
+  "LicenceId": {
+   "type": "string",
+   "enum": [
+    "LicenseRef-Own",
+    "CC0-1.0",
+    "LicenseRef-PublicDomain",
+    "CC-BY-3.0",
+    "CC-BY-4.0"
+   ]
+  },
+  "DiagramLicenceId": {
+   "type": "string",
+   "enum": [
+    "LicenseRef-Own",
+    "CC0-1.0",
+    "LicenseRef-PublicDomain",
+    "CC-BY-3.0",
+    "CC-BY-4.0",
+    "CC-BY-SA-3.0",
+    "CC-BY-SA-4.0"
+   ]
+  },
+  "Source": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "title",
+    "url",
+    "licence",
+    "attribution",
+    "modifications",
+    "retrieved"
+   ],
+   "properties": {
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 300
+    },
+    "url": {
+     "type": "string",
+     "format": "uri",
+     "pattern": "^https://"
+    },
+    "licence": {
+     "$ref": "#/$defs/DiagramLicenceId"
+    },
+    "attribution": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 500
+    },
+    "modifications": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 500
+    },
+    "retrieved": {
+     "type": "string",
+     "format": "date"
+    }
+   }
+  },
+  "Provenance": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "origin",
+    "licence",
+    "drafted_with_ai",
+    "sources"
+   ],
+   "properties": {
+    "origin": {
+     "type": "string",
+     "enum": [
+      "original",
+      "adapted",
+      "imported"
+     ]
+    },
+    "licence": {
+     "$ref": "#/$defs/LicenceId"
+    },
+    "drafted_with_ai": {
+     "type": "boolean"
+    },
+    "ai_model": {
+     "type": "string",
+     "maxLength": 120
+    },
+    "sources": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/Source"
+     }
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "drafted_with_ai": {
+        "const": true
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "ai_model"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "origin": {
+        "enum": [
+         "adapted",
+         "imported"
+        ]
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "sources": {
+        "minItems": 1
+       }
+      }
+     }
+    },
+    {
+     "properties": {
+      "sources": {
+       "items": {
+        "properties": {
+         "licence": {
+          "$ref": "#/$defs/LicenceId"
+         }
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  "Review": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "status",
+    "reviewers"
+   ],
+   "properties": {
+    "status": {
+     "type": "string",
+     "enum": [
+      "drafted",
+      "verified",
+      "in_review",
+      "changes_requested",
+      "approved",
+      "held_out",
+      "in_eval_bank",
+      "published",
+      "retired"
+     ]
+    },
+    "reviewers": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "role_id",
+       "decision",
+       "reviewed_at"
+      ],
+      "properties": {
+       "role_id": {
+        "type": "string",
+        "pattern": "^rev_[a-z0-9_]{2,40}$"
+       },
+       "decision": {
+        "type": "string",
+        "enum": [
+         "approved",
+         "changes_requested",
+         "escalated"
+        ]
+       },
+       "reviewed_at": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     }
+    },
+    "subject_lead_decision": {
+     "type": "string",
+     "enum": [
+      "approved",
+      "rejected"
+     ]
+    },
+    "retired_reason": {
+     "type": "string",
+     "maxLength": 300
+    },
+    "replaced_by": {
+     "type": "string",
+     "maxLength": 120
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "status": {
+        "const": "retired"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "retired_reason"
+      ]
+     }
+    }
+   ]
+  },
+  "ExternalMapping": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "scheme",
+    "code",
+    "coverage"
+   ],
+   "properties": {
+    "scheme": {
+     "type": "string",
+     "pattern": "^[a-z0-9_-]{2,40}$"
+    },
+    "code": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 40
+    },
+    "coverage": {
+     "type": "string",
+     "enum": [
+      "full",
+      "partial"
+     ]
+    }
+   }
+  },
+  "Manifest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "pack_id",
+    "title",
+    "version",
+    "schema_version",
+    "curriculum_version",
+    "min_app_version",
+    "created_at",
+    "channel",
+    "publisher",
+    "languages",
+    "tables",
+    "signature"
+   ],
+   "properties": {
+    "pack_id": {
+     "$ref": "#/$defs/PackId"
+    },
+    "subject": {
+     "$ref": "#/$defs/SubjectSlug"
+    },
+    "level": {
+     "$ref": "#/$defs/LevelSlug"
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "schema_version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "curriculum_version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "min_app_version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "created_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "channel": {
+     "type": "string",
+     "enum": [
+      "dev",
+      "pilot",
+      "stable"
+     ]
+    },
+    "publisher": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "id",
+      "kind"
+     ],
+     "properties": {
+      "id": {
+       "type": "string",
+       "pattern": "^pub_[a-z0-9_]{2,40}$"
+      },
+      "kind": {
+       "type": "string",
+       "enum": [
+        "publisher"
+       ]
+      }
+     }
+    },
+    "languages": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/LanguageTag"
+     },
+     "contains": {
+      "const": "en"
+     }
+    },
+    "embedded_signed_files": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "kind",
+       "path",
+       "sha256",
+       "version"
+      ],
+      "properties": {
+       "kind": {
+        "enum": [
+         "compatibility_matrix",
+         "revocation_list",
+         "safety_configuration",
+         "mastery_params"
+        ]
+       },
+       "path": {
+        "type": "string",
+        "pattern": "^signed/[a-z0-9_.-]{1,80}$"
+       },
+       "sha256": {
+        "$ref": "#/$defs/Sha256"
+       },
+       "version": {
+        "type": "string",
+        "maxLength": 40
+       }
+      }
+     }
+    },
+    "depends_on_packs": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "pack_id",
+       "min_version"
+      ],
+      "properties": {
+       "pack_id": {
+        "$ref": "#/$defs/PackId"
+       },
+       "min_version": {
+        "$ref": "#/$defs/SemVer"
+       }
+      }
+     }
+    },
+    "tables": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "name",
+       "sha256",
+       "rows"
+      ],
+      "properties": {
+       "name": {
+        "type": "string",
+        "enum": [
+         "curriculum_nodes",
+         "kcs",
+         "lessons",
+         "worked_examples",
+         "items",
+         "item_templates",
+         "misconceptions",
+         "diagrams",
+         "conventions",
+         "kc_migrations",
+         "search_fts",
+         "search_vectors",
+         "mock_papers",
+         "visual_presets",
+         "charts_of_accounts"
+        ]
+       },
+       "sha256": {
+        "$ref": "#/$defs/Sha256"
+       },
+       "rows": {
+        "type": "integer",
+        "minimum": 0
+       }
+      }
+     }
+    },
+    "embedding_model": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "id",
+      "version",
+      "dimensions"
+     ],
+     "properties": {
+      "id": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 120
+      },
+      "version": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 40
+      },
+      "dimensions": {
+       "type": "integer",
+       "minimum": 16,
+       "maximum": 4096
+      }
+     }
+    },
+    "retired_ids": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 120
+     }
+    },
+    "signature": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "alg",
+      "key_id",
+      "value"
+     ],
+     "properties": {
+      "alg": {
+       "const": "ed25519"
+      },
+      "key_id": {
+       "type": "string",
+       "pattern": "^key_[a-z0-9_]{2,40}$"
+      },
+      "value": {
+       "type": "string",
+       "pattern": "^[A-Za-z0-9+/]{86}==$"
+      }
+     }
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "pack_id": {
+        "const": "pack.ref"
+       }
+      }
+     },
+     "else": {
+      "required": [
+       "subject",
+       "level"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "tables": {
+        "contains": {
+         "properties": {
+          "name": {
+           "const": "search_vectors"
+          }
+         }
+        }
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "embedding_model"
+      ]
+     }
+    }
+   ]
+  },
+  "CurriculumNode": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "code",
+    "kind",
+    "parent_id",
+    "title",
+    "order",
+    "subject",
+    "level"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/NodeId"
+    },
+    "code": {
+     "type": "string",
+     "pattern": "^(MTH|PHY|CHM|BIO|ACC)-(O|A)(-[0-9]{2}(\\.[0-9]{2}){0,2})?$"
+    },
+    "kind": {
+     "type": "string",
+     "enum": [
+      "subject",
+      "topic",
+      "subtopic"
+     ]
+    },
+    "parent_id": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/NodeId"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    },
+    "description": {
+     "type": "string",
+     "maxLength": 600
+    },
+    "order": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "subject": {
+     "$ref": "#/$defs/SubjectSlug"
+    },
+    "level": {
+     "$ref": "#/$defs/LevelSlug"
+    },
+    "exam_weight": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "external_mappings": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/ExternalMapping"
+     }
+    },
+    "status": {
+     "type": "string",
+     "enum": [
+      "active",
+      "retired"
+     ]
+    },
+    "diagnostic_anchors": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/KcId"
+     }
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "topic"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "exam_weight"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "subject"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "parent_id": {
+        "type": "null"
+       }
+      }
+     }
+    }
+   ]
+  },
+  "KnowledgeComponent": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "code",
+    "node_id",
+    "statement",
+    "kind",
+    "tools",
+    "exam_weight",
+    "prerequisites",
+    "misconception_ids",
+    "version",
+    "status"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/KcId"
+    },
+    "code": {
+     "type": "string",
+     "pattern": "^(MTH|PHY|CHM|BIO|ACC)-(O|A)-[0-9]{2}(\\.[0-9]{2}){0,2}\\.K[0-9]{2}$"
+    },
+    "node_id": {
+     "$ref": "#/$defs/NodeId"
+    },
+    "statement": {
+     "type": "string",
+     "minLength": 10,
+     "maxLength": 140,
+     "pattern": "^[A-Z][a-z]+ "
+    },
+    "kind": {
+     "type": "string",
+     "enum": [
+      "procedural",
+      "conceptual",
+      "factual"
+     ]
+    },
+    "tools": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/ToolName"
+     }
+    },
+    "exam_weight": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "prerequisites": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "kc_id",
+       "strength"
+      ],
+      "properties": {
+       "kc_id": {
+        "$ref": "#/$defs/KcId"
+       },
+       "strength": {
+        "type": "string",
+        "enum": [
+         "required",
+         "helpful"
+        ]
+       }
+      }
+     }
+    },
+    "confusable_with": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/KcId"
+     }
+    },
+    "misconception_ids": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/MisconceptionId"
+     }
+    },
+    "skill_ids": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "type": "string",
+      "pattern": "^(mth|phy|chm|bio|acc)-(o|a)-[a-z0-9-]+$",
+      "maxLength": 64
+     }
+    },
+    "glossary": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 60
+     }
+    },
+    "key_points": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 4,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "id",
+       "text",
+       "follow_up"
+      ],
+      "properties": {
+       "id": {
+        "type": "string",
+        "pattern": "^kp_[a-z0-9_]{1,30}$"
+       },
+       "text": {
+        "$ref": "#/$defs/LocalisedText"
+       },
+       "follow_up": {
+        "$ref": "#/$defs/LocalisedText"
+       }
+      }
+     }
+    },
+    "difficulty_prior": {
+     "type": "number",
+     "minimum": -4,
+     "maximum": 4
+    },
+    "external_mappings": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/ExternalMapping"
+     }
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "status": {
+     "type": "string",
+     "enum": [
+      "active",
+      "retired"
+     ]
+    }
+   }
+  },
+  "KcMigration": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "from_kc_id",
+    "to",
+    "from_version",
+    "to_version"
+   ],
+   "properties": {
+    "from_kc_id": {
+     "$ref": "#/$defs/KcId"
+    },
+    "from_version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "to_version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "to": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "kc_id",
+       "weight"
+      ],
+      "properties": {
+       "kc_id": {
+        "$ref": "#/$defs/KcId"
+       },
+       "weight": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "maximum": 1
+       }
+      }
+     }
+    }
+   }
+  },
+  "BoardStep": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "n",
+    "latex",
+    "reason"
+   ],
+   "properties": {
+    "n": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "latex": {
+     "$ref": "#/$defs/Latex"
+    },
+    "reason": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    },
+    "check_id": {
+     "$ref": "#/$defs/CheckId"
+    },
+    "rule_ref": {
+     "type": "string",
+     "maxLength": 120
+    }
+   }
+  },
+  "VisualRef": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "diagram_id": {
+     "$ref": "#/$defs/DiagramId"
+    },
+    "sequence_id": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_]{0,40}$"
+    },
+    "visual_type": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_]{1,40}$"
+    },
+    "params": {
+     "type": "object"
+    },
+    "resolved": {
+     "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved"
+    },
+    "ref": {
+     "$ref": "#/$defs/DiagramId"
+    },
+    "numbers_from": {
+     "type": "array",
+     "maxItems": 20,
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/CheckId"
+     }
+    },
+    "caption": {
+     "type": "string",
+     "maxLength": 200
+    }
+   },
+   "oneOf": [
+    {
+     "required": [
+      "diagram_id"
+     ],
+     "not": {
+      "required": [
+       "visual_type"
+      ]
+     }
+    },
+    {
+     "required": [
+      "visual_type",
+      "params"
+     ],
+     "not": {
+      "required": [
+       "diagram_id"
+      ]
+     }
+    }
+   ]
+  },
+  "Lesson": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "node_id",
+    "kc_ids",
+    "title",
+    "estimated_minutes",
+    "blocks",
+    "version",
+    "provenance",
+    "review"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/LessonId"
+    },
+    "node_id": {
+     "$ref": "#/$defs/NodeId"
+    },
+    "kc_ids": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/KcId"
+     }
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    },
+    "estimated_minutes": {
+     "type": "integer",
+     "minimum": 3,
+     "maximum": 30
+    },
+    "blocks": {
+     "type": "array",
+     "minItems": 4,
+     "items": {
+      "$ref": "#/$defs/LessonBlock"
+     }
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "review": {
+     "$ref": "#/$defs/Review"
+    }
+   }
+  },
+  "LessonBlock": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "item_ids"
+     ],
+     "properties": {
+      "type": {
+       "const": "prior_knowledge"
+      },
+      "item_ids": {
+       "type": "array",
+       "minItems": 1,
+       "maxItems": 3,
+       "items": {
+        "$ref": "#/$defs/ItemId"
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "text"
+     ],
+     "properties": {
+      "type": {
+       "const": "idea"
+      },
+      "text": {
+       "$ref": "#/$defs/LocalisedText"
+      },
+      "visual": {
+       "$ref": "#/$defs/VisualRef"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "worked_example_id"
+     ],
+     "properties": {
+      "type": {
+       "const": "worked_example"
+      },
+      "worked_example_id": {
+       "$ref": "#/$defs/WorkedExampleId"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "item_id"
+     ],
+     "properties": {
+      "type": {
+       "const": "guided_step"
+      },
+      "item_id": {
+       "$ref": "#/$defs/ItemId"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "item_ids"
+     ],
+     "properties": {
+      "type": {
+       "const": "quick_check"
+      },
+      "item_ids": {
+       "type": "array",
+       "minItems": 2,
+       "maxItems": 2,
+       "items": {
+        "$ref": "#/$defs/ItemId"
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "misconception_ids"
+     ],
+     "properties": {
+      "type": {
+       "const": "common_mistakes"
+      },
+      "misconception_ids": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "$ref": "#/$defs/MisconceptionId"
+       }
+      },
+      "text": {
+       "$ref": "#/$defs/LocalisedText"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "visual"
+     ],
+     "properties": {
+      "type": {
+       "const": "visual"
+      },
+      "visual": {
+       "$ref": "#/$defs/VisualRef"
+      },
+      "caption": {
+       "type": "string",
+       "maxLength": 200
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "item_ids"
+     ],
+     "properties": {
+      "type": {
+       "const": "exit_check"
+      },
+      "item_ids": {
+       "type": "array",
+       "minItems": 1,
+       "maxItems": 3,
+       "items": {
+        "$ref": "#/$defs/ItemId"
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "text"
+     ],
+     "properties": {
+      "type": {
+       "const": "summary"
+      },
+      "text": {
+       "$ref": "#/$defs/LocalisedText"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "action",
+      "item_id",
+      "why"
+     ],
+     "properties": {
+      "type": {
+       "const": "step"
+      },
+      "action": {
+       "enum": [
+        "try_first",
+        "choose",
+        "predict",
+        "calculate"
+       ]
+      },
+      "item_id": {
+       "$ref": "#/$defs/ItemId"
+      },
+      "text": {
+       "$ref": "#/$defs/LocalisedText"
+      },
+      "visual": {
+       "$ref": "#/$defs/VisualRef"
+      },
+      "why": {
+       "$ref": "#/$defs/LocalisedText"
+      },
+      "names": {
+       "$ref": "#/$defs/LocalisedText"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "item_ids"
+     ],
+     "properties": {
+      "type": {
+       "const": "check"
+      },
+      "item_ids": {
+       "type": "array",
+       "minItems": 3,
+       "maxItems": 3,
+       "uniqueItems": true,
+       "items": {
+        "$ref": "#/$defs/ItemId"
+       }
+      }
+     }
+    }
+   ]
+  },
+  "WorkedExample": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "kc_ids",
+    "problem",
+    "steps",
+    "final_answer",
+    "fading_order",
+    "version",
+    "provenance",
+    "review"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/WorkedExampleId"
+    },
+    "kc_ids": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/KcId"
+     }
+    },
+    "problem": {
+     "$ref": "#/$defs/RichText"
+    },
+    "steps": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 30,
+     "items": {
+      "$ref": "#/$defs/BoardStep"
+     }
+    },
+    "final_answer": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "latex",
+      "check_id"
+     ],
+     "properties": {
+      "latex": {
+       "$ref": "#/$defs/Latex"
+      },
+      "check_id": {
+       "$ref": "#/$defs/CheckId"
+      }
+     }
+    },
+    "fading_order": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "type": "integer",
+      "minimum": 1
+     }
+    },
+    "variant_of": {
+     "$ref": "#/$defs/WorkedExampleId"
+    },
+    "visual": {
+     "$ref": "#/$defs/VisualRef"
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "review": {
+     "$ref": "#/$defs/Review"
+    }
+   }
+  },
+  "Hint": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "rung",
+    "text"
+   ],
+   "properties": {
+    "rung": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 5
+    },
+    "name": {
+     "type": "string",
+     "enum": [
+      "orient",
+      "concept",
+      "first_step",
+      "worked_step",
+      "full_step"
+     ]
+    },
+    "text": {
+     "$ref": "#/$defs/LocalisedText"
+    },
+    "spoken": {
+     "$ref": "#/$defs/LocalisedText"
+    }
+   }
+  },
+  "MarkPoint": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "type",
+    "marks",
+    "criterion"
+   ],
+   "properties": {
+    "id": {
+     "type": "string",
+     "pattern": "^[MAB][0-9]{1,2}$"
+    },
+    "type": {
+     "type": "string",
+     "enum": [
+      "M",
+      "A",
+      "B"
+     ]
+    },
+    "marks": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 10
+    },
+    "criterion": {
+     "type": "string",
+     "minLength": 5,
+     "maxLength": 300
+    },
+    "depends_on": {
+     "type": "string",
+     "pattern": "^[MAB][0-9]{1,2}$"
+    },
+    "check_id": {
+     "$ref": "#/$defs/CheckId"
+    },
+    "method_lines": {
+     "type": "array",
+     "maxItems": 20,
+     "items": {
+      "type": "string",
+      "maxLength": 300
+     }
+    },
+    "alternatives": {
+     "type": "array",
+     "maxItems": 20,
+     "items": {
+      "type": "string",
+      "maxLength": 300
+     }
+    },
+    "judge_allowed": {
+     "type": "boolean"
+    }
+   }
+  },
+  "Tolerance": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "mode",
+    "value"
+   ],
+   "properties": {
+    "mode": {
+     "type": "string",
+     "enum": [
+      "sig_figs",
+      "relative",
+      "absolute"
+     ]
+    },
+    "value": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    }
+   }
+  },
+  "McqOption": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "text",
+    "correct"
+   ],
+   "properties": {
+    "id": {
+     "type": "string",
+     "pattern": "^[A-H]$"
+    },
+    "text": {
+     "$ref": "#/$defs/RichText"
+    },
+    "correct": {
+     "type": "boolean"
+    },
+    "misconception_id": {
+     "$ref": "#/$defs/MisconceptionId"
+    },
+    "feedback": {
+     "type": "string",
+     "maxLength": 300
+    }
+   }
+  },
+  "Answer": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "options",
+      "diagnostic"
+     ],
+     "properties": {
+      "kind": {
+       "const": "mcq"
+      },
+      "diagnostic": {
+       "type": "boolean"
+      },
+      "shuffle": {
+       "type": "boolean"
+      },
+      "options": {
+       "type": "array",
+       "minItems": 2,
+       "maxItems": 8,
+       "items": {
+        "$ref": "#/$defs/McqOption"
+       },
+       "contains": {
+        "properties": {
+         "correct": {
+          "const": true
+         }
+        },
+        "required": [
+         "correct"
+        ]
+       },
+       "minContains": 1,
+       "maxContains": 1
+      }
+     },
+     "if": {
+      "properties": {
+       "diagnostic": {
+        "const": true
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "options": {
+        "minItems": 4,
+        "maxItems": 4,
+        "items": {
+         "if": {
+          "properties": {
+           "correct": {
+            "const": false
+           }
+          }
+         },
+         "then": {
+          "required": [
+           "misconception_id"
+          ]
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "options",
+      "scoring"
+     ],
+     "properties": {
+      "kind": {
+       "const": "multi_select"
+      },
+      "scoring": {
+       "type": "string",
+       "enum": [
+        "exact_set",
+        "per_option"
+       ]
+      },
+      "options": {
+       "type": "array",
+       "minItems": 3,
+       "maxItems": 8,
+       "items": {
+        "$ref": "#/$defs/McqOption"
+       },
+       "contains": {
+        "properties": {
+         "correct": {
+          "const": true
+         }
+        },
+        "required": [
+         "correct"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "value",
+      "unit",
+      "unit_policy",
+      "tolerance",
+      "check_id"
+     ],
+     "properties": {
+      "kind": {
+       "const": "numeric"
+      },
+      "value": {
+       "type": "string",
+       "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE]-?[0-9]+)?$"
+      },
+      "unit": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "maxLength": 40
+      },
+      "unit_policy": {
+       "type": "string",
+       "enum": [
+        "equivalent",
+        "exact",
+        "none"
+       ]
+      },
+      "tolerance": {
+       "$ref": "#/$defs/Tolerance"
+      },
+      "check_id": {
+       "$ref": "#/$defs/CheckId"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "expression",
+      "variables",
+      "required_form",
+      "check_id"
+     ],
+     "properties": {
+      "kind": {
+       "const": "algebraic"
+      },
+      "expression": {
+       "$ref": "#/$defs/Latex"
+      },
+      "variables": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z](_[A-Za-z0-9]+)?$"
+       }
+      },
+      "assumptions": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "maxLength": 80
+       }
+      },
+      "required_form": {
+       "type": "string",
+       "enum": [
+        "any",
+        "expanded",
+        "factorised",
+        "simplest",
+        "solved_for"
+       ]
+      },
+      "check_id": {
+       "$ref": "#/$defs/CheckId"
+      },
+      "form_unmet": {
+       "type": "string",
+       "enum": [
+        "partial",
+        "wrong"
+       ]
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "variable",
+      "values",
+      "tolerance",
+      "check_id"
+     ],
+     "properties": {
+      "kind": {
+       "const": "equation_solutions"
+      },
+      "variable": {
+       "type": "string",
+       "pattern": "^[A-Za-z]$"
+      },
+      "values": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "$ref": "#/$defs/Latex"
+       }
+      },
+      "tolerance": {
+       "$ref": "#/$defs/Tolerance"
+      },
+      "check_id": {
+       "$ref": "#/$defs/CheckId"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "reactants",
+      "products",
+      "state_symbols",
+      "non_lowest_multiple",
+      "check_id"
+     ],
+     "properties": {
+      "kind": {
+       "const": "chemical_equation"
+      },
+      "reactants": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "$ref": "#/$defs/Species"
+       }
+      },
+      "products": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "$ref": "#/$defs/Species"
+       }
+      },
+      "state_symbols": {
+       "type": "string",
+       "enum": [
+        "required",
+        "optional",
+        "ignored"
+       ]
+      },
+      "non_lowest_multiple": {
+       "type": "string",
+       "enum": [
+        "wrong",
+        "partial"
+       ]
+      },
+      "check_id": {
+       "$ref": "#/$defs/CheckId"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "chart_of_accounts",
+      "currency",
+      "lines",
+      "check_id"
+     ],
+     "properties": {
+      "kind": {
+       "const": "journal_entry"
+      },
+      "chart_of_accounts": {
+       "type": "string",
+       "pattern": "^coa\\.[a-z0-9_.]+\\.v[0-9]+$"
+      },
+      "currency": {
+       "type": "string",
+       "pattern": "^[A-Z]{3}$"
+      },
+      "date": {
+       "type": "string",
+       "maxLength": 40
+      },
+      "lines": {
+       "type": "array",
+       "minItems": 2,
+       "items": {
+        "$ref": "#/$defs/JournalLine"
+       }
+      },
+      "narration_marked": {
+       "type": "boolean"
+      },
+      "check_id": {
+       "$ref": "#/$defs/CheckId"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "table_kind",
+      "chart_of_accounts",
+      "currency",
+      "rows",
+      "check_id"
+     ],
+     "properties": {
+      "kind": {
+       "const": "accounting_table"
+      },
+      "table_kind": {
+       "type": "string",
+       "enum": [
+        "t_account",
+        "trial_balance",
+        "income_statement",
+        "financial_position",
+        "bank_reconciliation"
+       ]
+      },
+      "chart_of_accounts": {
+       "type": "string",
+       "pattern": "^coa\\.[a-z0-9_.]+\\.v[0-9]+$"
+      },
+      "currency": {
+       "type": "string",
+       "pattern": "^[A-Z]{3}$"
+      },
+      "rows": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+         "label",
+         "amount",
+         "side"
+        ],
+        "properties": {
+         "label": {
+          "type": "string",
+          "maxLength": 120
+         },
+         "account_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_:]{1,80}$"
+         },
+         "amount": {
+          "type": "string",
+          "pattern": "^[0-9]+(\\.[0-9]{1,2})?$"
+         },
+         "side": {
+          "type": "string",
+          "enum": [
+           "debit",
+           "credit",
+           "add",
+           "less",
+           "total"
+          ]
+         },
+         "marks": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+         }
+        }
+       }
+      },
+      "check_id": {
+       "$ref": "#/$defs/CheckId"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "diagram_id",
+      "targets",
+      "mode"
+     ],
+     "properties": {
+      "kind": {
+       "const": "diagram_label"
+      },
+      "diagram_id": {
+       "$ref": "#/$defs/DiagramId"
+      },
+      "mode": {
+       "type": "string",
+       "enum": [
+        "drag",
+        "type"
+       ]
+      },
+      "targets": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+         "part_id",
+         "accepted_labels"
+        ],
+        "properties": {
+         "part_id": {
+          "$ref": "#/$defs/PartId"
+         },
+         "accepted_labels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+           "type": "string",
+           "maxLength": 60
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "elements",
+      "correct_order",
+      "scoring"
+     ],
+     "properties": {
+      "kind": {
+       "const": "ordering"
+      },
+      "elements": {
+       "type": "array",
+       "minItems": 2,
+       "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+         "id",
+         "text"
+        ],
+        "properties": {
+         "id": {
+          "$ref": "#/$defs/PartId"
+         },
+         "text": {
+          "$ref": "#/$defs/RichText"
+         }
+        }
+       }
+      },
+      "correct_order": {
+       "type": "array",
+       "minItems": 2,
+       "items": {
+        "$ref": "#/$defs/PartId"
+       }
+      },
+      "scoring": {
+       "type": "string",
+       "enum": [
+        "exact",
+        "adjacent_pairs"
+       ]
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "model_answer",
+      "concept_sets"
+     ],
+     "properties": {
+      "kind": {
+       "const": "short_text"
+      },
+      "model_answer": {
+       "$ref": "#/$defs/RichText"
+      },
+      "concept_sets": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+         "mark_point_id",
+         "any_of"
+        ],
+        "properties": {
+         "mark_point_id": {
+          "type": "string",
+          "pattern": "^[MAB][0-9]{1,2}$"
+         },
+         "any_of": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+           "type": "string",
+           "maxLength": 80
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  "Species": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "formula",
+    "coefficient"
+   ],
+   "properties": {
+    "formula": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9()\\[\\]^+\\-]{1,40}$"
+    },
+    "coefficient": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 99
+    },
+    "state": {
+     "type": "string",
+     "enum": [
+      "s",
+      "l",
+      "g",
+      "aq"
+     ]
+    }
+   }
+  },
+  "JournalLine": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "account_id",
+    "account_name",
+    "accepted_names",
+    "debit",
+    "credit"
+   ],
+   "properties": {
+    "account_id": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_:]{1,80}$"
+    },
+    "account_name": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "accepted_names": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "string",
+      "maxLength": 80
+     }
+    },
+    "debit": {
+     "type": "string",
+     "pattern": "^[0-9]+(\\.[0-9]{1,2})?$"
+    },
+    "credit": {
+     "type": "string",
+     "pattern": "^[0-9]+(\\.[0-9]{1,2})?$"
+    }
+   }
+  },
+  "ItemPart": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "prompt",
+    "marks",
+    "answer",
+    "hints"
+   ],
+   "properties": {
+    "id": {
+     "type": "string",
+     "pattern": "^[a-z]{1,2}([ivx]{1,4})?$"
+    },
+    "prompt": {
+     "$ref": "#/$defs/RichText"
+    },
+    "marks": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 20
+    },
+    "answer": {
+     "$ref": "#/$defs/Answer"
+    },
+    "mark_points": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/MarkPoint"
+     }
+    },
+    "show_working": {
+     "type": "boolean"
+    },
+    "ecf": {
+     "type": "boolean"
+    },
+    "uses_parts": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^[a-z]{1,2}([ivx]{1,4})?$"
+     }
+    },
+    "hints": {
+     "type": "array",
+     "minItems": 5,
+     "maxItems": 5,
+     "items": {
+      "$ref": "#/$defs/Hint"
+     }
+    },
+    "misconception_ids": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/MisconceptionId"
+     }
+    },
+    "follow_through": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "expression",
+      "symbols"
+     ],
+     "properties": {
+      "expression": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 300
+      },
+      "symbols": {
+       "type": "object",
+       "minProperties": 1,
+       "maxProperties": 10,
+       "propertyNames": {
+        "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+       },
+       "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z]{1,2}([ivx]{1,4})?$"
+       }
+      }
+     }
+    },
+    "kc_ids": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 20,
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/KcId"
+     }
+    }
+   }
+  },
+  "Item": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "version",
+    "type",
+    "subject",
+    "level",
+    "kc_ids",
+    "stem",
+    "parts",
+    "solution",
+    "difficulty",
+    "estimated_seconds",
+    "exam_style",
+    "context_tags",
+    "provenance",
+    "review"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/ItemId"
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "type": {
+     "type": "string",
+     "enum": [
+      "mcq",
+      "mcq_diagnostic",
+      "multi_select",
+      "numeric",
+      "algebraic",
+      "equation_solutions",
+      "chemical_equation",
+      "journal_entry",
+      "accounting_table",
+      "diagram_label",
+      "ordering",
+      "structured",
+      "short_text"
+     ]
+    },
+    "subject": {
+     "$ref": "#/$defs/SubjectSlug"
+    },
+    "level": {
+     "$ref": "#/$defs/LevelSlug"
+    },
+    "kc_ids": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/KcId"
+     }
+    },
+    "stem": {
+     "$ref": "#/$defs/RichText"
+    },
+    "parts": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 10,
+     "items": {
+      "$ref": "#/$defs/ItemPart"
+     }
+    },
+    "conventions_override": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "key",
+       "value"
+      ],
+      "properties": {
+       "key": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.]{1,60}$"
+       },
+       "value": {
+        "type": "string",
+        "maxLength": 60
+       }
+      }
+     }
+    },
+    "solution": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "worked_example_id": {
+       "$ref": "#/$defs/WorkedExampleId"
+      },
+      "steps": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "$ref": "#/$defs/BoardStep"
+       }
+      }
+     },
+     "minProperties": 1
+    },
+    "difficulty": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "prior",
+      "band"
+     ],
+     "properties": {
+      "prior": {
+       "type": "number",
+       "minimum": -4,
+       "maximum": 4
+      },
+      "band": {
+       "type": "string",
+       "enum": [
+        "foundation",
+        "core",
+        "stretch"
+       ]
+      }
+     }
+    },
+    "estimated_seconds": {
+     "type": "integer",
+     "minimum": 10,
+     "maximum": 3600
+    },
+    "exam_style": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "paper_style",
+      "total_marks",
+      "calculator"
+     ],
+     "properties": {
+      "paper_style": {
+       "type": "string",
+       "enum": [
+        "objective",
+        "structured",
+        "essay_free",
+        "practical"
+       ]
+      },
+      "total_marks": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 50
+      },
+      "calculator": {
+       "type": "boolean"
+      }
+     }
+    },
+    "diagram_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/DiagramId"
+     }
+    },
+    "visual": {
+     "$ref": "#/$defs/VisualRef"
+    },
+    "context_tags": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "enum": [
+       "local_currency",
+       "local_names",
+       "local_places",
+       "market",
+       "farming",
+       "transport",
+       "none"
+      ]
+     }
+    },
+    "template_id": {
+     "$ref": "#/$defs/TemplateId"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "review": {
+     "$ref": "#/$defs/Review"
+    },
+    "quantities": {
+     "type": "object",
+     "maxProperties": 20,
+     "propertyNames": {
+      "pattern": "^[A-Za-z][A-Za-z0-9_]{0,31}$"
+     },
+     "additionalProperties": {
+      "type": "string",
+      "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE]-?[0-9]+)?$"
+     }
+    },
+    "corrects": {
+     "$ref": "#/$defs/ItemId"
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "structured"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "minItems": 2
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "mcq_diagnostic"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "maxItems": 1,
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "mcq"
+            },
+            "diagnostic": {
+             "const": true
+            }
+           },
+           "required": [
+            "diagnostic"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "mcq"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "mcq"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "multi_select"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "multi_select"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "numeric"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "numeric"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "algebraic"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "algebraic"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "equation_solutions"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "equation_solutions"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "chemical_equation"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "chemical_equation"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "journal_entry"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "journal_entry"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "accounting_table"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "accounting_table"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "diagram_label"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "diagram_label"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "ordering"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "ordering"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "short_text"
+       }
+      },
+      "required": [
+       "type"
+      ]
+     },
+     "then": {
+      "properties": {
+       "parts": {
+        "items": {
+         "properties": {
+          "answer": {
+           "properties": {
+            "kind": {
+             "const": "short_text"
+            }
+           },
+           "required": [
+            "kind"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  "ItemTemplate": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "kc_ids",
+    "item_type",
+    "stem_template",
+    "parameters",
+    "answer_tool",
+    "version",
+    "provenance",
+    "review"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/TemplateId"
+    },
+    "kc_ids": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "$ref": "#/$defs/KcId"
+     }
+    },
+    "item_type": {
+     "type": "string",
+     "enum": [
+      "numeric",
+      "algebraic",
+      "equation_solutions",
+      "chemical_equation",
+      "journal_entry",
+      "accounting_table"
+     ]
+    },
+    "stem_template": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 2000
+    },
+    "parameters": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "name",
+       "kind"
+      ],
+      "properties": {
+       "name": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,30}$"
+       },
+       "kind": {
+        "type": "string",
+        "enum": [
+         "integer",
+         "decimal",
+         "choice"
+        ]
+       },
+       "min": {
+        "type": "number"
+       },
+       "max": {
+        "type": "number"
+       },
+       "step": {
+        "type": "number",
+        "exclusiveMinimum": 0
+       },
+       "unit": {
+        "type": "string",
+        "maxLength": 40
+       },
+       "choices": {
+        "type": "array",
+        "minItems": 2,
+        "items": {
+         "type": "string",
+         "maxLength": 80
+        }
+       }
+      }
+     }
+    },
+    "constraints": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 200
+     }
+    },
+    "answer_tool": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "tool",
+      "args"
+     ],
+     "properties": {
+      "tool": {
+       "$ref": "#/$defs/ToolName"
+      },
+      "args": {
+       "type": "object"
+      }
+     }
+    },
+    "context_slots": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "enum": [
+       "person_name",
+       "business_name",
+       "place",
+       "currency_amount"
+      ]
+     }
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "review": {
+     "$ref": "#/$defs/Review"
+    }
+   }
+  },
+  "MisconceptionSignature": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "expression"
+     ],
+     "properties": {
+      "kind": {
+       "const": "answer_transform"
+      },
+      "expression": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 300
+      },
+      "applies_to_part": {
+       "type": "string",
+       "pattern": "^[a-z]{1,2}([ivx]{1,4})?$"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "error_category"
+     ],
+     "properties": {
+      "kind": {
+       "const": "step_error"
+      },
+      "error_category": {
+       "type": "string",
+       "enum": [
+        "sign",
+        "arithmetic",
+        "dropped_term",
+        "illegal_operation",
+        "units",
+        "copy"
+       ]
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "rule"
+     ],
+     "properties": {
+      "kind": {
+       "const": "structural"
+      },
+      "rule": {
+       "type": "string",
+       "enum": [
+        "subscript_changed_to_balance",
+        "debit_credit_swapped",
+        "wrong_account_class",
+        "ratio_inverted",
+        "mass_weight_confused",
+        "sign_of_g_flipped"
+       ]
+      },
+      "account_class": {
+       "type": "string",
+       "enum": [
+        "asset",
+        "liability",
+        "capital",
+        "income",
+        "expense",
+        "drawings",
+        "contra"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "Misconception": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "kc_ids",
+    "student_name",
+    "description",
+    "signatures",
+    "fix",
+    "probe_item_ids",
+    "version",
+    "provenance",
+    "review"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/MisconceptionId"
+    },
+    "kc_ids": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "$ref": "#/$defs/KcId"
+     }
+    },
+    "student_name": {
+     "type": "string",
+     "minLength": 3,
+     "maxLength": 80
+    },
+    "description": {
+     "type": "string",
+     "minLength": 10,
+     "maxLength": 600
+    },
+    "signatures": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "$ref": "#/$defs/MisconceptionSignature"
+     }
+    },
+    "fix": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "strategy",
+      "text"
+     ],
+     "properties": {
+      "strategy": {
+       "type": "string",
+       "enum": [
+        "contrast_example",
+        "counterexample",
+        "diagram",
+        "rule_restatement",
+        "prerequisite_detour",
+        "simpler_numbers"
+       ]
+      },
+      "text": {
+       "$ref": "#/$defs/LocalisedText"
+      },
+      "worked_example_id": {
+       "$ref": "#/$defs/WorkedExampleId"
+      },
+      "diagram_id": {
+       "$ref": "#/$defs/DiagramId"
+      }
+     }
+    },
+    "probe_item_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/ItemId"
+     }
+    },
+    "root_gap": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kc_id",
+      "idea"
+     ],
+     "properties": {
+      "kc_id": {
+       "$ref": "#/$defs/KcId"
+      },
+      "idea": {
+       "$ref": "#/$defs/LocalisedText"
+      }
+     }
+    },
+    "severity": {
+     "type": "string",
+     "enum": [
+      "low",
+      "medium",
+      "high"
+     ]
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "review": {
+     "$ref": "#/$defs/Review"
+    }
+   }
+  },
+  "DiagramRef": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "subject",
+    "title",
+    "svg_path",
+    "parts",
+    "alt_text",
+    "licence",
+    "attribution",
+    "version"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/DiagramId"
+    },
+    "subject": {
+     "$ref": "#/$defs/SubjectSlug"
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    },
+    "svg_path": {
+     "type": "string",
+     "pattern": "^diagrams/[a-z0-9_./-]+\\.svg$"
+    },
+    "parts": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "id",
+       "name"
+      ],
+      "properties": {
+       "id": {
+        "$ref": "#/$defs/PartId"
+       },
+       "name": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+       },
+       "function": {
+        "type": "string",
+        "maxLength": 300
+       },
+       "aliases": {
+        "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/parts/items/properties/aliases"
+       },
+       "label_anchor": {
+        "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/parts/items/properties/label_anchor"
+       },
+       "tab_order": {
+        "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/parts/items/properties/tab_order"
+       },
+       "essential": {
+        "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/parts/items/properties/essential"
+       },
+       "initially_hidden": {
+        "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/parts/items/properties/initially_hidden"
+       },
+       "quizzable": {
+        "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/parts/items/properties/quizzable"
+       }
+      }
+     }
+    },
+    "sequences": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "id",
+       "title",
+       "steps"
+      ],
+      "properties": {
+       "id": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,40}$"
+       },
+       "title": {
+        "type": "string",
+        "maxLength": 120
+       },
+       "steps": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "highlight",
+          "caption"
+         ],
+         "properties": {
+          "highlight": {
+           "type": "array",
+           "minItems": 1,
+           "items": {
+            "$ref": "#/$defs/PartId"
+           }
+          },
+          "caption": {
+           "type": "string",
+           "maxLength": 200
+          },
+          "arrows": {
+           "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/sequences/items/properties/steps/items/properties/arrows"
+          },
+          "narration_key": {
+           "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/sequences/items/properties/steps/items/properties/narration_key"
+          }
+         }
+        }
+       },
+       "title_key": {
+        "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/sequences/items/properties/title_key"
+       }
+      }
+     }
+    },
+    "alt_text": {
+     "type": "string",
+     "minLength": 10,
+     "maxLength": 1000
+    },
+    "licence": {
+     "$ref": "#/$defs/DiagramLicenceId"
+    },
+    "attribution": {
+     "type": "string",
+     "maxLength": 500
+    },
+    "sources": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/Source"
+     }
+    },
+    "approved_by": {
+     "type": "string",
+     "pattern": "^rev_[a-z0-9_]{2,40}$"
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "svg": {
+     "type": "string",
+     "minLength": 20,
+     "maxLength": 307200
+    },
+    "levels": {
+     "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/levels"
+    },
+    "kc_ids": {
+     "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/kc_ids"
+    },
+    "title_key": {
+     "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/title_key"
+    },
+    "raster_path": {
+     "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/raster_path"
+    },
+    "regions": {
+     "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/regions"
+    },
+    "compare_with": {
+     "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/compare_with"
+    },
+    "scale": {
+     "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/scale"
+    },
+    "review": {
+     "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/review"
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "licence": {
+        "not": {
+         "const": "LicenseRef-Own"
+        }
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "sources"
+      ],
+      "properties": {
+       "sources": {
+        "minItems": 1
+       },
+       "attribution": {
+        "minLength": 1
+       }
+      }
+     }
+    }
+   ]
+  },
+  "Convention": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "key",
+    "value",
+    "scope"
+   ],
+   "properties": {
+    "key": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_.]{1,60}$"
+    },
+    "value": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    },
+    "unit": {
+     "type": "string",
+     "maxLength": 40
+    },
+    "scope": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "subject": {
+       "$ref": "#/$defs/SubjectSlug"
+      },
+      "level": {
+       "$ref": "#/$defs/LevelSlug"
+      },
+      "node_id": {
+       "$ref": "#/$defs/NodeId"
+      }
+     }
+    },
+    "synonyms": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 80
+     }
+    },
+    "note": {
+     "type": "string",
+     "maxLength": 300
+    }
+   }
+  },
+  "MockPaperId": {
+   "type": "string",
+   "pattern": "^mck\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[0-9]{4}$"
+  },
+  "MockPaper": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "version",
+    "subject",
+    "level",
+    "paper_kind",
+    "title",
+    "duration_minutes",
+    "total_marks",
+    "calculator",
+    "blueprint",
+    "sections",
+    "provenance",
+    "review"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/MockPaperId"
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "subject": {
+     "$ref": "#/$defs/SubjectSlug"
+    },
+    "level": {
+     "$ref": "#/$defs/LevelSlug"
+    },
+    "paper_kind": {
+     "type": "string",
+     "enum": [
+      "paper_1_objective",
+      "paper_2_structured",
+      "paper_3_structured",
+      "section_mock"
+     ]
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    },
+    "duration_minutes": {
+     "type": "integer",
+     "minimum": 10,
+     "maximum": 240
+    },
+    "total_marks": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "calculator": {
+     "type": "boolean"
+    },
+    "blueprint": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "topic_weights"
+     ],
+     "properties": {
+      "topic_weights": {
+       "type": "object",
+       "minProperties": 1,
+       "propertyNames": {
+        "$ref": "#/$defs/NodeId"
+       },
+       "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       }
+      },
+      "seed": {
+       "type": "integer"
+      }
+     }
+    },
+    "sections": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "section_id",
+       "title",
+       "item_types",
+       "marks",
+       "questions"
+      ],
+      "properties": {
+       "section_id": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_]{1,16}$"
+       },
+       "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+       },
+       "item_types": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+         "$ref": "#/$defs/Item/properties/type"
+        }
+       },
+       "marks": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "choose": {
+        "type": [
+         "integer",
+         "null"
+        ],
+        "minimum": 1
+       },
+       "questions": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "question_id",
+          "item_id",
+          "marks",
+          "kc_ids"
+         ],
+         "properties": {
+          "question_id": {
+           "type": "string",
+           "pattern": "^[A-Za-z0-9_.]{1,16}$"
+          },
+          "item_id": {
+           "$ref": "#/$defs/ItemId"
+          },
+          "marks": {
+           "type": "integer",
+           "minimum": 1
+          },
+          "kc_ids": {
+           "type": "array",
+           "minItems": 1,
+           "uniqueItems": true,
+           "items": {
+            "$ref": "#/$defs/KcId"
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "review": {
+     "$ref": "#/$defs/Review"
+    },
+    "grade_config": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "boundaries",
+      "labels"
+     ],
+     "properties": {
+      "boundaries": {
+       "type": "array",
+       "items": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       }
+      },
+      "labels": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "maxLength": 20
+       }
+      }
+     }
+    }
+   }
+  },
+  "PassageId": {
+   "type": "string",
+   "pattern": "^(les|wex|itm|mc)\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+(\\.[a-z0-9_]+)?#[1-9][0-9]{0,2}$"
+  },
+  "SearchPassage": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "kind",
+    "record_id",
+    "title",
+    "text",
+    "kc_ids",
+    "topic_ids"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/PassageId"
+    },
+    "kind": {
+     "type": "string",
+     "enum": [
+      "lesson",
+      "worked_example",
+      "misconception",
+      "item"
+     ]
+    },
+    "record_id": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/LessonId"
+      },
+      {
+       "$ref": "#/$defs/WorkedExampleId"
+      },
+      {
+       "$ref": "#/$defs/MisconceptionId"
+      },
+      {
+       "$ref": "#/$defs/ItemId"
+      }
+     ]
+    },
+    "title": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 8000
+    },
+    "kc_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/KcId"
+     },
+     "uniqueItems": true
+    },
+    "topic_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/NodeId"
+     },
+     "uniqueItems": true
+    }
+   }
+  },
+  "SearchVector": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "vector"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/PassageId"
+    },
+    "vector": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9+/]+={0,2}$",
+     "maxLength": 11000
+    }
+   }
+  },
+  "VisualPreset": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "subject",
+    "title",
+    "kind",
+    "params",
+    "licence",
+    "attribution",
+    "version",
+    "levels",
+    "kc_ids",
+    "review"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/DiagramId"
+    },
+    "subject": {
+     "$ref": "#/$defs/SubjectSlug"
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    },
+    "title_key": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "kind": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_]{1,40}$"
+    },
+    "params": {
+     "type": "object"
+    },
+    "alt_text": {
+     "type": "string",
+     "maxLength": 600
+    },
+    "licence": {
+     "$ref": "#/$defs/DiagramLicenceId"
+    },
+    "attribution": {
+     "type": "string",
+     "maxLength": 500
+    },
+    "sources": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/Source"
+     }
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "levels": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "O",
+       "A"
+      ]
+     },
+     "minItems": 1,
+     "uniqueItems": true
+    },
+    "kc_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/KcId"
+     },
+     "maxItems": 40
+    },
+    "review": {
+     "$ref": "https://jana.dev/contracts/visuals/diagram-entry#/properties/review"
+    },
+    "resolved": {
+     "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved"
+    }
+   }
+  },
+  "ChartOfAccounts": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "accounts"
+   ],
+   "properties": {
+    "id": {
+     "type": "string",
+     "pattern": "^coa\\.[a-z0-9_.]+\\.v[0-9]+$"
+    },
+    "accounts": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 200,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "account_id",
+       "account_name",
+       "class"
+      ],
+      "properties": {
+       "account_id": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_:]{1,80}$"
+       },
+       "account_name": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+       },
+       "accepted_names": {
+        "type": "array",
+        "maxItems": 12,
+        "items": {
+         "type": "string",
+         "minLength": 1,
+         "maxLength": 80
+        }
+       },
+       "class": {
+        "enum": [
+         "asset",
+         "liability",
+         "capital",
+         "income",
+         "expense",
+         "drawings",
+         "contra"
+        ]
+       },
+       "normal_side": {
+        "enum": [
+         "debit",
+         "credit"
+        ]
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

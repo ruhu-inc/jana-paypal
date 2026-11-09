@@ -1,0 +1,62 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/electrolysis_sim.schema.json sha256 80622e8fed6c9f414c363adcca7ac4b7726f5df18c2ffc40530138f4d2d6109f; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/electrolysis_sim",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "preset_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100
+  },
+  "electrolyte": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 80
+  },
+  "phase": {
+   "enum": [
+    "molten",
+    "aqueous"
+   ]
+  },
+  "electrodes": {
+   "enum": [
+    "inert",
+    "copper"
+   ]
+  },
+  "current_a": {
+   "type": "number",
+   "minimum": 0
+  },
+  "duration_s": {
+   "type": "number",
+   "minimum": 0
+  },
+  "locked": {
+   "type": "array",
+   "items": {
+    "enum": [
+     "current"
+    ]
+   },
+   "maxItems": 1,
+   "uniqueItems": true
+  },
+  "predict": {
+   "enum": [
+    "poe.chm.electrolysis_brine_cathode.v1"
+   ]
+  }
+ },
+ "required": [
+  "preset_id",
+  "electrolyte",
+  "phase",
+  "electrodes",
+  "current_a",
+  "duration_s"
+ ]
+}

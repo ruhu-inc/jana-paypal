@@ -1,0 +1,33 @@
+{
+  "version": "2026-11-03.1",
+  "opencv_version": "4.14.0",
+  "face_detector": {
+    "name": "YuNet face detector (opencv_zoo face_detection_yunet_2023mar)",
+    "file": "face_detection_yunet_2023mar.onnx",
+    "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+    "source": "https://github.com/opencv/opencv_zoo/blob/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/face_detection_yunet/face_detection_yunet_2023mar.onnx",
+    "licence": "MIT",
+    "long_edge": 1200,
+    "score_threshold": 0.4,
+    "nms_threshold": 0.3,
+    "top_k": 50
+  },
+  "calibration": {
+    "set": "evals/perception/person/set.json",
+    "set_version": "2026-10-23.1",
+    "evidence": "evals/perception/person/runs/2026-10-23/report.json",
+    "decision": "2026-11-03: the owner approved the YuNet face gate at 0.4 for jana-meta, replacing the Haar/HOG stack, with the trade-off in evals/perception/person/README.md (36 of 500 people photos the old stack refused now pass; faces only). jana chose 0.6 on 2026-10-23. Independent label review pending.",
+    "refused_at_threshold": {
+      "people_photos": "411/500",
+      "photographed_pages": "5/118",
+      "synthetic_worksheets": "1/862",
+      "regression_worksheets": "0/29"
+    },
+    "retired_stack_refused": {
+      "people_photos": "340/500",
+      "photographed_pages": "49/118",
+      "synthetic_worksheets": "404/862",
+      "regression_worksheets": "0/29"
+    }
+  }
+}

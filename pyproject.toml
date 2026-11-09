@@ -1,0 +1,87 @@
+# uv workspace root (virtual): Python services and repository tooling.
+[tool.uv]
+required-version = ">=0.10,<0.11"
+# Standalone CPython builds: no macOS framework stub that re-executes itself, so the worker's Seatbelt profile can
+# deny process creation outright (SEC-06), and the same build everywhere.
+python-preference = "only-managed"
+# `uv run` and `uv sync` install the tooling and the test-only reference libraries; neither group ships (SEC-22).
+default-groups = ["dev", "conformance"]
+
+[tool.uv.workspace]
+members = ["services/*", "scripts"]
+
+[dependency-groups]
+# TEST-ONLY reference implementations the learner model is checked against (owner-approved, 2026-10-17): py-fsrs for
+# the review scheduler (LRN-13 `lrn13_matches_py_fsrs`) and pyBKT for the BKT path (LRN-11 `lrn11_bkt_matches_pybkt`).
+# Never a dependency of a shipped package: the import layers forbid shipped code from importing them. pyBKT 1.4.3 probes
+# scikit-learn's metric functions at import and fails on the private `_log_loss` of scikit-learn 1.8 and later,
+# hence the bound.
+conformance = ["fsrs==6.3.2", "pyBKT==1.4.3", "scikit-learn<1.8"]
+dev = ["pytest>=8", "hypothesis>=6", "ruff>=0.13", "mypy>=1.18", "import-linter>=2.3", "datamodel-code-generator==0.83.0", "types-jsonschema>=4.25"]
+
+[tool.pytest.ini_options]
+testpaths = ["scripts/tests", "services"]
+# Acceptance tests are named exactly after the specification's test names
+# (<lower-case requirement id>_<name>, for example arc16_repository_layout_check).
+python_functions = ["test_*", "[a-z][a-z][a-z][0-9][0-9]_*"]
+addopts = ["-ra", "--strict-markers"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+extend-exclude = [
+    "docs",
+    "apps/prototype-s0",
+    # Immutable historical experiment scripts retained with their original evidence hashes; not current tooling.
+    "scripts/governance/evidence",
+    # Generated contract bindings: formatted by the generator, never linted or edited by hand (ARC-30).
+    "services/agent-core/agent_core/contracts",
+    "services/tool-worker/tool_worker/contracts",
+    "services/ingest/ingest/contracts",
+    "services/cloud-gateway/cloud_gateway/contracts",
+    "services/agent-core/agent_core/tools/generated",
+    "services/agent-core/agent_core/store/generated",
+    "services/agent-core/agent_core/assets/generated",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "RUF"]
+ignore = ["S101", "S603", "S607"]  # asserts in tests; subprocess calls with fixed argv in tooling
+
+[tool.ruff.lint.per-file-ignores]
+# The grammar and its tests deliberately handle Unicode maths symbols (×, −, Greek letters).
+"services/tool-worker/tool_worker/grammar.py" = ["RUF001"]
+"services/tool-worker/tool_worker/functions/units.py" = ["RUF001"]
+# Typed working lines use the students' multiplication and minus signs (×, −), normalised for the tools.
+"services/agent-core/agent_core/engine/slice.py" = ["RUF001"]
+# Seeded pseudo-random sampling is required for reproducible checks (VER-01), not a security use.
+"services/tool-worker/tool_worker/functions/maths.py" = ["S311"]
+"services/*/tests/*.py" = ["RUF001", "S311"]
+# Golden sets are generated deterministically from a seed and contain maths symbols.
+"scripts/jana_tools/golden.py" = ["RUF001", "S311"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = [
+    "services/agent-core/agent_core",
+    "services/tool-worker/tool_worker",
+    "services/pack-builder/pack_builder",
+    "services/signing-service/signing_service",
+    "services/cloud-gateway/cloud_gateway",
+    "services/ingest/ingest",
+    "scripts/jana_tools/harness/capture_pipeline.py",
+    "scripts/jana_tools/harness/capture_eval.py",
+    "scripts/jana_tools/harness/perception.py",
+    "scripts/jana_tools/perception_fixtures.py",
+]
+
+[[tool.mypy.overrides]]
+module = ["sympy", "sympy.*", "pint", "pint.*", "mpmath", "yaml"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# Two known limits of datamodel-code-generator 0.83 in generated bindings: constrained dict keys written as
+# constr() calls, and plain defaults on constrained root models. Every other strict check still applies.
+module = ["agent_core.contracts.*", "tool_worker.contracts.*", "ingest.contracts.*", "cloud_gateway.contracts.*"]
+disable_error_code = ["valid-type", "list-item"]

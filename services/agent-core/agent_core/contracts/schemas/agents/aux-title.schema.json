@@ -1,0 +1,18 @@
+{
+ "$comment": "GENERATED from contracts/agents/aux-title.schema.json sha256 c61f59ed76e4a8f79a8957ddfb6af4f7d34fc55bf56918efd736f0e96416329c; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/aux-title",
+ "title": "Auxiliary output: title",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "title"
+ ],
+ "properties": {
+  "title": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 60
+  }
+ }
+}

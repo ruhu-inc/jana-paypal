@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "task": {
+      "enum": [
+        "ph",
+        "neutralisation",
+        "titration_curve"
+      ]
+    },
+    "acid": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9()\\[\\]]{1,24}$"
+    },
+    "acid_concentration": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "acid_volume": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "basicity": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "acid_strength": {
+      "enum": [
+        "strong",
+        "weak"
+      ]
+    },
+    "ka": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 100
+    },
+    "base": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9()\\[\\]]{1,24}$"
+    },
+    "base_concentration": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "base_volume": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "acidity": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "base_strength": {
+      "enum": [
+        "strong",
+        "weak"
+      ]
+    },
+    "ph": {
+      "type": "number",
+      "minimum": -2,
+      "maximum": 16
+    },
+    "analyte": {
+      "enum": [
+        "acid",
+        "base"
+      ]
+    },
+    "volume_max": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "points": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 400
+    },
+    "at_volumes": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": [
+          "number",
+          "string"
+        ],
+        "minLength": 1,
+        "maxLength": 40
+      }
+    },
+    "dp": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "constants": {
+      "type": "array",
+      "maxItems": 40,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "symbol",
+          "source"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_()]{0,31}$"
+          },
+          "value": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+            "maxLength": 40
+          },
+          "unit": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "source": {
+            "enum": [
+              "question",
+              "item",
+              "pack",
+              "default"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

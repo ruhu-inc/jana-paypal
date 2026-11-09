@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/particle_diagram",
+  "$comment": "Params for particle_diagram, owned by the vetted renderer (VSL-03). In a reaction the particle counts come from chem_balance coefficients (VER-19). Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "particle_diagram params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mode"
+  ],
+  "properties": {
+    "mode": {
+      "enum": [
+        "state",
+        "reaction"
+      ]
+    },
+    "state": {
+      "enum": [
+        "solid",
+        "liquid",
+        "gas"
+      ]
+    },
+    "equation": {
+      "type": "string",
+      "maxLength": 120
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "particle_label"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

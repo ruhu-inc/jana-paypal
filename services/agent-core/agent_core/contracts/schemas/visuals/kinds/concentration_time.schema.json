@@ -1,0 +1,335 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/concentration_time.schema.json sha256 8591738ea4f5a49a3b103fa4c3393a4b017a8f411d798b0cf2ce6e702b83c0e0; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/concentration_time",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "mode": {
+   "enum": [
+    "data",
+    "first_order",
+    "qualitative_equilibrium"
+   ]
+  },
+  "species": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+     },
+     "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+     },
+     "initial": {
+      "type": "number",
+      "minimum": 0
+     },
+     "points": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "time": {
+         "type": "number",
+         "minimum": 0
+        },
+        "concentration": {
+         "type": "number",
+         "minimum": 0
+        }
+       },
+       "required": [
+        "time",
+        "concentration"
+       ]
+      },
+      "minItems": 2,
+      "maxItems": 500
+     },
+     "rate_constant": {
+      "type": "number",
+      "minimum": 0
+     },
+     "initial_plateau": {
+      "type": "number",
+      "minimum": 0
+     },
+     "final_plateau": {
+      "type": "number",
+      "minimum": 0
+     },
+     "role": {
+      "enum": [
+       "reactant",
+       "product"
+      ]
+     }
+    },
+    "required": [
+     "id",
+     "label"
+    ]
+   },
+   "minItems": 1,
+   "maxItems": 6
+  },
+  "time_unit": {
+   "enum": [
+    "s",
+    "min"
+   ]
+  },
+  "concentration_unit": {
+   "enum": [
+    "mol/L",
+    "relative"
+   ]
+  },
+  "time_range": {
+   "type": "array",
+   "items": {
+    "type": "number",
+    "minimum": 0
+   },
+   "minItems": 2,
+   "maxItems": 2
+  },
+  "event": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "at": {
+     "type": "number",
+     "minimum": 0
+    },
+    "change": {
+     "enum": [
+      "temperature_increase",
+      "temperature_decrease",
+      "pressure_increase",
+      "pressure_decrease",
+      "add_species",
+      "remove_species",
+      "catalyst"
+     ]
+    },
+    "species_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 64,
+     "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+    },
+    "reaction": {
+     "$ref": "https://jana.dev/contracts/tools/science-compute#/$defs/Reaction"
+    },
+    "forward_enthalpy_kj_mol": {
+     "type": "number"
+    }
+   },
+   "required": [
+    "at",
+    "change",
+    "reaction"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "change": {
+        "enum": [
+         "temperature_increase",
+         "temperature_decrease"
+        ]
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "forward_enthalpy_kj_mol"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "change": {
+        "enum": [
+         "add_species",
+         "remove_species"
+        ]
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "species_id"
+      ]
+     }
+    }
+   ]
+  },
+  "show_initial_tangent": {
+   "type": "boolean"
+  }
+ },
+ "required": [
+  "mode",
+  "species",
+  "time_unit",
+  "concentration_unit",
+  "time_range"
+ ],
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "mode": {
+      "const": "data"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "species": {
+      "items": {
+       "required": [
+        "points"
+       ],
+       "not": {
+        "anyOf": [
+         {
+          "required": [
+           "rate_constant"
+          ]
+         },
+         {
+          "required": [
+           "initial_plateau"
+          ]
+         },
+         {
+          "required": [
+           "final_plateau"
+          ]
+         }
+        ]
+       }
+      }
+     }
+    },
+    "not": {
+     "required": [
+      "event"
+     ]
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "mode": {
+      "const": "first_order"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "species": {
+      "items": {
+       "required": [
+        "initial",
+        "rate_constant"
+       ],
+       "not": {
+        "anyOf": [
+         {
+          "required": [
+           "points"
+          ]
+         },
+         {
+          "required": [
+           "initial_plateau"
+          ]
+         },
+         {
+          "required": [
+           "final_plateau"
+          ]
+         }
+        ]
+       },
+       "properties": {
+        "rate_constant": {
+         "exclusiveMinimum": 0
+        }
+       }
+      }
+     }
+    },
+    "not": {
+     "required": [
+      "event"
+     ]
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "mode": {
+      "const": "qualitative_equilibrium"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "species": {
+      "items": {
+       "required": [
+        "initial_plateau",
+        "final_plateau",
+        "role"
+       ],
+       "not": {
+        "anyOf": [
+         {
+          "required": [
+           "points"
+          ]
+         },
+         {
+          "required": [
+           "rate_constant"
+          ]
+         },
+         {
+          "required": [
+           "initial"
+          ]
+         }
+        ]
+       }
+      }
+     },
+     "concentration_unit": {
+      "const": "relative"
+     }
+    },
+    "required": [
+     "event"
+    ]
+   }
+  }
+ ]
+}

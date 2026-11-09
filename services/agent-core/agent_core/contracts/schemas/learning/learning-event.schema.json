@@ -1,0 +1,1969 @@
+{
+ "$comment": "GENERATED from contracts/learning/learning-event.schema.json sha256 b62d835dcc86d858c1583f9b822cb728710c888635c6fa8e1c8c909a8c577a3d; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/learning/learning-event",
+ "title": "LearningEvent",
+ "oneOf": [
+  {
+   "title": "item_exposed",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "item_exposed"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_item_exposed"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "session_started",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "session_started"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_session_started"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "session_ended",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "session_ended"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_session_ended"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "attempt",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "attempt"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_attempt"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "hint",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "hint"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_hint"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "verdict",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "verdict"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_verdict"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "review",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "review"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_review"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "mastery_check",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "mastery_check"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_mastery_check"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "diagnostic_item",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "diagnostic_item"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_diagnostic_item"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "misconception_evidence",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "misconception_evidence"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_misconception_evidence"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "setting_change",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "setting_change"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_setting_change"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "correction",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "correction"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_correction"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "plan_generated",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "plan_generated"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_plan_generated"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "plan_decision",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "plan_decision"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_plan_decision"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "detour",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "detour"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_detour"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "mode_change",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "mode_change"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_mode_change"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "note_written",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "note_written"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_note_written"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "note_deleted",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "note_deleted"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_note_deleted"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "integrity_signal",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "integrity_signal"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_integrity_signal"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "mock_submitted",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "mock_submitted"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_mock_submitted"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "consent_granted",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "consent_granted"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_consent_granted"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "consent_withdrawn",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "consent_withdrawn"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_consent_withdrawn"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "safety_flagged",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "safety_flagged"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_safety_flagged"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "injection_flagged",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "injection_flagged"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_injection_flagged"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "profile_updated",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "profile_updated"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_profile_updated"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "skills_delivered",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "skills_delivered"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_skills_delivered"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "study_activity",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "study_activity"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_study_activity"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "memory_requested",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "const": "memory_requested"
+    },
+    "payload": {
+     "$ref": "#/$defs/payload_memory_requested"
+    }
+   },
+   "unevaluatedProperties": false
+  },
+  {
+   "title": "erased",
+   "allOf": [
+    {
+     "$ref": "#/$defs/envelope"
+    }
+   ],
+   "properties": {
+    "type": {
+     "enum": [
+      "session_started",
+      "session_ended",
+      "attempt",
+      "hint",
+      "verdict",
+      "review",
+      "mastery_check",
+      "diagnostic_item",
+      "misconception_evidence",
+      "setting_change",
+      "correction",
+      "plan_generated",
+      "plan_decision",
+      "detour",
+      "mode_change",
+      "note_written",
+      "note_deleted",
+      "integrity_signal",
+      "mock_submitted",
+      "consent_granted",
+      "consent_withdrawn",
+      "safety_flagged",
+      "injection_flagged",
+      "profile_updated",
+      "item_exposed",
+      "skills_delivered",
+      "study_activity",
+      "memory_requested"
+     ]
+    },
+    "payload": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "erased",
+      "erased_at"
+     ],
+     "properties": {
+      "erased": {
+       "const": true
+      },
+      "erased_at": {
+       "type": "string",
+       "format": "date-time"
+      }
+     }
+    }
+   },
+   "unevaluatedProperties": false
+  }
+ ],
+ "$defs": {
+  "id": {
+   "type": "string",
+   "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "kc_id": {
+   "type": "string",
+   "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+  },
+  "subject": {
+   "enum": [
+    "mathematics",
+    "physics",
+    "chemistry",
+    "biology",
+    "accounting"
+   ]
+  },
+  "envelope": {
+   "type": "object",
+   "required": [
+    "event_id",
+    "profile_id",
+    "seq",
+    "device_id",
+    "hlc",
+    "occurred_at",
+    "source",
+    "schema_version",
+    "type",
+    "payload"
+   ],
+   "properties": {
+    "event_id": {
+     "$ref": "#/$defs/id"
+    },
+    "profile_id": {
+     "$ref": "#/$defs/id"
+    },
+    "seq": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "device_id": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{32}$"
+    },
+    "hlc": {
+     "type": "string",
+     "pattern": "^[0-9]{15}-[0-9]{5}$"
+    },
+    "occurred_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "recorded_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "source": {
+     "enum": [
+      "engine",
+      "checker",
+      "student",
+      "reflector",
+      "sync"
+     ]
+    },
+    "schema_version": {
+     "const": "1.0"
+    },
+    "session_id": {
+     "$ref": "#/$defs/id"
+    }
+   }
+  },
+  "payload_session_started": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "session_id",
+    "mode",
+    "entry",
+    "hardware_class"
+   ],
+   "properties": {
+    "session_id": {
+     "$ref": "#/$defs/id"
+    },
+    "mode": {
+     "enum": [
+      "guided",
+      "solution",
+      "check_working",
+      "learn",
+      "practice",
+      "mock",
+      "revision",
+      "diagnostic",
+      "mastery_check",
+      "review",
+      "study",
+      "study_companion"
+     ]
+    },
+    "subject": {
+     "$ref": "#/$defs/subject"
+    },
+    "entry": {
+     "enum": [
+      "plan",
+      "question",
+      "lesson",
+      "practice",
+      "mock",
+      "review",
+      "detour",
+      "study"
+     ]
+    },
+    "hardware_class": {
+     "enum": [
+      "content_only",
+      "low",
+      "mid",
+      "high"
+     ]
+    },
+    "cloud_tier_enabled": {
+     "type": "boolean"
+    },
+    "online": {
+     "type": "boolean"
+    }
+   }
+  },
+  "payload_session_ended": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "session_id",
+    "reason",
+    "active_ms"
+   ],
+   "properties": {
+    "session_id": {
+     "$ref": "#/$defs/id"
+    },
+    "reason": {
+     "enum": [
+      "completed",
+      "student_left",
+      "interrupted",
+      "idle_timeout",
+      "crash_recovered"
+     ]
+    },
+    "active_ms": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "payload_attempt": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "attempt_id",
+    "session_id",
+    "mode",
+    "problem_ref",
+    "kc_ids",
+    "kc_source",
+    "attempt_index",
+    "response_kind",
+    "time_ms"
+   ],
+   "properties": {
+    "attempt_id": {
+     "$ref": "#/$defs/id"
+    },
+    "session_id": {
+     "$ref": "#/$defs/id"
+    },
+    "mode": {
+     "enum": [
+      "guided",
+      "solution",
+      "check_working",
+      "learn",
+      "practice",
+      "mock",
+      "revision",
+      "diagnostic",
+      "mastery_check",
+      "review"
+     ]
+    },
+    "item_id": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^[a-z0-9_.:-]+$"
+    },
+    "problem_ref": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "step_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "part_id": {
+     "type": "string",
+     "maxLength": 16
+    },
+    "kc_ids": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "kc_id",
+       "weight"
+      ],
+      "properties": {
+       "kc_id": {
+        "$ref": "#/$defs/kc_id"
+       },
+       "weight": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "maximum": 1
+       }
+      }
+     }
+    },
+    "kc_source": {
+     "enum": [
+      "pack",
+      "diagnoser"
+     ]
+    },
+    "kc_confidence": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "attempt_index": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "response_kind": {
+     "enum": [
+      "typed",
+      "choice",
+      "photo",
+      "handwriting",
+      "voice",
+      "working"
+     ]
+    },
+    "response_ref": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "normalised_response": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "choice_id": {
+     "type": "string",
+     "maxLength": 16
+    },
+    "time_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "confidence_rating": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 1,
+     "maximum": 3
+    }
+   }
+  },
+  "payload_hint": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "session_id",
+    "problem_ref",
+    "step_index",
+    "rung",
+    "trigger"
+   ],
+   "properties": {
+    "session_id": {
+     "$ref": "#/$defs/id"
+    },
+    "problem_ref": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "step_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "rung": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 5
+    },
+    "trigger": {
+     "enum": [
+      "student_request",
+      "offer_accepted",
+      "after_deflection",
+      "auto_start"
+     ]
+    },
+    "since_last_hint_ms": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 0
+    },
+    "kc_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/kc_id"
+     }
+    },
+    "source": {
+     "enum": [
+      "skill_ladder",
+      "generic_template"
+     ]
+    }
+   }
+  },
+  "payload_verdict": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "verdict_id",
+    "attempt_id",
+    "outcome",
+    "check_ids",
+    "closes_opportunity",
+    "marker_version"
+   ],
+   "properties": {
+    "verdict_id": {
+     "$ref": "#/$defs/id"
+    },
+    "attempt_id": {
+     "$ref": "#/$defs/id"
+    },
+    "outcome": {
+     "enum": [
+      "correct",
+      "incorrect",
+      "partial",
+      "unverifiable"
+     ]
+    },
+    "marks_awarded": {
+     "type": "number",
+     "minimum": 0
+    },
+    "marks_available": {
+     "type": "number",
+     "minimum": 0
+    },
+    "error_category": {
+     "enum": [
+      "value",
+      "units_missing",
+      "unit_error",
+      "power_of_ten",
+      "sig_figs",
+      "form",
+      "sign",
+      "arithmetic",
+      "dropped_term",
+      "illegal_operation",
+      "units",
+      "copy",
+      "wrong_side",
+      "wrong_account",
+      "unbalanced",
+      "missing_line",
+      "misconception",
+      "unreadable",
+      "other"
+     ]
+    },
+    "misconception_id": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^mc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+$"
+    },
+    "first_error_step": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 0
+    },
+    "first_error_kc": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/kc_id"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "check_ids": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^chk_[A-Za-z0-9_]{3,64}$"
+     }
+    },
+    "criteria": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "criterion_id",
+       "mark_type",
+       "result",
+       "method"
+      ],
+      "properties": {
+       "criterion_id": {
+        "type": "string",
+        "maxLength": 32
+       },
+       "mark_type": {
+        "enum": [
+         "M",
+         "A",
+         "B"
+        ]
+       },
+       "follow_through": {
+        "type": "boolean"
+       },
+       "result": {
+        "enum": [
+         "pass",
+         "fail",
+         "unresolved"
+        ]
+       },
+       "method": {
+        "enum": [
+         "tool",
+         "key",
+         "deterministic_match",
+         "judge_pair"
+        ]
+       }
+      }
+     }
+    },
+    "closes_opportunity": {
+     "type": "boolean"
+    },
+    "supersedes": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/id"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "marker_version": {
+     "type": "string",
+     "maxLength": 32
+    }
+   }
+  },
+  "payload_review": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kc_id",
+    "rating",
+    "attempt_id",
+    "due_at_after"
+   ],
+   "properties": {
+    "kc_id": {
+     "$ref": "#/$defs/kc_id"
+    },
+    "rating": {
+     "enum": [
+      "again",
+      "hard",
+      "good",
+      "easy"
+     ]
+    },
+    "attempt_id": {
+     "$ref": "#/$defs/id"
+    },
+    "retrievability_before": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "due_at_after": {
+     "type": "string",
+     "format": "date-time"
+    }
+   }
+  },
+  "payload_mastery_check": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kc_id",
+    "item_index",
+    "attempt_id",
+    "item_result",
+    "check_state"
+   ],
+   "properties": {
+    "kc_id": {
+     "$ref": "#/$defs/kc_id"
+    },
+    "item_index": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 3
+    },
+    "attempt_id": {
+     "$ref": "#/$defs/id"
+    },
+    "item_result": {
+     "enum": [
+      "pass",
+      "fail"
+     ]
+    },
+    "check_state": {
+     "enum": [
+      "in_progress",
+      "passed",
+      "failed"
+     ]
+    }
+   }
+  },
+  "payload_diagnostic_item": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "subject",
+    "kc_id",
+    "response"
+   ],
+   "properties": {
+    "subject": {
+     "$ref": "#/$defs/subject"
+    },
+    "kc_id": {
+     "$ref": "#/$defs/kc_id"
+    },
+    "item_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "response": {
+     "enum": [
+      "answered",
+      "not_learned",
+      "skipped"
+     ]
+    },
+    "attempt_id": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/id"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   }
+  },
+  "payload_misconception_evidence": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "misconception_id",
+    "kc_id",
+    "evidence_source",
+    "weight"
+   ],
+   "properties": {
+    "misconception_id": {
+     "type": "string",
+     "pattern": "^mc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+$"
+    },
+    "kc_id": {
+     "$ref": "#/$defs/kc_id"
+    },
+    "evidence_source": {
+     "enum": [
+      "probe",
+      "signature",
+      "check_working"
+     ]
+    },
+    "attempt_id": {
+     "$ref": "#/$defs/id"
+    },
+    "weight": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    }
+   }
+  },
+  "payload_setting_change": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "setting",
+    "new_value",
+    "actor_role"
+   ],
+   "properties": {
+    "setting": {
+     "enum": [
+      "low_power",
+      "text_scale",
+      "locale",
+      "memory_saving",
+      "notifications",
+      "reduced_motion",
+      "read_aloud",
+      "easy_read",
+      "extra_time_percent",
+      "speech_rate",
+      "speech_voice",
+      "theme",
+      "character_shortcuts",
+      "tutor_name",
+      "tutor_avatar",
+      "faster_tutor",
+      "wake_word",
+      "checkin_notifications"
+     ]
+    },
+    "old_value": {},
+    "new_value": {},
+    "actor_role": {
+     "enum": [
+      "student"
+     ]
+    }
+   }
+  },
+  "payload_correction": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "target",
+    "action"
+   ],
+   "properties": {
+    "target": {
+     "enum": [
+      "preference",
+      "misconception",
+      "profile_field",
+      "note"
+     ]
+    },
+    "target_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "action": {
+     "enum": [
+      "override",
+      "dispute",
+      "undispute",
+      "clear_override"
+     ]
+    },
+    "value": {},
+    "actor_role": {
+     "enum": [
+      "student"
+     ]
+    }
+   }
+  },
+  "payload_plan_generated": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "plan_id",
+    "date",
+    "minutes",
+    "phase",
+    "blocks"
+   ],
+   "properties": {
+    "plan_id": {
+     "$ref": "#/$defs/id"
+    },
+    "date": {
+     "type": "string",
+     "format": "date"
+    },
+    "minutes": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "phase": {
+     "enum": [
+      "normal",
+      "countdown",
+      "final",
+      "exam_day"
+     ]
+    },
+    "blocks": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "kind",
+       "minutes"
+      ],
+      "properties": {
+       "kind": {
+        "enum": [
+         "warmup",
+         "main",
+         "mixed",
+         "reflect",
+         "mock",
+         "mastery_check"
+        ]
+       },
+       "kc_ids": {
+        "type": "array",
+        "items": {
+         "$ref": "#/$defs/kc_id"
+        }
+       },
+       "minutes": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "reason_code": {
+        "enum": [
+         "due_reviews",
+         "weak_high_value",
+         "prerequisite",
+         "interleave",
+         "exam_phase",
+         "revisit_moved_on",
+         "mastery_check",
+         "mock_follow_up",
+         "due_reviews_study"
+        ]
+       },
+       "study_cards": {
+        "$ref": "#/$defs/study_cards"
+       }
+      }
+     }
+    },
+    "deferred_reviews": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "payload_plan_decision": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "plan_id",
+    "decision"
+   ],
+   "properties": {
+    "plan_id": {
+     "$ref": "#/$defs/id"
+    },
+    "decision": {
+     "enum": [
+      "start",
+      "change",
+      "not_today"
+     ]
+    },
+    "alternative_index": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 2
+    },
+    "new_minutes": {
+     "type": "integer",
+     "minimum": 1
+    }
+   }
+  },
+  "payload_detour": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kc_id",
+    "prerequisite_kc_id",
+    "action",
+    "stack_depth"
+   ],
+   "properties": {
+    "kc_id": {
+     "$ref": "#/$defs/kc_id"
+    },
+    "prerequisite_kc_id": {
+     "$ref": "#/$defs/kc_id"
+    },
+    "action": {
+     "enum": [
+      "offered",
+      "accepted",
+      "declined",
+      "completed",
+      "abandoned"
+     ]
+    },
+    "stack_depth": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 2
+    }
+   }
+  },
+  "payload_mode_change": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "session_id",
+    "from_mode",
+    "to_mode",
+    "reason"
+   ],
+   "properties": {
+    "session_id": {
+     "$ref": "#/$defs/id"
+    },
+    "from_mode": {
+     "enum": [
+      "guided",
+      "solution",
+      "check_working",
+      "learn",
+      "practice",
+      "mock",
+      "revision",
+      "diagnostic",
+      "mastery_check",
+      "review"
+     ]
+    },
+    "to_mode": {
+     "enum": [
+      "guided",
+      "solution",
+      "check_working",
+      "learn",
+      "practice",
+      "mock",
+      "revision",
+      "diagnostic",
+      "mastery_check",
+      "review"
+     ]
+    },
+    "reason": {
+     "enum": [
+      "student_request",
+      "policy_block",
+      "mock_start",
+      "mock_submit",
+      "plan",
+      "detour"
+     ]
+    }
+   }
+  },
+  "payload_note_written": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "note_id",
+    "text",
+    "source_event_ids",
+    "status"
+   ],
+   "properties": {
+    "note_id": {
+     "$ref": "#/$defs/id"
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 140
+    },
+    "subject": {
+     "$ref": "#/$defs/subject"
+    },
+    "kc_ids": {
+     "type": "array",
+     "maxItems": 5,
+     "items": {
+      "$ref": "#/$defs/kc_id"
+     }
+    },
+    "source_event_ids": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "$ref": "#/$defs/id"
+     }
+    },
+    "expires_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "status": {
+     "enum": [
+      "active",
+      "pending_review"
+     ]
+    },
+    "reflector_version": {
+     "type": "string",
+     "maxLength": 32
+    }
+   }
+  },
+  "payload_note_deleted": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "note_id",
+    "actor_role"
+   ],
+   "properties": {
+    "note_id": {
+     "$ref": "#/$defs/id"
+    },
+    "actor_role": {
+     "enum": [
+      "student",
+      "system_expiry"
+     ]
+    }
+   }
+  },
+  "payload_integrity_signal": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind"
+   ],
+   "properties": {
+    "kind": {
+     "enum": [
+      "focus_loss",
+      "large_paste",
+      "hint_burst",
+      "fast_guess_run",
+      "solution_view",
+      "bottom_out"
+     ]
+    },
+    "sitting_id": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/id"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "duration_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "size_chars": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "payload_mock_submitted": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "sitting_id",
+    "paper_id",
+    "reason",
+    "answered",
+    "flagged",
+    "active_ms",
+    "interruptions",
+    "pauses"
+   ],
+   "properties": {
+    "sitting_id": {
+     "$ref": "#/$defs/id"
+    },
+    "paper_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "reason": {
+     "enum": [
+      "student",
+      "time_up",
+      "abandoned"
+     ]
+    },
+    "answered": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "flagged": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "active_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "interruptions": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "pauses": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "ref": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 80
+  },
+  "payload_consent_granted": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "consent_id",
+    "scope"
+   ],
+   "properties": {
+    "consent_id": {
+     "$ref": "#/$defs/ref"
+    },
+    "scope": {
+     "type": "string",
+     "pattern": "^[a-z_]+$"
+    }
+   }
+  },
+  "payload_consent_withdrawn": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "consent_id",
+    "scope"
+   ],
+   "properties": {
+    "consent_id": {
+     "$ref": "#/$defs/ref"
+    },
+    "scope": {
+     "type": "string",
+     "pattern": "^[a-z_]+$"
+    }
+   }
+  },
+  "payload_safety_flagged": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "category",
+    "template_id",
+    "turn_id"
+   ],
+   "properties": {
+    "category": {
+     "enum": [
+      "off_topic",
+      "beyond_level",
+      "cheating_request",
+      "distress",
+      "harmful",
+      "sexual_or_violent",
+      "personal_data",
+      "injection",
+      "medical_legal_advice"
+     ]
+    },
+    "template_id": {
+     "type": "string",
+     "pattern": "^tpl\\.[a-z0-9_]+$"
+    },
+    "turn_id": {
+     "$ref": "#/$defs/ref"
+    }
+   }
+  },
+  "payload_injection_flagged": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "source",
+    "pattern_id"
+   ],
+   "properties": {
+    "source": {
+     "enum": [
+      "text",
+      "photo",
+      "pack"
+     ]
+    },
+    "pattern_id": {
+     "$ref": "#/$defs/ref"
+    }
+   }
+  },
+  "payload_profile_updated": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "changed_fields"
+   ],
+   "properties": {
+    "changed_fields": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 20,
+     "items": {
+      "type": "string",
+      "pattern": "^[a-z_]+$"
+     }
+    }
+   }
+  },
+  "payload_item_exposed": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "item_id": {
+     "type": "string",
+     "maxLength": 96
+    },
+    "pack_version": {
+     "type": "string",
+     "maxLength": 32
+    },
+    "surface": {
+     "enum": [
+      "search_preview",
+      "search_open",
+      "practice",
+      "diagnostic",
+      "mastery_check",
+      "mock",
+      "review"
+     ]
+    }
+   },
+   "required": [
+    "item_id",
+    "pack_version",
+    "surface"
+   ]
+  },
+  "payload_skills_delivered": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "turn_id",
+    "skills"
+   ],
+   "properties": {
+    "turn_id": {
+     "$ref": "#/$defs/id"
+    },
+    "skills": {
+     "type": "array",
+     "maxItems": 64,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "name",
+       "kind",
+       "version",
+       "sha256",
+       "delivery",
+       "receipt"
+      ],
+      "properties": {
+       "name": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+        "minLength": 3,
+        "maxLength": 64
+       },
+       "kind": {
+        "enum": [
+         "pedagogy",
+         "teaching",
+         "agent"
+        ]
+       },
+       "version": {
+        "type": "string",
+        "pattern": "^\\d+\\.\\d+$"
+       },
+       "sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       },
+       "delivery": {
+        "enum": [
+         "index",
+         "pushed",
+         "search"
+        ]
+       },
+       "receipt": {
+        "type": "boolean"
+       }
+      }
+     }
+    }
+   }
+  },
+  "payload_study_activity": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "activity",
+    "ref",
+    "kc_tags",
+    "outcome",
+    "rating",
+    "aid_kind",
+    "count"
+   ],
+   "properties": {
+    "activity": {
+     "enum": [
+      "quiz_item",
+      "card_review",
+      "aid_made",
+      "source_added",
+      "pack_ready",
+      "journey_step"
+     ]
+    },
+    "ref": {
+     "type": "string",
+     "maxLength": 64,
+     "pattern": "^(aid|att|card|rsr|jny|src):[0-9A-Za-z_:]{1,59}$"
+    },
+    "kc_tags": {
+     "type": "array",
+     "maxItems": 3,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "kc_id",
+       "weight"
+      ],
+      "properties": {
+       "kc_id": {
+        "$ref": "#/$defs/kc_id"
+       },
+       "weight": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "maximum": 1
+       }
+      }
+     }
+    },
+    "outcome": {
+     "anyOf": [
+      {
+       "enum": [
+        "correct",
+        "incorrect",
+        "skipped",
+        "unverifiable"
+       ]
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "rating": {
+     "anyOf": [
+      {
+       "enum": [
+        "again",
+        "hard",
+        "good",
+        "easy"
+       ]
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "aid_kind": {
+     "anyOf": [
+      {
+       "enum": [
+        "notes",
+        "summary",
+        "chat",
+        "flashcards",
+        "quiz",
+        "audio_overview",
+        "lesson_plan",
+        "chapters",
+        "concept_map",
+        "teaching_outline"
+       ]
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "count": {
+     "anyOf": [
+      {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 200
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   }
+  },
+  "study_cards": {
+   "type": "array",
+   "maxItems": 10,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "deck_id",
+     "card_id"
+    ],
+    "properties": {
+     "deck_id": {
+      "type": "string",
+      "pattern": "^dek_[0-9A-HJKMNP-TV-Z]{26}$"
+     },
+     "card_id": {
+      "type": "string",
+      "pattern": "^fcd_[0-9A-HJKMNP-TV-Z]{26}$"
+     }
+    }
+   }
+  },
+  "payload_memory_requested": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "request_id"
+   ],
+   "properties": {
+    "request_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 100
+    }
+   }
+  }
+ }
+}

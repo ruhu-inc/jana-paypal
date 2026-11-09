@@ -1,0 +1,235 @@
+/* The tutor presence primitive (TABLE DSN-10a, TABLE DSN-27a): the only motion of the tutor characters, on the rig of
+   Character.tsx. It animates transform and opacity only. The timings are the table's proposals, named here once. The
+   static pose is in the markup, so with reduced motion (the system setting, or the root's data-reduced-motion that
+   Reduce motion and low-power mode set) nothing runs and the speaking mouth keeps its rest shape. */
+.presence {
+  --presence-idle-period: 4s;
+  /* Idle breathing stops after 20 s: five 4 s periods. */
+  --presence-idle-repeats: 5;
+  --presence-think-period: 1.6s;
+  --presence-bob-period: 1.1s;
+  --presence-beat: 600ms;
+  --presence-point: 200ms;
+  --presence-oh: 120ms;
+  --presence-oh-smile: 320ms;
+}
+
+.presence-tb {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.presence-hinge {
+  transform-box: fill-box;
+  transform-origin: 100% 0%;
+}
+
+.presence-pivot {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+/* While animating, the live shape shows; the rest shape and still indicator wait for reduced motion. */
+.presence-rest {
+  opacity: 0;
+}
+
+@keyframes presence-breathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes presence-blink {
+  0%,
+  94%,
+  100% {
+    transform: scaleY(1);
+  }
+  97% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes presence-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  34% {
+    transform: translateY(-1px);
+  }
+  70% {
+    transform: translateY(0.5px);
+  }
+}
+
+@keyframes presence-lean {
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes presence-glance {
+  from {
+    transform: translate(1.5px, -2px);
+  }
+  to {
+    transform: translate(2.5px, -3px);
+  }
+}
+
+@keyframes presence-dot {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes presence-wave {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  30% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes presence-beat {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes presence-tilt {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes presence-point {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(16deg);
+  }
+}
+
+@keyframes presence-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes presence-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.presence-breathe {
+  animation: presence-breathe var(--presence-idle-period) var(--ease-standard) var(--presence-idle-repeats) alternate both;
+}
+
+.presence-blink {
+  animation: presence-blink var(--presence-idle-period) linear var(--presence-idle-repeats);
+}
+
+.presence-bob {
+  animation: presence-bob var(--presence-bob-period) var(--ease-standard) infinite;
+}
+
+.presence-lean {
+  animation: presence-lean var(--presence-think-period) var(--ease-standard) infinite alternate;
+}
+
+.presence-glance {
+  animation: presence-glance var(--presence-think-period) var(--ease-standard) infinite alternate;
+}
+
+.presence-dot {
+  animation: presence-dot var(--presence-think-period) var(--ease-standard) infinite;
+}
+
+.presence-wave {
+  animation: presence-wave var(--presence-bob-period) var(--ease-standard) infinite;
+}
+
+.presence-dot-2 {
+  animation-delay: 150ms;
+}
+
+.presence-dot-3 {
+  animation-delay: 300ms;
+}
+
+.presence-beat {
+  animation: presence-beat var(--presence-beat) var(--ease-standard) both;
+}
+
+.presence-tilt {
+  animation: presence-tilt var(--presence-beat) var(--ease-standard) both;
+}
+
+.presence-point {
+  animation: presence-point var(--presence-point) var(--ease-standard) both;
+}
+
+/* Interrupted: the small "o" for a moment, then the smile. */
+.presence-oh {
+  animation: presence-fade-out var(--presence-oh-smile) var(--ease-standard) var(--presence-oh) both;
+}
+
+.presence-oh-smile {
+  animation: presence-fade-in var(--presence-oh-smile) var(--ease-standard) var(--presence-oh) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .presence .presence-motion {
+    animation: none;
+  }
+  .presence .presence-shape {
+    opacity: 0;
+  }
+  .presence .presence-rest {
+    opacity: 1;
+  }
+}
+
+[data-reduced-motion="true"] .presence-motion {
+  animation: none;
+}
+
+[data-reduced-motion="true"] .presence-shape {
+  opacity: 0;
+}
+
+[data-reduced-motion="true"] .presence-rest {
+  opacity: 1;
+}

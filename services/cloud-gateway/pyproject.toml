@@ -1,0 +1,43 @@
+[project]
+name = "jana-cloud-gateway"
+version = "0.0.0"
+license = "Apache-2.0"
+description = "Cloud gateway for the optional online tutor: holds provider keys, enforces quotas, forwards minimised pseudonymous requests and stores metadata only (ARC-12, SEC-20, OBS-22)."
+requires-python = "==3.12.*"
+dependencies = [
+    "av==19.0.1", # Server-only media decoder; never bundled into the learner sidecar.
+    "jana-study-worker",
+    "pydantic>=2.12,<3",
+    "httpx>=0.28,<0.29",
+    "fastapi>=0.118,<1",
+    "uvicorn>=0.37,<1",
+    "cryptography>=46,<47",
+    # The generated contract bindings validate request bodies against the bundled schemas (D39).
+    "jsonschema>=4.25,<5",
+    # WebSocket transport for cloud speech.
+    "websockets>=15,<16",
+    "youtube-transcript-api>=1.2,<2",
+]
+
+[project.optional-dependencies]
+# Optional candidate transports; no cloud API is enabled or contacted by installation.
+google-voice = ["google-cloud-speech>=2.33,<3", "google-cloud-texttospeech>=2.29,<3"]
+
+[dependency-groups]
+# The tests check the gateway's replies with the device's own request builder and error classifier.
+dev = ["jana-agent-core", "meta-sam-parser==0.1.0"]  # Decoder fixtures for legacy adapter tests.
+
+[tool.uv.sources]
+jana-study-worker = { workspace = true }
+jana-agent-core = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.10,<0.11"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "cloud_gateway"
+module-root = ""
+
+[tool.jana]
+layer = "models"

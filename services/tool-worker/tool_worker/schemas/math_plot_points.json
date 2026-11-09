@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "curves",
+    "x_range"
+  ],
+  "properties": {
+    "curves": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,7}$"
+          },
+          "expr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "domain": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            }
+          }
+        },
+        "required": [
+          "id",
+          "expr"
+        ]
+      }
+    },
+    "x_range": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": [
+          "number",
+          "string"
+        ],
+        "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+        "maxLength": 40
+      }
+    },
+    "marks": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "roots",
+          "turning_points",
+          "y_intercept",
+          "asymptotes",
+          "intersections"
+        ]
+      }
+    },
+    "max_points": {
+      "type": "integer",
+      "minimum": 20,
+      "maximum": 500
+    },
+    "angle_unit": {
+      "enum": [
+        "degrees",
+        "radians"
+      ]
+    },
+    "level": {
+      "enum": [
+        "O",
+        "A"
+      ]
+    },
+    "log_base": {
+      "enum": [
+        2,
+        10
+      ]
+    },
+    "decimal_comma": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+ "$comment": "GENERATED from contracts/ops/field-evidence.schema.json sha256 391e29249009b1587d337609f3ff19e433910e4ea0706d1fa01ba2f8e0d5fbc4; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/field-evidence",
+ "title": "Field evidence index",
+ "$defs": {
+  "Proof": {
+   "additionalProperties": false,
+   "properties": {
+    "path": {
+     "minLength": 1,
+     "type": "string"
+    },
+    "sha256": {
+     "pattern": "^[a-f0-9]{64}$",
+     "type": "string"
+    }
+   },
+   "required": [
+    "path",
+    "sha256"
+   ],
+   "type": "object"
+  },
+  "Receipt": {
+   "additionalProperties": false,
+   "properties": {
+    "source": {
+     "enum": [
+      "device_lab",
+      "staging_probe",
+      "staff_drill",
+      "ui_runner",
+      "learner_replay"
+     ],
+     "type": "string"
+    },
+    "reviewer": {
+     "minLength": 1,
+     "type": "string"
+    },
+    "proofs": {
+     "items": {
+      "$ref": "#/$defs/Proof"
+     },
+     "minItems": 1,
+     "type": "array"
+    }
+   },
+   "required": [
+    "source",
+    "reviewer",
+    "proofs"
+   ],
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "format": {
+   "const": "jana.ops.evidence.1",
+   "type": "string"
+  },
+  "candidate_commit": {
+   "pattern": "^[a-f0-9]{40}$",
+   "type": "string"
+  },
+  "spec_revision": {
+   "pattern": "^[a-f0-9]{40}$",
+   "type": "string"
+  },
+  "synthetic_data_only": {
+   "const": true,
+   "type": "boolean"
+  },
+  "records": {
+   "additionalProperties": {
+    "$ref": "#/$defs/Receipt"
+   },
+   "type": "object"
+  }
+ },
+ "required": [
+  "format",
+  "candidate_commit",
+  "spec_revision",
+  "synthetic_data_only",
+  "records"
+ ],
+ "type": "object"
+}

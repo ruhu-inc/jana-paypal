@@ -1,0 +1,32 @@
+[project]
+name = "jana-pack-builder"
+version = "0.0.0"
+license = "Apache-2.0"
+description = "Builds, verifies and signs content packs (internal authoring tool, D34)."
+requires-python = "==3.12.*"
+dependencies = [
+    "jana-agent-core",
+    "jana-tool-worker",
+    "jana-tools",
+    "pyyaml>=6.0,<7",
+    "cryptography>=46,<47",
+]
+
+[project.scripts]
+aut = "pack_builder.cli:main"
+
+[tool.uv.sources]
+jana-agent-core = { workspace = true }
+jana-tool-worker = { workspace = true }
+jana-tools = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.10,<0.11"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "pack_builder"
+module-root = ""
+
+[tool.jana]
+layer = "assets"

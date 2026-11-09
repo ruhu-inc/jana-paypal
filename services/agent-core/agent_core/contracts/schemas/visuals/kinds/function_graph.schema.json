@@ -1,0 +1,219 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/function_graph.schema.json sha256 49796699eb4dbd071ab0cc4e2a070bcce389979ac79cea62f7dde397393091c4; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/function_graph",
+ "title": "function_graph params",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "curves",
+  "x_range"
+ ],
+ "properties": {
+  "curves": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 4,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "expr"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,7}$"
+     },
+     "expr": {
+      "type": "string",
+      "maxLength": 200
+     },
+     "kind": {
+      "enum": [
+       "explicit",
+       "parametric",
+       "implicit"
+      ],
+      "default": "explicit"
+     },
+     "label": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "style": {
+      "enum": [
+       "solid",
+       "dashed",
+       "dotted"
+      ],
+      "default": "solid"
+     },
+     "domain": {
+      "type": "array",
+      "items": {
+       "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+     }
+    }
+   }
+  },
+  "x_range": {
+   "type": "array",
+   "items": {
+    "type": "number"
+   },
+   "minItems": 2,
+   "maxItems": 2
+  },
+  "y_range": {
+   "type": "array",
+   "items": {
+    "type": "number"
+   },
+   "minItems": 2,
+   "maxItems": 2
+  },
+  "marks": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "roots",
+     "turning_points",
+     "intersections",
+     "y_intercept",
+     "asymptotes",
+     "inflection_points"
+    ]
+   }
+  },
+  "points": {
+   "type": "array",
+   "maxItems": 12,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "x",
+     "y"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+      "maxLength": 64
+     },
+     "x": {
+      "type": "number"
+     },
+     "y": {
+      "type": "number"
+     },
+     "label": {
+      "type": "string",
+      "maxLength": 40
+     }
+    }
+   }
+  },
+  "shade": {
+   "type": "array",
+   "maxItems": 2,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "between"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+      "maxLength": 64
+     },
+     "between": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+       "type": "string",
+       "maxLength": 16
+      }
+     },
+     "from": {
+      "type": "number"
+     },
+     "to": {
+      "type": "number"
+     }
+    }
+   }
+  },
+  "axis_labels": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "x": {
+     "type": "string",
+     "maxLength": 24
+    },
+    "y": {
+     "type": "string",
+     "maxLength": 24
+    }
+   }
+  },
+  "grid": {
+   "type": "boolean",
+   "default": true
+  },
+  "aspect": {
+   "enum": [
+    "auto",
+    "equal"
+   ],
+   "default": "auto"
+  }
+ },
+ "$defs": {
+  "add": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "element"
+   ],
+   "properties": {
+    "element": {
+     "enum": [
+      "tangent_at",
+      "normal_at",
+      "area_between",
+      "gradient_triangle",
+      "point_on_curve"
+     ]
+    },
+    "of": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number",
+       "boolean"
+      ]
+     }
+    }
+   }
+  }
+ }
+}

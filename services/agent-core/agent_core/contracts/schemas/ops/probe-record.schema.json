@@ -1,0 +1,50 @@
+{
+ "$comment": "GENERATED from contracts/ops/probe-record.schema.json sha256 f0815f128fb72dd08080eed7bf563e20ad1e99bd432cd92beb61017af4d72f29; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/probe-record",
+ "title": "Field probe record",
+ "additionalProperties": false,
+ "properties": {
+  "format": {
+   "const": "jana.ops.probe.1",
+   "type": "string"
+  },
+  "test_name": {
+   "type": "string"
+  },
+  "candidate_commit": {
+   "pattern": "^[a-f0-9]{40}$",
+   "type": "string"
+  },
+  "spec_revision": {
+   "pattern": "^[a-f0-9]{40}$",
+   "type": "string"
+  },
+  "source": {
+   "type": "string"
+  },
+  "started_at": {
+   "format": "date-time",
+   "type": "string"
+  },
+  "completed_at": {
+   "format": "date-time",
+   "type": "string"
+  },
+  "data": {
+   "additionalProperties": true,
+   "type": "object"
+  }
+ },
+ "required": [
+  "format",
+  "test_name",
+  "candidate_commit",
+  "spec_revision",
+  "source",
+  "started_at",
+  "completed_at",
+  "data"
+ ],
+ "type": "object"
+}

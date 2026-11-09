@@ -1,0 +1,100 @@
+# Tool fixtures (TOL-05): synthetic, hand-written.
+tool: chem_stoichiometry
+version: 1
+valid_args:
+- steps:
+  - id: n
+    op: amount_from_concentration
+    concentration: 0.5 mol/dm^3
+    volume: 250 cm^3
+  - id: m
+    op: mass_from_amount
+    species: NaCl
+    amount: '@n'
+  sf: 3
+- equation: C3H8 + O2 -> CO2 + H2O
+  steps:
+  - id: a
+    op: amount_from_mass
+    species: C3H8
+    mass: 4.4 g
+  - id: b
+    op: mole_ratio
+    from: C3H8
+    to: CO2
+    amount: '@a'
+  cites:
+  - check_id: chk_01JZ0000000000000000000004
+    check: chem_balance
+invalid_args:
+- {}
+- steps: []
+- steps:
+  - id: x
+    op: teleport
+description_lint:
+  sections:
+  - what
+  - use_when
+  - parameters
+  - returns
+  - limits
+  - recovery
+  max_chars_full: 600
+repairs:
+- mistake: arguments sent as a JSON string
+  input: '{"text": "x+1"}'
+  repaired:
+    note: same pattern on this tool's arguments
+- mistake: argument names in camelCase
+  input:
+    Text: x+1
+  repaired:
+    note: same pattern on this tool's arguments
+envelopes:
+  unknown_tool:
+    first_clause: No action was taken.
+    retryable: false
+  unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  invalid_args:
+    first_clause: No action was taken.
+    retryable: true
+  truncated_args:
+    first_clause: No action was taken.
+    retryable: true
+  policy_denied:
+    first_clause: No action was taken.
+    retryable: false
+  student_declined:
+    first_clause: The action completed, but
+    retryable: false
+  timeout:
+    first_clause: No action was taken.
+    retryable: true
+  cancelled:
+    first_clause: No action was taken.
+    retryable: false
+  worker_crashed:
+    first_clause: No action was taken.
+    retryable: true
+  worker_unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  limit_exceeded:
+    first_clause: No action was taken.
+    retryable: false
+  domain_error:
+    first_clause: No action was taken.
+    retryable: false
+  execution_error:
+    first_clause: No action was taken.
+    retryable: false
+  result_too_large:
+    first_clause: The action completed, but
+    retryable: false
+  repeated_failure_blocked:
+    first_clause: No action was taken.
+    retryable: false
+golden: services/tool-worker/tool_worker/golden/chem_stoichiometry.yaml

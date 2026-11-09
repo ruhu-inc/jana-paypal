@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/break_even_chart",
+  "$comment": "Params for break_even_chart, owned by the vetted renderer (VSL-03). Lines, the break-even point and the margin of safety are computed by acc_break_even (VER-22). Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "break_even_chart params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fixed_costs",
+    "variable_cost_per_unit",
+    "selling_price"
+  ],
+  "properties": {
+    "fixed_costs": {
+      "type": "string",
+      "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+    },
+    "variable_cost_per_unit": {
+      "type": "string",
+      "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+    },
+    "selling_price": {
+      "type": "string",
+      "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+    },
+    "output_units": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100000000
+    },
+    "chart_max_units": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100000000
+    },
+    "currency": {
+      "type": "string",
+      "maxLength": 4
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "margin_of_safety",
+            "profit_area"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

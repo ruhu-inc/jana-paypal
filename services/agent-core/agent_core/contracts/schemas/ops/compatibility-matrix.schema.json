@@ -1,0 +1,555 @@
+{
+ "$comment": "GENERATED from contracts/ops/compatibility-matrix.schema.json sha256 417b2343319bb303c2686fc1ae1d124d92c46f410338690fd91ef9f53220efd9; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/compatibility-matrix",
+ "title": "Compatibility matrix",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "matrix_version",
+  "channel",
+  "issued_at",
+  "apps",
+  "content_packs",
+  "model_packs",
+  "agent_bundles",
+  "withdrawals",
+  "known_issues",
+  "signature"
+ ],
+ "properties": {
+  "matrix_version": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "channel": {
+   "$ref": "#/$defs/Channel"
+  },
+  "issued_at": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "apps": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "$ref": "#/$defs/AppEntry"
+   }
+  },
+  "content_packs": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/ContentPackEntry"
+   }
+  },
+  "model_packs": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/ModelPackEntry"
+   }
+  },
+  "agent_bundles": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/AgentBundleEntry"
+   }
+  },
+  "withdrawals": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/Withdrawal"
+   }
+  },
+  "known_issues": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/KnownIssue"
+   }
+  },
+  "signature": {
+   "$ref": "#/$defs/Signature"
+  }
+ },
+ "$defs": {
+  "Channel": {
+   "type": "string",
+   "enum": [
+    "dev",
+    "pilot",
+    "stable"
+   ]
+  },
+  "SemVer": {
+   "type": "string",
+   "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+  },
+  "AppVersion": {
+   "type": "string",
+   "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-rc\\.[1-9][0-9]*)?$"
+  },
+  "ContractVersion": {
+   "type": "string",
+   "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+  },
+  "Sha256": {
+   "type": "string",
+   "pattern": "^[a-f0-9]{64}$"
+  },
+  "PackId": {
+   "type": "string",
+   "pattern": "^pack\\.((mth|phy|chm|bio|acc)\\.(o|a)|ref)$"
+  },
+  "ModelPackId": {
+   "type": "string",
+   "maxLength": 96,
+   "pattern": "^mp\\.[a-z0-9_]+\\.[a-z0-9_]+\\.[a-z0-9_]+\\.(low|mid|high)(\\.[a-z0-9_]+)?$"
+  },
+  "SupportStatus": {
+   "type": "string",
+   "enum": [
+    "supported",
+    "deprecated",
+    "unsupported",
+    "withdrawn"
+   ]
+  },
+  "Platform": {
+   "type": "string",
+   "enum": [
+    "windows_x64",
+    "windows_arm64",
+    "macos_arm64",
+    "linux_x64",
+    "android_arm64",
+    "web",
+    "school_server_x64"
+   ]
+  },
+  "AppEntry": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "app_version",
+    "status",
+    "released_at",
+    "supported_until",
+    "platforms",
+    "contracts",
+    "db_schema_version",
+    "agent_bundle_version",
+    "release_record_id"
+   ],
+   "properties": {
+    "app_version": {
+     "$ref": "#/$defs/AppVersion"
+    },
+    "status": {
+     "$ref": "#/$defs/SupportStatus"
+    },
+    "released_at": {
+     "type": "string",
+     "format": "date"
+    },
+    "supported_until": {
+     "type": "string",
+     "format": "date"
+    },
+    "platforms": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/Platform"
+     }
+    },
+    "contracts": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "control_protocol",
+      "api_version",
+      "worker_protocol",
+      "trace_version",
+      "content_pack_format",
+      "model_pack_format",
+      "agent_bundle_schema"
+     ],
+     "properties": {
+      "control_protocol": {
+       "$ref": "#/$defs/ContractVersion"
+      },
+      "api_version": {
+       "$ref": "#/$defs/ContractVersion"
+      },
+      "worker_protocol": {
+       "$ref": "#/$defs/ContractVersion"
+      },
+      "trace_version": {
+       "$ref": "#/$defs/ContractVersion"
+      },
+      "content_pack_format": {
+       "$ref": "#/$defs/ContractVersion"
+      },
+      "model_pack_format": {
+       "$ref": "#/$defs/ContractVersion"
+      },
+      "agent_bundle_schema": {
+       "$ref": "#/$defs/ContractVersion"
+      },
+      "sync_protocol": {
+       "$ref": "#/$defs/ContractVersion"
+      },
+      "gateway_api": {
+       "$ref": "#/$defs/ContractVersion"
+      }
+     }
+    },
+    "db_schema_version": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "agent_bundle_version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "runtime_build": {
+     "type": "string",
+     "pattern": "^[a-f0-9]{7,40}$"
+    },
+    "upgrades_from": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/AppVersion"
+     }
+    },
+    "release_record_id": {
+     "type": "string",
+     "pattern": "^rel_[a-z0-9_]{4,60}$"
+    }
+   }
+  },
+  "AppRange": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "min_app_version"
+   ],
+   "properties": {
+    "min_app_version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "max_app_version_exclusive": {
+     "$ref": "#/$defs/SemVer"
+    }
+   }
+  },
+  "ContentPackEntry": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "pack_id",
+    "version",
+    "manifest_sha256",
+    "app_range",
+    "status",
+    "release_record_id"
+   ],
+   "properties": {
+    "pack_id": {
+     "$ref": "#/$defs/PackId"
+    },
+    "version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "manifest_sha256": {
+     "$ref": "#/$defs/Sha256"
+    },
+    "app_range": {
+     "$ref": "#/$defs/AppRange"
+    },
+    "status": {
+     "$ref": "#/$defs/SupportStatus"
+    },
+    "diff_from": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/SemVer"
+     }
+    },
+    "size_bytes": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "release_record_id": {
+     "type": "string",
+     "pattern": "^rel_[a-z0-9_]{4,60}$"
+    }
+   }
+  },
+  "ModelPackEntry": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "model_pack_id",
+    "manifest_version",
+    "hardware_class",
+    "tiers",
+    "app_range",
+    "status",
+    "eval_report_id",
+    "release_record_id"
+   ],
+   "properties": {
+    "model_pack_id": {
+     "$ref": "#/$defs/ModelPackId"
+    },
+    "manifest_version": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "hardware_class": {
+     "type": "string",
+     "enum": [
+      "low",
+      "mid",
+      "high"
+     ]
+    },
+    "tiers": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "type": "string",
+      "enum": [
+       "fast",
+       "strong",
+       "judge"
+      ]
+     }
+    },
+    "app_range": {
+     "$ref": "#/$defs/AppRange"
+    },
+    "status": {
+     "$ref": "#/$defs/SupportStatus"
+    },
+    "eval_report_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 80
+    },
+    "size_bytes": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "release_record_id": {
+     "type": "string",
+     "pattern": "^rel_[a-z0-9_]{4,60}$"
+    }
+   }
+  },
+  "AgentBundleEntry": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "bundle_version",
+    "app_major_minor",
+    "status",
+    "release_record_id"
+   ],
+   "properties": {
+    "bundle_version": {
+     "$ref": "#/$defs/SemVer"
+    },
+    "app_major_minor": {
+     "$ref": "#/$defs/ContractVersion"
+    },
+    "status": {
+     "$ref": "#/$defs/SupportStatus"
+    },
+    "release_record_id": {
+     "type": "string",
+     "pattern": "^rel_[a-z0-9_]{4,60}$"
+    }
+   }
+  },
+  "Withdrawal": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "artefact_kind",
+    "artefact_id",
+    "versions",
+    "reason_code",
+    "withdrawn_at"
+   ],
+   "properties": {
+    "artefact_kind": {
+     "type": "string",
+     "enum": [
+      "app",
+      "agent_bundle",
+      "content_pack",
+      "model_pack",
+      "skill",
+      "item",
+      "lesson",
+      "worked_example",
+      "diagram"
+     ]
+    },
+    "artefact_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 160
+    },
+    "versions": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40
+     }
+    },
+    "reason_code": {
+     "type": "string",
+     "enum": [
+      "wrong_key",
+      "wrong_solution",
+      "unsafe_content",
+      "teaching_defect",
+      "safety_gate_failure",
+      "crash_or_data_risk",
+      "security",
+      "licence"
+     ]
+    },
+    "replaced_by": {
+     "type": "string",
+     "maxLength": 160
+    },
+    "incident_id": {
+     "type": "string",
+     "pattern": "^inc_[a-z0-9_]{4,60}$"
+    },
+    "safety_config_entry_id": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "withdrawn_at": {
+     "type": "string",
+     "format": "date-time"
+    }
+   }
+  },
+  "KnownIssue": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "issue_id",
+    "title_key",
+    "affects",
+    "help_article_id"
+   ],
+   "properties": {
+    "issue_id": {
+     "type": "string",
+     "pattern": "^ki_[a-z0-9_]{3,60}$"
+    },
+    "title_key": {
+     "type": "string",
+     "pattern": "^[a-z0-9_.]+$"
+    },
+    "affects": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "artefact_kind",
+      "artefact_id",
+      "versions"
+     ],
+     "properties": {
+      "artefact_kind": {
+       "type": "string",
+       "enum": [
+        "app",
+        "agent_bundle",
+        "content_pack",
+        "model_pack"
+       ]
+      },
+      "artefact_id": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 160
+      },
+      "versions": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 40
+       }
+      },
+      "platforms": {
+       "type": "array",
+       "uniqueItems": true,
+       "items": {
+        "$ref": "#/$defs/Platform"
+       }
+      },
+      "hardware_classes": {
+       "type": "array",
+       "uniqueItems": true,
+       "items": {
+        "type": "string",
+        "enum": [
+         "content_only",
+         "low",
+         "mid",
+         "high"
+        ]
+       }
+      }
+     }
+    },
+    "help_article_id": {
+     "type": "string",
+     "pattern": "^help\\.[a-z0-9_.]+$"
+    },
+    "fixed_in": {
+     "type": "string",
+     "maxLength": 40
+    }
+   }
+  },
+  "Signature": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "alg",
+    "key_id",
+    "value"
+   ],
+   "properties": {
+    "alg": {
+     "const": "ed25519"
+    },
+    "key_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 80
+    },
+    "value": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9+/=_-]{40,200}$"
+    }
+   }
+  }
+ }
+}

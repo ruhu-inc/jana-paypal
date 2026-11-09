@@ -1,0 +1,17 @@
+/* Tool accents stay inside the existing icon slot. Mix with theme surfaces for both light and dark modes. */
+.study-tool-icon-blue { --study-tool-colour: var(--content-blue); }
+.study-tool-icon-pink { --study-tool-colour: var(--content-pink); }
+.study-tool-icon-orange { --study-tool-colour: var(--content-orange); }
+.study-tool-icon-amber { --study-tool-colour: color-mix(in srgb, var(--content-orange) 65%, var(--content-brown)); }
+.study-tool-icon-purple { --study-tool-colour: var(--content-purple); }
+.study-tool-icon-blue-green { --study-tool-colour: var(--content-blue-green); }
+.study-tool-icon-green { --study-tool-colour: var(--content-green); }
+.study-tool-icon {
+  color: color-mix(in srgb, var(--study-tool-colour) 75%, var(--color-ink));
+  background: color-mix(in srgb, var(--study-tool-colour) 9%, var(--color-canvas));
+}
+[data-theme="dark"] .study-tool-icon {
+  color: color-mix(in srgb, var(--study-tool-colour) 65%, var(--color-ink));
+  background: color-mix(in srgb, var(--study-tool-colour) 16%, var(--color-canvas));
+}
+button:disabled .study-tool-icon { color: var(--color-faint); background: var(--color-chrome); }

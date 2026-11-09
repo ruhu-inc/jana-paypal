@@ -1,0 +1,33 @@
+{
+  "$comment": "STU-20 (D117): the trusted sources Ask anything may search. For a profile under 18 only `allow_list` is searched; a learner of 18 or over may switch to the wider web, filtered by `wider_web_excluded`. Configuration owned by the safety lead; these entries are the specification's proposal (open educational resources, encyclopaedias, government health and science agencies, exam boards) until the safety lead signs the list.",
+  "owner": "Safety lead",
+  "status": "proposal",
+  "version": "2026-10-20.1",
+  "allow_list": [
+    {"domain": "openstax.org", "kind": "open_educational_resource"},
+    {"domain": "khanacademy.org", "kind": "open_educational_resource"},
+    {"domain": "ck12.org", "kind": "open_educational_resource"},
+    {"domain": "oercommons.org", "kind": "open_educational_resource"},
+    {"domain": "phet.colorado.edu", "kind": "open_educational_resource"},
+    {"domain": "bbc.co.uk", "path_prefix": "/bitesize", "kind": "open_educational_resource"},
+    {"domain": "britannica.com", "kind": "encyclopaedia"},
+    {"domain": "en.wikipedia.org", "kind": "encyclopaedia"},
+    {"domain": "simple.wikipedia.org", "kind": "encyclopaedia"},
+    {"domain": "who.int", "kind": "government_health_or_science"},
+    {"domain": "cdc.gov", "kind": "government_health_or_science"},
+    {"domain": "nih.gov", "kind": "government_health_or_science"},
+    {"domain": "nhs.uk", "kind": "government_health_or_science"},
+    {"domain": "ncdc.gov.ng", "kind": "government_health_or_science"},
+    {"domain": "nasa.gov", "kind": "government_health_or_science"},
+    {"domain": "noaa.gov", "kind": "government_health_or_science"},
+    {"domain": "usgs.gov", "kind": "government_health_or_science"},
+    {"domain": "waecdirect.org", "kind": "exam_board"},
+    {"domain": "waec.org.ng", "kind": "exam_board"},
+    {"domain": "neco.gov.ng", "kind": "exam_board"},
+    {"domain": "cambridgeinternational.org", "kind": "exam_board"}
+  ],
+  "wider_web_excluded": [
+    "facebook.com", "instagram.com", "tiktok.com", "x.com", "twitter.com", "reddit.com", "quora.com", "pinterest.com",
+    "youtube.com", "chegg.com", "coursehero.com", "brainly.com", "studocu.com", "answers.com"
+  ]
+}

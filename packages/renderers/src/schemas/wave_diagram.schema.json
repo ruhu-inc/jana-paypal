@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/wave_diagram",
+  "$comment": "Params for wave_diagram, owned by the vetted renderer (VSL-03). Wavelength and amplitude are givens (N1, known ids). Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "wave_diagram params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "wave",
+    "wavelength"
+  ],
+  "properties": {
+    "wave": {
+      "enum": [
+        "transverse",
+        "longitudinal"
+      ]
+    },
+    "wavelength": {
+      "type": "string",
+      "maxLength": 40,
+      "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?( ?[^\\s].{0,30})?$"
+    },
+    "amplitude": {
+      "type": "string",
+      "maxLength": 40,
+      "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?( ?[^\\s].{0,30})?$"
+    },
+    "cycles": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "markers": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "wavelength",
+          "amplitude",
+          "crest",
+          "trough",
+          "compression",
+          "rarefaction",
+          "direction"
+        ]
+      },
+      "maxItems": 7,
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "marker"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/exponential_curve.schema.json sha256 1a6fb58431f92f7d72fb0bbcfad349c53a298befe4da534449e54a243b0b673d; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/exponential_curve",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "initial": {
+   "type": "number",
+   "minimum": 0
+  },
+  "constant": {
+   "type": "number",
+   "exclusiveMinimum": 0
+  },
+  "mode": {
+   "enum": [
+    "decay",
+    "charge"
+   ]
+  },
+  "time_range": {
+   "type": "array",
+   "items": {
+    "type": "number",
+    "minimum": 0
+   },
+   "minItems": 2,
+   "maxItems": 2
+  },
+  "time_unit": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 20
+  },
+  "quantity_unit": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 20
+  },
+  "mark": {
+   "enum": [
+    "half_life",
+    "time_constant",
+    "none"
+   ]
+  }
+ },
+ "required": [
+  "initial",
+  "constant",
+  "mode",
+  "time_range",
+  "time_unit",
+  "quantity_unit",
+  "mark"
+ ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "formula"
+  ],
+  "properties": {
+    "formula": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "constants": {
+      "type": "array",
+      "maxItems": 40,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "symbol",
+          "source"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_()]{0,31}$"
+          },
+          "value": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+            "maxLength": 40
+          },
+          "unit": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "source": {
+            "enum": [
+              "question",
+              "item",
+              "pack",
+              "default"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

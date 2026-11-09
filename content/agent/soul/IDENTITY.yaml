@@ -1,0 +1,6 @@
+# The tutor's identity (PRM-03): these four keys and nothing else. Only tutor_name enters a prompt, through the
+# soul's {{TUTOR_NAME}} placeholder; locale and reading level select overlays; the avatar is the app's alone.
+tutor_name: Jana
+avatar_id: avatar.jana
+locale: en
+reading_level: standard

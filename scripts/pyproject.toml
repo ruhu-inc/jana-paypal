@@ -1,0 +1,18 @@
+[project]
+name = "jana-tools"
+version = "0.0.0"
+license = "Apache-2.0"
+description = "Repository tooling: layout, layer, spec pin, supply-chain and governance checks."
+requires-python = "==3.12.*"
+dependencies = ["cryptography>=46,<47", "jsonschema>=4.23", "pyyaml>=6.0"]
+
+[project.scripts]
+jana-paypal-check = "jana_tools.sponsored_check:main"
+
+[build-system]
+requires = ["uv_build>=0.10,<0.11"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "jana_tools"
+module-root = ""

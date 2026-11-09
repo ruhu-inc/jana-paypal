@@ -1,0 +1,1119 @@
+{
+ "$comment": "GENERATED from contracts/tools/worker-protocol.schema.json sha256 909b88c067e2e76db9d3dd9e237854db3e263c9cbd08b5bc2ef6ac047952d63c; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/tools/worker-protocol",
+ "title": "Tool worker frame",
+ "oneOf": [
+  {
+   "$ref": "#/$defs/Request"
+  },
+  {
+   "$ref": "#/$defs/Response"
+  },
+  {
+   "$ref": "#/$defs/Notification"
+  }
+ ],
+ "$defs": {
+  "Id": {
+   "type": "string",
+   "pattern": "^[A-Za-z0-9_-]{1,64}$"
+  },
+  "ToolName": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9_]{1,39}$"
+  },
+  "Sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "CheckId": {
+   "type": "string",
+   "pattern": "^chk_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "ProtocolVersion": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "major",
+    "minor"
+   ],
+   "properties": {
+    "major": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "minor": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "Placement": {
+   "enum": [
+    "device",
+    "cloud_sandbox"
+   ]
+  },
+  "Request": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/HelloRequest"
+    },
+    {
+     "$ref": "#/$defs/PingRequest"
+    },
+    {
+     "$ref": "#/$defs/FnCallRequest"
+    },
+    {
+     "$ref": "#/$defs/FnCancelRequest"
+    },
+    {
+     "$ref": "#/$defs/ShutdownRequest"
+    },
+    {
+     "$ref": "#/$defs/ExecRunRequest"
+    },
+    {
+     "$ref": "#/$defs/ExecInterruptRequest"
+    },
+    {
+     "$ref": "#/$defs/ExecResetRequest"
+    }
+   ]
+  },
+  "HelloRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "jsonrpc",
+    "id",
+    "method",
+    "params"
+   ],
+   "properties": {
+    "jsonrpc": {
+     "const": "2.0"
+    },
+    "id": {
+     "$ref": "#/$defs/Id"
+    },
+    "method": {
+     "const": "worker.hello"
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "protocol",
+      "host_version",
+      "placement"
+     ],
+     "properties": {
+      "protocol": {
+       "$ref": "#/$defs/ProtocolVersion"
+      },
+      "host_version": {
+       "type": "string"
+      },
+      "placement": {
+       "$ref": "#/$defs/Placement"
+      },
+      "exec_enabled": {
+       "type": "boolean",
+       "default": false
+      }
+     },
+     "if": {
+      "properties": {
+       "placement": {
+        "const": "device"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "exec_enabled": {
+        "const": false
+       }
+      }
+     }
+    }
+   }
+  },
+  "PingRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "jsonrpc",
+    "id",
+    "method",
+    "params"
+   ],
+   "properties": {
+    "jsonrpc": {
+     "const": "2.0"
+    },
+    "id": {
+     "$ref": "#/$defs/Id"
+    },
+    "method": {
+     "const": "worker.ping"
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {}
+    }
+   }
+  },
+  "FnCallRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "jsonrpc",
+    "id",
+    "method",
+    "params"
+   ],
+   "properties": {
+    "jsonrpc": {
+     "const": "2.0"
+    },
+    "id": {
+     "$ref": "#/$defs/Id"
+    },
+    "method": {
+     "const": "fn.call"
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "call_id",
+      "name",
+      "version",
+      "args",
+      "check_id",
+      "deadline_ms"
+     ],
+     "properties": {
+      "call_id": {
+       "type": "string"
+      },
+      "name": {
+       "$ref": "#/$defs/ToolName"
+      },
+      "version": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "args": {
+       "type": "object"
+      },
+      "check_id": {
+       "$ref": "#/$defs/CheckId"
+      },
+      "deadline_ms": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 30000
+      },
+      "conventions": {
+       "type": "object",
+       "additionalProperties": {
+        "$ref": "#/$defs/ConventionValue"
+       }
+      }
+     }
+    }
+   }
+  },
+  "ConventionValue": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "value",
+    "source"
+   ],
+   "properties": {
+    "value": {
+     "type": [
+      "number",
+      "string"
+     ]
+    },
+    "unit": {
+     "type": "string"
+    },
+    "source": {
+     "enum": [
+      "question",
+      "item",
+      "pack",
+      "default"
+     ]
+    }
+   }
+  },
+  "FnCancelRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "jsonrpc",
+    "id",
+    "method",
+    "params"
+   ],
+   "properties": {
+    "jsonrpc": {
+     "const": "2.0"
+    },
+    "id": {
+     "$ref": "#/$defs/Id"
+    },
+    "method": {
+     "const": "fn.cancel"
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "call_id"
+     ],
+     "properties": {
+      "call_id": {
+       "type": "string"
+      }
+     }
+    }
+   }
+  },
+  "ShutdownRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "jsonrpc",
+    "id",
+    "method",
+    "params"
+   ],
+   "properties": {
+    "jsonrpc": {
+     "const": "2.0"
+    },
+    "id": {
+     "$ref": "#/$defs/Id"
+    },
+    "method": {
+     "const": "worker.shutdown"
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "grace_ms": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 5000
+      }
+     }
+    }
+   }
+  },
+  "ExecRunRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "jsonrpc",
+    "id",
+    "method",
+    "params"
+   ],
+   "properties": {
+    "jsonrpc": {
+     "const": "2.0"
+    },
+    "id": {
+     "$ref": "#/$defs/Id"
+    },
+    "method": {
+     "const": "exec.run"
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "cell_id",
+      "code",
+      "timeout_ms"
+     ],
+     "properties": {
+      "cell_id": {
+       "type": "string",
+       "pattern": "^cell_[0-9]{1,6}$"
+      },
+      "code": {
+       "type": "string",
+       "maxLength": 20000
+      },
+      "timeout_ms": {
+       "type": "integer",
+       "minimum": 100,
+       "maximum": 30000
+      }
+     }
+    }
+   }
+  },
+  "ExecInterruptRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "jsonrpc",
+    "id",
+    "method",
+    "params"
+   ],
+   "properties": {
+    "jsonrpc": {
+     "const": "2.0"
+    },
+    "id": {
+     "$ref": "#/$defs/Id"
+    },
+    "method": {
+     "const": "exec.interrupt"
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "cell_id"
+     ],
+     "properties": {
+      "cell_id": {
+       "type": "string"
+      }
+     }
+    }
+   }
+  },
+  "ExecResetRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "jsonrpc",
+    "id",
+    "method",
+    "params"
+   ],
+   "properties": {
+    "jsonrpc": {
+     "const": "2.0"
+    },
+    "id": {
+     "$ref": "#/$defs/Id"
+    },
+    "method": {
+     "const": "exec.reset"
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {}
+    }
+   }
+  },
+  "Response": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "jsonrpc",
+      "id",
+      "result"
+     ],
+     "properties": {
+      "jsonrpc": {
+       "const": "2.0"
+      },
+      "id": {
+       "$ref": "#/$defs/Id"
+      },
+      "result": {
+       "oneOf": [
+        {
+         "$ref": "#/$defs/HelloResult"
+        },
+        {
+         "$ref": "#/$defs/PingResult"
+        },
+        {
+         "$ref": "#/$defs/FnCallResult"
+        },
+        {
+         "$ref": "#/$defs/AckResult"
+        },
+        {
+         "$ref": "#/$defs/ExecRunResult"
+        }
+       ]
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "jsonrpc",
+      "id",
+      "error"
+     ],
+     "properties": {
+      "jsonrpc": {
+       "const": "2.0"
+      },
+      "id": {
+       "oneOf": [
+        {
+         "$ref": "#/$defs/Id"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "error": {
+       "$ref": "#/$defs/RpcError"
+      }
+     }
+    }
+   ]
+  },
+  "HelloResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind",
+    "protocol",
+    "worker_version",
+    "placement",
+    "functions",
+    "libraries",
+    "limits"
+   ],
+   "if": {
+    "properties": {
+     "placement": {
+      "const": "device"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "exec_available": {
+      "const": false
+     }
+    }
+   },
+   "properties": {
+    "kind": {
+     "const": "hello"
+    },
+    "placement": {
+     "$ref": "#/$defs/Placement"
+    },
+    "protocol": {
+     "$ref": "#/$defs/ProtocolVersion"
+    },
+    "worker_version": {
+     "type": "string"
+    },
+    "functions": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "name",
+       "version",
+       "schema_sha256"
+      ],
+      "properties": {
+       "name": {
+        "$ref": "#/$defs/ToolName"
+       },
+       "version": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "schema_sha256": {
+        "$ref": "#/$defs/Sha256"
+       }
+      }
+     }
+    },
+    "libraries": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string"
+     }
+    },
+    "limits": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "cpu_ms",
+      "memory_mb",
+      "max_expression_chars",
+      "max_data_points",
+      "max_frame_bytes"
+     ],
+     "properties": {
+      "cpu_ms": {
+       "type": "integer"
+      },
+      "memory_mb": {
+       "type": "integer"
+      },
+      "max_expression_chars": {
+       "type": "integer"
+      },
+      "max_data_points": {
+       "type": "integer"
+      },
+      "max_frame_bytes": {
+       "type": "integer"
+      }
+     }
+    },
+    "exec_available": {
+     "type": "boolean"
+    }
+   }
+  },
+  "PingResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind",
+    "uptime_ms",
+    "busy"
+   ],
+   "properties": {
+    "kind": {
+     "const": "pong"
+    },
+    "uptime_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "busy": {
+     "type": "boolean"
+    },
+    "rss_mb": {
+     "type": "number"
+    }
+   }
+  },
+  "FnCallResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind",
+    "value",
+    "check"
+   ],
+   "properties": {
+    "kind": {
+     "const": "fn"
+    },
+    "value": {},
+    "latex": {
+     "type": "string",
+     "maxLength": 20000
+    },
+    "working": {
+     "type": "array",
+     "maxItems": 200,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "label",
+       "value"
+      ],
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "latex": {
+        "type": "string"
+       },
+       "value": {
+        "type": [
+         "string",
+         "number"
+        ]
+       },
+       "unit": {
+        "type": "string"
+       },
+       "check_id": {
+        "$ref": "#/$defs/CheckId"
+       }
+      }
+     }
+    },
+    "check": {
+     "$ref": "#/$defs/CheckRecord"
+    },
+    "warnings": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "code",
+       "message"
+      ],
+      "properties": {
+       "code": {
+        "enum": [
+         "implausible",
+         "rounding_drift",
+         "assumption_added",
+         "domain_restricted",
+         "numeric_only",
+         "convention_default_used",
+         "convention_missing"
+        ]
+       },
+       "message": {
+        "type": "string",
+        "maxLength": 500
+       }
+      }
+     }
+    }
+   }
+  },
+  "CheckRecord": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "check_id",
+    "function",
+    "function_version",
+    "worker_version",
+    "args_sha256",
+    "result_sha256",
+    "method",
+    "confidence"
+   ],
+   "properties": {
+    "check_id": {
+     "$ref": "#/$defs/CheckId"
+    },
+    "function": {
+     "$ref": "#/$defs/ToolName"
+    },
+    "function_version": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "worker_version": {
+     "type": "string"
+    },
+    "args_sha256": {
+     "$ref": "#/$defs/Sha256"
+    },
+    "result_sha256": {
+     "$ref": "#/$defs/Sha256"
+    },
+    "method": {
+     "enum": [
+      "exact",
+      "symbolic",
+      "numeric_sampling",
+      "table_lookup",
+      "rule_based",
+      "heuristic"
+     ]
+    },
+    "confidence": {
+     "enum": [
+      "proved",
+      "sampled",
+      "heuristic",
+      "undecided"
+     ]
+    },
+    "seed": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "constants": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "symbol",
+       "value",
+       "source"
+      ],
+      "properties": {
+       "symbol": {
+        "type": "string"
+       },
+       "value": {
+        "type": [
+         "number",
+         "string"
+        ]
+       },
+       "unit": {
+        "type": "string"
+       },
+       "source": {
+        "enum": [
+         "question",
+         "item",
+         "pack",
+         "default"
+        ]
+       }
+      }
+     }
+    },
+    "inputs_from": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/CheckId"
+     }
+    }
+   }
+  },
+  "AckResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind",
+    "ok"
+   ],
+   "properties": {
+    "kind": {
+     "const": "ack"
+    },
+    "ok": {
+     "type": "boolean"
+    },
+    "detail": {
+     "type": "string"
+    }
+   }
+  },
+  "ExecRunResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind",
+    "ok",
+    "stdout",
+    "stderr",
+    "execution_count"
+   ],
+   "properties": {
+    "kind": {
+     "const": "exec"
+    },
+    "ok": {
+     "type": "boolean"
+    },
+    "stdout": {
+     "type": "string",
+     "maxLength": 50000
+    },
+    "stderr": {
+     "type": "string",
+     "maxLength": 20000
+    },
+    "value_repr": {
+     "type": "string",
+     "maxLength": 20000
+    },
+    "latex": {
+     "type": "string"
+    },
+    "images": {
+     "type": "array",
+     "maxItems": 8,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "mime",
+       "data_b64"
+      ],
+      "properties": {
+       "mime": {
+        "const": "image/png"
+       },
+       "data_b64": {
+        "type": "string",
+        "contentEncoding": "base64"
+       }
+      }
+     }
+    },
+    "files": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^scratch/[A-Za-z0-9_.-]{1,80}$"
+     }
+    },
+    "execution_count": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "RpcError": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "code",
+    "message"
+   ],
+   "properties": {
+    "code": {
+     "$ref": "#/$defs/ErrorCode"
+    },
+    "message": {
+     "type": "string",
+     "maxLength": 2000
+    },
+    "data": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "position": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "reason": {
+       "type": "string"
+      },
+      "limit": {
+       "enum": [
+        "cpu",
+        "memory",
+        "expression_chars",
+        "data_points",
+        "frame_bytes",
+        "components"
+       ]
+      },
+      "exception_type": {
+       "type": "string"
+      },
+      "expected_protocol": {
+       "$ref": "#/$defs/ProtocolVersion"
+      }
+     }
+    }
+   }
+  },
+  "ErrorCode": {
+   "enum": [
+    -32700,
+    -32600,
+    -32601,
+    -32602,
+    -32603,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12
+   ]
+  },
+  "Notification": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "jsonrpc",
+      "method",
+      "params"
+     ],
+     "properties": {
+      "jsonrpc": {
+       "const": "2.0"
+      },
+      "method": {
+       "const": "fn.progress"
+      },
+      "params": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "call_id",
+        "elapsed_ms"
+       ],
+       "properties": {
+        "call_id": {
+         "type": "string"
+        },
+        "elapsed_ms": {
+         "type": "integer",
+         "minimum": 0
+        },
+        "stage": {
+         "type": "string",
+         "maxLength": 80
+        },
+        "fraction": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1
+        }
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "jsonrpc",
+      "method",
+      "params"
+     ],
+     "properties": {
+      "jsonrpc": {
+       "const": "2.0"
+      },
+      "method": {
+       "const": "exec.progress"
+      },
+      "params": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "cell_id",
+        "elapsed_ms"
+       ],
+       "properties": {
+        "cell_id": {
+         "type": "string"
+        },
+        "elapsed_ms": {
+         "type": "integer",
+         "minimum": 0
+        }
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "jsonrpc",
+      "method",
+      "params"
+     ],
+     "properties": {
+      "jsonrpc": {
+       "const": "2.0"
+      },
+      "method": {
+       "const": "exec.stream"
+      },
+      "params": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "cell_id",
+        "stream",
+        "seq",
+        "text"
+       ],
+       "properties": {
+        "cell_id": {
+         "type": "string"
+        },
+        "stream": {
+         "enum": [
+          "stdout",
+          "stderr"
+         ]
+        },
+        "seq": {
+         "type": "integer",
+         "minimum": 0
+        },
+        "text": {
+         "type": "string",
+         "maxLength": 65536
+        }
+       }
+      }
+     }
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "jsonrpc",
+      "method",
+      "params"
+     ],
+     "properties": {
+      "jsonrpc": {
+       "const": "2.0"
+      },
+      "method": {
+       "const": "worker.log"
+      },
+      "params": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "level",
+        "message"
+       ],
+       "properties": {
+        "level": {
+         "enum": [
+          "debug",
+          "info",
+          "warn",
+          "error"
+         ]
+        },
+        "message": {
+         "type": "string",
+         "maxLength": 2000
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,150 @@
+{
+ "$comment": "GENERATED from contracts/ops/pilot-country.schema.json sha256 fc93f4d896b8739168078abf818472c2b80c6306147058bc2de8955e393c2425; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/pilot-country",
+ "title": "Pilot-country configuration",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "country": {
+   "type": "string",
+   "pattern": "^[A-Z]{2}$"
+  },
+  "locale": {
+   "type": "string",
+   "pattern": "^en-[A-Z]{2}$"
+  },
+  "currency_code": {
+   "type": "string",
+   "pattern": "^[A-Z]{3}$"
+  },
+  "currency_symbol": {
+   "type": "string",
+   "minLength": 1
+  },
+  "items": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "locale_overlay": {
+     "type": "string",
+     "minLength": 1
+    },
+    "currency": {
+     "type": "string",
+     "minLength": 1
+    },
+    "syllabuses_and_gaps": {
+     "type": "string",
+     "minLength": 1
+    },
+    "counsel_mapping": {
+     "type": "string",
+     "minLength": 1
+    },
+    "safety_resources": {
+     "type": "string",
+     "minLength": 1
+    },
+    "school_calendar": {
+     "type": "string",
+     "minLength": 1
+    },
+    "field_support": {
+     "type": "string",
+     "minLength": 1
+    },
+    "market_evidence": {
+     "type": "string",
+     "minLength": 1
+    }
+   },
+   "required": [
+    "locale_overlay",
+    "currency",
+    "syllabuses_and_gaps",
+    "counsel_mapping",
+    "safety_resources",
+    "school_calendar",
+    "field_support",
+    "market_evidence"
+   ]
+  },
+  "issued_at": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "signature": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "alg": {
+     "enum": [
+      "ed25519"
+     ]
+    },
+    "key_id": {
+     "type": "string",
+     "minLength": 1
+    },
+    "value": {
+     "type": "string",
+     "minLength": 1
+    }
+   },
+   "required": [
+    "alg",
+    "key_id",
+    "value"
+   ]
+  },
+  "pilot_clearance": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "protocol_id": {
+     "type": "string",
+     "minLength": 1
+    },
+    "registered_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "baseline_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "starts_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "analysis_sha256": {
+     "type": "string",
+     "pattern": "^[a-f0-9]{64}$"
+    },
+    "approval_ref": {
+     "type": "string",
+     "minLength": 1
+    }
+   },
+   "required": [
+    "protocol_id",
+    "registered_at",
+    "baseline_at",
+    "starts_at",
+    "analysis_sha256",
+    "approval_ref"
+   ]
+  }
+ },
+ "required": [
+  "country",
+  "locale",
+  "currency_code",
+  "currency_symbol",
+  "items",
+  "issued_at",
+  "signature",
+  "pilot_clearance"
+ ]
+}

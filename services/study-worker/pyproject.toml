@@ -1,0 +1,21 @@
+[project]
+name = "jana-study-worker"
+version = "0.0.0"
+license = "Apache-2.0"
+description = "Network-denied source document extraction and rendering worker (M42)."
+requires-python = "==3.12.*"
+dependencies = ["pypdf==6.21.1", "pypdfium2==5.13.0", "pillow>=12.3,<13", "jana-perception-worker"]
+
+[build-system]
+requires = ["uv_build>=0.10,<0.11"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "study_worker"
+module-root = ""
+
+[tool.uv.sources]
+jana-perception-worker = { workspace = true }
+
+[tool.jana]
+layer = "capabilities"

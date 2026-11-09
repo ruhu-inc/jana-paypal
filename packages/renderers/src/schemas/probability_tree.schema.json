@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/probability_tree",
+  "$comment": "Params for probability_tree, owned by the vetted renderer (VSL-04). Branch probabilities are givens (N1) or cited checks; each outcome probability is computed by math_evaluate. Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "probability_tree params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "branches"
+  ],
+  "properties": {
+    "branches": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/branch"
+      },
+      "maxItems": 4,
+      "minItems": 2
+    },
+    "show_outcomes": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "outcome_total"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    },
+    "branch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "p"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9]{0,5}$"
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 24
+        },
+        "p": {
+          "type": "string",
+          "maxLength": 24,
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?(/[0-9]+)?$"
+        },
+        "then": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/branch"
+          },
+          "maxItems": 4,
+          "minItems": 2
+        }
+      }
+    }
+  }
+}

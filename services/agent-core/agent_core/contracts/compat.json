@@ -1,0 +1,472 @@
+{
+ "events": {
+  "envelope": [
+   "channel",
+   "epoch",
+   "event",
+   "seq",
+   "session_id",
+   "ts",
+   "turn_id",
+   "v"
+  ],
+  "open_enums": {
+   "board.step": [
+    {
+     "path": [
+      "error",
+      "category"
+     ],
+     "values": [
+      "sign",
+      "arithmetic",
+      "dropped_term",
+      "illegal_operation",
+      "units",
+      "copy",
+      "other"
+     ]
+    }
+   ],
+   "connectivity.status": [
+    {
+     "path": [
+      "features",
+      "*",
+      "feature"
+     ],
+     "values": [
+      "cloud_tier",
+      "downloads",
+      "update_checks",
+      "cloud_backup",
+      "multi_device",
+      "parent_remote_view",
+      "cloud_voice",
+      "study_materials",
+      "telemetry",
+      "crash_reports",
+      "tutor_memory_online"
+     ]
+    },
+    {
+     "path": [
+      "features",
+      "*",
+      "state"
+     ],
+     "values": [
+      "idle",
+      "active",
+      "queued",
+      "unavailable"
+     ]
+    }
+   ],
+   "egress.notice": [
+    {
+     "path": [
+      "feature"
+     ],
+     "values": [
+      "cloud_tier",
+      "downloads",
+      "update_checks",
+      "cloud_backup",
+      "multi_device",
+      "parent_remote_view",
+      "cloud_voice",
+      "study_materials",
+      "telemetry",
+      "crash_reports",
+      "tutor_memory_online"
+     ]
+    }
+   ],
+   "status": [
+    {
+     "path": [
+      "phase"
+     ],
+     "values": [
+      "preparing",
+      "queued",
+      "loading_model",
+      "processing_prompt",
+      "waiting_first_token",
+      "streaming",
+      "tool",
+      "checking",
+      "retrying",
+      "compacting",
+      "recalling"
+     ]
+    }
+   ]
+  },
+  "types": {
+   "board.annotate": [
+    "annotation_id",
+    "board_id",
+    "mark",
+    "note",
+    "target",
+    "to",
+    "type"
+   ],
+   "board.await": [
+    "board_id",
+    "input_kind",
+    "prompt",
+    "step_id",
+    "type"
+   ],
+   "board.highlight": [
+    "board_id",
+    "photo_regions",
+    "spotlight",
+    "step_ids",
+    "ttl_ms",
+    "type"
+   ],
+   "board.knowns": [
+    "board_id",
+    "conventions",
+    "knowns",
+    "type",
+    "unknowns"
+   ],
+   "board.reset": [
+    "board_id",
+    "part_id",
+    "problem",
+    "reason",
+    "type"
+   ],
+   "board.step": [
+    "board_id",
+    "check_id",
+    "error",
+    "index",
+    "latex",
+    "owner",
+    "reason",
+    "status",
+    "step_id",
+    "term_moves",
+    "terms",
+    "type"
+   ],
+   "capture.updated": [
+    "capture_id",
+    "error_code",
+    "progress",
+    "status",
+    "type"
+   ],
+   "card.answered": [
+    "answer_summary",
+    "answered_ts",
+    "request_id",
+    "type"
+   ],
+   "card.cancel": [
+    "reason",
+    "request_id",
+    "type"
+   ],
+   "card.open": [
+    "about",
+    "call_id",
+    "card",
+    "part_id",
+    "request_id",
+    "type"
+   ],
+   "companion.action": [
+    "action",
+    "action_id",
+    "label_key",
+    "payload",
+    "type"
+   ],
+   "connectivity.status": [
+    "checked_ts",
+    "features",
+    "network",
+    "type"
+   ],
+   "egress.notice": [
+    "data_classes",
+    "destination_label",
+    "feature",
+    "state",
+    "type"
+   ],
+   "error": [
+    "code",
+    "message",
+    "retryable",
+    "scope",
+    "type"
+   ],
+   "job.update": [
+    "job_id",
+    "kind",
+    "progress",
+    "result_ref",
+    "state",
+    "type"
+   ],
+   "memory.forgotten": [
+    "note_id",
+    "type"
+   ],
+   "memory.saved": [
+    "note_id",
+    "text",
+    "type",
+    "undo_until_ts"
+   ],
+   "message.accepted": [
+    "client_message_id",
+    "disposition",
+    "message_id",
+    "turn_id",
+    "type"
+   ],
+   "model.download": [
+    "bytes_done",
+    "bytes_total",
+    "download_id",
+    "error_code",
+    "eta_s",
+    "model_id",
+    "state",
+    "type"
+   ],
+   "model.runtime": [
+    "error_code",
+    "model_id",
+    "progress",
+    "state",
+    "type"
+   ],
+   "notice": [
+    "action",
+    "code",
+    "level",
+    "message_key",
+    "notice_id",
+    "params",
+    "type"
+   ],
+   "pacing.command": [
+    "command",
+    "practice_set_id",
+    "source",
+    "type"
+   ],
+   "pack.install": [
+    "error_code",
+    "job_id",
+    "pack_id",
+    "progress",
+    "state",
+    "type"
+   ],
+   "part.end": [
+    "duration_ms",
+    "part_id",
+    "status",
+    "type"
+   ],
+   "part.start": [
+    "index",
+    "kind",
+    "part_id",
+    "type"
+   ],
+   "progress.update": [
+    "attempt_id",
+    "direction",
+    "kc_id",
+    "mastery_band",
+    "type"
+   ],
+   "reasoning.delta": [
+    "delta",
+    "part_id",
+    "type"
+   ],
+   "session.updated": [
+    "hint_rung",
+    "mode",
+    "subject",
+    "title",
+    "topic_id",
+    "type"
+   ],
+   "settings.changed": [
+    "keys",
+    "profile_id",
+    "type"
+   ],
+   "status": [
+    "label_key",
+    "label_params",
+    "model_tier",
+    "phase",
+    "phase_started_ts",
+    "progress",
+    "type"
+   ],
+   "steer.applied": [
+    "message_id",
+    "phase",
+    "type"
+   ],
+   "text.delta": [
+    "delta",
+    "part_id",
+    "type"
+   ],
+   "text.reset": [
+    "part_id",
+    "reason",
+    "type"
+   ],
+   "tool.state": [
+    "call_id",
+    "name",
+    "part_id",
+    "render_class",
+    "state",
+    "type"
+   ],
+   "turn.end": [
+    "degraded",
+    "degraded_reason",
+    "elapsed_ms",
+    "persisted",
+    "status",
+    "stop_reason",
+    "type",
+    "usage",
+    "verification"
+   ],
+   "turn.start": [
+    "client_message_id",
+    "fork",
+    "intent",
+    "mode",
+    "turn_id",
+    "type",
+    "user_message_id"
+   ],
+   "visual.await": [
+    "board_id",
+    "part_ids",
+    "prompt",
+    "step_id",
+    "type",
+    "visual_id"
+   ],
+   "visual.focus": [
+    "part_ids",
+    "spotlight",
+    "ttl_ms",
+    "type",
+    "visual_id"
+   ],
+   "visual.sketch": [
+    "part_id",
+    "sketch",
+    "type"
+   ],
+   "visual.spec": [
+    "part_id",
+    "spec",
+    "type",
+    "visual_id"
+   ],
+   "visual.step": [
+    "source",
+    "step_index",
+    "type",
+    "visual_id"
+   ],
+   "voice.answer": [
+    "aid_id",
+    "place",
+    "question",
+    "reply",
+    "route",
+    "text",
+    "turn_id",
+    "type"
+   ],
+   "voice.caption": [
+    "committed_text",
+    "cues",
+    "final",
+    "item_id",
+    "speaker",
+    "tentative_text",
+    "turn_id",
+    "type",
+    "words"
+   ],
+   "voice.state": [
+    "listening_variant",
+    "reason_key",
+    "state",
+    "turn_id",
+    "type",
+    "wake_armed"
+   ]
+  }
+ },
+ "interfaces": {
+  "api": {
+   "field": "Meta.protocol",
+   "on_mismatch": "upgrade_required",
+   "version": "1.10"
+  },
+  "cloud": {
+   "field": "/v{major} and the minor header",
+   "on_mismatch": "feature_offline",
+   "version": "1.1"
+  },
+  "content_pack": {
+   "field": "schema_version",
+   "on_mismatch": "pack_skipped",
+   "version": "1.5"
+  },
+  "control": {
+   "field": "control.hello.protocol",
+   "on_mismatch": "refuse_start",
+   "version": "1.4"
+  },
+  "runtime": {
+   "field": "llama.cpp build id",
+   "on_mismatch": "runtime_unavailable",
+   "version": "1.0"
+  },
+  "skills_bundle": {
+   "field": "schema_version",
+   "on_mismatch": "bundle_rejected_previous_kept",
+   "version": "1.0"
+  },
+  "trace": {
+   "field": "trace_version",
+   "on_mismatch": "export_upgrades_or_refuses",
+   "version": "1.1"
+  },
+  "worker": {
+   "field": "worker.hello.protocol",
+   "on_mismatch": "worker_disabled",
+   "version": "1.0"
+  }
+ }
+}

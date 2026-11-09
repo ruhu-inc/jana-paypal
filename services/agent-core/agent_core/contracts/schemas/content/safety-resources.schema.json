@@ -1,0 +1,87 @@
+{
+ "$comment": "GENERATED from contracts/content/safety-resources.schema.json sha256 d2c15b1576ceed566946e98f8fdb4001ce09c0b4f97f542705efb0be5edb45cf; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/content/safety-resources",
+ "title": "SafetyResources",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "schema_version",
+  "country",
+  "verified_by",
+  "entries"
+ ],
+ "properties": {
+  "schema_version": {
+   "const": "1.0"
+  },
+  "country": {
+   "anyOf": [
+    {
+     "type": "string",
+     "pattern": "^[A-Z]{2}$"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "verified_by": {
+   "anyOf": [
+    {
+     "type": "string",
+     "maxLength": 80
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "entries": {
+   "type": "array",
+   "maxItems": 8,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "kind",
+     "name",
+     "number",
+     "hours",
+     "verified"
+    ],
+    "properties": {
+     "kind": {
+      "enum": [
+       "emergency",
+       "child_helpline"
+      ]
+     },
+     "name": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "number": {
+      "type": "string",
+      "maxLength": 32
+     },
+     "hours": {
+      "type": "string",
+      "maxLength": 60
+     },
+     "verified": {
+      "type": "boolean"
+     },
+     "verified_by": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "verified_on": {
+      "type": "string",
+      "format": "date"
+     }
+    }
+   }
+  }
+ }
+}

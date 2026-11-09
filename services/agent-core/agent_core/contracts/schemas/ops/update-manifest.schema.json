@@ -1,0 +1,112 @@
+{
+ "$comment": "GENERATED from contracts/ops/update-manifest.schema.json sha256 240623b046921580901b33477288e72e4a26bf0b1a17897e4e88b36ed3297b4a; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/update-manifest",
+ "title": "UpdateManifest",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "format",
+  "version",
+  "channel",
+  "os",
+  "arch",
+  "installer",
+  "changes",
+  "created_at",
+  "signature"
+ ],
+ "properties": {
+  "format": {
+   "const": "jana.update.1"
+  },
+  "version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+(-rc\\.\\d+)?$"
+  },
+  "channel": {
+   "enum": [
+    "dev",
+    "pilot",
+    "stable"
+   ]
+  },
+  "os": {
+   "enum": [
+    "windows",
+    "macos",
+    "linux"
+   ]
+  },
+  "arch": {
+   "enum": [
+    "x86_64",
+    "arm64"
+   ]
+  },
+  "installer": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "name",
+    "size_bytes",
+    "sha256"
+   ],
+   "properties": {
+    "name": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "size_bytes": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    }
+   }
+  },
+  "changes": {
+   "type": "array",
+   "maxItems": 40,
+   "items": {
+    "type": "string",
+    "maxLength": 120
+   }
+  },
+  "revocation_list": {
+   "type": "object"
+  },
+  "created_at": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "signature": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "alg",
+    "key_id",
+    "value"
+   ],
+   "properties": {
+    "alg": {
+     "const": "ed25519"
+    },
+    "key_id": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  },
+  "compatibility_matrix": {
+   "type": "object"
+  },
+  "safety_configuration": {
+   "type": "object"
+  }
+ }
+}

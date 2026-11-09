@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/bearing_diagram",
+  "$comment": "Params for bearing_diagram, owned by the vetted renderer (VSL-03). The back bearing and the east and north components are computed by geom_figure (VER-15). Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "bearing_diagram params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "from",
+    "to",
+    "bearing",
+    "distance"
+  ],
+  "properties": {
+    "from": {
+      "type": "string",
+      "pattern": "^[A-Z][a-z0-9']{0,2}$"
+    },
+    "to": {
+      "type": "string",
+      "pattern": "^[A-Z][a-z0-9']{0,2}$"
+    },
+    "bearing": {
+      "type": "string",
+      "maxLength": 24,
+      "pattern": "^-?[0-9]+(\\.[0-9]+)?(/[0-9]+)?$"
+    },
+    "distance": {
+      "type": "string",
+      "maxLength": 40,
+      "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?( ?[^\\s].{0,30})?$"
+    },
+    "show": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "back_bearing",
+          "components"
+        ]
+      },
+      "maxItems": 2,
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "back_bearing",
+            "components"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

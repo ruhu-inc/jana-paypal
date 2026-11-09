@@ -1,0 +1,807 @@
+{
+ "$comment": "GENERATED from contracts/personal-sync/personal-sync.schema.json sha256 ee41d8e6a5e2d93c227079738fe658bbbeec94e562550b6f0fcb01c98321f093; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/personal-sync/personal-sync",
+ "title": "Personal sync wire contract",
+ "$defs": {
+  "ulid": {
+   "type": "string",
+   "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "device_id": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{32}$"
+  },
+  "hlc": {
+   "type": "string",
+   "pattern": "^[0-9]{15}-[0-9]{5}$"
+  },
+  "sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "b64": {
+   "type": "string",
+   "pattern": "^[A-Za-z0-9_-]*$",
+   "maxLength": 90000000
+  },
+  "key32": {
+   "type": "string",
+   "pattern": "^[A-Za-z0-9_-]{43}$"
+  },
+  "datetime": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "protocol_version": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "major": {
+     "const": 1
+    },
+    "minor": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "major",
+    "minor"
+   ]
+  },
+  "peer_id": {
+   "type": "string",
+   "pattern": "^(svc:[0-9A-HJKMNP-TV-Z]{26}|lan:[0-9a-f]{32})$"
+  },
+  "rejection_reason": {
+   "enum": [
+    "clock_skew",
+    "key_mismatch",
+    "device_unknown",
+    "device_revoked",
+    "profile_not_authorized",
+    "consent_missing",
+    "schema_too_new",
+    "segment_too_large",
+    "origin_seq_gap",
+    "duplicate_changed",
+    "body_not_sealed",
+    "quota_exceeded",
+    "protocol_unsupported"
+   ]
+  },
+  "error": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "error": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "code": {
+       "$ref": "#/$defs/rejection_reason"
+      },
+      "message": {
+       "type": "string",
+       "maxLength": 2000
+      },
+      "retryable": {
+       "type": "boolean"
+      },
+      "action_taken": {
+       "type": "boolean"
+      },
+      "retry_after_ms": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "details": {
+       "type": "object"
+      },
+      "request_id": {
+       "type": "string",
+       "maxLength": 64
+      }
+     },
+     "required": [
+      "code",
+      "message",
+      "retryable",
+      "action_taken",
+      "request_id"
+     ]
+    }
+   },
+   "required": [
+    "error"
+   ]
+  },
+  "account_consent": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "role": {
+     "enum": [
+      "guardian",
+      "student_18_plus"
+     ]
+    },
+    "consent_ref": {
+     "type": "string",
+     "maxLength": 128
+    },
+    "at": {
+     "$ref": "#/$defs/datetime"
+    }
+   },
+   "required": [
+    "role",
+    "consent_ref",
+    "at"
+   ]
+  },
+  "device_enrolment": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "protocol": {
+     "$ref": "#/$defs/protocol_version"
+    },
+    "account_id": {
+     "$ref": "#/$defs/ulid"
+    },
+    "device_id": {
+     "$ref": "#/$defs/device_id"
+    },
+    "device_label": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 40
+    },
+    "credential_public_key": {
+     "$ref": "#/$defs/key32"
+    },
+    "profile_ids": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 16,
+     "uniqueItems": true,
+     "items": {
+      "$ref": "#/$defs/ulid"
+     }
+    },
+    "features": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "enum": [
+       "cloud_backup",
+       "multi_device"
+      ]
+     }
+    },
+    "key_check": {
+     "$ref": "#/$defs/sha256"
+    },
+    "enrolled_by": {
+     "$ref": "#/$defs/account_consent"
+    },
+    "status": {
+     "enum": [
+      "active",
+      "revoked"
+     ]
+    },
+    "revoked_at": {
+     "$ref": "#/$defs/datetime"
+    }
+   },
+   "required": [
+    "protocol",
+    "account_id",
+    "device_id",
+    "device_label",
+    "credential_public_key",
+    "profile_ids",
+    "features",
+    "key_check",
+    "enrolled_by",
+    "status"
+   ]
+  },
+  "enrolment_result": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "accepted": {
+     "type": "boolean"
+    },
+    "reason": {
+     "$ref": "#/$defs/rejection_reason"
+    },
+    "device_id": {
+     "$ref": "#/$defs/device_id"
+    },
+    "status": {
+     "enum": [
+      "active",
+      "revoked"
+     ]
+    },
+    "devices": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "device_id": {
+        "$ref": "#/$defs/device_id"
+       },
+       "device_label": {
+        "type": "string",
+        "maxLength": 40
+       },
+       "status": {
+        "enum": [
+         "active",
+         "revoked"
+        ]
+       },
+       "last_sync_at": {
+        "$ref": "#/$defs/datetime"
+       }
+      },
+      "required": [
+       "device_id",
+       "device_label",
+       "status"
+      ]
+     }
+    },
+    "limits": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "max_segment_bytes": {
+       "type": "integer",
+       "minimum": 65536
+      },
+      "max_snapshot_bytes": {
+       "type": "integer",
+       "minimum": 1048576
+      },
+      "clock_skew_bound_ms": {
+       "type": "integer",
+       "minimum": 60000
+      }
+     },
+     "required": [
+      "max_segment_bytes",
+      "max_snapshot_bytes",
+      "clock_skew_bound_ms"
+     ]
+    }
+   },
+   "required": [
+    "accepted",
+    "device_id",
+    "status"
+   ]
+  },
+  "segment_header": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "protocol": {
+     "$ref": "#/$defs/protocol_version"
+    },
+    "segment_id": {
+     "$ref": "#/$defs/ulid"
+    },
+    "profile_id": {
+     "$ref": "#/$defs/ulid"
+    },
+    "origin_device_id": {
+     "$ref": "#/$defs/device_id"
+    },
+    "origin_seq_from": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "origin_seq_to": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "hlc_min": {
+     "$ref": "#/$defs/hlc"
+    },
+    "hlc_max": {
+     "$ref": "#/$defs/hlc"
+    },
+    "event_count": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "event_schema_versions": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+     }
+    },
+    "created_at": {
+     "$ref": "#/$defs/datetime"
+    },
+    "payload_sha256": {
+     "$ref": "#/$defs/sha256"
+    },
+    "payload_bytes": {
+     "type": "integer",
+     "minimum": 2
+    }
+   },
+   "required": [
+    "protocol",
+    "segment_id",
+    "profile_id",
+    "origin_device_id",
+    "origin_seq_from",
+    "origin_seq_to",
+    "hlc_min",
+    "hlc_max",
+    "event_count",
+    "event_schema_versions",
+    "created_at",
+    "payload_sha256",
+    "payload_bytes"
+   ]
+  },
+  "segment_payload": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "events": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "$ref": "https://jana.dev/contracts/learning/learning-event"
+     }
+    }
+   },
+   "required": [
+    "events"
+   ]
+  },
+  "sealed_body": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "sealed"
+    },
+    "suite": {
+     "const": "aes-256-gcm"
+    },
+    "kdf": {
+     "const": "hkdf-sha256"
+    },
+    "nonce": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9_-]{16}$"
+    },
+    "ciphertext": {
+     "$ref": "#/$defs/b64"
+    },
+    "ciphertext_sha256": {
+     "$ref": "#/$defs/sha256"
+    }
+   },
+   "required": [
+    "kind",
+    "suite",
+    "kdf",
+    "nonce",
+    "ciphertext",
+    "ciphertext_sha256"
+   ]
+  },
+  "plain_body": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "plain"
+    },
+    "payload": {
+     "$ref": "#/$defs/segment_payload"
+    }
+   },
+   "required": [
+    "kind",
+    "payload"
+   ]
+  },
+  "segment": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "header": {
+     "$ref": "#/$defs/segment_header"
+    },
+    "body": {
+     "oneOf": [
+      {
+       "$ref": "#/$defs/sealed_body"
+      },
+      {
+       "$ref": "#/$defs/plain_body"
+      }
+     ]
+    }
+   },
+   "required": [
+    "header",
+    "body"
+   ]
+  },
+  "snapshot": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "header": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "protocol": {
+       "$ref": "#/$defs/protocol_version"
+      },
+      "snapshot_id": {
+       "$ref": "#/$defs/ulid"
+      },
+      "profile_id": {
+       "$ref": "#/$defs/ulid"
+      },
+      "device_id": {
+       "$ref": "#/$defs/device_id"
+      },
+      "created_at": {
+       "$ref": "#/$defs/datetime"
+      },
+      "hlc_max": {
+       "$ref": "#/$defs/hlc"
+      },
+      "device_heads": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+         "origin_device_id": {
+          "$ref": "#/$defs/device_id"
+         },
+         "origin_seq_head": {
+          "type": "integer",
+          "minimum": 0
+         }
+        },
+        "required": [
+         "origin_device_id",
+         "origin_seq_head"
+        ]
+       }
+      },
+      "store_schema_version": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "archive_format": {
+       "const": "profile_archive"
+      },
+      "archive_sha256": {
+       "$ref": "#/$defs/sha256"
+      },
+      "archive_bytes": {
+       "type": "integer",
+       "minimum": 1
+      }
+     },
+     "required": [
+      "protocol",
+      "snapshot_id",
+      "profile_id",
+      "device_id",
+      "created_at",
+      "hlc_max",
+      "device_heads",
+      "store_schema_version",
+      "archive_format",
+      "archive_sha256",
+      "archive_bytes"
+     ]
+    },
+    "body": {
+     "$ref": "#/$defs/sealed_body"
+    }
+   },
+   "required": [
+    "header",
+    "body"
+   ]
+  },
+  "cursor": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "peer_id": {
+     "$ref": "#/$defs/peer_id"
+    },
+    "direction": {
+     "enum": [
+      "out",
+      "in"
+     ]
+    },
+    "last_seq": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "last_sync_at": {
+     "$ref": "#/$defs/datetime"
+    }
+   },
+   "required": [
+    "peer_id",
+    "direction",
+    "last_seq"
+   ]
+  },
+  "cursor_exchange": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "protocol": {
+     "$ref": "#/$defs/protocol_version"
+    },
+    "profile_id": {
+     "$ref": "#/$defs/ulid"
+    },
+    "device_id": {
+     "$ref": "#/$defs/device_id"
+    },
+    "cursors": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 2,
+     "items": {
+      "$ref": "#/$defs/cursor"
+     }
+    },
+    "device_time": {
+     "$ref": "#/$defs/datetime"
+    }
+   },
+   "required": [
+    "protocol",
+    "profile_id",
+    "device_id",
+    "cursors",
+    "device_time"
+   ]
+  },
+  "cursor_reply": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "profile_id": {
+     "$ref": "#/$defs/ulid"
+    },
+    "peer_id": {
+     "$ref": "#/$defs/peer_id"
+    },
+    "peer_seq_head": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "device_heads": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "origin_device_id": {
+        "$ref": "#/$defs/device_id"
+       },
+       "origin_seq_head": {
+        "type": "integer",
+        "minimum": 0
+       }
+      },
+      "required": [
+       "origin_device_id",
+       "origin_seq_head"
+      ]
+     }
+    },
+    "peer_time": {
+     "$ref": "#/$defs/datetime"
+    },
+    "clock_skew_ms": {
+     "type": "integer"
+    }
+   },
+   "required": [
+    "profile_id",
+    "peer_id",
+    "peer_seq_head",
+    "device_heads",
+    "peer_time",
+    "clock_skew_ms"
+   ]
+  },
+  "segment_pull": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "after": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "limit": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 500,
+     "default": 100
+    }
+   },
+   "required": [
+    "after"
+   ]
+  },
+  "segment_page": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "peer_seq": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "segment": {
+        "$ref": "#/$defs/segment"
+       }
+      },
+      "required": [
+       "peer_seq",
+       "segment"
+      ]
+     }
+    },
+    "next_after": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "complete": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "items",
+    "next_after",
+    "complete"
+   ]
+  },
+  "ack": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "segment_id": {
+     "$ref": "#/$defs/ulid"
+    },
+    "status": {
+     "enum": [
+      "applied",
+      "duplicate",
+      "deferred",
+      "rejected"
+     ]
+    },
+    "reason": {
+     "$ref": "#/$defs/rejection_reason"
+    },
+    "applied": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "duplicates": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "peer_seq": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "cursor": {
+     "$ref": "#/$defs/cursor"
+    },
+    "receiver_time": {
+     "$ref": "#/$defs/datetime"
+    }
+   },
+   "required": [
+    "segment_id",
+    "status",
+    "applied",
+    "duplicates",
+    "peer_seq",
+    "cursor",
+    "receiver_time"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "status": {
+        "enum": [
+         "deferred",
+         "rejected"
+        ]
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "reason"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "status": {
+        "const": "deferred"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "reason": {
+        "enum": [
+         "clock_skew",
+         "schema_too_new"
+        ]
+       },
+       "applied": {
+        "const": 0
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "status": {
+        "const": "rejected"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "applied": {
+        "const": 0
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

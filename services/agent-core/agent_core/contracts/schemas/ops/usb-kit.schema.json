@@ -1,0 +1,130 @@
+{
+ "$comment": "GENERATED from contracts/ops/usb-kit.schema.json sha256 b0f2e33fa82c5510b659982c3d989d24b9370f9b26889cfedcc2911cc53a9a4f; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/usb-kit",
+ "title": "USB kit listing",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "format",
+  "kit_id",
+  "created_at",
+  "channel",
+  "candidate",
+  "release_version",
+  "matrix_version",
+  "files",
+  "signature"
+ ],
+ "properties": {
+  "format": {
+   "const": "jana.usb-kit.1"
+  },
+  "kit_id": {
+   "type": "string",
+   "pattern": "^kit-20[0-9]{2}\\.[123]\\.[1-9][0-9]*$"
+  },
+  "created_at": {
+   "type": "string",
+   "format": "date-time",
+   "maxLength": 40
+  },
+  "channel": {
+   "enum": [
+    "stable",
+    "pilot",
+    "dev"
+   ]
+  },
+  "candidate": {
+   "type": "boolean"
+  },
+  "release_version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+(-rc\\.\\d+)?$"
+  },
+  "matrix_version": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "files": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 4096,
+   "items": {
+    "$ref": "#/$defs/KitFile"
+   }
+  },
+  "revocation_list": {
+   "$ref": "https://jana.dev/contracts/ops/revocation-list"
+  },
+  "signature": {
+   "$ref": "#/$defs/Signature"
+  }
+ },
+ "$defs": {
+  "KitFile": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "path",
+    "kind",
+    "size_bytes",
+    "sha256"
+   ],
+   "properties": {
+    "path": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 512,
+     "pattern": "^(?!/)(?!.*(^|/)\\.\\.?(/|$))[A-Za-z0-9._@/-]+$"
+    },
+    "kind": {
+     "enum": [
+      "content_pack",
+      "content_diff",
+      "model_pack_file",
+      "speech_pack_file",
+      "app_update",
+      "installer",
+      "webview_installer",
+      "compatibility_matrix",
+      "safety_configuration",
+      "documentation"
+     ]
+    },
+    "size_bytes": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    }
+   }
+  },
+  "Signature": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "alg",
+    "key_id",
+    "value"
+   ],
+   "properties": {
+    "alg": {
+     "const": "ed25519"
+    },
+    "key_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 80
+    },
+    "value": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9+/=_-]{40,200}$"
+    }
+   }
+  }
+ }
+}

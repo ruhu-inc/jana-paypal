@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/financial_statements",
+  "$comment": "Params for financial_statements, owned by the vetted renderer (VSL-03). Every line is computed by acc_statements (VER-22) from the trial balance and adjustments. Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "financial_statements params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "statement",
+    "trial_balance"
+  ],
+  "properties": {
+    "statement": {
+      "enum": [
+        "income_statement",
+        "financial_position"
+      ]
+    },
+    "business": {
+      "type": "string",
+      "maxLength": 40
+    },
+    "period_end": {
+      "type": "string",
+      "maxLength": 24
+    },
+    "trial_balance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "account",
+          "role"
+        ],
+        "properties": {
+          "account": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "role": {
+            "enum": [
+              "revenue",
+              "sales_returns",
+              "purchases",
+              "purchases_returns",
+              "carriage_inwards",
+              "opening_inventory",
+              "expense",
+              "other_income",
+              "non_current_asset",
+              "accumulated_depreciation",
+              "trade_receivables",
+              "allowance_for_irrecoverable_debts",
+              "other_receivables",
+              "bank",
+              "cash",
+              "trade_payables",
+              "other_payables",
+              "bank_overdraft",
+              "non_current_liability",
+              "capital",
+              "drawings"
+            ]
+          },
+          "debit": {
+            "type": "string",
+            "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+          },
+          "credit": {
+            "type": "string",
+            "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+          }
+        }
+      },
+      "maxItems": 30,
+      "minItems": 1
+    },
+    "adjustments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "accrued_expense",
+              "prepaid_expense",
+              "accrued_income",
+              "income_in_advance",
+              "closing_inventory"
+            ]
+          },
+          "account": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "amount": {
+            "type": "string",
+            "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+          }
+        }
+      },
+      "maxItems": 10
+    },
+    "currency": {
+      "type": "string",
+      "maxLength": 4
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "subtotal"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

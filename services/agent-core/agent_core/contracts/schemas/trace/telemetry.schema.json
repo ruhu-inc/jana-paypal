@@ -1,0 +1,571 @@
+{
+ "$comment": "GENERATED from contracts/trace/telemetry.schema.json sha256 68ccc9f21b5cb09c2ef55c98bb69f2927965ac3bd9412d6edf46ded6985fe0e0; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/trace/telemetry",
+ "title": "Telemetry report",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "report_id": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+  },
+  "app_version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+(?:-(?:dev|alpha|beta|rc)\\.\\d+)?$",
+   "maxLength": 40
+  },
+  "channel": {
+   "enum": [
+    "dev",
+    "pilot",
+    "stable"
+   ]
+  },
+  "hardware_class": {
+   "enum": [
+    "low",
+    "mid",
+    "high",
+    "content_only"
+   ]
+  },
+  "os_family": {
+   "enum": [
+    "windows",
+    "macos",
+    "linux"
+   ]
+  },
+  "router_tier": {
+   "enum": [
+    "local",
+    "cloud",
+    "lan"
+   ]
+  },
+  "days": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 14
+  },
+  "metrics": {
+   "$ref": "#/$defs/metrics"
+  },
+  "series": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "app_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-(?:dev|alpha|beta|rc)\\.\\d+)?$",
+      "maxLength": 40
+     },
+     "channel": {
+      "enum": [
+       "dev",
+       "pilot",
+       "stable"
+      ]
+     },
+     "hardware_class": {
+      "enum": [
+       "low",
+       "mid",
+       "high",
+       "content_only"
+      ]
+     },
+     "os_family": {
+      "enum": [
+       "windows",
+       "macos",
+       "linux"
+      ]
+     },
+     "router_tier": {
+      "enum": [
+       "local",
+       "cloud",
+       "lan"
+      ]
+     },
+     "metrics": {
+      "$ref": "#/$defs/metrics"
+     },
+     "labels": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "role": {
+        "enum": [
+         "coach",
+         "solver",
+         "checker",
+         "reflector",
+         "planner",
+         "diagnostician",
+         "diagnoser",
+         "auxiliary",
+         "other"
+        ]
+       },
+       "tool": {
+        "enum": [
+         "acc_appraisal",
+         "acc_break_even",
+         "acc_cash_flow",
+         "acc_depreciation",
+         "acc_double_entry",
+         "acc_inventory",
+         "acc_ratios",
+         "acc_statements",
+         "ask_student",
+         "bio_calc",
+         "bio_genetics",
+         "chem_acid_base",
+         "chem_balance",
+         "chem_energetics",
+         "chem_equilibrium",
+         "chem_molar_mass",
+         "chem_organic",
+         "chem_stoichiometry",
+         "content_search",
+         "curriculum_lookup",
+         "geom_figure",
+         "invalid",
+         "lesson_plan_write",
+         "math_check_answer",
+         "math_check_equivalence",
+         "math_check_step",
+         "math_differentiate",
+         "math_eval",
+         "math_evaluate",
+         "math_integrate",
+         "math_parse",
+         "math_plot_points",
+         "math_simplify",
+         "math_solve",
+         "math_solve_ode",
+         "memory_note",
+         "memory_recall",
+         "other",
+         "phys_circuit",
+         "phys_mechanics",
+         "phys_optics",
+         "phys_projectile",
+         "progress_update",
+         "python_run",
+         "session_recall",
+         "show_hint",
+         "show_visual",
+         "skill",
+         "stats_compute",
+         "stats_distribution",
+         "units_check_dimensions",
+         "units_convert",
+         "update_board"
+        ]
+       },
+       "error_code": {
+        "enum": [
+         "invalid_args",
+         "timeout",
+         "unavailable",
+         "unknown",
+         "verification_failed",
+         "other"
+        ]
+       },
+       "process": {
+        "enum": [
+         "shell",
+         "core",
+         "worker",
+         "runtime",
+         "perception"
+        ]
+       },
+       "connectivity": {
+        "enum": [
+         "off",
+         "offline",
+         "limited",
+         "metered",
+         "online",
+         "unknown"
+        ]
+       },
+       "feature": {
+        "enum": [
+         "cloud_tier",
+         "downloads",
+         "update_checks",
+         "cloud_backup",
+         "multi_device",
+         "parent_remote_view",
+         "cloud_voice",
+         "study_materials",
+         "telemetry",
+         "crash_reports",
+         "tutor_memory_online"
+        ]
+       },
+       "repair_step": {
+        "enum": [
+         "unique_id",
+         "name_repair",
+         "json_repair",
+         "type_coercion",
+         "normalize",
+         "salvaged_from_text"
+        ]
+       },
+       "gate": {
+        "enum": [
+         "no_answer_leak",
+         "verification",
+         "budget",
+         "safety",
+         "schema",
+         "other"
+        ]
+       }
+      }
+     }
+    },
+    "required": [
+     "app_version",
+     "channel",
+     "hardware_class",
+     "os_family",
+     "router_tier",
+     "metrics"
+    ]
+   }
+  },
+  "labels": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "role": {
+     "enum": [
+      "coach",
+      "solver",
+      "checker",
+      "reflector",
+      "planner",
+      "diagnostician",
+      "diagnoser",
+      "auxiliary",
+      "other"
+     ]
+    },
+    "tool": {
+     "enum": [
+      "acc_appraisal",
+      "acc_break_even",
+      "acc_cash_flow",
+      "acc_depreciation",
+      "acc_double_entry",
+      "acc_inventory",
+      "acc_ratios",
+      "acc_statements",
+      "ask_student",
+      "bio_calc",
+      "bio_genetics",
+      "chem_acid_base",
+      "chem_balance",
+      "chem_energetics",
+      "chem_equilibrium",
+      "chem_molar_mass",
+      "chem_organic",
+      "chem_stoichiometry",
+      "content_search",
+      "curriculum_lookup",
+      "geom_figure",
+      "invalid",
+      "lesson_plan_write",
+      "math_check_answer",
+      "math_check_equivalence",
+      "math_check_step",
+      "math_differentiate",
+      "math_eval",
+      "math_evaluate",
+      "math_integrate",
+      "math_parse",
+      "math_plot_points",
+      "math_simplify",
+      "math_solve",
+      "math_solve_ode",
+      "memory_note",
+      "memory_recall",
+      "other",
+      "phys_circuit",
+      "phys_mechanics",
+      "phys_optics",
+      "phys_projectile",
+      "progress_update",
+      "python_run",
+      "session_recall",
+      "show_hint",
+      "show_visual",
+      "skill",
+      "stats_compute",
+      "stats_distribution",
+      "units_check_dimensions",
+      "units_convert",
+      "update_board"
+     ]
+    },
+    "error_code": {
+     "enum": [
+      "invalid_args",
+      "timeout",
+      "unavailable",
+      "unknown",
+      "verification_failed",
+      "other"
+     ]
+    },
+    "process": {
+     "enum": [
+      "shell",
+      "core",
+      "worker",
+      "runtime",
+      "perception"
+     ]
+    },
+    "connectivity": {
+     "enum": [
+      "off",
+      "offline",
+      "limited",
+      "metered",
+      "online",
+      "unknown"
+     ]
+    },
+    "feature": {
+     "enum": [
+      "cloud_tier",
+      "downloads",
+      "update_checks",
+      "cloud_backup",
+      "multi_device",
+      "parent_remote_view",
+      "cloud_voice",
+      "study_materials",
+      "telemetry",
+      "crash_reports",
+      "tutor_memory_online"
+     ]
+    },
+    "repair_step": {
+     "enum": [
+      "unique_id",
+      "name_repair",
+      "json_repair",
+      "type_coercion",
+      "normalize",
+      "salvaged_from_text"
+     ]
+    },
+    "gate": {
+     "enum": [
+      "no_answer_leak",
+      "verification",
+      "budget",
+      "safety",
+      "schema",
+      "other"
+     ]
+    }
+   }
+  }
+ },
+ "required": [
+  "report_id",
+  "app_version",
+  "channel",
+  "hardware_class",
+  "os_family",
+  "router_tier",
+  "days",
+  "metrics"
+ ],
+ "$defs": {
+  "histogram": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "count": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "sum": {
+     "type": "number",
+     "minimum": 0
+    },
+    "buckets": {
+     "type": "array",
+     "items": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "minItems": 8,
+     "maxItems": 8
+    }
+   },
+   "required": [
+    "count",
+    "sum",
+    "buckets"
+   ]
+  },
+  "metrics": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "core_ready_ms": {
+     "$ref": "#/$defs/histogram"
+    },
+    "ready_ms": {
+     "$ref": "#/$defs/histogram"
+    },
+    "model_load_ms": {
+     "$ref": "#/$defs/histogram"
+    },
+    "ttft_ms": {
+     "$ref": "#/$defs/histogram"
+    },
+    "prompt_tokens_per_s": {
+     "$ref": "#/$defs/histogram"
+    },
+    "generation_tokens_per_s": {
+     "$ref": "#/$defs/histogram"
+    },
+    "guided_step_ms": {
+     "$ref": "#/$defs/histogram"
+    },
+    "turn_duration_ms": {
+     "$ref": "#/$defs/histogram"
+    },
+    "model_calls": {
+     "$ref": "#/$defs/histogram"
+    },
+    "model_fallbacks": {
+     "$ref": "#/$defs/histogram"
+    },
+    "model_invalid": {
+     "$ref": "#/$defs/histogram"
+    },
+    "model_empty": {
+     "$ref": "#/$defs/histogram"
+    },
+    "correction_turns": {
+     "$ref": "#/$defs/histogram"
+    },
+    "model_cache_hits": {
+     "$ref": "#/$defs/histogram"
+    },
+    "cloud_cost_usd": {
+     "$ref": "#/$defs/histogram"
+    },
+    "tool_calls": {
+     "$ref": "#/$defs/histogram"
+    },
+    "tool_failures": {
+     "$ref": "#/$defs/histogram"
+    },
+    "tool_repairs": {
+     "$ref": "#/$defs/histogram"
+    },
+    "tool_duration_ms": {
+     "$ref": "#/$defs/histogram"
+    },
+    "worker_restarts": {
+     "$ref": "#/$defs/histogram"
+    },
+    "gate_fired": {
+     "$ref": "#/$defs/histogram"
+    },
+    "gate_exhausted": {
+     "$ref": "#/$defs/histogram"
+    },
+    "guard_triggered": {
+     "$ref": "#/$defs/histogram"
+    },
+    "turn_complete": {
+     "$ref": "#/$defs/histogram"
+    },
+    "turn_error": {
+     "$ref": "#/$defs/histogram"
+    },
+    "turn_interrupted": {
+     "$ref": "#/$defs/histogram"
+    },
+    "turn_truncated": {
+     "$ref": "#/$defs/histogram"
+    },
+    "compactions": {
+     "$ref": "#/$defs/histogram"
+    },
+    "sessions": {
+     "$ref": "#/$defs/histogram"
+    },
+    "crashed_sessions": {
+     "$ref": "#/$defs/histogram"
+    },
+    "process_restarts": {
+     "$ref": "#/$defs/histogram"
+    },
+    "process_giveups": {
+     "$ref": "#/$defs/histogram"
+    },
+    "peak_memory_mb": {
+     "$ref": "#/$defs/histogram"
+    },
+    "cpu_share": {
+     "$ref": "#/$defs/histogram"
+    },
+    "battery_drain_per_hour": {
+     "$ref": "#/$defs/histogram"
+    },
+    "connectivity_seconds": {
+     "$ref": "#/$defs/histogram"
+    },
+    "outbox_depth": {
+     "$ref": "#/$defs/histogram"
+    },
+    "outbox_age_s": {
+     "$ref": "#/$defs/histogram"
+    },
+    "egress_bytes": {
+     "$ref": "#/$defs/histogram"
+    },
+    "download_failures": {
+     "$ref": "#/$defs/histogram"
+    },
+    "photo_captures": {
+     "$ref": "#/$defs/histogram"
+    },
+    "photo_confirmed": {
+     "$ref": "#/$defs/histogram"
+    },
+    "photo_edited": {
+     "$ref": "#/$defs/histogram"
+    },
+    "photo_unreadable": {
+     "$ref": "#/$defs/histogram"
+    },
+    "photo_duration_ms": {
+     "$ref": "#/$defs/histogram"
+    }
+   }
+  }
+ }
+}

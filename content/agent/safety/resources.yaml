@@ -1,0 +1,9 @@
+# The safety-resources pack (PRV-14, PED-18, D2): the pilot country's emergency number and child helplines for the
+# distress template and the calm screen. Country specifics are configuration, completed with the pilot-country
+# checklist once the country is chosen (D2); every entry is checked by the child-protection partner before it is
+# marked `verified: true`. An entry that is not verified is never shown; with none verified, the distress template
+# leaves out its helpline sentences and keeps the trusted-adult message. Format: the content/safety-resources contract.
+schema_version: "1.0"
+country: null
+verified_by: null
+entries: []

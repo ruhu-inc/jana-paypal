@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/bank_reconciliation",
+  "$comment": "Params for bank_reconciliation, owned by the vetted renderer (VSL-03). The updated cash book and the statement lines are computed by acc_double_entry (VER-22). Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "bank_reconciliation params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "cash_book_balance",
+    "bank_statement_balance"
+  ],
+  "properties": {
+    "cash_book_balance": {
+      "type": "string",
+      "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+    },
+    "bank_statement_balance": {
+      "type": "string",
+      "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+    },
+    "cash_book": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "direction",
+          "amount"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^c[0-9]{1,2}$"
+          },
+          "direction": {
+            "enum": [
+              "in",
+              "out"
+            ]
+          },
+          "amount": {
+            "type": "string",
+            "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+          },
+          "details": {
+            "type": "string",
+            "maxLength": 24
+          },
+          "ref": {
+            "type": "string",
+            "maxLength": 24
+          }
+        }
+      },
+      "maxItems": 12
+    },
+    "bank_statement": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "direction",
+          "amount"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^s[0-9]{1,2}$"
+          },
+          "direction": {
+            "enum": [
+              "in",
+              "out"
+            ]
+          },
+          "amount": {
+            "type": "string",
+            "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+          },
+          "details": {
+            "type": "string",
+            "maxLength": 24
+          },
+          "ref": {
+            "type": "string",
+            "maxLength": 24
+          }
+        }
+      },
+      "maxItems": 12
+    },
+    "currency": {
+      "type": "string",
+      "maxLength": 4
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "reconciled_note"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

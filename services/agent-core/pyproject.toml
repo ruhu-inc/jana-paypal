@@ -1,0 +1,52 @@
+[project]
+name = "jana-agent-core"
+version = "0.0.0"
+license = "Apache-2.0"
+description = "Agent core sidecar."
+requires-python = "==3.12.*"
+dependencies = [
+    "jana-study-worker",
+    "pydantic>=2.12,<3",
+    "jsonschema>=4.25,<5",
+    "httpx>=0.28,<0.29",
+    "pyyaml>=6.0,<7",
+    "fastapi>=0.118,<1",
+    "uvicorn>=0.37,<1",
+    "websockets>=15,<16",
+    "cryptography>=46,<47",
+    "pillow>=12.3,<13",
+    "jana-perception-worker",
+    "pypdf==6.21.1",
+    "pypdfium2==5.13.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.10,<0.11"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "agent_core"
+module-root = ""
+
+[tool.uv.sources]
+jana-study-worker = { workspace = true }
+jana-perception-worker = { workspace = true }
+
+[tool.jana.modules]
+# Every subpackage of agent_core belongs to exactly one layer (ARC-01).
+api = "streaming"
+engine = "agent_runtime"
+prompts = "agent_runtime"
+roles = "agent_runtime"
+assets = "assets"
+tools = "capabilities"
+memory = "capabilities"
+learner = "capabilities"
+retrieval = "capabilities"
+router = "models"
+providers = "models"
+store = "state"
+trace = "state"
+config = "state"        # working assumption, see gaps.md (ARC-01)
+contracts = "streaming" # working assumption, see gaps.md (ARC-01)
+net = "connectivity"

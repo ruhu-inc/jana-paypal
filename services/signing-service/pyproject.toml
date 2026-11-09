@@ -1,0 +1,27 @@
+[project]
+name = "jana-signing-service"
+version = "0.0.0"
+license = "Apache-2.0"
+description = "Internal content signing service: rebuilds packs from a commit, re-runs every gate and signs (D34, AUT-33)."
+requires-python = "==3.12.*"
+dependencies = [
+    "jana-agent-core",
+    "jana-pack-builder",
+    "cryptography>=46,<47",
+    "pyyaml>=6.0,<7",
+]
+
+[tool.uv.sources]
+jana-agent-core = { workspace = true }
+jana-pack-builder = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.10,<0.11"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "signing_service"
+module-root = ""
+
+[tool.jana]
+layer = "assets"

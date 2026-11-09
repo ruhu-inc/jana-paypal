@@ -1,0 +1,72 @@
+{
+ "$comment": "GENERATED from contracts/ops/support-upload.schema.json sha256 f25da184b294008d6b89ec701a1ee0132d35cbe9297ed324827f447d60e6d851; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/support-upload",
+ "title": "Support upload",
+ "$defs": {
+  "TicketRef": {
+   "type": "string",
+   "pattern": "^JT-[0-9A-HJKMNP-TV-Z]{4}-[0-9A-HJKMNP-TV-Z]{4}-[0-9A-HJKMNP-TV-Z]{4}$"
+  },
+  "SupportUploadReceipt": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "bundle_id",
+    "ticket_ref",
+    "sealed",
+    "scanned"
+   ],
+   "properties": {
+    "bundle_id": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{32}$"
+    },
+    "ticket_ref": {
+     "$ref": "#/$defs/TicketRef"
+    },
+    "sealed": {
+     "type": "boolean"
+    },
+    "scanned": {
+     "type": "boolean"
+    }
+   }
+  },
+  "SupportUploadError": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "error"
+   ],
+   "properties": {
+    "error": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "code",
+      "message"
+     ],
+     "properties": {
+      "code": {
+       "enum": [
+        "ticket_not_found",
+        "ticket_full",
+        "bundle_invalid",
+        "redaction_blocked",
+        "unsupported_file",
+        "invalid_metadata",
+        "payload_too_large",
+        "rate_limited"
+       ]
+      },
+      "message": {
+       "type": "string",
+       "maxLength": 300
+      }
+     }
+    }
+   }
+  }
+ }
+}

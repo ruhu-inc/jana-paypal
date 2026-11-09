@@ -1,0 +1,4 @@
+{
+ "about": "Reviewers whose signed content safety reviews the signing service accepts for the pilot and stable channels (CUR-27): {key_id, role_id, public_key (base64 Ed25519)}. Public keys only, added by code review. Empty until the subject or curriculum lead adds their own key.",
+ "reviewers": []
+}

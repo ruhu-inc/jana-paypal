@@ -1,0 +1,36 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/spectrum_chart.schema.json sha256 07dd0792291196bb85ad4db18f575a90a1772b63eede8bf52f508657823042f8; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/spectrum_chart",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "spectrum_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100
+  },
+  "type": {
+   "enum": [
+    "mass",
+    "infrared",
+    "proton_nmr"
+   ]
+  },
+  "peaks": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 64,
+    "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+   },
+   "minItems": 0,
+   "maxItems": 100
+  }
+ },
+ "required": [
+  "spectrum_id",
+  "type"
+ ]
+}

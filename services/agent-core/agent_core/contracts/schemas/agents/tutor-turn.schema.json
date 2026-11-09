@@ -1,0 +1,516 @@
+{
+ "$comment": "GENERATED from contracts/agents/tutor-turn.schema.json sha256 71da026c8f4463b82a27e6e867ecee28568c26ee38921c2cbf4191ab1bf8dc8b; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/tutor-turn",
+ "title": "Tutor turn",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "say_spoken",
+  "say",
+  "board",
+  "visual",
+  "card",
+  "hint_rung",
+  "expects",
+  "numbers_from",
+  "cites",
+  "reveals",
+  "confidence"
+ ],
+ "properties": {
+  "say_spoken": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "maxLength": 600,
+   "pattern": "^[^\\\\$^{}*`#]*$"
+  },
+  "say": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 480
+  },
+  "board": {
+   "type": "array",
+   "maxItems": 6,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "op",
+     "step",
+     "latex",
+     "reason",
+     "owner",
+     "status",
+     "terms",
+     "prompt",
+     "check_id",
+     "mark",
+     "part",
+     "to"
+    ],
+    "properties": {
+     "op": {
+      "enum": [
+       "add_step",
+       "revise_step",
+       "mark_step",
+       "highlight",
+       "set_knowns",
+       "await_student",
+       "annotate"
+      ]
+     },
+     "step": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "minimum": 1
+     },
+     "latex": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "maxLength": 300
+     },
+     "reason": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "maxLength": 120
+     },
+     "owner": {
+      "enum": [
+       "tutor",
+       "student",
+       null
+      ]
+     },
+     "status": {
+      "enum": [
+       "draft",
+       "final",
+       "awaiting",
+       "checking",
+       "correct",
+       "incorrect",
+       "equivalent_unsimplified",
+       "unchecked",
+       null
+      ]
+     },
+     "terms": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+       "type": "string",
+       "maxLength": 40
+      }
+     },
+     "prompt": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "maxLength": 120
+     },
+     "check_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "pattern": "^chk_[A-Za-z0-9]{3,32}$"
+     },
+     "mark": {
+      "enum": [
+       "circle",
+       "underline",
+       "arrow",
+       "strike",
+       "margin_note",
+       "look_here",
+       null
+      ]
+     },
+     "part": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "maxLength": 64
+     },
+     "to": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "maxLength": 64
+     }
+    },
+    "allOf": [
+     {
+      "if": {
+       "properties": {
+        "op": {
+         "const": "add_step"
+        }
+       }
+      },
+      "then": {
+       "properties": {
+        "latex": {
+         "type": "string"
+        },
+        "owner": {
+         "enum": [
+          "tutor",
+          "student"
+         ]
+        }
+       }
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "op": {
+         "enum": [
+          "revise_step",
+          "mark_step",
+          "highlight"
+         ]
+        }
+       }
+      },
+      "then": {
+       "properties": {
+        "step": {
+         "type": "integer"
+        }
+       }
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "op": {
+         "const": "mark_step"
+        }
+       }
+      },
+      "then": {
+       "properties": {
+        "status": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "op": {
+         "const": "await_student"
+        }
+       }
+      },
+      "then": {
+       "properties": {
+        "prompt": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "op": {
+         "const": "annotate"
+        }
+       }
+      },
+      "then": {
+       "properties": {
+        "mark": {
+         "type": "string"
+        }
+       }
+      },
+      "else": {
+       "properties": {
+        "mark": {
+         "type": "null"
+        },
+        "part": {
+         "type": "null"
+        },
+        "to": {
+         "type": "null"
+        }
+       }
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "status": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "status"
+       ]
+      },
+      "then": {
+       "properties": {
+        "status": {
+         "$ref": "https://jana.dev/contracts/api/events#/$defs/board_step_status"
+        }
+       }
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "owner": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "owner"
+       ]
+      },
+      "then": {
+       "properties": {
+        "owner": {
+         "$ref": "https://jana.dev/contracts/api/events#/$defs/step_owner"
+        }
+       }
+      }
+     }
+    ]
+   }
+  },
+  "visual": {
+   "type": "array",
+   "maxItems": 1,
+   "items": {
+    "$ref": "https://jana.dev/contracts/visuals/visual-spec"
+   }
+  },
+  "sketch_wanted": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 200
+  },
+  "card": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "additionalProperties": false,
+   "required": [
+    "card_type",
+    "prompt",
+    "options",
+    "allow_free_text",
+    "multi"
+   ],
+   "properties": {
+    "card_type": {
+     "enum": [
+      "question",
+      "hint",
+      "plan",
+      "reflection",
+      "confirm"
+     ]
+    },
+    "prompt": {
+     "type": "string",
+     "maxLength": 160
+    },
+    "options": {
+     "type": "array",
+     "maxItems": 4,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "label",
+       "latex",
+       "recommended"
+      ],
+      "properties": {
+       "label": {
+        "type": "string",
+        "maxLength": 60
+       },
+       "latex": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "maxLength": 200
+       },
+       "recommended": {
+        "type": "boolean"
+       }
+      }
+     }
+    },
+    "allow_free_text": {
+     "type": "boolean"
+    },
+    "multi": {
+     "type": "boolean"
+    }
+   },
+   "allOf": [
+    {
+     "properties": {
+      "card_type": {
+       "$ref": "https://jana.dev/contracts/api/events#/$defs/card_kind"
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "card_type": {
+        "const": "hint"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "options": {
+        "maxItems": 0
+       }
+      }
+     }
+    }
+   ]
+  },
+  "hint_rung": {
+   "type": "integer",
+   "minimum": 0,
+   "maximum": 5
+  },
+  "expects": {
+   "enum": [
+    "student_answer",
+    "student_choice",
+    "next",
+    "none"
+   ]
+  },
+  "numbers_from": {
+   "type": "array",
+   "maxItems": 12,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "source",
+     "ref"
+    ],
+    "properties": {
+     "source": {
+      "enum": [
+       "check",
+       "question",
+       "student"
+      ]
+     },
+     "ref": {
+      "type": "string",
+      "maxLength": 64
+     }
+    }
+   }
+  },
+  "cites": {
+   "type": "array",
+   "maxItems": 4,
+   "items": {
+    "type": "string",
+    "pattern": "^[a-z0-9][a-z0-9._-]{2,80}$"
+   }
+  },
+  "reveals": {
+   "enum": [
+    "none",
+    "current_step",
+    "solution"
+   ]
+  },
+  "confidence": {
+   "enum": [
+    "low",
+    "medium",
+    "high"
+   ]
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "card": {
+      "type": "object",
+      "properties": {
+       "card_type": {
+        "const": "question"
+       }
+      }
+     }
+    },
+    "required": [
+     "card"
+    ]
+   },
+   "then": {
+    "properties": {
+     "expects": {
+      "enum": [
+       "student_answer",
+       "student_choice"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "card": {
+      "type": "object",
+      "properties": {
+       "card_type": {
+        "const": "hint"
+       }
+      }
+     }
+    },
+    "required": [
+     "card"
+    ]
+   },
+   "then": {
+    "properties": {
+     "hint_rung": {
+      "minimum": 1
+     }
+    }
+   }
+  }
+ ]
+}

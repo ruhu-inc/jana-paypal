@@ -1,0 +1,771 @@
+{
+ "$comment": "GENERATED from contracts/learning/learner-model.schema.json sha256 aaf8e7e7b619e06f55f50b545cb4f041c865a25365ac24dca5b80b6d7cefc6ef; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/learning/learner-model",
+ "title": "LearnerModel",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "schema_version",
+  "profile_id",
+  "projection",
+  "profile",
+  "kc_states",
+  "review_cards",
+  "misconceptions",
+  "preferences",
+  "engagement",
+  "notes"
+ ],
+ "properties": {
+  "schema_version": {
+   "const": "1.0"
+  },
+  "profile_id": {
+   "$ref": "#/$defs/id"
+  },
+  "projection": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "projection_version",
+    "params_hash",
+    "last_seq",
+    "rebuilt_at",
+    "merge_cursor"
+   ],
+   "properties": {
+    "projection_version": {
+     "type": "string",
+     "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "params_hash": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "last_seq": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "rebuilt_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "mastery_model": {
+     "enum": [
+      "pfa_elo",
+      "bkt"
+     ]
+    },
+    "merge_cursor": {
+     "anyOf": [
+      {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "hlc": {
+         "type": "string",
+         "pattern": "^[0-9]{15}-[0-9]{5}$"
+        },
+        "device_id": {
+         "type": "string",
+         "maxLength": 64
+        },
+        "origin_seq": {
+         "type": "integer",
+         "minimum": 1
+        }
+       },
+       "required": [
+        "hlc",
+        "device_id",
+        "origin_seq"
+       ]
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   }
+  },
+  "profile": {
+   "$ref": "#/$defs/profile"
+  },
+  "subject_ability": {
+   "type": "object",
+   "additionalProperties": false,
+   "patternProperties": {
+    "^[a-z_]+$": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "theta",
+      "n"
+     ],
+     "properties": {
+      "theta": {
+       "type": "number"
+      },
+      "n": {
+       "type": "number",
+       "minimum": 0
+      }
+     }
+    }
+   }
+  },
+  "kc_states": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/kc_state"
+   }
+  },
+  "review_cards": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/review_card"
+   }
+  },
+  "misconceptions": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/misconception"
+   }
+  },
+  "preferences": {
+   "$ref": "#/$defs/preferences"
+  },
+  "engagement": {
+   "$ref": "#/$defs/engagement"
+  },
+  "notes": {
+   "type": "array",
+   "maxItems": 50,
+   "items": {
+    "$ref": "#/$defs/note"
+   }
+  }
+ },
+ "$defs": {
+  "id": {
+   "type": "string",
+   "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "kc_id": {
+   "type": "string",
+   "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+  },
+  "beta_counts": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "alpha",
+    "beta"
+   ],
+   "properties": {
+    "alpha": {
+     "type": "number",
+     "minimum": 0
+    },
+    "beta": {
+     "type": "number",
+     "minimum": 0
+    }
+   }
+  },
+  "profile": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "display_name",
+    "level",
+    "subjects",
+    "locale",
+    "support_level"
+   ],
+   "properties": {
+    "display_name": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 40
+    },
+    "level": {
+     "enum": [
+      "O",
+      "A"
+     ]
+    },
+    "subjects": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "subject",
+       "level"
+      ],
+      "properties": {
+       "subject": {
+        "enum": [
+         "mathematics",
+         "physics",
+         "chemistry",
+         "biology",
+         "accounting"
+        ]
+       },
+       "level": {
+        "enum": [
+         "O",
+         "A"
+        ]
+       },
+       "exam_date": {
+        "type": "string",
+        "format": "date"
+       }
+      }
+     }
+    },
+    "goals": {
+     "type": "array",
+     "maxItems": 5,
+     "items": {
+      "type": "string",
+      "maxLength": 120
+     }
+    },
+    "reading_level": {
+     "enum": [
+      "support",
+      "standard",
+      "advanced"
+     ]
+    },
+    "student_settings": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "low_power": {
+       "type": "boolean"
+      },
+      "text_scale": {
+       "type": "number",
+       "minimum": 1,
+       "maximum": 1.5
+      },
+      "memory_saving": {
+       "type": "boolean"
+      },
+      "notifications": {
+       "type": "boolean"
+      },
+      "reduced_motion": {
+       "type": "boolean"
+      },
+      "read_aloud": {
+       "type": "boolean"
+      },
+      "easy_read": {
+       "type": "boolean"
+      },
+      "extra_time_percent": {
+       "type": "integer",
+       "enum": [
+        0,
+        25,
+        50
+       ]
+      },
+      "speech_rate": {
+       "type": "number",
+       "minimum": 0.75,
+       "maximum": 1.5
+      },
+      "speech_voice": {
+       "type": "string",
+       "maxLength": 256
+      },
+      "theme": {
+       "enum": [
+        "system",
+        "light",
+        "dark"
+       ]
+      },
+      "character_shortcuts": {
+       "type": "boolean"
+      },
+      "tutor_name": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 40
+      },
+      "tutor_avatar": {
+       "enum": [
+        "avatar.jana",
+        "avatar.orbit",
+        "avatar.prism",
+        "avatar.kite",
+        "avatar.pebble",
+        "avatar.ray"
+       ]
+      },
+      "faster_tutor": {
+       "type": "boolean"
+      },
+      "wake_word": {
+       "type": "boolean"
+      },
+      "checkin_notifications": {
+       "type": "boolean"
+      }
+     }
+    },
+    "locale": {
+     "type": "string",
+     "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
+    },
+    "support_level": {
+     "enum": [
+      "standard",
+      "extra"
+     ]
+    }
+   }
+  },
+  "kc_state": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kc_id",
+    "status",
+    "p_mastery",
+    "n_eff",
+    "succ_w",
+    "fail_w",
+    "attempts",
+    "hints_used",
+    "last_seen"
+   ],
+   "properties": {
+    "kc_id": {
+     "$ref": "#/$defs/kc_id"
+    },
+    "status": {
+     "enum": [
+      "not_started",
+      "learning",
+      "ready_to_check",
+      "mastered",
+      "needs_review",
+      "moved_on"
+     ]
+    },
+    "p_mastery": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "n_eff": {
+     "type": "number",
+     "minimum": 0
+    },
+    "succ_w": {
+     "type": "number",
+     "minimum": 0
+    },
+    "fail_w": {
+     "type": "number",
+     "minimum": 0
+    },
+    "implied_w": {
+     "type": "number",
+     "minimum": 0
+    },
+    "attempts": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "hints_used": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "bottom_outs": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "median_time_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "last_seen": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "format": "date-time"
+    },
+    "fading_stage": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 10
+    },
+    "stuck_count": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "target_offset": {
+     "type": "number",
+     "minimum": -0.05,
+     "maximum": 0.05
+    },
+    "mastery_check": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "state"
+     ],
+     "properties": {
+      "state": {
+       "enum": [
+        "none",
+        "scheduled",
+        "in_progress",
+        "passed",
+        "failed"
+       ]
+      },
+      "items_done": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 3
+      },
+      "first_item_at": {
+       "type": "string",
+       "format": "date-time"
+      },
+      "retry_after": {
+       "type": "string",
+       "format": "date-time"
+      }
+     }
+    }
+   }
+  },
+  "review_card": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kc_id",
+    "state",
+    "stability",
+    "difficulty",
+    "due_at",
+    "reps",
+    "lapses"
+   ],
+   "properties": {
+    "kc_id": {
+     "$ref": "#/$defs/kc_id"
+    },
+    "state": {
+     "enum": [
+      "learning",
+      "review",
+      "relearning"
+     ]
+    },
+    "stability": {
+     "type": "number",
+     "minimum": 0
+    },
+    "difficulty": {
+     "type": "number",
+     "minimum": 1,
+     "maximum": 10
+    },
+    "due_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "last_review": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "format": "date-time"
+    },
+    "reps": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "lapses": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "scheduler": {
+     "type": "string"
+    }
+   }
+  },
+  "misconception": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "misconception_id",
+    "kc_id",
+    "status",
+    "evidence_count",
+    "first_seen",
+    "last_seen"
+   ],
+   "properties": {
+    "misconception_id": {
+     "type": "string",
+     "pattern": "^mc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+$"
+    },
+    "kc_id": {
+     "$ref": "#/$defs/kc_id"
+    },
+    "status": {
+     "enum": [
+      "suspected",
+      "active",
+      "resolving",
+      "resolved",
+      "disputed"
+     ]
+    },
+    "evidence_count": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "first_seen": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "last_seen": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "fixes_tried": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "resolving_correct": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "preferences": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "start_style",
+    "representation",
+    "unprompted_help",
+    "self_explanation_prompts"
+   ],
+   "properties": {
+    "start_style": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "worked_example",
+      "hint"
+     ],
+     "properties": {
+      "worked_example": {
+       "$ref": "#/$defs/beta_counts"
+      },
+      "hint": {
+       "$ref": "#/$defs/beta_counts"
+      }
+     }
+    },
+    "representation": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "diagram",
+      "simpler_numbers",
+      "analogy",
+      "worked_example"
+     ],
+     "properties": {
+      "diagram": {
+       "$ref": "#/$defs/beta_counts"
+      },
+      "simpler_numbers": {
+       "$ref": "#/$defs/beta_counts"
+      },
+      "analogy": {
+       "$ref": "#/$defs/beta_counts"
+      },
+      "worked_example": {
+       "$ref": "#/$defs/beta_counts"
+      }
+     }
+    },
+    "pace": {
+     "enum": [
+      "short",
+      "normal"
+     ]
+    },
+    "unprompted_help": {
+     "type": "boolean"
+    },
+    "self_explanation_prompts": {
+     "type": "boolean"
+    },
+    "student_overrides": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "enum": [
+       "start_style",
+       "representation",
+       "pace",
+       "unprompted_help",
+       "self_explanation_prompts"
+      ]
+     },
+     "uniqueItems": true
+    }
+   }
+  },
+  "engagement": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "streak_days",
+    "freezes_left",
+    "last_active_date",
+    "minutes_7d",
+    "sessions_7d",
+    "frustration"
+   ],
+   "properties": {
+    "streak_days": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "freezes_left": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 2
+    },
+    "last_active_date": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "format": "date"
+    },
+    "minutes_7d": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "sessions_7d": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "days_active_by_week": {
+     "type": "array",
+     "maxItems": 8,
+     "items": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 7
+     }
+    },
+    "frustration": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "confidence_bias": {
+     "type": "number",
+     "minimum": -1,
+     "maximum": 1
+    },
+    "gaming_flags_7d": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "note": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "note_id",
+    "text",
+    "source_event_ids",
+    "created_at",
+    "status"
+   ],
+   "properties": {
+    "note_id": {
+     "$ref": "#/$defs/id"
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 140
+    },
+    "subject": {
+     "enum": [
+      "mathematics",
+      "physics",
+      "chemistry",
+      "biology",
+      "accounting"
+     ]
+    },
+    "kc_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/kc_id"
+     },
+     "maxItems": 5
+    },
+    "source_event_ids": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "$ref": "#/$defs/id"
+     }
+    },
+    "created_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "expires_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "status": {
+     "enum": [
+      "active",
+      "pending_review"
+     ]
+    },
+    "confidence": {
+     "enum": [
+      "tentative",
+      "supported"
+     ]
+    },
+    "fading": {
+     "type": "boolean"
+    }
+   }
+  }
+ }
+}

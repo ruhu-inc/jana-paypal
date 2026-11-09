@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 500,
+      "items": {
+        "type": [
+          "number",
+          "string"
+        ],
+        "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+        "maxLength": 40
+      }
+    },
+    "frequencies": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 500,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "value": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+            "maxLength": 40
+          },
+          "frequency": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000000
+          }
+        },
+        "required": [
+          "value",
+          "frequency"
+        ]
+      }
+    },
+    "grouped": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "lower": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+            "maxLength": 40
+          },
+          "upper": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+            "maxLength": 40
+          },
+          "frequency": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000000
+          }
+        },
+        "required": [
+          "lower",
+          "upper",
+          "frequency"
+        ]
+      }
+    },
+    "events": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "p_a": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "p_b": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "p_a_and_b": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "relation": {
+          "enum": [
+            "independent",
+            "mutually_exclusive"
+          ]
+        }
+      },
+      "required": [
+        "p_a",
+        "p_b"
+      ]
+    },
+    "sequence": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": {
+        "type": [
+          "number",
+          "string"
+        ],
+        "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+        "maxLength": 40
+      }
+    },
+    "quartile_method": {
+      "enum": [
+        "exclusive",
+        "inclusive",
+        "interpolated"
+      ]
+    }
+  }
+}

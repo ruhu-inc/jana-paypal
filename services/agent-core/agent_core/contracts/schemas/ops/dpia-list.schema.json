@@ -1,0 +1,100 @@
+{
+ "$comment": "GENERATED from contracts/ops/dpia-list.schema.json sha256 4ed72704b9214bf5cd9716361fe14e16a663fecd84f730745e062304c8e8a5f8; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/dpia-list",
+ "title": "DPIA list",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "dpia_list_version": {
+   "const": 1
+  },
+  "created_at": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "approved": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "dpia_id": {
+      "type": "string",
+      "pattern": "^DPIA-[A-Z0-9][A-Z0-9-]{1,40}$"
+     },
+     "gate": {
+      "enum": [
+       "pilot_start",
+       "cloud_tier",
+       "s3_launch",
+       "web_launch",
+       "s4_launch",
+       "s5_launch"
+      ]
+     },
+     "features": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+       "enum": [
+        "telemetry",
+        "crash_reports",
+        "downloads",
+        "update_checks",
+        "research_data",
+        "support_bundles",
+        "cloud_tier",
+        "web_client",
+        "cloud_backup",
+        "multi_device",
+        "parent_remote_view",
+        "relay",
+        "cloud_voice",
+        "model_training_research",
+        "study_materials",
+        "tutor_memory_online"
+       ]
+      }
+     }
+    },
+    "required": [
+     "dpia_id",
+     "gate",
+     "features"
+    ]
+   }
+  },
+  "signature": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "alg": {
+     "enum": [
+      "ed25519"
+     ]
+    },
+    "key_id": {
+     "type": "string",
+     "minLength": 1
+    },
+    "value": {
+     "type": "string",
+     "minLength": 1
+    }
+   },
+   "required": [
+    "alg",
+    "key_id",
+    "value"
+   ]
+  }
+ },
+ "required": [
+  "dpia_list_version",
+  "created_at",
+  "approved",
+  "signature"
+ ]
+}

@@ -1,0 +1,94 @@
+# Tool fixtures (TOL-05): synthetic, hand-written.
+tool: memory_note
+version: 1
+valid_args:
+- actions:
+  - action: add
+    text: Gives the unit with every final answer in kinematics questions.
+    date: '2026-10-09'
+    evidence_refs: [1, 2]
+    target_ref: null
+    kc_ref: 1
+  summary: Practised average speed and got the last two right.
+- actions: []
+invalid_args:
+- notes: []
+- actions:
+  - action: rewrite
+    text: Some synthetic note text.
+    date: '2026-10-09'
+    evidence_refs: [1]
+    target_ref: null
+    kc_ref: null
+- actions:
+  - action: add
+    text: Some synthetic note text.
+    date: yesterday
+    evidence_refs: [1]
+    target_ref: null
+    kc_ref: null
+description_lint:
+  sections:
+  - what
+  - use_when
+  - parameters
+  - returns
+  - limits
+  - recovery
+  max_chars_full: 600
+repairs:
+- mistake: arguments sent as a JSON string
+  input: '{"text": "x+1"}'
+  repaired:
+    note: same pattern on this tool's arguments
+- mistake: argument names in camelCase
+  input:
+    Text: x+1
+  repaired:
+    note: same pattern on this tool's arguments
+envelopes:
+  unknown_tool:
+    first_clause: No action was taken.
+    retryable: false
+  unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  invalid_args:
+    first_clause: No action was taken.
+    retryable: true
+  truncated_args:
+    first_clause: No action was taken.
+    retryable: true
+  policy_denied:
+    first_clause: No action was taken.
+    retryable: false
+  student_declined:
+    first_clause: The action completed, but
+    retryable: false
+  timeout:
+    first_clause: No action was taken.
+    retryable: true
+  cancelled:
+    first_clause: No action was taken.
+    retryable: false
+  worker_crashed:
+    first_clause: No action was taken.
+    retryable: true
+  worker_unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  limit_exceeded:
+    first_clause: No action was taken.
+    retryable: false
+  domain_error:
+    first_clause: No action was taken.
+    retryable: false
+  execution_error:
+    first_clause: No action was taken.
+    retryable: false
+  result_too_large:
+    first_clause: The action completed, but
+    retryable: false
+  repeated_failure_blocked:
+    first_clause: No action was taken.
+    retryable: false

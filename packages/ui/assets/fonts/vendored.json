@@ -1,0 +1,40 @@
+{
+  "$comment": "Third-party font files bundled into the desktop UI as copies rather than as npm dependencies (DSN-06, D89): the variable woff2 files and LICENSE of each package, latin and latin-ext only, unchanged. The release SBOM and THIRD_PARTY_NOTICES list each entry as a component of the desktop-ui artefact (SEC-23), and scripts/governance/shipped-assets.toml carries its licence (OPS-36). A file here must match its sha256.",
+  "components": [
+    {
+      "ecosystem": "npm",
+      "name": "@fontsource-variable/funnel-sans",
+      "version": "5.3.0",
+      "licence": "OFL-1.1",
+      "files": {
+        "funnel-sans/LICENSE": "d9ab159dc929ab220993a8cd08dd13138dfe1d55699427415174cf435c0c67fe",
+        "funnel-sans/funnel-sans-latin-wght-normal.woff2": "478c99dc8be6e8df5baeb9c509140bc7817cb479d617d773038028da168ef3fd",
+        "funnel-sans/funnel-sans-latin-wght-italic.woff2": "3f83a6c65e41b891e37014a3200a3bd728054bdc1d27de808bc56068fde8c77b",
+        "funnel-sans/funnel-sans-latin-ext-wght-normal.woff2": "806effa99967bb1d0bc6e91099cbd01722048804877523bb2d3cfadb8ff5e251",
+        "funnel-sans/funnel-sans-latin-ext-wght-italic.woff2": "8ef3415b137c85bcb63e8d8a78a918402240064445522a55918309adc82c3bae"
+      }
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@fontsource-variable/funnel-display",
+      "version": "5.3.0",
+      "licence": "OFL-1.1",
+      "files": {
+        "funnel-display/LICENSE": "0a5657602834003a3c4e41cdf23c2862ab343cf005c6335381a75385290e0c1e",
+        "funnel-display/funnel-display-latin-wght-normal.woff2": "c7d6c1438efb681269e694fe08ad84bf7f79a6b7939d495546217fcef1346802",
+        "funnel-display/funnel-display-latin-ext-wght-normal.woff2": "34b6b437e77c5704f53ffb1e7e62f97ef3c519e442edce0210ede48228783ea4"
+      }
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@fontsource-variable/geist-mono",
+      "version": "5.3.0",
+      "licence": "OFL-1.1",
+      "files": {
+        "geist-mono/LICENSE": "cc815ed4fc045f0e991abb10395b7932bd028c6a067deb13316d6002105074e6",
+        "geist-mono/geist-mono-latin-wght-normal.woff2": "684ad5b531f81d43c1e8c7038262d5db7cdc1f68006e04d6c7769efa8d33c8cc",
+        "geist-mono/geist-mono-latin-ext-wght-normal.woff2": "1a189eb997c3e2ece68373e387afaec9e8617424186c4b1ab3cff7c54ba6223b"
+      }
+    }
+  ]
+}

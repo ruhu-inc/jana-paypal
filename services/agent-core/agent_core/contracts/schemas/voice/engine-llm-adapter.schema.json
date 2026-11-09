@@ -1,0 +1,398 @@
+{
+ "$comment": "GENERATED from contracts/voice/engine-llm-adapter.schema.json sha256 fed05024489e05a3684c1b7287abb3be0038bca01da07a1ff9a500721b60a59a; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/voice/engine-llm-adapter",
+ "title": "Engine LLM adapter (chat-completions subset)",
+ "oneOf": [
+  {
+   "$ref": "#/$defs/request"
+  },
+  {
+   "$ref": "#/$defs/chat_completion_chunk"
+  },
+  {
+   "$ref": "#/$defs/chat_completion"
+  },
+  {
+   "$ref": "#/$defs/error_response"
+  }
+ ],
+ "$defs": {
+  "binding_line": {
+   "type": "string",
+   "pattern": "^jana-voice-binding: vb_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "speak_directive": {
+   "type": "string",
+   "pattern": "^jana-speak: utt_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "system_message": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "role": {
+     "const": "system"
+    },
+    "content": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 20000
+    }
+   },
+   "required": [
+    "role",
+    "content"
+   ]
+  },
+  "bound_system_message": {
+   "allOf": [
+    {
+     "$ref": "#/$defs/system_message"
+    },
+    {
+     "properties": {
+      "content": {
+       "pattern": "(^|\\n)jana-voice-binding: vb_[0-9A-HJKMNP-TV-Z]{26}(\\n|$)"
+      }
+     }
+    }
+   ]
+  },
+  "user_message": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "role": {
+     "const": "user"
+    },
+    "content": {
+     "type": "string",
+     "maxLength": 4000
+    }
+   },
+   "required": [
+    "role",
+    "content"
+   ]
+  },
+  "assistant_message": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "role": {
+     "const": "assistant"
+    },
+    "content": {
+     "type": "string",
+     "maxLength": 8000
+    }
+   },
+   "required": [
+    "role",
+    "content"
+   ]
+  },
+  "message": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/system_message"
+    },
+    {
+     "$ref": "#/$defs/user_message"
+    },
+    {
+     "$ref": "#/$defs/assistant_message"
+    }
+   ]
+  },
+  "request": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "model": {
+     "const": "jana-tutor-voice"
+    },
+    "messages": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 64,
+     "items": {
+      "$ref": "#/$defs/message"
+     }
+    },
+    "stream": {
+     "type": "boolean"
+    },
+    "stream_options": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "include_usage": {
+       "type": "boolean"
+      }
+     },
+     "required": [
+      "include_usage"
+     ]
+    },
+    "reasoning_effort": {
+     "const": "none"
+    },
+    "chat_template_kwargs": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "enable_thinking": {
+       "const": false
+      }
+     },
+     "required": [
+      "enable_thinking"
+     ]
+    }
+   },
+   "required": [
+    "model",
+    "messages"
+   ]
+  },
+  "bound_request": {
+   "allOf": [
+    {
+     "$ref": "#/$defs/request"
+    },
+    {
+     "properties": {
+      "stream": {
+       "const": true
+      },
+      "messages": {
+       "prefixItems": [
+        {
+         "$ref": "#/$defs/bound_system_message"
+        }
+       ],
+       "contains": {
+        "$ref": "#/$defs/user_message"
+       }
+      }
+     },
+     "required": [
+      "stream"
+     ]
+    }
+   ]
+  },
+  "chunk_id": {
+   "type": "string",
+   "pattern": "^chatcmpl-(trn_[0-9A-HJKMNP-TV-Z]{26}|utt_[0-9A-HJKMNP-TV-Z]{26}|cap_[0-9A-HJKMNP-TV-Z]{26}|unbound)$"
+  },
+  "spoken_text": {
+   "type": "string",
+   "pattern": "^[^\\\\$^_{}<>`*#|]*$",
+   "maxLength": 2000
+  },
+  "usage": {
+   "oneOf": [
+    {
+     "type": "null"
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "prompt_tokens": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "completion_tokens": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "total_tokens": {
+       "type": "integer",
+       "minimum": 0
+      }
+     },
+     "required": [
+      "prompt_tokens",
+      "completion_tokens",
+      "total_tokens"
+     ]
+    }
+   ]
+  },
+  "chat_completion_chunk": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/chunk_id"
+    },
+    "object": {
+     "const": "chat.completion.chunk"
+    },
+    "created": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "model": {
+     "const": "jana-tutor-voice"
+    },
+    "choices": {
+     "type": "array",
+     "maxItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "index": {
+        "const": 0
+       },
+       "delta": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+         "role": {
+          "const": "assistant"
+         },
+         "content": {
+          "$ref": "#/$defs/spoken_text"
+         }
+        },
+        "required": []
+       },
+       "finish_reason": {
+        "enum": [
+         "stop",
+         null
+        ]
+       }
+      },
+      "required": [
+       "index",
+       "delta",
+       "finish_reason"
+      ]
+     }
+    },
+    "usage": {
+     "$ref": "#/$defs/usage"
+    }
+   },
+   "required": [
+    "id",
+    "object",
+    "created",
+    "model",
+    "choices"
+   ]
+  },
+  "chat_completion": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/chunk_id"
+    },
+    "object": {
+     "const": "chat.completion"
+    },
+    "created": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "model": {
+     "const": "jana-tutor-voice"
+    },
+    "choices": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "index": {
+        "const": 0
+       },
+       "message": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+         "role": {
+          "const": "assistant"
+         },
+         "content": {
+          "$ref": "#/$defs/spoken_text"
+         }
+        },
+        "required": [
+         "role",
+         "content"
+        ]
+       },
+       "finish_reason": {
+        "const": "stop"
+       }
+      },
+      "required": [
+       "index",
+       "message",
+       "finish_reason"
+      ]
+     }
+    },
+    "usage": {
+     "$ref": "#/$defs/usage"
+    }
+   },
+   "required": [
+    "id",
+    "object",
+    "created",
+    "model",
+    "choices"
+   ]
+  },
+  "error_response": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "error": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "message": {
+       "type": "string"
+      },
+      "type": {
+       "enum": [
+        "unauthorized",
+        "invalid_request_error",
+        "not_found"
+       ]
+      },
+      "code": {
+       "enum": [
+        "unauthorized",
+        "invalid_model",
+        "tools_not_supported",
+        "malformed_body",
+        null
+       ]
+      }
+     },
+     "required": [
+      "message",
+      "type",
+      "code"
+     ]
+    }
+   },
+   "required": [
+    "error"
+   ]
+  }
+ }
+}

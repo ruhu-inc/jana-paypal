@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "method",
+    "movements"
+  ],
+  "properties": {
+    "method": {
+      "enum": [
+        "fifo",
+        "avco"
+      ]
+    },
+    "avco_basis": {
+      "enum": [
+        "perpetual",
+        "periodic"
+      ]
+    },
+    "round_unit_cost": {
+      "type": "boolean"
+    },
+    "movements": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "quantity"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "maxLength": 24
+          },
+          "kind": {
+            "enum": [
+              "opening",
+              "receipt",
+              "issue"
+            ]
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000000
+          },
+          "unit_cost": {
+            "type": [
+              "integer",
+              "string"
+            ],
+            "pattern": "^\\s*[-(]?\\s*([$£€₦¥]|[A-Z]{3}\\s*)?\\s*(\\d{1,3}(,\\d{3})+|\\d+)(\\.\\d+)?\\s*\\)?\\s*$",
+            "maxLength": 30
+          }
+        }
+      }
+    },
+    "nrv": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "per_unit": {
+          "type": [
+            "integer",
+            "string"
+          ],
+          "pattern": "^\\s*[-(]?\\s*([$£€₦¥]|[A-Z]{3}\\s*)?\\s*(\\d{1,3}(,\\d{3})+|\\d+)(\\.\\d+)?\\s*\\)?\\s*$",
+          "maxLength": 30
+        },
+        "total": {
+          "type": [
+            "integer",
+            "string"
+          ],
+          "pattern": "^\\s*[-(]?\\s*([$£€₦¥]|[A-Z]{3}\\s*)?\\s*(\\d{1,3}(,\\d{3})+|\\d+)(\\.\\d+)?\\s*\\)?\\s*$",
+          "maxLength": 30
+        }
+      }
+    },
+    "dp": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    }
+  }
+}

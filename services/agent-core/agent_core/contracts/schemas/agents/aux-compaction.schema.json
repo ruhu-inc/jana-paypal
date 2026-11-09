@@ -1,0 +1,17 @@
+{
+ "$comment": "GENERATED from contracts/agents/aux-compaction.schema.json sha256 d278b2dc89612935294da6d26b935248e50dc6af203889494ff78c6050e5ad14; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/aux-compaction",
+ "title": "Auxiliary output: compaction",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "agreements"
+ ],
+ "properties": {
+  "agreements": {
+   "type": "string",
+   "maxLength": 1200
+  }
+ }
+}

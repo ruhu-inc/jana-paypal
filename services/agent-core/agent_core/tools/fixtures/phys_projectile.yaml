@@ -1,0 +1,101 @@
+# Tool fixtures (TOL-05): synthetic, hand-written.
+tool: phys_projectile
+version: 2
+valid_args:
+- motion: vertical
+  speed: 20
+  direction: up
+  g: 10
+  g_source: question
+- motion: horizontal
+  speed: 72 km/h
+  height: 45 m
+  constants:
+  - {symbol: g, source: pack, value: '9.8', unit: m/s^2}
+  points: 11
+- motion: angled
+  speed: 20
+  angle: 30
+  g: 10
+  g_source: pack
+invalid_args:
+- motion: diagonal
+  speed: 20
+- motion: angled
+  speed: 20
+- motion: horizontal
+  speed: 20
+  height: 5
+  angle: 30
+- motion: vertical
+  speed: 20
+  g: 10
+- motion: horizontal
+  speed: 5
+  points: 1000
+description_lint:
+  sections:
+  - what
+  - use_when
+  - parameters
+  - returns
+  - limits
+  - recovery
+  max_chars_full: 600
+repairs:
+- mistake: arguments sent as a JSON string
+  input: '{"text": "x+1"}'
+  repaired:
+    note: same pattern on this tool's arguments
+- mistake: argument names in camelCase
+  input:
+    Text: x+1
+  repaired:
+    note: same pattern on this tool's arguments
+envelopes:
+  unknown_tool:
+    first_clause: No action was taken.
+    retryable: false
+  unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  invalid_args:
+    first_clause: No action was taken.
+    retryable: true
+  truncated_args:
+    first_clause: No action was taken.
+    retryable: true
+  policy_denied:
+    first_clause: No action was taken.
+    retryable: false
+  student_declined:
+    first_clause: The action completed, but
+    retryable: false
+  timeout:
+    first_clause: No action was taken.
+    retryable: true
+  cancelled:
+    first_clause: No action was taken.
+    retryable: false
+  worker_crashed:
+    first_clause: No action was taken.
+    retryable: true
+  worker_unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  limit_exceeded:
+    first_clause: No action was taken.
+    retryable: false
+  domain_error:
+    first_clause: No action was taken.
+    retryable: false
+  execution_error:
+    first_clause: No action was taken.
+    retryable: false
+  result_too_large:
+    first_clause: The action completed, but
+    retryable: false
+  repeated_failure_blocked:
+    first_clause: No action was taken.
+    retryable: false
+golden: services/tool-worker/tool_worker/golden/phys_projectile.yaml

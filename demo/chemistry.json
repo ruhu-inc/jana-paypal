@@ -1,0 +1,177 @@
+{
+  "worksheet": "For this exothermic forward reaction, increasing temperature shifts equilibrium towards reactants and decreases the equilibrium constant. A catalyst speeds both directions and does not change the equilibrium constant at fixed temperature.",
+  "model": "gemini-3.8-flash",
+  "cases": [
+    {
+      "kind": "chat",
+      "prompt": "What effect does a catalyst have on the equilibrium constant here?",
+      "response": {
+        "request_id": "replay",
+        "claims": [
+          {
+            "text": "A catalyst does not change the equilibrium constant at fixed temperature, though it speeds both directions.",
+            "citations": [
+              {
+                "source_id": "replay",
+                "revision": 1,
+                "chunk_id": "replay",
+                "start": 0,
+                "end": 238,
+                "quote": "For this exothermic forward reaction, increasing temperature shifts equilibrium towards reactants and decreases the equilibrium constant. A catalyst speeds both directions and does not change the equilibrium constant at fixed temperature."
+              }
+            ]
+          }
+        ],
+        "kind": "chat"
+      }
+    },
+    {
+      "kind": "quiz",
+      "prompt": null,
+      "response": {
+        "request_id": "replay",
+        "claims": [
+          {
+            "text": "For this exothermic forward reaction, increasing temperature shifts equilibrium towards reactants and decreases the equilibrium constant.",
+            "citations": [
+              {
+                "source_id": "replay",
+                "revision": 1,
+                "chunk_id": "replay",
+                "start": 0,
+                "end": 238,
+                "quote": "For this exothermic forward reaction, increasing temperature shifts equilibrium towards reactants and decreases the equilibrium constant. A catalyst speeds both directions and does not change the equilibrium constant at fixed temperature."
+              }
+            ]
+          },
+          {
+            "text": "A catalyst speeds both directions and does not change the equilibrium constant at fixed temperature.",
+            "citations": [
+              {
+                "source_id": "replay",
+                "revision": 1,
+                "chunk_id": "replay",
+                "start": 0,
+                "end": 238,
+                "quote": "For this exothermic forward reaction, increasing temperature shifts equilibrium towards reactants and decreases the equilibrium constant. A catalyst speeds both directions and does not change the equilibrium constant at fixed temperature."
+              }
+            ]
+          }
+        ],
+        "kind": "quiz",
+        "quiz": {
+          "items": [
+            {
+              "item_id": "item_1",
+              "type": "choice",
+              "stem": {
+                "text": "For this exothermic forward reaction, what effect does increasing the temperature have on the equilibrium?",
+                "citations": [
+                  {
+                    "source_id": "replay",
+                    "revision": 1,
+                    "chunk_id": "replay",
+                    "start": 0,
+                    "end": 238,
+                    "quote": "For this exothermic forward reaction, increasing temperature shifts equilibrium towards reactants and decreases the equilibrium constant. A catalyst speeds both directions and does not change the equilibrium constant at fixed temperature."
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "option_id": "opt_1a",
+                  "text": "It shifts equilibrium towards reactants and decreases the equilibrium constant."
+                },
+                {
+                  "option_id": "opt_1b",
+                  "text": "It shifts equilibrium towards products and increases the equilibrium constant."
+                },
+                {
+                  "option_id": "opt_1c",
+                  "text": "It shifts equilibrium towards reactants and keeps the equilibrium constant unchanged."
+                },
+                {
+                  "option_id": "opt_1d",
+                  "text": "It speeds both directions and increases the equilibrium constant."
+                }
+              ]
+            },
+            {
+              "item_id": "item_2",
+              "type": "choice",
+              "stem": {
+                "text": "According to the text, what effect does a catalyst have on the equilibrium constant at fixed temperature?",
+                "citations": [
+                  {
+                    "source_id": "replay",
+                    "revision": 1,
+                    "chunk_id": "replay",
+                    "start": 0,
+                    "end": 238,
+                    "quote": "For this exothermic forward reaction, increasing temperature shifts equilibrium towards reactants and decreases the equilibrium constant. A catalyst speeds both directions and does not change the equilibrium constant at fixed temperature."
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "option_id": "opt_2a",
+                  "text": "It does not change the equilibrium constant."
+                },
+                {
+                  "option_id": "opt_2b",
+                  "text": "It decreases the equilibrium constant."
+                },
+                {
+                  "option_id": "opt_2c",
+                  "text": "It increases the equilibrium constant."
+                },
+                {
+                  "option_id": "opt_2d",
+                  "text": "It shifts the equilibrium constant towards reactants."
+                }
+              ]
+            }
+          ],
+          "keys": [
+            {
+              "item_id": "item_1",
+              "answer": "opt_1a",
+              "explanation": {
+                "text": "For this exothermic forward reaction, increasing temperature shifts equilibrium towards reactants and decreases the equilibrium constant.",
+                "citations": [
+                  {
+                    "source_id": "replay",
+                    "revision": 1,
+                    "chunk_id": "replay",
+                    "start": 0,
+                    "end": 238,
+                    "quote": "For this exothermic forward reaction, increasing temperature shifts equilibrium towards reactants and decreases the equilibrium constant. A catalyst speeds both directions and does not change the equilibrium constant at fixed temperature."
+                  }
+                ]
+              },
+              "marking": "judged"
+            },
+            {
+              "item_id": "item_2",
+              "answer": "opt_2a",
+              "explanation": {
+                "text": "A catalyst speeds both directions and does not change the equilibrium constant at fixed temperature.",
+                "citations": [
+                  {
+                    "source_id": "replay",
+                    "revision": 1,
+                    "chunk_id": "replay",
+                    "start": 0,
+                    "end": 238,
+                    "quote": "For this exothermic forward reaction, increasing temperature shifts equilibrium towards reactants and decreases the equilibrium constant. A catalyst speeds both directions and does not change the equilibrium constant at fixed temperature."
+                  }
+                ]
+              },
+              "marking": "judged"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

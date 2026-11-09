@@ -1,0 +1,118 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/titration_curve.schema.json sha256 edcd5d89519765c7ff45122c99a3f9b9b75ba799b508d6caae846bf67c63e660; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/titration_curve",
+ "title": "titration_curve params",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "analyte",
+  "titrant",
+  "analyte_volume"
+ ],
+ "properties": {
+  "analyte": {
+   "$ref": "#/$defs/solution"
+  },
+  "titrant": {
+   "$ref": "#/$defs/solution"
+  },
+  "analyte_volume": {
+   "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/quantity"
+  },
+  "volume_max": {
+   "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/quantity"
+  },
+  "indicator": {
+   "enum": [
+    "phenolphthalein",
+    "methyl_orange",
+    "screened_methyl_orange",
+    "bromothymol_blue",
+    "litmus",
+    "none"
+   ]
+  },
+  "marks": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "equivalence_point",
+     "half_equivalence",
+     "buffer_region",
+     "indicator_range",
+     "start_ph"
+    ]
+   }
+  }
+ },
+ "$defs": {
+  "add": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "element"
+   ],
+   "properties": {
+    "element": {
+     "enum": [
+      "tangent_at",
+      "vertical_section"
+     ]
+    },
+    "of": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number",
+       "boolean"
+      ]
+     }
+    }
+   }
+  },
+  "solution": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "formula",
+    "kind",
+    "strength",
+    "concentration"
+   ],
+   "properties": {
+    "formula": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9()\\[\\]+\\-]{1,24}$"
+    },
+    "kind": {
+     "enum": [
+      "acid",
+      "base"
+     ]
+    },
+    "strength": {
+     "enum": [
+      "strong",
+      "weak"
+     ]
+    },
+    "concentration": {
+     "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/quantity"
+    },
+    "basicity": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 3
+    }
+   }
+  }
+ }
+}

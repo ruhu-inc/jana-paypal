@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "task": {
+      "enum": [
+        "cross",
+        "chi_squared",
+        "hardy_weinberg"
+      ]
+    },
+    "parents": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 40
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "alleles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 8
+          },
+          "phenotype": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "dominance": {
+            "enum": [
+              "dominant",
+              "recessive",
+              "codominant"
+            ]
+          }
+        },
+        "required": [
+          "symbol",
+          "phenotype",
+          "dominance"
+        ]
+      },
+      "minItems": 2,
+      "maxItems": 8
+    },
+    "observed": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 2147483647
+      },
+      "minItems": 2,
+      "maxItems": 20
+    },
+    "expected": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0
+      },
+      "minItems": 2,
+      "maxItems": 20
+    },
+    "recessive_frequency": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "required": [
+    "task"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "cross"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "parents",
+          "alleles"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "expected"
+              ]
+            },
+            {
+              "required": [
+                "observed"
+              ]
+            },
+            {
+              "required": [
+                "recessive_frequency"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "chi_squared"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "observed",
+          "expected"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "alleles"
+              ]
+            },
+            {
+              "required": [
+                "parents"
+              ]
+            },
+            {
+              "required": [
+                "recessive_frequency"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "hardy_weinberg"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "recessive_frequency"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "alleles"
+              ]
+            },
+            {
+              "required": [
+                "expected"
+              ]
+            },
+            {
+              "required": [
+                "observed"
+              ]
+            },
+            {
+              "required": [
+                "parents"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

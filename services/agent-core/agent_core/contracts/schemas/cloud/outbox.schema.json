@@ -1,0 +1,273 @@
+{
+ "$comment": "GENERATED from contracts/cloud/outbox.schema.json sha256 85ca13848f7a09ad431d161528c241ed5290634c11a84837dcc2ce04b89baff9; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/cloud/outbox",
+ "title": "Outbox uploads",
+ "$defs": {
+  "Telemetry": {
+   "$ref": "https://jana.dev/contracts/trace/telemetry"
+  },
+  "CrashReport": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "crash_id",
+    "process",
+    "kind",
+    "version",
+    "error_type",
+    "stack",
+    "log_tail",
+    "detail",
+    "hardware_class",
+    "day"
+   ],
+   "properties": {
+    "crash_id": {
+     "type": "string",
+     "maxLength": 40,
+     "pattern": "^[A-Za-z0-9_-]{1,40}$"
+    },
+    "process": {
+     "enum": [
+      "shell",
+      "core",
+      "worker",
+      "runtime"
+     ]
+    },
+    "kind": {
+     "enum": [
+      "panic",
+      "signal",
+      "exception",
+      "fatal_error",
+      "runtime_exit",
+      "worker_limit"
+     ]
+    },
+    "version": {
+     "type": "string",
+     "maxLength": 40
+    },
+    "error_type": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 80
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "stack": {
+     "type": "array",
+     "maxItems": 200,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "maxProperties": 5,
+      "properties": {
+       "file": {
+        "type": "string",
+        "maxLength": 300
+       },
+       "line": {
+        "anyOf": [
+         {
+          "type": "integer",
+          "minimum": 0
+         },
+         {
+          "type": "null"
+         }
+        ]
+       },
+       "function": {
+        "type": "string",
+        "maxLength": 300
+       },
+       "module": {
+        "type": "string",
+        "maxLength": 300
+       },
+       "offset": {
+        "anyOf": [
+         {
+          "type": "integer",
+          "minimum": 0
+         },
+         {
+          "type": "string",
+          "maxLength": 40
+         }
+        ]
+       }
+      }
+     }
+    },
+    "log_tail": {
+     "type": "array",
+     "maxItems": 1000,
+     "items": {
+      "type": "string",
+      "maxLength": 300
+     }
+    },
+    "detail": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "exit_code": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "limit": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 40
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "tool": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 64
+        },
+        {
+         "type": "null"
+        }
+       ]
+      }
+     }
+    },
+    "hardware_class": {
+     "anyOf": [
+      {
+       "enum": [
+        "content_only",
+        "low",
+        "mid",
+        "high"
+       ]
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "day": {
+     "type": "integer",
+     "minimum": 0,
+     "multipleOf": 86400000
+    }
+   }
+  },
+  "ConsentWithdrawal": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "scope",
+    "withdrawn_at"
+   ],
+   "properties": {
+    "scope": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_]{1,40}$"
+    },
+    "withdrawn_at": {
+     "type": "string",
+     "format": "date-time",
+     "maxLength": 40
+    }
+   }
+  },
+  "Tombstone": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "erases",
+    "deleted_at"
+   ],
+   "properties": {
+    "erases": {
+     "enum": [
+      "profile"
+     ]
+    },
+    "deleted_at": {
+     "type": "string",
+     "format": "date-time",
+     "maxLength": 40
+    }
+   }
+  },
+  "OutboxReceipt": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kept",
+    "kind"
+   ],
+   "properties": {
+    "kept": {
+     "const": true
+    },
+    "kind": {
+     "enum": [
+      "crash_report",
+      "telemetry"
+     ]
+    }
+   }
+  },
+  "OutboxError": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "error"
+   ],
+   "properties": {
+    "error": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "code",
+      "message"
+     ],
+     "properties": {
+      "code": {
+       "enum": [
+        "seen_already",
+        "invalid_json",
+        "contract_violation",
+        "redaction_blocked",
+        "idempotency_key_required",
+        "credential_not_accepted",
+        "unknown_kind",
+        "payload_too_large",
+        "rate_limited"
+       ]
+      },
+      "message": {
+       "type": "string",
+       "maxLength": 300
+      }
+     }
+    }
+   }
+  }
+ }
+}

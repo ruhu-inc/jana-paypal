@@ -1,0 +1,182 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/distribution_curve.schema.json sha256 97ec96e22b5e37ed1aaf9dae7690640cc3793ee5f20a665a6dcb4b9cc342cc3d; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/distribution_curve",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "distribution": {
+   "enum": [
+    "normal",
+    "binomial",
+    "poisson"
+   ]
+  },
+  "parameters": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "mean": {
+       "type": "number"
+      },
+      "sd": {
+       "type": "number",
+       "exclusiveMinimum": 0
+      }
+     },
+     "required": [
+      "mean",
+      "sd"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "n": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 10000
+      },
+      "p": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      }
+     },
+     "required": [
+      "n",
+      "p"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "lambda": {
+       "type": "number",
+       "exclusiveMinimum": 0
+      }
+     },
+     "required": [
+      "lambda"
+     ]
+    }
+   ]
+  },
+  "interval": {
+   "type": "array",
+   "items": {
+    "type": "number"
+   },
+   "minItems": 2,
+   "maxItems": 2
+  },
+  "tail": {
+   "enum": [
+    "between",
+    "less_than",
+    "greater_than"
+   ]
+  }
+ },
+ "required": [
+  "distribution",
+  "parameters",
+  "interval",
+  "tail"
+ ],
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "distribution": {
+      "const": "normal"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "mean": {
+        "type": "number"
+       },
+       "sd": {
+        "type": "number",
+        "exclusiveMinimum": 0
+       }
+      },
+      "required": [
+       "mean",
+       "sd"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "distribution": {
+      "const": "binomial"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "n": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 10000
+       },
+       "p": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       }
+      },
+      "required": [
+       "n",
+       "p"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "distribution": {
+      "const": "poisson"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "lambda": {
+        "type": "number",
+        "exclusiveMinimum": 0
+       }
+      },
+      "required": [
+       "lambda"
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

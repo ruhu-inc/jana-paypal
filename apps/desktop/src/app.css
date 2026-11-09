@@ -1,0 +1,5 @@
+/* The desktop client's stylesheet: the UI styles plus the sources Tailwind scans for classes. */
+@import "@jana/ui/styles.css";
+@source "../../../packages/renderers/src";
+@source "./";
+@source "../gallery";

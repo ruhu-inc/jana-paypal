@@ -1,0 +1,87 @@
+# Tool fixtures (TOL-05): synthetic, hand-written.
+tool: make_aid
+version: 2
+valid_args:
+- kind: flashcards
+  source_ref: 1
+  count: 10
+- kind: summary
+  source_ref: 2
+- kind: flashcards
+  count: 10
+invalid_args:
+- kind: poem
+  source_ref: 1
+- source_ref: 1
+- kind: quiz
+  source_ref: 0
+- kind: quiz
+  source_ref: 1
+  count: 41
+- kind: quiz
+  source_id: src_1
+description_lint:
+  sections:
+  - what
+  - use_when
+  - parameters
+  - returns
+  - limits
+  - recovery
+  max_chars_full: 600
+repairs:
+- mistake: arguments sent as a JSON string
+  input: '{"text": "x+1"}'
+  repaired:
+    note: same pattern on this tool's arguments
+- mistake: argument names in camelCase
+  input:
+    Text: x+1
+  repaired:
+    note: same pattern on this tool's arguments
+envelopes:
+  unknown_tool:
+    first_clause: No action was taken.
+    retryable: false
+  unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  invalid_args:
+    first_clause: No action was taken.
+    retryable: true
+  truncated_args:
+    first_clause: No action was taken.
+    retryable: true
+  policy_denied:
+    first_clause: No action was taken.
+    retryable: false
+  student_declined:
+    first_clause: The action completed, but
+    retryable: false
+  timeout:
+    first_clause: No action was taken.
+    retryable: true
+  cancelled:
+    first_clause: No action was taken.
+    retryable: false
+  worker_crashed:
+    first_clause: No action was taken.
+    retryable: true
+  worker_unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  limit_exceeded:
+    first_clause: No action was taken.
+    retryable: false
+  domain_error:
+    first_clause: No action was taken.
+    retryable: false
+  execution_error:
+    first_clause: No action was taken.
+    retryable: false
+  result_too_large:
+    first_clause: The action completed, but
+    retryable: false
+  repeated_failure_blocked:
+    first_clause: No action was taken.
+    retryable: false

@@ -1,0 +1,1446 @@
+# Muse Voice Transcribe keywords (SPEC §6.1): the `term` of every entry in content/agent/glossary/en.yaml, by subject
+# (a `[subject]` line, then the terms of that subject's KCs, in glossary order, once each, case-insensitive). The
+# recognizer fills Meta's 500 with the session's subject first (`glossary_keywords`). Regenerate with the command in
+# tests/test_meta_speech.py when the glossary changes; that test fails until this file matches.
+[mathematics]
+independent event
+dependent event
+12-hour clock
+24-hour clock
+time interval
+timetable
+currency
+exchange rate
+conversion
+rate
+average speed
+density
+unit price
+interest
+interest rate
+principal
+per annum
+simple interest
+compound interest
+exponential growth
+exponential decay
+depreciation
+percentage
+percentage change
+percentage increase
+percentage decrease
+multiplier
+original amount
+reverse percentage
+fraction
+numerator
+denominator
+common denominator
+improper fraction
+mixed number
+simplest form
+simplify
+reciprocal
+decimal
+recurring decimal
+ascending
+descending
+order of operations
+brackets
+negative number
+index
+laws of indices
+negative index
+fractional index
+root
+square
+square root
+cube
+cube root
+standard form
+ordinary form
+power of ten
+surd
+square factor
+rationalise
+factor
+multiple
+prime number
+prime factor
+product of prime factors
+highest common factor
+lowest common multiple
+set
+element
+universal set
+venn diagram
+union
+intersection
+complement
+rounding
+decimal place
+significant figure
+estimate
+accuracy
+bound
+lower bound
+upper bound
+maximum
+minimum
+ratio
+proportion
+direct proportion
+inverse proportion
+constant of proportionality
+unitary method
+expression
+equation
+formula
+unknown
+coefficient
+like terms
+evaluate
+substitution
+subject
+rearrange
+expand
+distributive law
+factorise
+common factor
+difference of two squares
+factor pair
+algebraic fraction
+solution
+linear equation
+simultaneous equations
+elimination
+consecutive
+inequality
+integer
+number line
+quadratic
+quadratic equation
+quadratic formula
+discriminant
+quadratic function
+cubic
+table of values
+turning point
+line of symmetry
+function
+input
+output
+composite function
+inverse function
+sequence
+term
+nth term
+common difference
+linear sequence
+quadratic sequence
+first difference
+second difference
+distance-time graph
+speed-time graph
+acceleration
+deceleration
+velocity
+derivative
+differentiate
+gradient function
+tangent
+normal
+stationary point
+second derivative
+integral
+definite integral
+limit
+area under a curve
+coordinate
+x-coordinate
+y-coordinate
+x-axis
+y-axis
+intercept
+x-intercept
+y-intercept
+gradient
+line segment
+midpoint
+negative reciprocal
+parallel
+perpendicular
+horizontal
+vertical
+angle
+acute
+obtuse
+reflex
+right angle
+angles at a point
+straight line
+vertically opposite
+transversal
+alternate
+corresponding
+co-interior
+interior angle
+exterior angle
+polygon
+regular polygon
+pentagon
+hexagon
+heptagon
+octagon
+nonagon
+decagon
+dodecagon
+triangle
+equilateral
+isosceles
+scalene
+right-angled triangle
+quadrilateral
+rectangle
+parallelogram
+rhombus
+kite
+trapezium
+diagonal
+symmetry
+rotational symmetry
+order of rotational symmetry
+radius
+diameter
+circumference
+arc
+arc length
+sector
+semicircle
+segment
+circle theorem
+angle at the centre
+cyclic quadrilateral
+opposite angles
+same segment
+construction
+compasses
+protractor
+bisect
+perpendicular bisector
+angle bisector
+scale
+scale drawing
+bearing
+back bearing
+clockwise
+anticlockwise
+similar
+scale factor
+length scale factor
+area scale factor
+volume scale factor
+enlargement
+centre of enlargement
+image
+translation
+reflection
+rotation
+centre of rotation
+vector
+column vector
+component
+scalar
+magnitude
+resultant
+perimeter
+area
+perpendicular height
+area of a triangle
+compound shape
+volume
+capacity
+surface area
+curved surface area
+prism
+cross-section
+cross-sectional area
+cuboid
+cylinder
+pyramid
+cone
+slant height
+sphere
+hemisphere
+metric unit
+millimetre
+centimetre
+kilometre
+square metre
+hectare
+cubic centimetre
+litre
+millilitre
+tonne
+trigonometry
+hypotenuse
+opposite
+adjacent
+sine
+cosine
+inverse sine
+inverse cosine
+inverse tangent
+pythagoras' theorem
+angle of elevation
+angle of depression
+sine rule
+cosine rule
+included angle
+plane
+space diagonal
+probability
+event
+outcome
+equally likely
+trial
+relative frequency
+expected frequency
+sample space
+tree diagram
+data
+qualitative
+quantitative
+discrete
+continuous
+frequency
+frequency table
+tally
+two-way table
+total frequency
+average
+mean
+median
+mode
+range
+grouped data
+class interval
+class width
+frequency density
+histogram
+pie chart
+sector angle
+scatter diagram
+correlation
+positive correlation
+negative correlation
+line of best fit
+outlier
+cumulative frequency
+quartile
+lower quartile
+upper quartile
+interquartile range
+percentile
+[physics]
+current
+potential difference
+electromotive force
+resistance
+a.c. generator
+absolute zero
+absorption
+absorber
+acceleration
+acceleration due to gravity
+activity
+air resistance
+alpha particle
+alpha-particle scattering
+alternating current
+ammeter
+ampere
+amplitude
+angle of incidence
+angle of reflection
+angle of refraction
+anticlockwise
+clockwise
+area under
+armature
+asteroid
+atmospheric pressure
+atom
+atomic vibrations
+attraction
+audible
+average force
+average kinetic energy
+average orbital speed
+average speed
+axis
+background radiation
+background count
+balance
+balanced
+bar magnet
+barometer
+becquerel
+beta particle
+big bang
+bimetallic strip
+biofuel
+black hole
+boiling
+boiling point
+boundary
+boyle's law
+branch
+brownian motion
+brushes
+cell
+celsius scale
+centre of gravity
+centripetal force
+change in momentum
+change in velocity
+change of state
+electric charge
+chemical store
+circuit
+circuit breaker
+circuit symbol
+circular motion
+circumference
+coil
+collision
+combined resistance
+comet
+communications satellite
+commutator
+compass
+component
+compression
+condensation
+conduction
+conductor
+conservation of energy
+conservation of momentum
+constant speed
+constant temperature
+contamination
+contraction
+convection
+convection current
+converging lens
+cooling curve
+heating curve
+count rate
+corrected count rate
+cosmic microwave background radiation
+cosmic ray
+coulomb
+crest
+critical angle
+cross-sectional area
+crumple zone
+cubic centimetre
+cubic metre
+current-carrying
+current-voltage graph
+cycle
+d.c. motor
+decay
+decay equation
+deceleration
+deflection
+denser
+density
+depth
+diffraction
+diminished
+diode
+direction of the force
+displacement
+displacement can
+displacement-time graph
+distance travelled
+distance-time graph
+division
+double insulation
+drag
+driving force
+dwarf planet
+generator
+earth wire
+earthing
+echo
+efficiency
+elastic
+elastic store
+electrical energy
+electrical power
+electromagnet
+electromagnetic induction
+electromagnetic wave
+electromagnetic spectrum
+electron
+element
+emission
+emitter
+energy meter
+energy resource
+energy store
+energy transfer
+energy transferred
+equation of motion
+evaporation
+expanding universe
+expansion
+expansion gap
+explosion
+extension
+field line
+filament lamp
+final velocity
+initial velocity
+fixed mass
+fleming's left-hand rule
+fluid
+focal length
+focal point
+force
+forward direction
+fossil fuel
+free electrons
+free fall
+frequency
+friction
+fuse
+fuse rating
+galaxy
+galvanometer
+gamma ray
+gas pressure
+geiger-muller tube
+geiger counter
+geostationary
+geothermal
+giga
+gigahertz
+gradient
+gravitational field strength
+gravitational force
+gravitational potential energy
+gravitational store
+gravity
+half-life
+hard magnetic material
+heating element
+helium nucleus
+hemisphere
+hertz
+hooke's law
+hubble constant
+hubble's law
+hydroelectric
+ideal transformer
+image
+impulse
+incident ray
+induce
+induced current
+induced magnetism
+infrared
+input power
+input voltage
+insulation
+insulator
+inversely proportional
+inverted
+ionisation
+iron core
+irradiate
+irregular solid
+isotope
+joule
+junction
+kelvin
+kilo
+kilogram
+kilogram metre per second
+kilohertz
+kilojoule
+kilometres per hour
+kilopascal
+kilowatt
+kilowatt-hour
+kinetic energy
+kinetic particle model
+kinetic store
+latent heat
+law of reflection
+lens
+lever
+light-dependent resistor
+light-emitting diode
+light-year
+limit of proportionality
+liquid pressure
+live wire
+longitudinal
+longitudinal wave
+transverse wave
+p-wave
+s-wave
+seismic wave
+rarefaction
+oscillation
+vibration
+rest position
+period
+trough
+wavelength
+wave equation
+wave speed
+wavefront
+ripple tank
+reflection
+refraction
+medium
+vacuum
+sound wave
+speed of sound
+pitch
+loudness
+range of human hearing
+ultrasound
+sonar
+pulse
+oscilloscope
+trace
+time base
+y-gain
+peak voltage
+spectrum
+radio wave
+microwave
+visible light
+ultraviolet
+x-ray
+radar
+speed of light
+megahertz
+satellite
+sterilise
+normal
+ray
+reflected ray
+plane mirror
+refractive index
+sine
+total internal reflection
+optical fibre
+principal axis
+principal focus
+real image
+virtual image
+magnified
+upright
+magnet
+magnetic material
+soft magnetic material
+permanent magnet
+magnetic pole
+north pole
+south pole
+repel
+magnetic field
+magnetic field line
+plotting compass
+solenoid
+right-hand grip rule
+turns
+motor effect
+motor
+split-ring commutator
+slip ring
+transformer
+primary coil
+secondary coil
+turns ratio
+step-up
+step-down
+output voltage
+output power
+national grid
+transmission line
+negative charge
+positive charge
+uncharged
+milliamp
+volt
+ohm
+ohmic
+resistor
+variable resistor
+thermistor
+reverse direction
+voltmeter
+series circuit
+total resistance
+parallel circuit
+potential divider
+power
+watt
+megajoule
+neutral wire
+residual current device
+magnitude
+scalar
+vector
+resultant
+right angles
+pythagoras
+scale drawing
+si unit
+prefix
+mega
+milli
+micro
+nano
+micrometer
+vernier calipers
+reaction time
+pendulum
+measuring cylinder
+overflow can
+square metre
+square centimetre
+metres per second
+volume
+mass
+weight
+newton
+newton meter
+newton metre
+planet
+resultant force
+unbalanced
+steady velocity
+terminal velocity
+spring
+spring constant
+moment
+pivot
+perpendicular distance
+principle of moments
+stability
+unstable
+upthrust
+speed
+velocity
+velocity-time graph
+total distance
+total time
+uniform acceleration
+maximum height
+momentum
+total momentum
+recoil
+potential energy
+nuclear store
+thermal store
+work done
+total input
+useful output
+wasted energy
+renewable
+non-renewable
+power station
+nuclear power station
+uranium
+turbine
+wind turbine
+tidal barrage
+solar cell
+molecule
+particle
+states of matter
+vapour
+temperature
+proportional
+pressure
+pascal
+manometer
+thermal energy
+temperature change
+specific heat capacity
+specific latent heat
+melting
+melting point
+solidification
+vaporisation
+thermal expansion
+thermometer
+thermostat
+thermal conductor
+rate of conduction
+matt
+nucleus
+proton
+neutron
+nucleon
+proton number
+nucleon number
+nuclide
+nuclide notation
+neutral atom
+nuclear model
+scattering experiment
+radioactive
+penetration
+undecayed
+radon
+radioactive source
+tracer
+orbit
+orbit radius
+orbital period
+orbital speed
+solar system
+rotation
+tilt
+season
+sunlit
+moon's phases
+star
+nebula
+protostar
+nuclear fusion
+main-sequence star
+red giant
+red supergiant
+planetary nebula
+white dwarf
+supernova
+neutron star
+universe
+redshift
+recession speed
+radio telescope
+[chemistry]
+abundance
+acid
+acid rain
+acid-alkali titration
+acidic
+acidic oxide
+acidified
+acidified potassium manganate(VII)
+activation energy
+actual yield
+addition polymer
+addition reaction
+alcohol
+alkali
+alkali metal
+alkaline
+alkane
+alkene
+alloy
+aluminium
+aluminium oxide
+ammonia
+ammonium
+ammonium nitrate
+ammonium sulfate
+amount of substance
+amphoteric oxide
+anhydrous copper(II) sulfate
+anion
+anode
+antimony
+apparatus
+aqueous
+aqueous ammonia
+aqueous sodium hydroxide
+argon
+astatine
+atomic number
+Avogadro constant
+balance
+balanced equation
+barium nitrate
+barrier method
+base
+baseline
+basic oxide
+binary compound
+bitumen
+blast furnace
+boiling
+boiling point
+bond breaking
+bond energy
+bond making
+brass
+bromine
+bromine water
+bronze
+burette
+butane
+butanoic acid
+butanol
+butene
+caesium
+calcium carbonate
+calorimetry
+carbon dioxide
+carbon monoxide
+carbonate
+carboxylic acid
+catalyst
+catalytic converter
+cathode
+cation
+chemical change
+formula
+chloride
+chlorination
+chlorine
+chloroethene
+chromatogram
+chromatography
+climate change
+cobalt(II) chloride
+coefficient
+collision
+collision frequency
+collision theory
+coloured compound
+colourless
+combustion
+complete combustion
+compound
+concentrated
+concentrated sulfuric acid
+concentration
+concordant
+condensation polymer
+condensing
+electrical conductivity
+conductor
+electrical conductor
+conical flask
+Contact process
+corrosion
+coulomb
+covalent bond
+cracking
+crude oil
+cryolite
+crystallisation
+current
+decomposition
+deforestation
+delocalised electrons
+density
+desulfurisation
+diamond
+diesel oil
+diffusion
+dilute
+displacement
+dissolving
+distillation
+dm³
+dodecane
+dot-and-cross diagram
+double bond
+ductile
+dynamic equilibrium
+effervescence
+electrode
+electrolysis
+electrolyte
+electron
+electron arrangement
+electron pair
+electroplating
+element
+empirical formula
+end-point
+endothermic
+energy profile
+energy transferred
+enthalpy change
+equation
+ester
+esterification
+ethane
+ethanoic acid
+ethanol
+ethene
+ethyl ethanoate
+evaporation
+excess
+exothermic
+extraction
+Faraday constant
+fermentation
+fertiliser
+filtrate
+filtration
+flavouring
+flue gas desulfurisation
+fossil fuel
+fraction
+fractional distillation
+fractionating column
+freezing
+functional group
+g/dm³
+galvanising
+gas
+gas syringe
+gasoline
+general formula
+giant covalent
+giant structure
+glowing splint
+graphite
+greenhouse effect
+greenhouse gas
+group
+Group VIII
+Group I
+Group VII
+Haber process
+half-equation
+halide
+halogen
+helium
+homologous series
+hydrated iron(III) oxide
+hydration
+hydrocarbon
+hydrochloric acid
+hydrogen
+hydrogen chloride
+hydrogen ion
+hydrogencarbonate
+hydroxide
+impurity
+incomplete combustion
+indicator
+inert
+inert electrode
+infrared radiation
+soluble
+insoluble
+iodine
+ion
+positive ion
+negative ion
+ionic compound
+ionic formula
+ionic half-equation
+ionic lattice
+ionisation
+partly ionised
+iridium
+iron(III) oxide
+isotope
+kerosene
+kinetic energy
+lattice
+lighted splint
+limewater
+limiting reactant
+liquid
+solid
+vibrate
+lithium
+sodium
+potassium
+rubidium
+litmus
+locating agent
+lone pair
+shared pair
+magnesium
+malleable
+potassium manganate(VII)
+manganese
+nucleon number
+proton number
+proton
+neutron
+nucleus
+mean rate
+rate of reaction
+measuring cylinder
+melting
+melting point
+sublimation
+metal oxide
+metallic bonding
+methane
+methanoic acid
+methanol
+propane
+propene
+propanol
+propanoic acid
+methyl ethanoate
+propyl ethanoate
+perfume
+methyl orange
+universal indicator
+pH
+neutral
+mixture
+mol/dm³
+molar gas volume
+room temperature and pressure
+molar mass
+mole
+mole ratio
+reacting mass
+simple molecular
+molecular formula
+molecule
+molten
+monomer
+polymer
+polymerisation
+repeat unit
+poly(ethene)
+poly(chloroethene)
+polyamide
+polyester
+naphtha
+petroleum
+refinery
+refinery gas
+neon
+noble gas
+unreactive
+neutral oxide
+oxide
+neutralisation
+salt
+new substance
+physical change
+nitrate
+sulfate
+nitric acid
+sulfuric acid
+strong acid
+weak acid
+nitrogen
+nitrogen monoxide
+nitrogen dioxide
+nitrogen oxides
+sulfur dioxide
+particulates
+pollutant
+pollution
+sulfur trioxide
+NPK fertiliser
+phosphorus
+urea
+ore
+organic compound
+outer shell
+outer-shell electrons
+shell
+period
+Periodic Table
+overall charge
+oxidation number
+oxidation
+reduction
+redox
+oxidising agent
+reducing agent
+oxygen
+particle
+particle model
+state
+steam
+percentage abundance
+relative atomic mass
+relative formula mass
+relative molecular mass
+percentage by mass
+percentage composition
+percentage purity
+percentage yield
+theoretical yield
+yield
+photosynthesis
+respiration
+thermal decomposition
+sodium hydrogencarbonate
+pipette
+stopwatch
+thermometer
+polystyrene cup
+specific heat capacity
+temperature change
+titration
+titre
+rough titre
+pure substance
+purity
+pure metal
+steel
+stainless steel
+purification
+reactant
+product
+symbol equation
+reaction pathway diagram
+reactivity
+reactivity series
+reversible reaction
+position of equilibrium
+pressure
+temperature
+surface area
+successful collision
+residue
+separation
+simple distillation
+Rf value
+solvent front
+solute
+solvent
+solution
+precipitate
+precipitation
+rusting
+sacrificial protection
+saturated
+unsaturated
+substitution reaction
+sedimentation
+water treatment
+parts per million
+silicon
+silicon(IV) oxide
+silver nitrate
+sodium hydroxide
+potassium hydroxide
+potassium bromide
+potassium chloride
+potassium iodide
+transition element
+[accounting]
+AVCO
+FIFO
+net realisable value
+cost of sales
+accounting
+accounting equation
+asset
+liability
+capital
+transaction
+premises
+income
+expense
+commission
+financial statements
+supplier
+lender
+investor
+credit supplier
+on credit
+accrual
+income owing
+prepayment
+income received in advance
+year-end adjustment
+other payables
+other receivables
+accounting concept
+accruals
+business entity
+going concern
+consistency
+prudence
+realisation
+materiality
+money measurement
+historic cost
+duality
+bank reconciliation
+reconciliation statement
+bank statement
+cash book
+cheque
+unpresented cheque
+lodgement
+outstanding lodgement
+credit transfer
+direct debit
+standing order
+bank charges
+dishonoured cheque
+overdraft
+debit balance
+credit balance
+receipts and payments account
+income and expenditure account
+expenditure
+subscriptions
+subscriptions in arrears
+subscriptions in advance
+accumulated fund
+surplus
+deficit
+non-profit organisation
+control account
+sales ledger control account
+purchases ledger control account
+sales ledger
+purchases ledger
+contra entry
+opening balance
+closing balance
+fixed cost
+variable cost
+direct cost
+indirect cost
+unit cost
+contribution
+contribution per unit
+break-even point
+margin of safety
+target profit
+depreciation
+capital expenditure
+revenue expenditure
+capitalised
+installation
+straight-line method
+reducing-balance method
+residual value
+useful life
+accumulated depreciation
+net book value
+disposal
+obsolescence
+wear and tear
+non-current asset
+double entry
+debit
+credit
+ledger
+ledger account
+balance carried down
+balance brought down
+drawings
+capital introduced
+purchases
+purchases returns
+sales returns
+credit purchases
+credit sales
+incomplete records
+statement of affairs
+opening capital
+closing capital
+gross margin
+mark-up
+inventory
+closing inventory
+opening inventory
+valuation
+overstate
+understate
+irrecoverable debt
+write-off
+debt recovered
+debtor
+allowance for irrecoverable debts
+trade receivables
+net trade receivables
+trade payables
+partnership
+partnership agreement
+appropriation account
+interest on capital
+interest on drawings
+partner's salary
+profit-sharing ratio
+residual profit
+capital account
+current account
+fixed capital
+ratio
+profit margin
+current ratio
+acid-test ratio
+liquidity
+rate of inventory turnover
+average inventory
+trade receivables collection period
+trade payables payment period
+capital employed
+return on capital employed
+profitability
+efficiency
+income statement
+statement of financial position
+revenue
+gross profit
+profit for the year
+other income
+carriage inwards
+carriage outwards
+current assets
+current liabilities
+non-current liabilities
+net current assets
+source document
+invoice
+credit note
+debit note
+receipt
+cheque counterfoil
+counterfoil
+paying-in slip
+statement of account
+book of prime entry
+day book
+sales journal
+purchases journal
+sales returns journal
+purchases returns journal
+general journal
+petty cash book
+trade discount
+list price
+cash discount
+discount allowed
+discount received
+trial balance
+debit column
+credit column
+suspense account
+error of omission
+error of commission
+error of principle
+error of original entry
+compensating error
+complete reversal
+transposition
+undercast
+overcast
+journal
+journal entry
+correcting entry

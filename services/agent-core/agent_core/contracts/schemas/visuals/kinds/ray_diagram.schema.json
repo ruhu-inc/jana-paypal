@@ -1,0 +1,92 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/ray_diagram.schema.json sha256 d7b3f178c3e964e2d2c37c5a33ad30713ca0d10749f38fd00fd146797a6bac04; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/ray_diagram",
+ "title": "ray_diagram params",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "optic",
+  "object_distance",
+  "object_height"
+ ],
+ "properties": {
+  "optic": {
+   "enum": [
+    "converging_lens",
+    "diverging_lens",
+    "concave_mirror",
+    "convex_mirror",
+    "plane_mirror"
+   ]
+  },
+  "focal_length": {
+   "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/quantity"
+  },
+  "object_distance": {
+   "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/quantity"
+  },
+  "object_height": {
+   "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/quantity"
+  },
+  "rays": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 3,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "parallel",
+     "focal",
+     "centre"
+    ]
+   }
+  },
+  "show": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "image",
+     "focal_points",
+     "two_f_points",
+     "measurements",
+     "virtual_extensions"
+    ]
+   }
+  }
+ },
+ "$defs": {
+  "add": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "element"
+   ],
+   "properties": {
+    "element": {
+     "enum": [
+      "ray",
+      "image_label",
+      "magnification_note"
+     ]
+    },
+    "of": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number",
+       "boolean"
+      ]
+     }
+    }
+   }
+  }
+ }
+}

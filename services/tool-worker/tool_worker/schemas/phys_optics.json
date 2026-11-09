@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "task": {
+      "enum": [
+        "image",
+        "refraction",
+        "critical_angle"
+      ]
+    },
+    "optic": {
+      "enum": [
+        "converging_lens",
+        "diverging_lens",
+        "concave_mirror",
+        "convex_mirror",
+        "plane_mirror"
+      ]
+    },
+    "focal_length": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+      "maxLength": 40
+    },
+    "object_distance": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+      "maxLength": 40
+    },
+    "object_height": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+      "maxLength": 40
+    },
+    "distance_unit": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20
+    },
+    "sign_convention": {
+      "enum": [
+        "real_is_positive",
+        "cartesian"
+      ]
+    },
+    "sign_convention_source": {
+      "enum": [
+        "question",
+        "item",
+        "pack"
+      ]
+    },
+    "n1": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+      "maxLength": 40
+    },
+    "n2": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+      "maxLength": 40
+    },
+    "angle1": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+      "maxLength": 40
+    },
+    "angle2": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+      "maxLength": 40
+    }
+  }
+}

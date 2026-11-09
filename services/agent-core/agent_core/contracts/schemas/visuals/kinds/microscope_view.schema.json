@@ -1,0 +1,36 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/microscope_view.schema.json sha256 d04874fe349e61f9a8ca3f55ecd6596ba9008abee7e98f4828d66a227bb3644d; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/microscope_view",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "diagram_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100,
+   "pattern": "^dgm\\.bio\\."
+  },
+  "image_length_mm": {
+   "type": "number",
+   "minimum": 1e-06
+  },
+  "actual_length_um": {
+   "type": "number",
+   "minimum": 1e-06
+  },
+  "show_scale": {
+   "type": "boolean"
+  },
+  "lengths_from": {
+   "type": "string",
+   "pattern": "^(chk_|kn_|pack:).+"
+  }
+ },
+ "required": [
+  "diagram_id",
+  "image_length_mm",
+  "actual_length_um",
+  "lengths_from"
+ ]
+}

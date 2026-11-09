@@ -1,0 +1,125 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/population_sim.schema.json sha256 0e66954d1abf7995c812afd4e07b1be4d0ea1220295ff6956a195851d2f34d9f; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/population_sim",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "model": {
+   "enum": [
+    "logistic",
+    "predator_prey"
+   ]
+  },
+  "initial_prey": {
+   "type": "number",
+   "minimum": 0
+  },
+  "initial_predator": {
+   "type": "number",
+   "minimum": 0
+  },
+  "growth_rate": {
+   "type": "number",
+   "minimum": 0
+  },
+  "carrying_capacity": {
+   "type": "number",
+   "minimum": 1e-06
+  },
+  "predation_rate": {
+   "type": "number",
+   "minimum": 0
+  },
+  "predator_death_rate": {
+   "type": "number",
+   "minimum": 0
+  },
+  "conversion_rate": {
+   "type": "number",
+   "minimum": 0
+  },
+  "duration": {
+   "type": "number",
+   "minimum": 1e-06
+  }
+ },
+ "required": [
+  "model",
+  "initial_prey",
+  "growth_rate",
+  "duration"
+ ],
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "model": {
+      "const": "logistic"
+     }
+    },
+    "required": [
+     "model"
+    ]
+   },
+   "then": {
+    "required": [
+     "carrying_capacity"
+    ],
+    "not": {
+     "anyOf": [
+      {
+       "required": [
+        "initial_predator"
+       ]
+      },
+      {
+       "required": [
+        "predation_rate"
+       ]
+      },
+      {
+       "required": [
+        "predator_death_rate"
+       ]
+      },
+      {
+       "required": [
+        "conversion_rate"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "model": {
+      "const": "predator_prey"
+     }
+    },
+    "required": [
+     "model"
+    ]
+   },
+   "then": {
+    "required": [
+     "initial_predator",
+     "predation_rate",
+     "predator_death_rate",
+     "conversion_rate"
+    ],
+    "not": {
+     "anyOf": [
+      {
+       "required": [
+        "carrying_capacity"
+       ]
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

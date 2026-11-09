@@ -1,0 +1,146 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/circuit.schema.json sha256 2e925a8749ebabf45f073488b17f7177dea3b2cbf3f0ed51567656ab511cd95a; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/circuit",
+ "title": "circuit params",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "components",
+  "connections"
+ ],
+ "properties": {
+  "components": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 16,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "type"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]{0,5}$"
+     },
+     "type": {
+      "enum": [
+       "cell",
+       "battery",
+       "resistor",
+       "variable_resistor",
+       "lamp",
+       "switch",
+       "ammeter",
+       "voltmeter",
+       "diode",
+       "led",
+       "ldr",
+       "thermistor",
+       "fuse",
+       "capacitor",
+       "motor",
+       "bell",
+       "potentiometer",
+       "ac_supply",
+       "earth"
+      ]
+     },
+     "value": {
+      "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/quantity"
+     },
+     "state": {
+      "enum": [
+       "open",
+       "closed"
+      ]
+     },
+     "label": {
+      "type": "string",
+      "maxLength": 24
+     }
+    }
+   }
+  },
+  "connections": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 40,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "from",
+     "to"
+    ],
+    "properties": {
+     "from": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]{0,5}\\.(a|b|pos|neg|wiper)$"
+     },
+     "to": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]{0,5}\\.(a|b|pos|neg|wiper)$"
+     }
+    }
+   }
+  },
+  "layout_hint": {
+   "enum": [
+    "series",
+    "parallel",
+    "mixed",
+    "potential_divider"
+   ]
+  },
+  "show": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "currents",
+     "voltages",
+     "equivalent_resistance",
+     "meter_readings",
+     "conventional_current_arrows"
+    ]
+   }
+  }
+ },
+ "$defs": {
+  "add": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "element"
+   ],
+   "properties": {
+    "element": {
+     "enum": [
+      "current_arrow",
+      "meter_reading",
+      "equivalent_resistor"
+     ]
+    },
+    "of": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number",
+       "boolean"
+      ]
+     }
+    }
+   }
+  }
+ }
+}

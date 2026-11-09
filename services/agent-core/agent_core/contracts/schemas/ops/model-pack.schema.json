@@ -1,0 +1,215 @@
+{
+ "$comment": "GENERATED from contracts/ops/model-pack.schema.json sha256 3c76dc35198bd1d22adf662cab04c950c3f37d83df244ba9b4d00d56dba983e5; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/model-pack",
+ "title": "ModelPackManifest",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "model_pack_id",
+  "manifest_version",
+  "hardware_class",
+  "tiers",
+  "family",
+  "quantisation",
+  "files",
+  "licence",
+  "recommended",
+  "min_app_version",
+  "evaluation_report_id",
+  "created_at",
+  "signature"
+ ],
+ "properties": {
+  "model_pack_id": {
+   "type": "string",
+   "pattern": "^mp\\.[a-z0-9_]+\\.[0-9_]+b\\.[a-z0-9_]+\\.(low|mid|high)(\\.[a-z0-9_]+)?$"
+  },
+  "manifest_version": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "hardware_class": {
+   "enum": [
+    "low",
+    "mid",
+    "high"
+   ]
+  },
+  "tiers": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "fast",
+     "strong",
+     "judge"
+    ]
+   }
+  },
+  "family": {
+   "type": "string",
+   "maxLength": 60
+  },
+  "quantisation": {
+   "type": "string",
+   "maxLength": 30
+  },
+  "channel": {
+   "enum": [
+    "dev",
+    "pilot",
+    "stable"
+   ]
+  },
+  "chunk_bytes": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "files": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "path",
+     "role",
+     "size_bytes",
+     "sha256",
+     "chunk_sha256"
+    ],
+    "properties": {
+     "path": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._-]{1,120}$"
+     },
+     "role": {
+      "enum": [
+       "weights",
+       "vision_projector",
+       "embedding",
+       "lora_adapter"
+      ]
+     },
+     "size_bytes": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "chunk_sha256": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "pattern": "^[0-9a-f]{64}$"
+      }
+     }
+    }
+   }
+  },
+  "licence": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "id",
+    "attribution"
+   ],
+   "properties": {
+    "id": {
+     "type": "string",
+     "maxLength": 40
+    },
+    "attribution": {
+     "type": "string",
+     "maxLength": 2000
+    },
+    "modification_notice": {
+     "type": "string",
+     "maxLength": 2000
+    }
+   }
+  },
+  "recommended": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "context": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "sampling": {
+     "type": "object"
+    },
+    "thinking": {
+     "type": "boolean"
+    }
+   }
+  },
+  "min_app_version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+$"
+  },
+  "evaluation_report_id": {
+   "type": "string",
+   "maxLength": 80
+  },
+  "tuned_from": {
+   "type": "string",
+   "maxLength": 120
+  },
+  "training_run_id": {
+   "type": "string",
+   "maxLength": 80
+  },
+  "model_card_ref": {
+   "type": "string",
+   "maxLength": 200
+  },
+  "adapter_for": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "model_pack_id",
+    "weights_sha256"
+   ],
+   "properties": {
+    "model_pack_id": {
+     "type": "string",
+     "maxLength": 120
+    },
+    "weights_sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    }
+   }
+  },
+  "created_at": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "signature": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "alg",
+    "key_id",
+    "value"
+   ],
+   "properties": {
+    "alg": {
+     "const": "ed25519"
+    },
+    "key_id": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  }
+ }
+}

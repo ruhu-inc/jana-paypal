@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/projectile_sim",
+  "$comment": "Params for projectile_sim, owned by the vetted renderer (VSL-08, VSL-30). Starting values within the declared ranges; readouts at the starting values are computed by phys_projectile (VER-17) and the client model is cross-checked against it (VSL-31). An angled launch states its angle in degrees above the horizontal. An optional `predict` names a predict, observe, explain scenario (VSL-47). Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "projectile_sim params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mode",
+    "speed"
+  ],
+  "properties": {
+    "mode": {
+      "enum": [
+        "horizontal",
+        "vertical",
+        "angled"
+      ]
+    },
+    "speed": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 40
+    },
+    "angle": {
+      "$comment": "Degrees above the horizontal, for an angled launch.",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 90
+    },
+    "height": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "locked": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "mode",
+          "speed",
+          "angle",
+          "height"
+        ]
+      },
+      "maxItems": 4,
+      "uniqueItems": true
+    },
+    "predict": {
+      "$comment": "A predict, observe, explain scenario of this kind (VSL-47, packages/renderers/src/sims/scenarios.json): the student predicts before the simulation runs; the scenario's starting values replace the request's own.",
+      "enum": [
+        "poe.phy.projectile_angle_30_60.v1"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "angled"
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "required": [
+          "angle"
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "trace_point"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

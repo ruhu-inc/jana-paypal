@@ -1,0 +1,748 @@
+{
+ "$comment": "GENERATED from contracts/training/dataset-card.schema.json sha256 c3dc8b71a546992d91fe448cdb5c8a82ee726ed67d6ef111fc223ed2ba478901; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/training/dataset-card",
+ "title": "Training dataset card",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "dataset_id",
+  "version",
+  "created",
+  "owner_role",
+  "justification_record_id",
+  "targets",
+  "languages",
+  "subjects",
+  "levels",
+  "sources",
+  "student_data",
+  "filters",
+  "composition",
+  "splits",
+  "manifest",
+  "teacher_audit",
+  "distribution",
+  "retention",
+  "known_limitations",
+  "signoffs"
+ ],
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "sources": {
+      "contains": {
+       "properties": {
+        "kind": {
+         "const": "research_consented"
+        }
+       },
+       "required": [
+        "kind"
+       ]
+      }
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "student_data": {
+      "properties": {
+       "included": {
+        "const": true
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "student_data": {
+      "properties": {
+       "included": {
+        "const": true
+       }
+      },
+      "required": [
+       "included"
+      ]
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "distribution": {
+      "const": "internal_only"
+     },
+     "retention": {
+      "properties": {
+       "delete_after": {
+        "type": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "properties": {
+    "signoffs": {
+     "allOf": [
+      {
+       "contains": {
+        "properties": {
+         "role": {
+          "const": "Evaluation lead"
+         }
+        }
+       }
+      },
+      {
+       "contains": {
+        "properties": {
+         "role": {
+          "const": "Safety lead"
+         }
+        }
+       }
+      },
+      {
+       "contains": {
+        "properties": {
+         "role": {
+          "enum": [
+           "Curriculum lead",
+           "Subject lead"
+          ]
+         }
+        }
+       }
+      }
+     ]
+    }
+   }
+  }
+ ],
+ "properties": {
+  "dataset_id": {
+   "type": "string",
+   "pattern": "^trn\\.[a-z0-9_]+\\.v\\d+$"
+  },
+  "version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+$"
+  },
+  "created": {
+   "type": "string",
+   "format": "date"
+  },
+  "owner_role": {
+   "type": "string",
+   "maxLength": 60
+  },
+  "justification_record_id": {
+   "type": "string",
+   "pattern": "^tjr-\\d{4}-\\d{3}$"
+  },
+  "targets": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "coach_dialogue_style",
+     "hint_ladder_adherence",
+     "structured_output",
+     "tool_call_format",
+     "explanation_language"
+    ]
+   }
+  },
+  "languages": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "en",
+     "fr",
+     "pt",
+     "ar"
+    ]
+   }
+  },
+  "subjects": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "mth",
+     "phy",
+     "chm",
+     "bio",
+     "acc"
+    ]
+   }
+  },
+  "levels": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "o_level",
+     "a_level"
+    ]
+   }
+  },
+  "sources": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "$ref": "#/$defs/source"
+   }
+  },
+  "student_data": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "included",
+    "exception_record_id",
+    "d13_review_ref",
+    "consent_scope",
+    "dpia_ref"
+   ],
+   "properties": {
+    "included": {
+     "type": "boolean"
+    },
+    "exception_record_id": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "d13_review_ref": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "consent_scope": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "dpia_ref": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "included": {
+        "const": true
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "exception_record_id": {
+        "type": "string",
+        "minLength": 1
+       },
+       "d13_review_ref": {
+        "type": "string",
+        "minLength": 1
+       },
+       "consent_scope": {
+        "const": "model_training_research"
+       },
+       "dpia_ref": {
+        "type": "string",
+        "minLength": 1
+       }
+      }
+     },
+     "else": {
+      "properties": {
+       "exception_record_id": {
+        "const": null
+       },
+       "d13_review_ref": {
+        "const": null
+       },
+       "consent_scope": {
+        "const": null
+       },
+       "dpia_ref": {
+        "const": null
+       }
+      }
+     }
+    }
+   ]
+  },
+  "filters": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "verifier",
+    "rubric",
+    "dedupe",
+    "contamination"
+   ],
+   "properties": {
+    "verifier": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "version",
+      "examined",
+      "rejected",
+      "rejections_by_reason"
+     ],
+     "properties": {
+      "version": {
+       "type": "string"
+      },
+      "examined": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "rejected": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "rejections_by_reason": {
+       "type": "object",
+       "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+       }
+      }
+     }
+    },
+    "rubric": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "rubric_ids",
+      "judges",
+      "examined",
+      "rejected",
+      "disagreements_dropped"
+     ],
+     "properties": {
+      "rubric_ids": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9_]+\\.[a-z0-9_.]+\\.v\\d+$"
+       }
+      },
+      "judges": {
+       "type": "array",
+       "minItems": 2,
+       "maxItems": 3,
+       "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+         "model_id",
+         "calibration_record_id"
+        ],
+        "properties": {
+         "model_id": {
+          "type": "string"
+         },
+         "calibration_record_id": {
+          "type": "string"
+         }
+        }
+       }
+      },
+      "examined": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "rejected": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "disagreements_dropped": {
+       "type": "integer",
+       "minimum": 0
+      }
+     }
+    },
+    "dedupe": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "method",
+      "near_duplicate_threshold",
+      "removed",
+      "max_examples_per_item"
+     ],
+     "properties": {
+      "method": {
+       "enum": [
+        "sha256_and_minhash"
+       ]
+      },
+      "near_duplicate_threshold": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "removed": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "max_examples_per_item": {
+       "type": "integer",
+       "minimum": 1
+      }
+     }
+    },
+    "contamination": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "check_id",
+      "sets_checked",
+      "hits_removed",
+      "passed"
+     ],
+     "properties": {
+      "check_id": {
+       "type": "string"
+      },
+      "sets_checked": {
+       "type": "array",
+       "uniqueItems": true,
+       "items": {
+        "enum": [
+         "held_out_items",
+         "held_out_templates",
+         "safety_set",
+         "judge_calibration",
+         "rubric_texts",
+         "pilot_test_forms"
+        ]
+       },
+       "minItems": 6
+      },
+      "hits_removed": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "passed": {
+       "const": true
+      }
+     }
+    }
+   }
+  },
+  "composition": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "by_subject",
+    "by_target",
+    "by_persona",
+    "by_rung",
+    "by_language",
+    "by_prompt_mode"
+   ],
+   "properties": {
+    "by_subject": {
+     "$ref": "#/$defs/counts"
+    },
+    "by_target": {
+     "$ref": "#/$defs/counts"
+    },
+    "by_persona": {
+     "$ref": "#/$defs/counts"
+    },
+    "by_rung": {
+     "$ref": "#/$defs/counts"
+    },
+    "by_language": {
+     "$ref": "#/$defs/counts"
+    },
+    "by_prompt_mode": {
+     "$ref": "#/$defs/counts"
+    }
+   }
+  },
+  "splits": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "train",
+    "validation"
+   ],
+   "properties": {
+    "train": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "validation": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "manifest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "root_sha256",
+    "shards",
+    "generation_seed",
+    "sampling_seed"
+   ],
+   "properties": {
+    "root_sha256": {
+     "$ref": "#/$defs/sha256"
+    },
+    "shards": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "path",
+       "sha256",
+       "records"
+      ],
+      "properties": {
+       "path": {
+        "type": "string"
+       },
+       "sha256": {
+        "$ref": "#/$defs/sha256"
+       },
+       "records": {
+        "type": "integer",
+        "minimum": 0
+       }
+      }
+     }
+    },
+    "generation_seed": {
+     "type": "integer"
+    },
+    "sampling_seed": {
+     "type": "integer"
+    }
+   }
+  },
+  "teacher_audit": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "sample_size",
+    "pass_rate",
+    "reviewer_roles",
+    "date"
+   ],
+   "properties": {
+    "sample_size": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "pass_rate": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "reviewer_roles": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "string"
+     }
+    },
+    "date": {
+     "type": "string",
+     "format": "date"
+    }
+   }
+  },
+  "distribution": {
+   "enum": [
+    "internal_only",
+    "research_partner",
+    "public"
+   ]
+  },
+  "retention": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "delete_after"
+   ],
+   "properties": {
+    "delete_after": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "format": "date"
+    }
+   }
+  },
+  "known_limitations": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "maxLength": 400
+   }
+  },
+  "signoffs": {
+   "type": "array",
+   "minItems": 3,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "role",
+     "date"
+    ],
+    "properties": {
+     "role": {
+      "enum": [
+       "Evaluation lead",
+       "Safety lead",
+       "Engine lead",
+       "Curriculum lead",
+       "Subject lead"
+      ]
+     },
+     "date": {
+      "type": "string",
+      "format": "date"
+     }
+    }
+   }
+  }
+ },
+ "$defs": {
+  "sha256": {
+   "type": "string",
+   "pattern": "^[a-f0-9]{64}$"
+  },
+  "counts": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "integer",
+    "minimum": 0
+   }
+  },
+  "source": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind",
+    "records",
+    "licence",
+    "provenance_note",
+    "generator"
+   ],
+   "properties": {
+    "kind": {
+     "enum": [
+      "synthetic_dialogue",
+      "teacher_exemplar",
+      "content_pack",
+      "public_licensed",
+      "research_consented"
+     ]
+    },
+    "records": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "licence": {
+     "type": "string"
+    },
+    "provenance_note": {
+     "type": "string",
+     "maxLength": 400
+    },
+    "pack_ids": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "generator": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": false,
+     "required": [
+      "model_id",
+      "weights_licence_or_terms",
+      "terms_allow_training_use",
+      "terms_review_ref",
+      "simulator_model_id"
+     ],
+     "properties": {
+      "model_id": {
+       "type": "string"
+      },
+      "weights_licence_or_terms": {
+       "type": "string"
+      },
+      "terms_allow_training_use": {
+       "const": true
+      },
+      "terms_review_ref": {
+       "type": "string"
+      },
+      "simulator_model_id": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "synthetic_dialogue"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "generator": {
+        "type": "object"
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

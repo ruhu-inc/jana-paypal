@@ -1,0 +1,101 @@
+# Tool fixtures (TOL-05): synthetic, hand-written.
+tool: acc_double_entry
+version: 2
+valid_args:
+- entries_text: Dr Equipment 5000; Cr Cash 2500; Cr Payables 2500
+- entries:
+  - lines:
+    - account: Rent
+      side: debit
+      amount: 800
+    - account: Bank
+      side: credit
+      amount: '800.00'
+  key_text: Dr Rent 800; Cr Bank 800
+- cash_book:
+    balance: 1200
+    entries:
+    - ref: '101'
+      direction: out
+      amount: 300
+  bank_statement:
+    balance: 1500
+  start_from: bank_statement
+invalid_args:
+- entries_text: ''
+- entries:
+  - lines:
+    - account: Rent
+      side: dr
+      amount: 800
+- entries:
+  - lines:
+    - account: Rent
+      side: debit
+      amount: 8.5
+description_lint:
+  sections:
+  - what
+  - use_when
+  - parameters
+  - returns
+  - limits
+  - recovery
+  max_chars_full: 600
+repairs:
+- mistake: arguments sent as a JSON string
+  input: '{"text": "x+1"}'
+  repaired:
+    note: same pattern on this tool's arguments
+- mistake: argument names in camelCase
+  input:
+    Text: x+1
+  repaired:
+    note: same pattern on this tool's arguments
+envelopes:
+  unknown_tool:
+    first_clause: No action was taken.
+    retryable: false
+  unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  invalid_args:
+    first_clause: No action was taken.
+    retryable: true
+  truncated_args:
+    first_clause: No action was taken.
+    retryable: true
+  policy_denied:
+    first_clause: No action was taken.
+    retryable: false
+  student_declined:
+    first_clause: The action completed, but
+    retryable: false
+  timeout:
+    first_clause: No action was taken.
+    retryable: true
+  cancelled:
+    first_clause: No action was taken.
+    retryable: false
+  worker_crashed:
+    first_clause: No action was taken.
+    retryable: true
+  worker_unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  limit_exceeded:
+    first_clause: No action was taken.
+    retryable: false
+  domain_error:
+    first_clause: No action was taken.
+    retryable: false
+  execution_error:
+    first_clause: No action was taken.
+    retryable: false
+  result_too_large:
+    first_clause: The action completed, but
+    retryable: false
+  repeated_failure_blocked:
+    first_clause: No action was taken.
+    retryable: false
+golden: services/tool-worker/tool_worker/golden/acc_double_entry.yaml

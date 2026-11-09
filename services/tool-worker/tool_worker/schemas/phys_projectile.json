@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "motion",
+    "speed"
+  ],
+  "dependentRequired": {
+    "g": [
+      "g_source"
+    ],
+    "g_source": [
+      "g"
+    ]
+  },
+  "properties": {
+    "motion": {
+      "enum": [
+        "vertical",
+        "horizontal",
+        "angled"
+      ]
+    },
+    "speed": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "angle": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 90,
+      "description": "For an angled launch: degrees above the horizontal."
+    },
+    "direction": {
+      "enum": [
+        "up",
+        "down"
+      ]
+    },
+    "height": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "g": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+      "maxLength": 40
+    },
+    "g_source": {
+      "enum": [
+        "question",
+        "item",
+        "pack"
+      ]
+    },
+    "constants": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "symbol",
+          "source"
+        ],
+        "properties": {
+          "symbol": {
+            "const": "g"
+          },
+          "value": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?$",
+            "maxLength": 40
+          },
+          "unit": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "source": {
+            "enum": [
+              "question",
+              "item",
+              "pack",
+              "default"
+            ]
+          }
+        }
+      }
+    },
+    "points": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 500
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "motion": {
+            "const": "angled"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "angle"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "angle"
+          ]
+        }
+      }
+    }
+  ]
+}

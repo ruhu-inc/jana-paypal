@@ -1,0 +1,46 @@
+[
+  {
+    "id": "usb",
+    "steps": 3
+  },
+  {
+    "id": "subject",
+    "steps": 3
+  },
+  {
+    "id": "slow",
+    "steps": 3
+  },
+  {
+    "id": "unavailable",
+    "steps": 3
+  },
+  {
+    "id": "online_data",
+    "steps": 3
+  },
+  {
+    "id": "rollback",
+    "steps": 3
+  },
+  {
+    "id": "disk",
+    "steps": 3
+  },
+  {
+    "id": "licence",
+    "steps": 3
+  },
+  {
+    "id": "migration",
+    "steps": 3
+  },
+  {
+    "id": "report",
+    "steps": 3
+  },
+  {
+    "id": "family_controls",
+    "steps": 3
+  }
+]

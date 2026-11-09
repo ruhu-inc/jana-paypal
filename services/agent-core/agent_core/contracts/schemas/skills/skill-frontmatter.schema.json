@@ -1,0 +1,406 @@
+{
+ "$comment": "GENERATED from contracts/skills/skill-frontmatter.schema.json sha256 ab9767fe56ab4bbc2ffb09d9d172e7fb2c0fe5fe2f10ae489f2feac36883810d; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/skills/skill-frontmatter",
+ "title": "SKILL.md front matter",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "name",
+  "kind",
+  "version",
+  "status",
+  "language",
+  "summary",
+  "description",
+  "audience",
+  "roles",
+  "owner",
+  "last_reviewed_by",
+  "last_reviewed_at",
+  "success_criteria"
+ ],
+ "properties": {
+  "name": {
+   "type": "string",
+   "minLength": 3,
+   "maxLength": 64,
+   "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$"
+  },
+  "kind": {
+   "enum": [
+    "pedagogy",
+    "teaching",
+    "agent"
+   ]
+  },
+  "version": {
+   "type": "string",
+   "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+  },
+  "status": {
+   "enum": [
+    "draft",
+    "in_review",
+    "reviewed",
+    "retired"
+   ]
+  },
+  "language": {
+   "type": "string",
+   "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+  },
+  "summary": {
+   "type": "string",
+   "minLength": 10,
+   "maxLength": 80,
+   "pattern": "^[A-Z][^\\n]*[^.\\n]$"
+  },
+  "description": {
+   "type": "string",
+   "minLength": 40,
+   "maxLength": 300,
+   "pattern": "Not for:"
+  },
+  "subject": {
+   "enum": [
+    "mathematics",
+    "physics",
+    "chemistry",
+    "biology",
+    "accounting",
+    "general"
+   ]
+  },
+  "levels": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "O",
+     "A"
+    ]
+   }
+  },
+  "topics": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 12,
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "pattern": "^[a-z0-9][a-z0-9 '-]{1,40}$"
+   }
+  },
+  "kcs": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 20,
+   "uniqueItems": true,
+   "items": {
+    "$ref": "#/$defs/KcId"
+   }
+  },
+  "curriculum_refs": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "pattern": "^(MTH|PHY|CHM|BIO|ACC)-[OA]-[0-9]{2}(\\.[0-9]{2})?$"
+   }
+  },
+  "prerequisites": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "$ref": "#/$defs/KcId"
+   }
+  },
+  "related": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "$ref": "#/$defs/SkillName"
+   }
+  },
+  "pedagogy": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "pattern": "^pedagogy-[a-z0-9-]+$"
+   }
+  },
+  "conflicts_with": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "$ref": "#/$defs/SkillName"
+   }
+  },
+  "audience": {
+   "enum": [
+    "student",
+    "team"
+   ]
+  },
+  "roles": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "coach",
+     "diagnoser",
+     "solver",
+     "checker",
+     "reflector"
+    ]
+   }
+  },
+  "requires_tools": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "pattern": "^[a-z][a-z0-9_]{1,39}$"
+   }
+  },
+  "visuals": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "pattern": "^[a-z][a-z0-9_]{1,40}$"
+   }
+  },
+  "answer_policy": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "mode"
+   ],
+   "properties": {
+    "mode": {
+     "enum": [
+      "withhold_until_earned",
+      "show_on_request",
+      "never_final_answer",
+      "not_applicable"
+     ]
+    },
+    "min_attempts": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 5
+    },
+    "min_rung": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 5
+    }
+   }
+  },
+  "escalation": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "after_failed_attempts",
+    "action"
+   ],
+   "properties": {
+    "after_failed_attempts": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 10
+    },
+    "action": {
+     "enum": [
+      "prerequisite_detour",
+      "switch_representation",
+      "worked_example",
+      "hand_to_skill"
+     ]
+    },
+    "target": {
+     "$ref": "#/$defs/SkillName"
+    }
+   },
+   "if": {
+    "properties": {
+     "action": {
+      "const": "hand_to_skill"
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "target"
+    ]
+   }
+  },
+  "plausibility": {
+   "type": "array",
+   "maxItems": 12,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "quantity",
+     "unit",
+     "min",
+     "max"
+    ],
+    "properties": {
+     "quantity": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,40}$"
+     },
+     "unit": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 24
+     },
+     "min": {
+      "type": "number"
+     },
+     "max": {
+      "type": "number"
+     },
+     "context": {
+      "type": "string",
+      "maxLength": 120
+     }
+    }
+   }
+  },
+  "owner": {
+   "$ref": "#/$defs/RoleHandle"
+  },
+  "last_reviewed_by": {
+   "$ref": "#/$defs/RoleHandle"
+  },
+  "last_reviewed_at": {
+   "type": "string",
+   "format": "date",
+   "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+  },
+  "success_criteria": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 5,
+   "items": {
+    "type": "string",
+    "minLength": 10,
+    "maxLength": 200
+   }
+  },
+  "scope": {
+   "enum": [
+    "core"
+   ],
+   "default": "core"
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "kind": {
+      "const": "teaching"
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "subject",
+     "levels",
+     "topics",
+     "kcs",
+     "curriculum_refs",
+     "answer_policy"
+    ],
+    "properties": {
+     "name": {
+      "pattern": "^(mth|phy|chm|bio|acc)-(o|a)-[a-z0-9-]+$"
+     },
+     "subject": {
+      "enum": [
+       "mathematics",
+       "physics",
+       "chemistry",
+       "biology",
+       "accounting"
+      ]
+     },
+     "audience": {
+      "const": "student"
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "kind": {
+      "const": "pedagogy"
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "answer_policy"
+    ],
+    "properties": {
+     "name": {
+      "pattern": "^pedagogy-[a-z0-9-]+$"
+     },
+     "audience": {
+      "const": "student"
+     },
+     "kcs": false,
+     "curriculum_refs": false
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "kind": {
+      "const": "agent"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "name": {
+      "pattern": "^agent-[a-z0-9-]+$"
+     },
+     "audience": {
+      "const": "team"
+     },
+     "kcs": false,
+     "curriculum_refs": false
+    }
+   }
+  }
+ ],
+ "$defs": {
+  "SkillName": {
+   "type": "string",
+   "minLength": 3,
+   "maxLength": 64,
+   "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$"
+  },
+  "KcId": {
+   "type": "string",
+   "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+  },
+  "RoleHandle": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9-]{2,40}$"
+  }
+ }
+}

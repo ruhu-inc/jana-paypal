@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/electron_shells",
+  "$comment": "Params for electron_shells, owned by the vetted renderer (VSL-03). Electron counts come from pack reference data (N3): the element's proton number and the shell capacities. Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "electron_shells params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "element"
+  ],
+  "properties": {
+    "element": {
+      "type": "string",
+      "pattern": "^[A-Z][a-z]?$"
+    },
+    "charge": {
+      "type": "integer",
+      "minimum": -3,
+      "maximum": 3
+    },
+    "partner": {
+      "type": "string",
+      "pattern": "^[A-Z][a-z]?$"
+    },
+    "bonding": {
+      "enum": [
+        "ionic",
+        "covalent"
+      ]
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "shell_label"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

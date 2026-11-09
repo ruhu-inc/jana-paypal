@@ -1,0 +1,277 @@
+{
+ "$comment": "GENERATED from contracts/evals/rubric.schema.json sha256 1f26e5938c0607119cf7af1db01539a3b3f59ba45475dca15b221e471bf06923; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/evals/rubric",
+ "title": "Binary criteria rubric",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "id",
+  "version",
+  "written_before_runs",
+  "applies_to",
+  "judging",
+  "criteria",
+  "scoring"
+ ],
+ "properties": {
+  "id": {
+   "type": "string",
+   "pattern": "^[a-z0-9_]+\\.[a-z0-9_.]+\\.v\\d+$"
+  },
+  "version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+$"
+  },
+  "title": {
+   "type": "string",
+   "maxLength": 120
+  },
+  "written_before_runs": {
+   "const": true
+  },
+  "owner_role": {
+   "type": "string",
+   "maxLength": 60
+  },
+  "applies_to": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "guided_dialogue",
+     "solution",
+     "check_my_working",
+     "lesson",
+     "practice_feedback",
+     "exam_review",
+     "simulated_student_run",
+     "safety_response",
+     "parent_digest",
+     "conceptual_answer"
+    ]
+   }
+  },
+  "locales": {
+   "type": "array",
+   "uniqueItems": true,
+   "default": [
+    "en"
+   ],
+   "items": {
+    "type": "string",
+    "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
+   }
+  },
+  "subjects": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "mathematics",
+     "physics",
+     "chemistry",
+     "biology",
+     "accounting"
+    ]
+   }
+  },
+  "judging": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "judges",
+    "independent",
+    "on_disagreement",
+    "evidence_scope"
+   ],
+   "properties": {
+    "judges": {
+     "type": "array",
+     "minItems": 2,
+     "maxItems": 3,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "kind",
+       "ref"
+      ],
+      "properties": {
+       "kind": {
+        "enum": [
+         "model"
+        ]
+       },
+       "ref": {
+        "type": "string"
+       },
+       "prompt_sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       }
+      }
+     }
+    },
+    "independent": {
+     "const": true
+    },
+    "on_disagreement": {
+     "enum": [
+      "human_review",
+      "fail"
+     ]
+    },
+    "on_judge_error": {
+     "const": "fail"
+    },
+    "evidence_scope": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "enum": [
+       "transcript",
+       "board",
+       "visual_specs",
+       "tool_results",
+       "solver_plan",
+       "learner_block",
+       "content_pack_passages"
+      ]
+     }
+    },
+    "excluded_from_judge_pool": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "criteria": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 30,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "dimension",
+     "pass_if",
+     "fail_if",
+     "critical"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]{3,60}$"
+     },
+     "dimension": {
+      "enum": [
+       "correctness",
+       "withholding",
+       "questioning",
+       "feedback",
+       "misconception",
+       "clarity",
+       "level",
+       "tone",
+       "visuals",
+       "safety",
+       "grounding",
+       "brevity"
+      ]
+     },
+     "pass_if": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 400,
+      "pattern": "^PASS if "
+     },
+     "fail_if": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 400,
+      "pattern": "^FAIL if "
+     },
+     "applies_when": {
+      "type": "string",
+      "maxLength": 200
+     },
+     "critical": {
+      "type": "boolean"
+     },
+     "examples": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "verdict",
+        "excerpt"
+       ],
+       "properties": {
+        "verdict": {
+         "enum": [
+          "pass",
+          "fail"
+         ]
+        },
+        "excerpt": {
+         "type": "string",
+         "maxLength": 600
+        },
+        "why": {
+         "type": "string",
+         "maxLength": 300
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "scoring": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "criterion_pass_rate_gate",
+    "report"
+   ],
+   "properties": {
+    "criterion_pass_rate_gate": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "all_pass_rate_gate": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "min_runs": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "report": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "enum": [
+       "criterion_pass_rate",
+       "all_pass_rate",
+       "per_criterion",
+       "judge_agreement",
+       "wilson_95_ci"
+      ]
+     }
+    }
+   }
+  }
+ }
+}

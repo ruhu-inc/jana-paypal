@@ -1,0 +1,71 @@
+{
+ "$comment": "GENERATED from contracts/agents/commitment.schema.json sha256 8975d0d38ff770d04dad1efadaeb3eee8e73623a7df1fcb26b6d73dca9a18bbd; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/commitment",
+ "title": "Commitment",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "found",
+  "kind",
+  "subject",
+  "due_day",
+  "text",
+  "confidence"
+ ],
+ "properties": {
+  "found": {
+   "type": "boolean"
+  },
+  "kind": {
+   "anyOf": [
+    {
+     "enum": [
+      "event_checkin",
+      "deadline_check",
+      "open_loop"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "subject": {
+   "anyOf": [
+    {
+     "enum": [
+      "mathematics",
+      "physics",
+      "chemistry",
+      "biology",
+      "accounting"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "due_day": {
+   "anyOf": [
+    {
+     "type": "string",
+     "format": "date"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "text": {
+   "type": "string",
+   "maxLength": 140
+  },
+  "confidence": {
+   "type": "number",
+   "minimum": 0,
+   "maximum": 1
+  }
+ }
+}

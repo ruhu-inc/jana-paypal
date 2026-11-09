@@ -1,0 +1,89 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/organic_structure.schema.json sha256 54fb5b7931c92cf9e4689fc5f20631bb19347b13117f1b48d57c1490adb757e9; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/organic_structure",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "task": {
+   "enum": [
+    "structure",
+    "compare"
+   ]
+  },
+  "inputs": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "kind": {
+      "enum": [
+       "smiles",
+       "name"
+      ]
+     },
+     "value": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+     }
+    },
+    "required": [
+     "kind",
+     "value"
+    ]
+   },
+   "minItems": 1,
+   "maxItems": 2
+  },
+  "representation": {
+   "enum": [
+    "skeletal",
+    "displayed"
+   ]
+  },
+  "highlight_groups": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 80
+   },
+   "minItems": 0,
+   "maxItems": 20
+  }
+ },
+ "required": [
+  "task",
+  "inputs",
+  "representation"
+ ],
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "task": {
+      "const": "compare"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "inputs": {
+      "minItems": 2,
+      "maxItems": 2
+     }
+    }
+   },
+   "else": {
+    "properties": {
+     "inputs": {
+      "minItems": 1,
+      "maxItems": 1
+     }
+    }
+   }
+  }
+ ]
+}

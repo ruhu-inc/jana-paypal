@@ -1,0 +1,62 @@
+{
+  "$comment": "Simulation presets named by `params.preset_id` (VSL-46, D114): the container a gas_laws_sim draws and the electrolysis cells of the O level syllabus, with each electrode's product and half-equation. Bundled with the simulations because content schema 1.6 has no electrolysis asset; the engine checks each half-equation with chem_balance when it resolves a request, and the product names and states are the syllabus rules (molten: the metal and the non-metal; aqueous: hydrogen unless the metal is less reactive, oxygen unless a halide is concentrated; copper anodes dissolve). Words come from the locale catalogue under sim.electrolysis.* and sim.gas.*.",
+  "presets": [
+    { "id": "sim.phy.gas_sealed_flask.v1", "kind": "gas_laws_sim", "container": "flask", "controls": ["temperature"] },
+    { "id": "sim.phy.gas_syringe.v1", "kind": "gas_laws_sim", "container": "syringe", "controls": ["temperature", "volume"] },
+    {
+      "id": "sim.chm.electrolysis_lead_bromide.v1",
+      "kind": "electrolysis_sim",
+      "key": "lead_bromide",
+      "electrolyte": "lead(II) bromide",
+      "phase": "molten",
+      "electrodes": "inert",
+      "ions": [{ "formula": "Pb", "charge": 2 }, { "formula": "Br", "charge": -1 }],
+      "cathode": { "id": "lead", "formula": "Pb", "measure": "mass", "electrons": 2, "half_equation": "Pb^2+ + 2e- -> Pb" },
+      "anode": { "id": "bromine", "formula": "Br2", "measure": "mass", "electrons": 2, "half_equation": "2Br^- -> Br2 + 2e-" }
+    },
+    {
+      "id": "sim.chm.electrolysis_brine.v1",
+      "kind": "electrolysis_sim",
+      "key": "brine",
+      "electrolyte": "concentrated sodium chloride",
+      "phase": "aqueous",
+      "electrodes": "inert",
+      "ions": [{ "formula": "Na", "charge": 1 }, { "formula": "H", "charge": 1 }, { "formula": "Cl", "charge": -1 }, { "formula": "OH", "charge": -1 }],
+      "cathode": { "id": "hydrogen", "formula": "H2", "measure": "gas", "electrons": 2, "half_equation": "2H^+ + 2e- -> H2" },
+      "anode": { "id": "chlorine", "formula": "Cl2", "measure": "gas", "electrons": 2, "half_equation": "2Cl^- -> Cl2 + 2e-" }
+    },
+    {
+      "id": "sim.chm.electrolysis_copper_sulfate.v1",
+      "kind": "electrolysis_sim",
+      "key": "copper_sulfate",
+      "electrolyte": "copper(II) sulfate",
+      "phase": "aqueous",
+      "electrodes": "inert",
+      "ions": [{ "formula": "Cu", "charge": 2 }, { "formula": "H", "charge": 1 }, { "formula": "SO4", "charge": -2 }, { "formula": "OH", "charge": -1 }],
+      "cathode": { "id": "copper", "formula": "Cu", "measure": "mass", "electrons": 2, "half_equation": "Cu^2+ + 2e- -> Cu" },
+      "anode": { "id": "oxygen", "formula": "O2", "measure": "gas", "electrons": 4, "half_equation": "4OH^- -> O2 + 2H2O + 4e-" }
+    },
+    {
+      "id": "sim.chm.electrolysis_copper_refining.v1",
+      "kind": "electrolysis_sim",
+      "key": "copper_refining",
+      "electrolyte": "copper(II) sulfate",
+      "phase": "aqueous",
+      "electrodes": "copper",
+      "ions": [{ "formula": "Cu", "charge": 2 }, { "formula": "H", "charge": 1 }, { "formula": "SO4", "charge": -2 }, { "formula": "OH", "charge": -1 }],
+      "cathode": { "id": "copper", "formula": "Cu", "measure": "mass", "electrons": 2, "half_equation": "Cu^2+ + 2e- -> Cu" },
+      "anode": { "id": "copper", "formula": "Cu", "measure": "dissolves", "electrons": 2, "half_equation": "Cu -> Cu^2+ + 2e-" }
+    },
+    {
+      "id": "sim.chm.electrolysis_dilute_sulfuric_acid.v1",
+      "kind": "electrolysis_sim",
+      "key": "dilute_sulfuric_acid",
+      "electrolyte": "dilute sulfuric acid",
+      "phase": "aqueous",
+      "electrodes": "inert",
+      "ions": [{ "formula": "H", "charge": 1 }, { "formula": "SO4", "charge": -2 }, { "formula": "OH", "charge": -1 }],
+      "cathode": { "id": "hydrogen", "formula": "H2", "measure": "gas", "electrons": 2, "half_equation": "2H^+ + 2e- -> H2" },
+      "anode": { "id": "oxygen", "formula": "O2", "measure": "gas", "electrons": 4, "half_equation": "4OH^- -> O2 + 2H2O + 4e-" }
+    }
+  ]
+}

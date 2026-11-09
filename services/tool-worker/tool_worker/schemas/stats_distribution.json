@@ -1,0 +1,754 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task"
+  ],
+  "dependentRequired": {
+    "k2": [
+      "relation"
+    ],
+    "x2": [
+      "relation"
+    ],
+    "explanatory_range": [
+      "predict"
+    ]
+  },
+  "properties": {
+    "task": {
+      "enum": [
+        "binomial",
+        "poisson",
+        "normal",
+        "hypothesis_test",
+        "correlation",
+        "regression"
+      ]
+    },
+    "sf": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 15,
+      "description": "significant figures of every decimal"
+    },
+    "normal_values": {
+      "enum": [
+        "calculator",
+        "tables"
+      ]
+    },
+    "tie_method": {
+      "enum": [
+        "pmcc_of_ranks",
+        "formula"
+      ]
+    },
+    "n": {
+      "$ref": "#/$defs/count"
+    },
+    "p": {
+      "$ref": "#/$defs/number"
+    },
+    "lambda": {
+      "$ref": "#/$defs/number"
+    },
+    "relation": {
+      "enum": [
+        "eq",
+        "le",
+        "lt",
+        "ge",
+        "gt",
+        "between"
+      ]
+    },
+    "k": {
+      "$ref": "#/$defs/number"
+    },
+    "k2": {
+      "$ref": "#/$defs/number"
+    },
+    "find": {
+      "enum": [
+        "probability",
+        "z",
+        "value",
+        "mean",
+        "sd",
+        "mean_and_sd"
+      ]
+    },
+    "mean": {
+      "$ref": "#/$defs/number"
+    },
+    "sd": {
+      "$ref": "#/$defs/number"
+    },
+    "variance": {
+      "$ref": "#/$defs/number"
+    },
+    "x": {
+      "$ref": "#/$defs/number"
+    },
+    "x2": {
+      "$ref": "#/$defs/number"
+    },
+    "probability": {
+      "$ref": "#/$defs/number"
+    },
+    "tail": {
+      "enum": [
+        "below",
+        "above",
+        "central"
+      ]
+    },
+    "conditions": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "x",
+          "probability",
+          "tail"
+        ],
+        "properties": {
+          "x": {
+            "$ref": "#/$defs/number"
+          },
+          "probability": {
+            "$ref": "#/$defs/number"
+          },
+          "tail": {
+            "enum": [
+              "below",
+              "above"
+            ]
+          }
+        }
+      }
+    },
+    "test": {
+      "enum": [
+        "binomial",
+        "poisson",
+        "normal_mean",
+        "pmcc",
+        "spearman"
+      ]
+    },
+    "alternative": {
+      "enum": [
+        "less",
+        "greater",
+        "two_sided"
+      ]
+    },
+    "significance_level": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^\\s*(\\d+(\\.\\d*)?|\\.\\d+)\\s*%?\\s*$",
+      "maxLength": 20,
+      "description": "0.05, or \"5%\""
+    },
+    "observed": {
+      "$ref": "#/$defs/number"
+    },
+    "sample_mean": {
+      "$ref": "#/$defs/number"
+    },
+    "r": {
+      "$ref": "#/$defs/number"
+    },
+    "critical_value": {
+      "$ref": "#/$defs/number"
+    },
+    "x_values": {
+      "$ref": "#/$defs/data"
+    },
+    "y_values": {
+      "$ref": "#/$defs/data"
+    },
+    "sums": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "n",
+        "sum_x",
+        "sum_y",
+        "sum_x2",
+        "sum_xy"
+      ],
+      "properties": {
+        "n": {
+          "$ref": "#/$defs/count"
+        },
+        "sum_x": {
+          "$ref": "#/$defs/number"
+        },
+        "sum_y": {
+          "$ref": "#/$defs/number"
+        },
+        "sum_x2": {
+          "$ref": "#/$defs/number"
+        },
+        "sum_y2": {
+          "$ref": "#/$defs/number"
+        },
+        "sum_xy": {
+          "$ref": "#/$defs/number"
+        }
+      }
+    },
+    "measure": {
+      "enum": [
+        "pmcc",
+        "spearman",
+        "both"
+      ]
+    },
+    "line": {
+      "enum": [
+        "y_on_x",
+        "x_on_y"
+      ]
+    },
+    "predict": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/$defs/number"
+      }
+    },
+    "explanatory_range": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/number"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "binomial"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "n",
+          "p"
+        ],
+        "dependentRequired": {
+          "relation": [
+            "k"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "poisson"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "lambda"
+        ],
+        "dependentRequired": {
+          "relation": [
+            "k"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "enum": [
+              "binomial",
+              "poisson"
+            ]
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "find"
+              ]
+            },
+            {
+              "required": [
+                "test"
+              ]
+            },
+            {
+              "required": [
+                "x"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "normal"
+          },
+          "find": {
+            "const": "probability"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "mean",
+          "x",
+          "relation"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "sd"
+            ]
+          },
+          {
+            "required": [
+              "variance"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "normal"
+          },
+          "find": {
+            "const": "z"
+          }
+        },
+        "required": [
+          "task",
+          "find"
+        ]
+      },
+      "then": {
+        "required": [
+          "mean",
+          "x"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "sd"
+            ]
+          },
+          {
+            "required": [
+              "variance"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "normal"
+          },
+          "find": {
+            "const": "value"
+          }
+        },
+        "required": [
+          "task",
+          "find"
+        ]
+      },
+      "then": {
+        "required": [
+          "mean",
+          "probability",
+          "tail"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "sd"
+            ]
+          },
+          {
+            "required": [
+              "variance"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "normal"
+          },
+          "find": {
+            "const": "mean"
+          }
+        },
+        "required": [
+          "task",
+          "find"
+        ]
+      },
+      "then": {
+        "required": [
+          "x",
+          "probability",
+          "tail"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "sd"
+            ]
+          },
+          {
+            "required": [
+              "variance"
+            ]
+          }
+        ],
+        "not": {
+          "required": [
+            "mean"
+          ]
+        },
+        "properties": {
+          "tail": {
+            "enum": [
+              "below",
+              "above"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "normal"
+          },
+          "find": {
+            "const": "sd"
+          }
+        },
+        "required": [
+          "task",
+          "find"
+        ]
+      },
+      "then": {
+        "required": [
+          "mean",
+          "x",
+          "probability",
+          "tail"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "sd"
+              ]
+            },
+            {
+              "required": [
+                "variance"
+              ]
+            }
+          ]
+        },
+        "properties": {
+          "tail": {
+            "enum": [
+              "below",
+              "above"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "normal"
+          },
+          "find": {
+            "const": "mean_and_sd"
+          }
+        },
+        "required": [
+          "task",
+          "find"
+        ]
+      },
+      "then": {
+        "required": [
+          "conditions"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "mean"
+              ]
+            },
+            {
+              "required": [
+                "sd"
+              ]
+            },
+            {
+              "required": [
+                "variance"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "hypothesis_test"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "required": [
+          "test",
+          "alternative",
+          "significance_level"
+        ],
+        "not": {
+          "required": [
+            "relation"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "hypothesis_test"
+          },
+          "test": {
+            "const": "binomial"
+          }
+        },
+        "required": [
+          "task",
+          "test"
+        ]
+      },
+      "then": {
+        "required": [
+          "n",
+          "p"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "hypothesis_test"
+          },
+          "test": {
+            "const": "poisson"
+          }
+        },
+        "required": [
+          "task",
+          "test"
+        ]
+      },
+      "then": {
+        "required": [
+          "lambda"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "hypothesis_test"
+          },
+          "test": {
+            "const": "normal_mean"
+          }
+        },
+        "required": [
+          "task",
+          "test"
+        ]
+      },
+      "then": {
+        "required": [
+          "mean"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "sd"
+            ]
+          },
+          {
+            "required": [
+              "variance"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "hypothesis_test"
+          },
+          "test": {
+            "enum": [
+              "pmcc",
+              "spearman"
+            ]
+          }
+        },
+        "required": [
+          "task",
+          "test"
+        ]
+      },
+      "then": {
+        "oneOf": [
+          {
+            "required": [
+              "r",
+              "n"
+            ]
+          },
+          {
+            "required": [
+              "x_values",
+              "y_values"
+            ]
+          },
+          {
+            "required": [
+              "sums"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "enum": [
+              "correlation",
+              "regression"
+            ]
+          }
+        },
+        "required": [
+          "task"
+        ]
+      },
+      "then": {
+        "oneOf": [
+          {
+            "required": [
+              "x_values",
+              "y_values"
+            ]
+          },
+          {
+            "required": [
+              "sums"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "number": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^\\s*[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(\\s*/\\s*(\\d+(\\.\\d*)?|\\.\\d+))?\\s*$",
+      "maxLength": 40,
+      "description": "an integer, a decimal or a fraction such as \"1/6\", kept exact"
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "data": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 500,
+      "items": {
+        "$ref": "#/$defs/number"
+      }
+    }
+  }
+}

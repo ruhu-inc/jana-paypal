@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/journal_entry",
+  "$comment": "Params for journal_entry, owned by the vetted renderer (VSL-03). Amounts are givens (N1); the totals and the balance check are computed by acc_double_entry (VER-22). Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "journal_entry params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "lines"
+  ],
+  "properties": {
+    "date": {
+      "type": "string",
+      "maxLength": 24
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "account",
+          "side",
+          "amount"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^l[0-9]{1,2}$"
+          },
+          "account": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "side": {
+            "enum": [
+              "debit",
+              "credit"
+            ]
+          },
+          "amount": {
+            "type": "string",
+            "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+          }
+        }
+      },
+      "maxItems": 8,
+      "minItems": 2
+    },
+    "narration": {
+      "type": "string",
+      "maxLength": 80
+    },
+    "currency": {
+      "type": "string",
+      "maxLength": 4
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "totals_row"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

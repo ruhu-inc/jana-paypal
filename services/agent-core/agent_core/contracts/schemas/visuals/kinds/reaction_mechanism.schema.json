@@ -1,0 +1,31 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/reaction_mechanism.schema.json sha256 7ebe9a85be7ebf0709e27ce0206fbfbb8f598a01195d184e60b05fdde32032b6; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/reaction_mechanism",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "diagram_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100,
+   "pattern": "^dgm\\.chm\\."
+  },
+  "sequence_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 64,
+   "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+  },
+  "step": {
+   "type": "integer",
+   "minimum": 0,
+   "maximum": 100
+  }
+ },
+ "required": [
+  "diagram_id",
+  "sequence_id",
+  "step"
+ ]
+}

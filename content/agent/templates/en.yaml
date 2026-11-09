@@ -1,0 +1,35 @@
+# Canned turns, English (PED-18, PRV-19). Our own wording of the substance of each case; the Safety lead reviews and
+# replaces these with the approved texts before release, and the distress wording is also reviewed by the
+# child-protection partner (status: draft until then). Variables in braces are filled by the engine only; a sentence
+# whose safety variable ({emergency_number}, {child_helpline}) has no verified entry in the safety-resources pack is
+# left out (PRV-14). Models never edit this file.
+version: "2026-11-07.1"
+status: draft
+templates:
+  tpl.distress: "Thank you for telling me, and I'm really glad you did. You deserve to be supported. Please talk to someone you trust today, such as a friend, a family member, a doctor or a counsellor. If you are in danger right now, call {emergency_number}. You can also reach {child_helpline}. I'm here for your studies whenever you want to come back."
+  tpl.off_topic: "I can't help with that one. I cover Maths, Physics, Chemistry, Biology and Accounting. Shall we go back to {current_topic}?"
+  tpl.beyond_level: "That question is beyond what I teach at {level}. The nearest topic I can help with is {nearest_topic}. Shall we begin there?"
+  tpl.graded_work: "I can't do graded work for you, but I can help you learn to do it yourself. Let's begin with question {n}: what is it asking you to find?"
+  tpl.mock_running: "I'm paused while your mock exam is on. Hand in your paper and you'll get feedback on every question."
+  tpl.cloud_notice_required: "I need your OK before I can use the online tutor, so nothing has been sent. Choose OK on the card above, then ask again."
+  tpl.cloud_notice_declined: "You chose to keep your questions on this computer, and there is no tutor on this computer, so nothing has been sent. You can allow the online tutor in Settings, then ask again."
+  tpl.personal_details: "Please don't share personal details such as your address or phone number here. Let's carry on with {current_topic}."
+  tpl.dangerous_request: "I can't help with that, because it could hurt someone. I can explain the syllabus chemistry behind it, such as {safe_topic}."
+  tpl.abusive_language: "Let's keep this respectful. I'm here to help when you're ready to carry on."
+  tpl.see_trusted_adult: "I can't give medical or legal advice. Please ask a doctor, a pharmacist or a qualified adviser, or someone you trust. I'm here for your studies whenever you're ready."
+  tpl.ai_disclosure: "I'm an AI tutor, not a person. I'm here to help you learn to do your schoolwork yourself."
+  tpl.honest_blocker: "I can't check this one fully, so let's work through the method together."
+  tpl.checked_complete: "Your working is checked and correct. Would you like to try another question?"
+  tpl.entry_question: "Have a go first: write the first line you would try, even a guess. Then I will give you a hint."
+  tpl.no_unchecked_value: "The explanation may contain an error, so here is the method without the number."
+  tpl.help_seeking: "Hints help most after you've tried something. Have a go at this step first, then ask again."
+  tpl.greeting: "Hi! What are you working on today? Type or paste a question, add a photo of one, or ask me to explain a topic, and we'll take it step by step."
+  tpl.greeting_back: "Hi again! Shall we carry on with this one? Tell me what you've tried so far, or ask for a hint."
+  tpl.thanks: "You're welcome! Send me the next one whenever you're ready."
+  tpl.one_at_a_time: "Let's work through these one at a time, starting with the first question."
+hints:
+  1: "Read the question again. Which quantities does it give you, and which one does it ask for?"
+  2: "Think about which rule or equation links the quantities you know to the one you want."
+  3: "Set up the next step with your known values in place, then try to finish it."
+  4: "Look at the worked step on the board, then try the next one yourself."
+  5: "Here is this step in full. This one counts as not mastered yet; we'll practise a similar one."

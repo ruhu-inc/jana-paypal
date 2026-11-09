@@ -1,0 +1,314 @@
+{
+ "$comment": "GENERATED from contracts/ops/speech-pack.schema.json sha256 f02bb4ec56ca793390aa44bbbd8289abdd4a2b06579fb251635ecf45a232f1cd; do not edit",
+ "$defs": {
+  "Licence": {
+   "additionalProperties": false,
+   "properties": {
+    "spdx": {
+     "title": "Spdx",
+     "type": "string"
+    },
+    "source_url": {
+     "maxLength": 2000,
+     "minLength": 1,
+     "title": "Source Url",
+     "type": "string"
+    },
+    "attribution": {
+     "maxLength": 20000,
+     "minLength": 1,
+     "title": "Attribution",
+     "type": "string"
+    }
+   },
+   "required": [
+    "spdx",
+    "source_url",
+    "attribution"
+   ],
+   "title": "Licence",
+   "type": "object"
+  },
+  "SpeechFile": {
+   "additionalProperties": false,
+   "properties": {
+    "path": {
+     "maxLength": 500,
+     "minLength": 1,
+     "title": "Path",
+     "type": "string"
+    },
+    "role": {
+     "enum": [
+      "vad",
+      "turn",
+      "stt",
+      "tts",
+      "sidecar",
+      "wake"
+     ],
+     "title": "Role",
+     "type": "string"
+    },
+    "engine": {
+     "title": "Engine",
+     "type": "string"
+    },
+    "classes": {
+     "items": {
+      "enum": [
+       "low",
+       "mid",
+       "high"
+      ],
+      "type": "string"
+     },
+     "maxItems": 3,
+     "minItems": 1,
+     "title": "Classes",
+     "type": "array"
+    },
+    "size_bytes": {
+     "minimum": 0,
+     "title": "Size Bytes",
+     "type": "integer"
+    },
+    "sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "title": "Sha256",
+     "type": "string"
+    },
+    "licence": {
+     "$ref": "#/$defs/Licence"
+    }
+   },
+   "required": [
+    "path",
+    "role",
+    "engine",
+    "classes",
+    "size_bytes",
+    "sha256",
+    "licence"
+   ],
+   "title": "SpeechFile",
+   "type": "object"
+  },
+  "SpeechProfile": {
+   "additionalProperties": false,
+   "properties": {
+    "stt": {
+     "enum": [
+      "faster-whisper",
+      "parakeet-tdt",
+      "none"
+     ],
+     "title": "Stt",
+     "type": "string"
+    },
+    "tts": {
+     "enum": [
+      "qwen3",
+      "kokoro",
+      "pocket"
+     ],
+     "title": "Tts",
+     "type": "string"
+    },
+    "device": {
+     "enum": [
+      "cpu",
+      "cuda",
+      "mps"
+     ],
+     "title": "Device",
+     "type": "string"
+    },
+    "vad_path": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Vad Path"
+    },
+    "turn_path": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Turn Path"
+    },
+    "stt_path": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Stt Path"
+    },
+    "wake_path": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Wake Path"
+    },
+    "tts_path": {
+     "title": "Tts Path",
+     "type": "string"
+    },
+    "sidecar_path": {
+     "title": "Sidecar Path",
+     "type": "string"
+    },
+    "speaker": {
+     "maxLength": 80,
+     "minLength": 1,
+     "pattern": "^[A-Za-z0-9_ -]+$",
+     "title": "Speaker",
+     "type": "string"
+    },
+    "tutor_speakers": {
+     "type": "object",
+     "title": "Tutor Speakers",
+     "maxProperties": 6,
+     "propertyNames": {
+      "enum": [
+       "avatar.jana",
+       "avatar.orbit",
+       "avatar.prism",
+       "avatar.kite",
+       "avatar.pebble",
+       "avatar.ray"
+      ]
+     },
+     "additionalProperties": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "pattern": "^[A-Za-z0-9_ -]+$"
+     }
+    }
+   },
+   "required": [
+    "stt",
+    "tts",
+    "device",
+    "tts_path",
+    "sidecar_path",
+    "speaker"
+   ],
+   "title": "SpeechProfile",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "speech_pack_id": {
+   "pattern": "^sp\\.en\\.[0-9]+(?:_[0-9]+){0,3}$",
+   "title": "Speech Pack Id",
+   "type": "string"
+  },
+  "manifest_version": {
+   "const": 1,
+   "title": "Manifest Version",
+   "type": "integer"
+  },
+  "language": {
+   "const": "en",
+   "title": "Language",
+   "type": "string"
+  },
+  "platform": {
+   "enum": [
+    "macos-aarch64",
+    "macos-x86_64",
+    "linux-x86_64",
+    "windows-x86_64"
+   ],
+   "title": "Platform",
+   "type": "string"
+  },
+  "upstream_commit": {
+   "const": "619e3fe4f71d1c6f35c15870d588a3638de34722",
+   "title": "Upstream Commit",
+   "type": "string"
+  },
+  "min_app_version": {
+   "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+   "title": "Min App Version",
+   "type": "string"
+  },
+  "created_at": {
+   "title": "Created At",
+   "type": "string"
+  },
+  "profiles": {
+   "additionalProperties": {
+    "$ref": "#/$defs/SpeechProfile"
+   },
+   "maxProperties": 3,
+   "minProperties": 1,
+   "propertyNames": {
+    "enum": [
+     "low",
+     "mid",
+     "high"
+    ]
+   },
+   "title": "Profiles",
+   "type": "object"
+  },
+  "files": {
+   "items": {
+    "$ref": "#/$defs/SpeechFile"
+   },
+   "maxItems": 50000,
+   "minItems": 1,
+   "title": "Files",
+   "type": "array"
+  },
+  "signature": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "title": "Signature",
+   "type": "object"
+  }
+ },
+ "required": [
+  "speech_pack_id",
+  "manifest_version",
+  "language",
+  "platform",
+  "upstream_commit",
+  "min_app_version",
+  "created_at",
+  "profiles",
+  "files",
+  "signature"
+ ],
+ "title": "SpeechManifest",
+ "type": "object",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/speech-pack"
+}

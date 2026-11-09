@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "method",
+    "cost"
+  ],
+  "properties": {
+    "method": {
+      "enum": [
+        "straight_line",
+        "reducing_balance"
+      ]
+    },
+    "cost": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "pattern": "^\\s*[-(]?\\s*([$£€₦¥]|[A-Z]{3}\\s*)?\\s*(\\d{1,3}(,\\d{3})+|\\d+)(\\.\\d+)?\\s*\\)?\\s*$",
+      "maxLength": 30
+    },
+    "residual": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "pattern": "^\\s*[-(]?\\s*([$£€₦¥]|[A-Z]{3}\\s*)?\\s*(\\d{1,3}(,\\d{3})+|\\d+)(\\.\\d+)?\\s*\\)?\\s*$",
+      "maxLength": 30
+    },
+    "life_years": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "rate_percent": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "pattern": "^\\s*\\d+(\\.\\d+)?\\s*%?\\s*$",
+      "maxLength": 12
+    },
+    "years": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "part_year_policy": {
+      "enum": [
+        "full_year",
+        "time_apportioned"
+      ]
+    },
+    "first_year_months": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12
+    },
+    "disposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "year",
+        "proceeds"
+      ],
+      "properties": {
+        "year": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "months": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "proceeds": {
+          "type": [
+            "integer",
+            "string"
+          ],
+          "pattern": "^\\s*[-(]?\\s*([$£€₦¥]|[A-Z]{3}\\s*)?\\s*(\\d{1,3}(,\\d{3})+|\\d+)(\\.\\d+)?\\s*\\)?\\s*$",
+          "maxLength": 30
+        }
+      }
+    },
+    "dp": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    }
+  }
+}

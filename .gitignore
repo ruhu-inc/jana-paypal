@@ -1,0 +1,14 @@
+.venv/
+node_modules/
+dist/
+__pycache__/
+.pytest_cache/
+.env*
+*.db*
+*.sqlite*
+*.key
+*.pem
+*.p12
+*.toml.local
+workshop-private/
+.DS_Store

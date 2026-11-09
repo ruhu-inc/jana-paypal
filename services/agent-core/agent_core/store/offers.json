@@ -1,0 +1,31 @@
+{
+ "$comment": "TABLE BIZ-06a (as D30 and D84 amend it): what every install has offline, and what the school licence file changes on a school_lab install. Offline features are never checked: every cell is yes, and no cell may hold a limit, counter or allowance (BIZ-02) or meter local tutoring (BIZ-01). Online features say `subscription` where the online subscription (D70) can switch them on, and `no` where it never can. Prices are TABLE BIZ-18a's (D121), held by the checkout and the cloud gateway, never in the app.",
+ "decision": "D30, D84, D86",
+ "every_install": {
+  "lessons": "yes",
+  "practice": "yes",
+  "tool_checks": "yes",
+  "progress": "yes",
+  "local_tutor": "yes",
+  "mock_exams": "yes",
+  "offline_study_area": "yes",
+  "content_updates": "all",
+  "student_profiles": "all",
+  "parent_summary": "yes",
+  "cloud_tier": "subscription",
+  "study_materials": "subscription",
+  "cloud_backup": "subscription",
+  "multi_device": "subscription",
+  "parent_remote_view": "subscription",
+  "web_client": "subscription"
+ },
+ "school_lab": {
+  "parent_summary": "no",
+  "cloud_tier": "no",
+  "study_materials": "no",
+  "cloud_backup": "no",
+  "multi_device": "no",
+  "parent_remote_view": "no",
+  "web_client": "no"
+ }
+}

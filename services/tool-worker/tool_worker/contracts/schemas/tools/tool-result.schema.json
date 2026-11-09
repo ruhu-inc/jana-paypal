@@ -1,0 +1,230 @@
+{
+ "$comment": "GENERATED from contracts/tools/tool-result.schema.json sha256 4732d2d4562cff5eb2ad2dc6ee704b72393369b4f0cda623160b82c74728d275; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/tools/tool-result",
+ "title": "ToolResult",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "status",
+  "output",
+  "meta"
+ ],
+ "properties": {
+  "status": {
+   "enum": [
+    "ok",
+    "error",
+    "partial",
+    "cancelled"
+   ]
+  },
+  "output": {
+   "type": "string",
+   "maxLength": 50000
+  },
+  "data": {},
+  "ui": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "component",
+    "props"
+   ],
+   "properties": {
+    "component": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_.-]{1,63}$"
+    },
+    "props": {}
+   }
+  },
+  "error": {
+   "$ref": "#/$defs/ToolError"
+  },
+  "meta": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "call_id",
+    "tool",
+    "tool_version",
+    "duration_ms",
+    "action_taken"
+   ],
+   "properties": {
+    "call_id": {
+     "type": "string",
+     "pattern": "^call_[A-Za-z0-9]+_[0-9]+$"
+    },
+    "tool": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_.]{1,79}$"
+    },
+    "tool_version": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "duration_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "action_taken": {
+     "type": "boolean"
+    },
+    "checks": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/CheckRef"
+     }
+    },
+    "truncated": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "omitted",
+      "spill_ref"
+     ],
+     "properties": {
+      "omitted": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "spill_ref": {
+       "type": "string",
+       "pattern": "^spill_[A-Za-z0-9]{8,64}$"
+      }
+     }
+    },
+    "dedupe_key": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "cached": {
+     "type": "boolean"
+    },
+    "repairs": {
+     "type": "array",
+     "items": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+     },
+     "uniqueItems": true
+    }
+   }
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "status": {
+      "enum": [
+       "error",
+       "partial",
+       "cancelled"
+      ]
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "error"
+    ]
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "status": {
+      "const": "ok"
+     }
+    }
+   },
+   "then": {
+    "not": {
+     "required": [
+      "error"
+     ]
+    }
+   }
+  }
+ ],
+ "$defs": {
+  "ToolErrorCode": {
+   "enum": [
+    "unknown_tool",
+    "unavailable",
+    "invalid_args",
+    "truncated_args",
+    "policy_denied",
+    "student_declined",
+    "timeout",
+    "cancelled",
+    "worker_crashed",
+    "worker_unavailable",
+    "limit_exceeded",
+    "domain_error",
+    "execution_error",
+    "result_too_large",
+    "repeated_failure_blocked"
+   ]
+  },
+  "ToolError": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "code",
+    "message",
+    "retryable"
+   ],
+   "properties": {
+    "code": {
+     "$ref": "#/$defs/ToolErrorCode"
+    },
+    "message": {
+     "type": "string",
+     "maxLength": 2000,
+     "pattern": "^(No action was taken\\.|The action completed, but |The action may have partly completed: )"
+    },
+    "retryable": {
+     "type": "boolean"
+    },
+    "hint": {
+     "type": "string",
+     "maxLength": 500
+    },
+    "worker_code": {
+     "type": "integer"
+    }
+   }
+  },
+  "CheckRef": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "check_id",
+    "tool",
+    "tool_version",
+    "worker_version"
+   ],
+   "properties": {
+    "check_id": {
+     "type": "string",
+     "pattern": "^chk_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "tool": {
+     "type": "string"
+    },
+    "tool_version": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "worker_version": {
+     "type": "string"
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,3390 @@
+{
+ "$comment": "GENERATED from contracts/api/events.schema.json sha256 330952b6be58b82e014fa93e86a4a33076ca54a7f9c50844142e793e1d4c7e7e; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/api/events",
+ "title": "Event envelope",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "v",
+  "channel",
+  "seq",
+  "epoch",
+  "session_id",
+  "turn_id",
+  "ts",
+  "event"
+ ],
+ "properties": {
+  "v": {
+   "const": 1
+  },
+  "channel": {
+   "enum": [
+    "session",
+    "app"
+   ]
+  },
+  "seq": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "epoch": {
+   "type": "string",
+   "minLength": 8,
+   "maxLength": 64
+  },
+  "session_id": {
+   "anyOf": [
+    {
+     "type": "string",
+     "pattern": "^ses_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "turn_id": {
+   "anyOf": [
+    {
+     "type": "string",
+     "pattern": "^trn_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "ts": {
+   "type": "integer",
+   "minimum": 0
+  },
+  "event": {}
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "channel": {
+      "const": "session"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "event": {
+      "$ref": "#/$defs/tutor_event"
+     },
+     "session_id": {
+      "type": "string",
+      "pattern": "^ses_[0-9A-HJKMNP-TV-Z]{26}$"
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "channel": {
+      "const": "app"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "event": {
+      "$ref": "#/$defs/app_event"
+     },
+     "session_id": {
+      "type": "null"
+     },
+     "turn_id": {
+      "type": "null"
+     }
+    }
+   }
+  }
+ ],
+ "$defs": {
+  "part_kind": {
+   "enum": [
+    "text",
+    "reasoning",
+    "tool",
+    "board",
+    "visual",
+    "card",
+    "notice"
+   ]
+  },
+  "status_phase": {
+   "enum": [
+    "preparing",
+    "queued",
+    "loading_model",
+    "processing_prompt",
+    "waiting_first_token",
+    "streaming",
+    "tool",
+    "checking",
+    "retrying",
+    "compacting",
+    "recalling"
+   ]
+  },
+  "model_tier": {
+   "enum": [
+    "fast",
+    "strong"
+   ]
+  },
+  "board_step_status": {
+   "enum": [
+    "draft",
+    "final",
+    "awaiting",
+    "checking",
+    "correct",
+    "incorrect",
+    "equivalent_unsimplified",
+    "unchecked"
+   ]
+  },
+  "step_owner": {
+   "enum": [
+    "tutor",
+    "student"
+   ]
+  },
+  "step_error_category": {
+   "enum": [
+    "sign",
+    "arithmetic",
+    "dropped_term",
+    "illegal_operation",
+    "units",
+    "copy",
+    "other"
+   ]
+  },
+  "board_input_kind": {
+   "enum": [
+    "latex",
+    "text",
+    "table",
+    "choice"
+   ]
+  },
+  "card_kind": {
+   "enum": [
+    "question",
+    "hint",
+    "plan",
+    "reflection",
+    "confirm"
+   ]
+  },
+  "online_feature": {
+   "enum": [
+    "cloud_tier",
+    "downloads",
+    "update_checks",
+    "cloud_backup",
+    "multi_device",
+    "parent_remote_view",
+    "cloud_voice",
+    "study_materials",
+    "telemetry",
+    "crash_reports",
+    "tutor_memory_online"
+   ]
+  },
+  "online_feature_state": {
+   "enum": [
+    "idle",
+    "active",
+    "queued",
+    "unavailable"
+   ]
+  },
+  "card_question": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "card_type": {
+     "const": "question"
+    },
+    "prompt": {
+     "type": "string",
+     "maxLength": 1000
+    },
+    "options": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/card_option"
+     },
+     "maxItems": 8
+    },
+    "allow_free_text": {
+     "type": "boolean"
+    },
+    "multi": {
+     "type": "boolean"
+    },
+    "placeholder_key": {
+     "type": "string",
+     "maxLength": 80
+    }
+   },
+   "required": [
+    "card_type",
+    "prompt",
+    "options",
+    "allow_free_text",
+    "multi"
+   ]
+  },
+  "card_hint": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "card_type": {
+     "const": "hint"
+    },
+    "rung": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 5
+    },
+    "of": {
+     "const": 5
+    },
+    "body": {
+     "type": "string",
+     "maxLength": 2000
+    },
+    "actions": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "try_it",
+       "next_hint",
+       "show_step"
+      ]
+     },
+     "uniqueItems": true
+    }
+   },
+   "required": [
+    "card_type",
+    "rung",
+    "of",
+    "body",
+    "actions"
+   ]
+  },
+  "card_plan": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "card_type": {
+     "const": "plan"
+    },
+    "title": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "items": {
+     "type": "array",
+     "maxItems": 12,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "id": {
+        "type": "string",
+        "maxLength": 32
+       },
+       "text": {
+        "type": "string",
+        "maxLength": 300
+       },
+       "status": {
+        "enum": [
+         "pending",
+         "in_progress",
+         "done"
+        ]
+       }
+      },
+      "required": [
+       "id",
+       "text",
+       "status"
+      ]
+     }
+    },
+    "actions": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "start",
+       "change"
+      ]
+     },
+     "uniqueItems": true
+    }
+   },
+   "required": [
+    "card_type",
+    "title",
+    "items",
+    "actions"
+   ]
+  },
+  "card_reflection": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "card_type": {
+     "const": "reflection"
+    },
+    "did": {
+     "type": "string",
+     "maxLength": 600
+    },
+    "right": {
+     "type": "string",
+     "maxLength": 600
+    },
+    "next_goal": {
+     "type": "string",
+     "maxLength": 300
+    },
+    "marks": {
+     "type": "array",
+     "maxItems": 20,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "criterion": {
+        "type": "string",
+        "maxLength": 300
+       },
+       "type": {
+        "enum": [
+         "method",
+         "accuracy",
+         "independent"
+        ]
+       },
+       "awarded": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "criterion",
+       "type",
+       "awarded"
+      ]
+     }
+    }
+   },
+   "required": [
+    "card_type",
+    "did",
+    "right",
+    "next_goal",
+    "marks"
+   ]
+  },
+  "card_confirm": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "card_type": {
+     "const": "confirm"
+    },
+    "purpose": {
+     "enum": [
+      "memory_save",
+      "mode_change",
+      "egress",
+      "other"
+     ]
+    },
+    "title": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "body": {
+     "type": "string",
+     "maxLength": 1000
+    },
+    "confirm_label_key": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "cancel_label_key": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "subject": {
+     "enum": [
+      "mathematics",
+      "physics",
+      "chemistry",
+      "biology",
+      "accounting"
+     ]
+    }
+   },
+   "required": [
+    "card_type",
+    "purpose",
+    "title",
+    "body",
+    "confirm_label_key",
+    "cancel_label_key"
+   ]
+  },
+  "progress": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "done": {
+     "type": "number",
+     "minimum": 0
+    },
+    "total": {
+     "type": "number",
+     "minimum": 0
+    },
+    "unit": {
+     "enum": [
+      "bytes",
+      "tokens",
+      "layers",
+      "items"
+     ]
+    }
+   },
+   "required": [
+    "done",
+    "total",
+    "unit"
+   ]
+  },
+  "human_title": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "pre": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "obj": {
+     "type": "string",
+     "maxLength": 120
+    },
+    "post": {
+     "type": "string",
+     "maxLength": 80
+    }
+   },
+   "required": [
+    "pre"
+   ]
+  },
+  "usage": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "input_tokens": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "output_tokens": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "cache_read_tokens": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "model_served": {
+     "type": "string",
+     "maxLength": 120
+    },
+    "tier": {
+     "$ref": "#/$defs/model_tier"
+    },
+    "location": {
+     "enum": [
+      "local",
+      "cloud"
+     ]
+    }
+   },
+   "required": [
+    "input_tokens",
+    "output_tokens",
+    "cache_read_tokens",
+    "model_served",
+    "tier",
+    "location"
+   ]
+  },
+  "tool_state": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "status": {
+       "const": "pending"
+      }
+     },
+     "required": [
+      "status"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "status": {
+       "const": "running"
+      },
+      "title": {
+       "$ref": "#/$defs/human_title"
+      }
+     },
+     "required": [
+      "status",
+      "title"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "status": {
+       "const": "completed"
+      },
+      "title": {
+       "$ref": "#/$defs/human_title"
+      },
+      "summary": {
+       "type": "string",
+       "maxLength": 400
+      },
+      "check_id": {
+       "type": "string",
+       "pattern": "^chk_[A-Za-z0-9_]{3,64}$"
+      },
+      "output": {}
+     },
+     "required": [
+      "status",
+      "title"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "status": {
+       "const": "error"
+      },
+      "title": {
+       "$ref": "#/$defs/human_title"
+      },
+      "code": {
+       "type": "string",
+       "maxLength": 64
+      },
+      "message": {
+       "type": "string",
+       "maxLength": 2000
+      },
+      "retryable": {
+       "type": "boolean"
+      }
+     },
+     "required": [
+      "status",
+      "title",
+      "code",
+      "message",
+      "retryable"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "status": {
+       "const": "cancelled"
+      },
+      "title": {
+       "$ref": "#/$defs/human_title"
+      },
+      "receipt": {
+       "type": "string",
+       "maxLength": 400
+      }
+     },
+     "required": [
+      "status",
+      "title",
+      "receipt"
+     ]
+    }
+   ]
+  },
+  "known": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "known_id": {
+     "type": "string",
+     "pattern": "^kn_[A-Za-z0-9]{2,32}$"
+    },
+    "symbol": {
+     "type": "string",
+     "maxLength": 32
+    },
+    "label": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "value": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "unit": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 32
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "source": {
+     "enum": [
+      "question",
+      "pack",
+      "tool",
+      "student"
+     ]
+    },
+    "check_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^chk_[A-Za-z0-9_]{3,64}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "known_id",
+    "symbol",
+    "label",
+    "value",
+    "unit",
+    "source",
+    "check_id"
+   ]
+  },
+  "step_error": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "category": {
+     "$ref": "#/$defs/step_error_category"
+    },
+    "message_key": {
+     "type": "string",
+     "maxLength": 80
+    }
+   },
+   "required": [
+    "category",
+    "message_key"
+   ]
+  },
+  "card_option": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "type": "string",
+     "maxLength": 32
+    },
+    "label": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "latex": {
+     "type": "string",
+     "maxLength": 400
+    },
+    "recommended": {
+     "type": "boolean"
+    },
+    "preview": {
+     "type": "string",
+     "maxLength": 400
+    }
+   },
+   "required": [
+    "id",
+    "label"
+   ]
+  },
+  "card": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/card_question"
+    },
+    {
+     "$ref": "#/$defs/card_hint"
+    },
+    {
+     "$ref": "#/$defs/card_plan"
+    },
+    {
+     "$ref": "#/$defs/card_reflection"
+    },
+    {
+     "$ref": "#/$defs/card_confirm"
+    }
+   ]
+  },
+  "ev_turn_start": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "turn.start"
+    },
+    "turn_id": {
+     "type": "string",
+     "pattern": "^trn_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "user_message_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^msg_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "client_message_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^cli_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "intent": {
+     "enum": [
+      "ask",
+      "answer",
+      "board_line",
+      "stuck",
+      "why",
+      "next_step",
+      "show_step",
+      "check_my_working",
+      "side_question",
+      "system"
+     ]
+    },
+    "mode": {
+     "enum": [
+      "guided",
+      "solution",
+      "check_working"
+     ]
+    },
+    "fork": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "type",
+    "turn_id",
+    "user_message_id",
+    "client_message_id",
+    "intent",
+    "mode",
+    "fork"
+   ]
+  },
+  "ev_message_accepted": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "message.accepted"
+    },
+    "client_message_id": {
+     "type": "string",
+     "pattern": "^cli_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "message_id": {
+     "type": "string",
+     "pattern": "^msg_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "turn_id": {
+     "type": "string",
+     "pattern": "^trn_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "disposition": {
+     "enum": [
+      "turn",
+      "steer_queued"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "client_message_id",
+    "message_id",
+    "turn_id",
+    "disposition"
+   ]
+  },
+  "ev_steer_applied": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "steer.applied"
+    },
+    "message_id": {
+     "type": "string",
+     "pattern": "^msg_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "phase": {
+     "type": "string",
+     "maxLength": 40
+    }
+   },
+   "required": [
+    "type",
+    "message_id",
+    "phase"
+   ]
+  },
+  "ev_status": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "status"
+    },
+    "phase": {
+     "$ref": "#/$defs/status_phase"
+    },
+    "label_key": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 80
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "label_params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number"
+      ]
+     },
+     "maxProperties": 12
+    },
+    "progress": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/progress"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "phase_started_ts": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "model_tier": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/model_tier"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "phase",
+    "label_key",
+    "progress",
+    "phase_started_ts",
+    "model_tier"
+   ]
+  },
+  "ev_part_start": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "part.start"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "kind": {
+     "$ref": "#/$defs/part_kind"
+    },
+    "index": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "type",
+    "part_id",
+    "kind",
+    "index"
+   ]
+  },
+  "ev_text_delta": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "text.delta"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "delta": {
+     "type": "string",
+     "maxLength": 65536
+    }
+   },
+   "required": [
+    "type",
+    "part_id",
+    "delta"
+   ]
+  },
+  "ev_text_reset": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "text.reset"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "reason": {
+     "enum": [
+      "regenerating"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "part_id",
+    "reason"
+   ]
+  },
+  "ev_reasoning_delta": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "reasoning.delta"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "delta": {
+     "type": "string",
+     "maxLength": 65536
+    }
+   },
+   "required": [
+    "type",
+    "part_id",
+    "delta"
+   ]
+  },
+  "ev_part_end": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "part.end"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "status": {
+     "enum": [
+      "complete",
+      "error",
+      "interrupted",
+      "retracted"
+     ]
+    },
+    "duration_ms": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "type",
+    "part_id",
+    "status",
+    "duration_ms"
+   ]
+  },
+  "ev_tool_state": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "tool.state"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "call_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "name": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_]{1,63}$"
+    },
+    "render_class": {
+     "enum": [
+      "card",
+      "ephemeral"
+     ]
+    },
+    "state": {
+     "$ref": "#/$defs/tool_state"
+    }
+   },
+   "required": [
+    "type",
+    "part_id",
+    "call_id",
+    "name",
+    "render_class",
+    "state"
+   ]
+  },
+  "ev_board_reset": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "board.reset"
+    },
+    "board_id": {
+     "type": "string",
+     "pattern": "^brd_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "problem": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "text": {
+       "type": "string",
+       "maxLength": 4000
+      },
+      "latex": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 4000
+        },
+        {
+         "type": "null"
+        }
+       ]
+      }
+     },
+     "required": [
+      "text",
+      "latex"
+     ]
+    },
+    "reason": {
+     "enum": [
+      "new_problem",
+      "mode_change",
+      "resume"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "board_id",
+    "part_id",
+    "problem",
+    "reason"
+   ]
+  },
+  "ev_board_knowns": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "board.knowns"
+    },
+    "board_id": {
+     "type": "string",
+     "pattern": "^brd_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "knowns": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/known"
+     },
+     "maxItems": 30
+    },
+    "unknowns": {
+     "type": "array",
+     "maxItems": 10,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "symbol": {
+        "type": "string",
+        "maxLength": 32
+       },
+       "label": {
+        "type": "string",
+        "maxLength": 80
+       },
+       "unit": {
+        "anyOf": [
+         {
+          "type": "string",
+          "maxLength": 32
+         },
+         {
+          "type": "null"
+         }
+        ]
+       }
+      },
+      "required": [
+       "symbol",
+       "label",
+       "unit"
+      ]
+     }
+    },
+    "conventions": {
+     "type": "array",
+     "maxItems": 10,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "key": {
+        "type": "string",
+        "maxLength": 64
+       },
+       "text": {
+        "type": "string",
+        "maxLength": 200
+       }
+      },
+      "required": [
+       "key",
+       "text"
+      ]
+     }
+    }
+   },
+   "required": [
+    "type",
+    "board_id",
+    "knowns",
+    "unknowns",
+    "conventions"
+   ]
+  },
+  "ev_board_step": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "board.step"
+    },
+    "board_id": {
+     "type": "string",
+     "pattern": "^brd_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "step_id": {
+     "type": "string",
+     "pattern": "^stp_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "latex": {
+     "type": "string",
+     "maxLength": 4000
+    },
+    "reason": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 300
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "owner": {
+     "$ref": "#/$defs/step_owner"
+    },
+    "status": {
+     "$ref": "#/$defs/board_step_status"
+    },
+    "check_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^chk_[A-Za-z0-9_]{3,64}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "error": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/step_error"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "terms": {
+     "type": "array",
+     "maxItems": 40,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "term_id": {
+        "type": "string",
+        "pattern": "^t[0-9]{1,2}$"
+       },
+       "start": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "end": {
+        "type": "integer",
+        "minimum": 1
+       }
+      },
+      "required": [
+       "term_id",
+       "start",
+       "end"
+      ]
+     }
+    },
+    "term_moves": {
+     "type": "array",
+     "maxItems": 8,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "from": {
+        "type": "string",
+        "pattern": "^stp_[0-9A-HJKMNP-TV-Z]{26}\\.t[0-9]{1,2}$"
+       },
+       "to": {
+        "anyOf": [
+         {
+          "type": "string",
+          "pattern": "^t[0-9]{1,2}$"
+         },
+         {
+          "type": "null"
+         }
+        ]
+       },
+       "kind": {
+        "enum": [
+         "carry",
+         "cancel"
+        ]
+       }
+      },
+      "required": [
+       "from",
+       "to",
+       "kind"
+      ]
+     }
+    }
+   },
+   "required": [
+    "type",
+    "board_id",
+    "step_id",
+    "index",
+    "latex",
+    "reason",
+    "owner",
+    "status",
+    "check_id",
+    "error"
+   ]
+  },
+  "ev_board_highlight": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "board.highlight"
+    },
+    "board_id": {
+     "type": "string",
+     "pattern": "^brd_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "step_ids": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^stp_[0-9A-HJKMNP-TV-Z]{26}$"
+     },
+     "maxItems": 20
+    },
+    "ttl_ms": {
+     "anyOf": [
+      {
+       "type": "integer",
+       "minimum": 0
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "spotlight": {
+     "type": "boolean"
+    },
+    "photo_regions": {
+     "type": "array",
+     "maxItems": 20,
+     "items": {
+      "type": "string",
+      "pattern": "^cap_[0-9A-HJKMNP-TV-Z]{26}:rgn_[0-9]{1,3}$"
+     }
+    }
+   },
+   "required": [
+    "type",
+    "board_id",
+    "step_ids",
+    "ttl_ms"
+   ]
+  },
+  "ev_board_await": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "board.await"
+    },
+    "board_id": {
+     "type": "string",
+     "pattern": "^brd_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "step_id": {
+     "type": "string",
+     "pattern": "^stp_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "prompt": {
+     "type": "string",
+     "maxLength": 300
+    },
+    "input_kind": {
+     "$ref": "#/$defs/board_input_kind"
+    }
+   },
+   "required": [
+    "type",
+    "board_id",
+    "step_id",
+    "prompt",
+    "input_kind"
+   ]
+  },
+  "ev_visual_spec": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "visual.spec"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "visual_id": {
+     "type": "string",
+     "pattern": "^vis_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "spec": {
+     "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved"
+    }
+   },
+   "required": [
+    "type",
+    "part_id",
+    "visual_id",
+    "spec"
+   ]
+  },
+  "ev_visual_step": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "visual.step"
+    },
+    "visual_id": {
+     "type": "string",
+     "pattern": "^vis_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "step_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "source": {
+     "enum": [
+      "tutor",
+      "board_sync"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "visual_id",
+    "step_index",
+    "source"
+   ]
+  },
+  "ev_visual_focus": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "visual.focus"
+    },
+    "visual_id": {
+     "type": "string",
+     "pattern": "^vis_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "part_ids": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 64
+     },
+     "maxItems": 12
+    },
+    "ttl_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "spotlight": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "type",
+    "visual_id",
+    "part_ids",
+    "ttl_ms"
+   ]
+  },
+  "ev_card_open": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "card.open"
+    },
+    "request_id": {
+     "type": "string",
+     "pattern": "^req_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "call_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 64
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "card": {
+     "$ref": "#/$defs/card"
+    },
+    "about": {
+     "$ref": "#/$defs/card_about"
+    }
+   },
+   "required": [
+    "type",
+    "request_id",
+    "part_id",
+    "call_id",
+    "card"
+   ]
+  },
+  "ev_card_answered": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "card.answered"
+    },
+    "request_id": {
+     "type": "string",
+     "pattern": "^req_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "answer_summary": {
+     "type": "string",
+     "maxLength": 400
+    },
+    "answered_ts": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "type",
+    "request_id",
+    "answer_summary",
+    "answered_ts"
+   ]
+  },
+  "ev_card_cancel": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "card.cancel"
+    },
+    "request_id": {
+     "type": "string",
+     "pattern": "^req_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "reason": {
+     "enum": [
+      "interrupt",
+      "superseded",
+      "turn_ended",
+      "timeout"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "request_id",
+    "reason"
+   ]
+  },
+  "ev_notice": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "notice"
+    },
+    "notice_id": {
+     "type": "string",
+     "pattern": "^ntc_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "level": {
+     "enum": [
+      "info",
+      "warning"
+     ]
+    },
+    "code": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "message_key": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number"
+      ]
+     },
+     "maxProperties": 12
+    },
+    "action": {
+     "anyOf": [
+      {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "label_key": {
+         "type": "string",
+         "maxLength": 80
+        },
+        "command": {
+         "type": "string",
+         "maxLength": 120
+        }
+       },
+       "required": [
+        "label_key",
+        "command"
+       ]
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "notice_id",
+    "level",
+    "code",
+    "message_key",
+    "params",
+    "action"
+   ]
+  },
+  "ev_error": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "error"
+    },
+    "code": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "message": {
+     "type": "string",
+     "maxLength": 2000
+    },
+    "retryable": {
+     "type": "boolean"
+    },
+    "scope": {
+     "enum": [
+      "turn",
+      "session"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "code",
+    "message",
+    "retryable",
+    "scope"
+   ]
+  },
+  "ev_egress_notice": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "egress.notice"
+    },
+    "feature": {
+     "$ref": "#/$defs/online_feature"
+    },
+    "state": {
+     "enum": [
+      "started",
+      "ended",
+      "blocked"
+     ]
+    },
+    "destination_label": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "data_classes": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "question_text",
+       "board",
+       "image",
+       "learner_summary",
+       "progress_report",
+       "diagnostics",
+       "audio",
+       "transcript",
+       "document",
+       "tutor_notes"
+      ]
+     },
+     "uniqueItems": true
+    }
+   },
+   "required": [
+    "type",
+    "feature",
+    "state",
+    "destination_label",
+    "data_classes"
+   ]
+  },
+  "ev_session_updated": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "session.updated"
+    },
+    "title": {
+     "type": "string",
+     "maxLength": 120
+    },
+    "mode": {
+     "enum": [
+      "guided",
+      "solution",
+      "check_working"
+     ]
+    },
+    "subject": {
+     "type": "string",
+     "maxLength": 32
+    },
+    "topic_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 96
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "hint_rung": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 5
+    }
+   },
+   "required": [
+    "type"
+   ]
+  },
+  "ev_memory_saved": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "memory.saved"
+    },
+    "note_id": {
+     "type": "string",
+     "pattern": "^mem_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "text": {
+     "type": "string",
+     "maxLength": 400
+    },
+    "undo_until_ts": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "type",
+    "note_id",
+    "text",
+    "undo_until_ts"
+   ]
+  },
+  "ev_memory_forgotten": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "memory.forgotten"
+    },
+    "note_id": {
+     "type": "string",
+     "pattern": "^mem_[0-9A-HJKMNP-TV-Z]{26}$"
+    }
+   },
+   "required": [
+    "type",
+    "note_id"
+   ]
+  },
+  "ev_progress_update": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "progress.update"
+    },
+    "kc_id": {
+     "type": "string",
+     "maxLength": 96
+    },
+    "mastery_band": {
+     "enum": [
+      "not_started",
+      "learning",
+      "secure"
+     ]
+    },
+    "direction": {
+     "enum": [
+      "up",
+      "down",
+      "same"
+     ]
+    },
+    "attempt_id": {
+     "type": "string",
+     "pattern": "^att_[0-9A-HJKMNP-TV-Z]{26}$"
+    }
+   },
+   "required": [
+    "type",
+    "kc_id",
+    "mastery_band",
+    "direction",
+    "attempt_id"
+   ]
+  },
+  "ev_turn_end": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "turn.end"
+    },
+    "status": {
+     "enum": [
+      "complete",
+      "error",
+      "interrupted",
+      "truncated"
+     ]
+    },
+    "stop_reason": {
+     "enum": [
+      "completed",
+      "student_stop",
+      "gate_budget_exhausted",
+      "guard_repetition",
+      "guard_tool_loop",
+      "guard_text_loop",
+      "guard_tool_strikes",
+      "guard_unparsed_call",
+      "length",
+      "provider_error",
+      "tool_error",
+      "safety",
+      "shutdown"
+     ]
+    },
+    "elapsed_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "usage": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/usage"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "verification": {
+     "enum": [
+      "verified",
+      "not_applicable",
+      "tool_answer_only"
+     ]
+    },
+    "persisted": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "message_id": {
+       "type": "string",
+       "pattern": "^msg_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      "part_ids": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+       }
+      }
+     },
+     "required": [
+      "message_id",
+      "part_ids"
+     ]
+    },
+    "degraded": {
+     "type": "boolean"
+    },
+    "degraded_reason": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^[a-z][a-z0-9_]{1,63}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "status",
+    "stop_reason",
+    "elapsed_ms",
+    "usage",
+    "verification",
+    "persisted",
+    "degraded",
+    "degraded_reason"
+   ]
+  },
+  "ev_voice_state": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "voice.state"
+    },
+    "state": {
+     "enum": [
+      "idle",
+      "listening",
+      "thinking",
+      "speaking",
+      "interrupted",
+      "unavailable"
+     ]
+    },
+    "reason_key": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "maxLength": 80
+    },
+    "turn_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^trn_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "listening_variant": {
+     "enum": [
+      "normal",
+      "take_your_time",
+      null
+     ]
+    },
+    "wake_armed": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "type",
+    "state",
+    "reason_key",
+    "turn_id",
+    "listening_variant"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "state": {
+        "const": "unavailable"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "reason_key": {
+        "type": "string",
+        "minLength": 1
+       }
+      }
+     },
+     "else": {
+      "properties": {
+       "reason_key": {
+        "type": "null"
+       }
+      }
+     }
+    }
+   ]
+  },
+  "ev_voice_caption": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "voice.caption"
+    },
+    "speaker": {
+     "enum": [
+      "student",
+      "tutor"
+     ]
+    },
+    "item_id": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "minLength": 1,
+     "maxLength": 128
+    },
+    "turn_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^trn_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "committed_text": {
+     "type": "string",
+     "maxLength": 4000
+    },
+    "tentative_text": {
+     "type": "string",
+     "maxLength": 1000
+    },
+    "words": {
+     "type": "array",
+     "maxItems": 400,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "w": {
+        "type": "string",
+        "maxLength": 64
+       },
+       "start_ms": {
+        "type": "integer",
+        "minimum": 0
+       }
+      },
+      "required": [
+       "w",
+       "start_ms"
+      ]
+     }
+    },
+    "cues": {
+     "type": "array",
+     "maxItems": 50,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "char_offset": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "target": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128,
+        "pattern": "^(stp_[0-9A-HJKMNP-TV-Z]{26}|vis_[0-9A-HJKMNP-TV-Z]{26}:[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*|cap_[0-9A-HJKMNP-TV-Z]{26}:rgn_[0-9]{1,3}|kc:kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+)$"
+       },
+       "action": {
+        "enum": [
+         "point",
+         "write"
+        ]
+       },
+       "end_offset": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "timing": {
+        "enum": [
+         "measured",
+         "estimated"
+        ]
+       }
+      },
+      "required": [
+       "char_offset",
+       "target"
+      ]
+     }
+    },
+    "final": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "type",
+    "speaker",
+    "item_id",
+    "turn_id",
+    "committed_text",
+    "tentative_text",
+    "words",
+    "cues",
+    "final"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "speaker": {
+        "const": "student"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "item_id": {
+        "type": "string"
+       },
+       "cues": {
+        "maxItems": 0
+       }
+      }
+     },
+     "else": {
+      "anyOf": [
+       {
+        "properties": {
+         "turn_id": {
+          "type": "string",
+          "pattern": "^trn_[0-9A-HJKMNP-TV-Z]{26}$"
+         }
+        }
+       },
+       {
+        "properties": {
+         "item_id": {
+          "type": "string",
+          "pattern": "^utt_[0-9A-HJKMNP-TV-Z]{26}$"
+         }
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "ev_voice_answer": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "voice.answer"
+    },
+    "place": {
+     "enum": [
+      "ask",
+      "study"
+     ]
+    },
+    "turn_id": {
+     "type": "string",
+     "pattern": "^trn_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "question": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 4000
+    },
+    "route": {
+     "enum": [
+      "tutor",
+      "ask",
+      "study"
+     ]
+    },
+    "reply": {
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "aid_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 128
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 4000
+    }
+   },
+   "required": [
+    "type",
+    "place",
+    "turn_id",
+    "question",
+    "route",
+    "reply",
+    "aid_id",
+    "text"
+   ]
+  },
+  "ev_connectivity_status": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "connectivity.status"
+    },
+    "network": {
+     "enum": [
+      "off",
+      "offline",
+      "limited",
+      "metered",
+      "online",
+      "unknown"
+     ]
+    },
+    "checked_ts": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "features": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "feature": {
+        "$ref": "#/$defs/online_feature"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "state": {
+        "$ref": "#/$defs/online_feature_state"
+       },
+       "queued_items": {
+        "type": "integer",
+        "minimum": 0
+       }
+      },
+      "required": [
+       "feature",
+       "enabled",
+       "state",
+       "queued_items"
+      ]
+     }
+    }
+   },
+   "required": [
+    "type",
+    "network",
+    "checked_ts",
+    "features"
+   ]
+  },
+  "ev_model_runtime": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "model.runtime"
+    },
+    "model_id": {
+     "type": "string",
+     "maxLength": 120
+    },
+    "state": {
+     "enum": [
+      "cold",
+      "loading",
+      "ready",
+      "error",
+      "unloaded"
+     ]
+    },
+    "progress": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/progress"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "error_code": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 64
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "model_id",
+    "state",
+    "progress",
+    "error_code"
+   ]
+  },
+  "ev_model_download": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "model.download"
+    },
+    "download_id": {
+     "type": "string",
+     "pattern": "^dl_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "model_id": {
+     "type": "string",
+     "maxLength": 120
+    },
+    "state": {
+     "enum": [
+      "queued",
+      "downloading",
+      "paused",
+      "verifying",
+      "done",
+      "failed"
+     ]
+    },
+    "bytes_done": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "bytes_total": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "eta_s": {
+     "anyOf": [
+      {
+       "type": "integer",
+       "minimum": 0
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "error_code": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 64
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "download_id",
+    "model_id",
+    "state",
+    "bytes_done",
+    "bytes_total",
+    "eta_s",
+    "error_code"
+   ]
+  },
+  "ev_pack_install": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "pack.install"
+    },
+    "job_id": {
+     "type": "string",
+     "pattern": "^job_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "pack_id": {
+     "type": "string",
+     "maxLength": 96
+    },
+    "state": {
+     "enum": [
+      "queued",
+      "verifying",
+      "installing",
+      "done",
+      "failed"
+     ]
+    },
+    "progress": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/progress"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "error_code": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 64
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "job_id",
+    "pack_id",
+    "state",
+    "progress",
+    "error_code"
+   ]
+  },
+  "ev_job_update": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "job.update"
+    },
+    "job_id": {
+     "type": "string",
+     "pattern": "^job_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "kind": {
+     "enum": [
+      "export",
+      "benchmark",
+      "import",
+      "backup",
+      "pack_install",
+      "update_install"
+     ]
+    },
+    "state": {
+     "enum": [
+      "queued",
+      "running",
+      "done",
+      "failed",
+      "cancelled"
+     ]
+    },
+    "progress": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/progress"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "result_ref": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 400
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "job_id",
+    "kind",
+    "state",
+    "progress",
+    "result_ref"
+   ]
+  },
+  "ev_settings_changed": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "settings.changed"
+    },
+    "profile_id": {
+     "type": "string",
+     "pattern": "^prf_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "keys": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "enum": [
+       "low_power",
+       "text_scale",
+       "locale",
+       "memory_saving",
+       "notifications",
+       "reduced_motion",
+       "read_aloud",
+       "easy_read",
+       "extra_time_percent",
+       "speech_rate",
+       "speech_voice",
+       "theme",
+       "character_shortcuts",
+       "tutor_name",
+       "tutor_avatar",
+       "faster_tutor",
+       "wake_word",
+       "checkin_notifications"
+      ]
+     }
+    }
+   },
+   "required": [
+    "type",
+    "profile_id",
+    "keys"
+   ]
+  },
+  "tutor_event": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/ev_turn_start"
+    },
+    {
+     "$ref": "#/$defs/ev_message_accepted"
+    },
+    {
+     "$ref": "#/$defs/ev_steer_applied"
+    },
+    {
+     "$ref": "#/$defs/ev_status"
+    },
+    {
+     "$ref": "#/$defs/ev_part_start"
+    },
+    {
+     "$ref": "#/$defs/ev_text_delta"
+    },
+    {
+     "$ref": "#/$defs/ev_text_reset"
+    },
+    {
+     "$ref": "#/$defs/ev_reasoning_delta"
+    },
+    {
+     "$ref": "#/$defs/ev_part_end"
+    },
+    {
+     "$ref": "#/$defs/ev_tool_state"
+    },
+    {
+     "$ref": "#/$defs/ev_board_reset"
+    },
+    {
+     "$ref": "#/$defs/ev_board_knowns"
+    },
+    {
+     "$ref": "#/$defs/ev_board_step"
+    },
+    {
+     "$ref": "#/$defs/ev_board_highlight"
+    },
+    {
+     "$ref": "#/$defs/ev_board_await"
+    },
+    {
+     "$ref": "#/$defs/ev_visual_spec"
+    },
+    {
+     "$ref": "#/$defs/ev_visual_step"
+    },
+    {
+     "$ref": "#/$defs/ev_visual_focus"
+    },
+    {
+     "$ref": "#/$defs/ev_card_open"
+    },
+    {
+     "$ref": "#/$defs/ev_card_answered"
+    },
+    {
+     "$ref": "#/$defs/ev_card_cancel"
+    },
+    {
+     "$ref": "#/$defs/ev_notice"
+    },
+    {
+     "$ref": "#/$defs/ev_error"
+    },
+    {
+     "$ref": "#/$defs/ev_egress_notice"
+    },
+    {
+     "$ref": "#/$defs/ev_session_updated"
+    },
+    {
+     "$ref": "#/$defs/ev_memory_saved"
+    },
+    {
+     "$ref": "#/$defs/ev_memory_forgotten"
+    },
+    {
+     "$ref": "#/$defs/ev_progress_update"
+    },
+    {
+     "$ref": "#/$defs/ev_turn_end"
+    },
+    {
+     "$ref": "#/$defs/ev_voice_state"
+    },
+    {
+     "$ref": "#/$defs/ev_voice_caption"
+    },
+    {
+     "$ref": "#/$defs/ev_voice_answer"
+    },
+    {
+     "$ref": "#/$defs/ev_board_annotate"
+    },
+    {
+     "$ref": "#/$defs/ev_visual_await"
+    },
+    {
+     "$ref": "#/$defs/ev_visual_sketch"
+    },
+    {
+     "$ref": "#/$defs/ev_pacing_command"
+    },
+    {
+     "$ref": "#/$defs/ev_companion_action"
+    }
+   ]
+  },
+  "app_event": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/ev_connectivity_status"
+    },
+    {
+     "$ref": "#/$defs/ev_model_runtime"
+    },
+    {
+     "$ref": "#/$defs/ev_model_download"
+    },
+    {
+     "$ref": "#/$defs/ev_pack_install"
+    },
+    {
+     "$ref": "#/$defs/ev_job_update"
+    },
+    {
+     "$ref": "#/$defs/ev_settings_changed"
+    },
+    {
+     "$ref": "#/$defs/ev_capture_updated"
+    },
+    {
+     "$ref": "#/$defs/ev_egress_notice"
+    }
+   ]
+  },
+  "control_frame": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "type": {
+       "const": "stream.hello"
+      },
+      "protocol": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "major": {
+         "const": 1
+        },
+        "minor": {
+         "type": "integer",
+         "minimum": 0
+        }
+       },
+       "required": [
+        "major",
+        "minor"
+       ]
+      },
+      "server_version": {
+       "type": "string",
+       "maxLength": 40
+      },
+      "epoch": {
+       "type": "string",
+       "maxLength": 64
+      },
+      "channel": {
+       "enum": [
+        "session",
+        "app"
+       ]
+      },
+      "session_id": {
+       "anyOf": [
+        {
+         "type": "string",
+         "pattern": "^ses_[0-9A-HJKMNP-TV-Z]{26}$"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "resumed_from": {
+       "anyOf": [
+        {
+         "type": "integer",
+         "minimum": 0
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "replayed": {
+       "type": "integer",
+       "minimum": 0
+      }
+     },
+     "required": [
+      "type",
+      "protocol",
+      "server_version",
+      "epoch",
+      "channel",
+      "session_id",
+      "resumed_from",
+      "replayed"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "type": {
+       "const": "stream.reset"
+      },
+      "reason": {
+       "enum": [
+        "epoch_changed",
+        "cursor_expired",
+        "truncated"
+       ]
+      },
+      "snapshot_url": {
+       "type": "string",
+       "maxLength": 400
+      }
+     },
+     "required": [
+      "type",
+      "reason",
+      "snapshot_url"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "type": {
+       "const": "stream.closing"
+      },
+      "reason": {
+       "enum": [
+        "lagging",
+        "shutdown",
+        "auth_expired"
+       ]
+      }
+     },
+     "required": [
+      "type",
+      "reason"
+     ]
+    }
+   ]
+  },
+  "ev_capture_updated": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "capture.updated"
+    },
+    "capture_id": {
+     "type": "string",
+     "pattern": "^cap_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "status": {
+     "$ref": "https://jana.dev/contracts/input/captured-question#/properties/status"
+    },
+    "progress": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/progress"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "error_code": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 64
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "capture_id",
+    "status",
+    "progress",
+    "error_code"
+   ]
+  },
+  "mark_target": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "step_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^stp_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "terms": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^t[0-9]{1,2}(-t[0-9]{1,2})?$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "visual_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^vis_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "part_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+       "maxLength": 64
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "step_id",
+    "terms",
+    "visual_id",
+    "part_id"
+   ],
+   "anyOf": [
+    {
+     "properties": {
+      "step_id": {
+       "type": "string"
+      },
+      "visual_id": {
+       "type": "null"
+      },
+      "part_id": {
+       "type": "null"
+      }
+     }
+    },
+    {
+     "properties": {
+      "step_id": {
+       "type": "null"
+      },
+      "terms": {
+       "type": "null"
+      },
+      "visual_id": {
+       "type": "string"
+      },
+      "part_id": {
+       "type": "string"
+      }
+     }
+    }
+   ]
+  },
+  "ev_board_annotate": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "board.annotate"
+    },
+    "board_id": {
+     "type": "string",
+     "pattern": "^brd_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "annotation_id": {
+     "type": "string",
+     "pattern": "^ann_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "mark": {
+     "enum": [
+      "circle",
+      "underline",
+      "arrow",
+      "strike",
+      "margin_note",
+      "look_here"
+     ]
+    },
+    "target": {
+     "$ref": "#/$defs/mark_target"
+    },
+    "to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/mark_target"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "maxLength": 40
+    }
+   },
+   "required": [
+    "type",
+    "board_id",
+    "annotation_id",
+    "mark",
+    "target",
+    "to",
+    "note"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "mark": {
+        "const": "arrow"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "to": {
+        "$ref": "#/$defs/mark_target"
+       }
+      }
+     },
+     "else": {
+      "properties": {
+       "to": {
+        "type": "null"
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "mark": {
+        "const": "margin_note"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "note": {
+        "type": "string",
+        "minLength": 1
+       }
+      }
+     },
+     "else": {
+      "properties": {
+       "note": {
+        "type": "null"
+       }
+      }
+     }
+    }
+   ]
+  },
+  "ev_visual_await": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "visual.await"
+    },
+    "board_id": {
+     "type": "string",
+     "pattern": "^brd_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "step_id": {
+     "type": "string",
+     "pattern": "^stp_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "visual_id": {
+     "type": "string",
+     "pattern": "^vis_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "part_ids": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 8,
+     "items": {
+      "type": "string",
+      "maxLength": 64
+     }
+    },
+    "prompt": {
+     "type": "string",
+     "maxLength": 300
+    }
+   },
+   "required": [
+    "type",
+    "board_id",
+    "step_id",
+    "visual_id",
+    "part_ids",
+    "prompt"
+   ]
+  },
+  "ev_visual_sketch": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "visual.sketch"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "sketch": {
+     "$ref": "https://jana.dev/contracts/visuals/sketch#/$defs/resolved"
+    }
+   },
+   "required": [
+    "type",
+    "part_id",
+    "sketch"
+   ]
+  },
+  "ev_pacing_command": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "pacing.command"
+    },
+    "command": {
+     "enum": [
+      "next",
+      "back",
+      "again",
+      "slower",
+      "faster",
+      "stop",
+      "quiz_due"
+     ]
+    },
+    "source": {
+     "enum": [
+      "voice",
+      "typed"
+     ]
+    },
+    "practice_set_id": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "maxLength": 64
+    }
+   },
+   "required": [
+    "type",
+    "command",
+    "source",
+    "practice_set_id"
+   ]
+  },
+  "card_about": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "root_gap"
+    },
+    "kc_id": {
+     "type": "string",
+     "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+    },
+    "root_kc_id": {
+     "type": "string",
+     "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+    },
+    "misconception_id": {
+     "type": "string",
+     "pattern": "^mc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+$"
+    }
+   },
+   "required": [
+    "kind",
+    "kc_id",
+    "root_kc_id",
+    "misconception_id"
+   ]
+  },
+  "ev_companion_action": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "action_id",
+    "action",
+    "payload",
+    "label_key"
+   ],
+   "properties": {
+    "type": {
+     "const": "companion.action"
+    },
+    "action_id": {
+     "type": "string",
+     "pattern": "^act_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "action": {
+     "enum": [
+      "open_tutor",
+      "open_practice",
+      "open_study_job",
+      "open_add_source",
+      "open_research",
+      "open_plan",
+      "open_knows",
+      "open_study_deck",
+      "open_moment"
+     ]
+    },
+    "payload": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "question": {
+       "type": "string",
+       "maxLength": 2000
+      },
+      "job_id": {
+       "type": "string",
+       "pattern": "^stj_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      "aid_id": {
+       "type": "string",
+       "pattern": "^aid_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      "deck_id": {
+       "type": "string",
+       "pattern": "^dek_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      "kc_ids": {
+       "type": "array",
+       "maxItems": 8,
+       "items": {
+        "type": "string",
+        "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+       }
+      },
+      "source_id": {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceId"
+      },
+      "at_ms": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 7200000
+      }
+     }
+    },
+    "label_key": {
+     "type": "string",
+     "maxLength": 80
+    }
+   }
+  }
+ }
+}

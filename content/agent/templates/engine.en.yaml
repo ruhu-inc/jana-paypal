@@ -1,0 +1,145 @@
+# Engine-written copy, English: interruption receipts (TOL-14) and the cards the engine opens on its own when a role
+# fails (AGT-27), and the plain names of a student's own method (ASM-09). Status: draft until the Content lead
+# reviews the wording.
+status: draft
+# When the student stops a turn, every tool call in the batch gets one of these as its result, saying what did and
+# did not happen. `not_started`: the call never ran; `running`: it was stopped while running; `applied`: an atomic
+# change that completed before the stop.
+receipts:
+  compute:
+    not_started: "The calculation had not started; nothing was computed."
+    running: "The calculation was stopped; no result was recorded."
+  update_board:
+    not_started: "No board change was made."
+    running: "The board change was not applied."
+    applied: "The board change was applied before the stop."
+  ask_student:
+    not_started: "The question had not been shown; nothing was asked."
+    running: "The question was shown but not answered; no choice was recorded."
+  show_visual:
+    not_started: "No visual was shown."
+    running: "The visual may be on screen; no step was revealed."
+  memory_note:
+    not_started: "Nothing was saved."
+    running: "The note was not saved."
+  tool:
+    not_started: "The tool had not started; nothing was done."
+    running: "The tool was stopped before it finished; nothing it found was used."
+cards:
+  # The Diagnoser could not place the question twice: the student picks the topic (AGT-27).
+  topic_chooser: "Which topic is this question from? Pick the closest one, or type the topic."
+  topic_chooser_ack: "Let me check which topic this belongs to."
+  # A question in another subject that does not move the session there (AGT-15, D94): the card offers it as a new
+  # question in that subject; the problem goes on here. {subject} and {current} are subject names.
+  new_subject_title: "This question looks like {subject}"
+  new_subject_body: "This chat is for {current}. Start a new question in {subject} with the same words, or keep going here."
+  # The lesson flow (AGT-22): a new problem asked during a lesson is kept for after it; a lesson that is not
+  # installed cannot open.
+  lesson_after: "That's a new question. Let's keep it and try it after the lesson. Back to the lesson now."
+  lesson_missing: "That lesson isn't installed on this computer."
+  # The engine's own offers after wrong answers (LRN-20, LRN-23): a hint offered and never shown, and a short detour to
+  # an earlier idea, on one card. {idea} is the earlier idea's statement from the pack; {minutes} its estimate.
+  offer_hint_prompt: "Want a hint for this step?"
+  offer_detour_prompt: "This step builds on an earlier idea: {idea}. Want to go over it first?"
+  offer_both_prompt: "Want some help with this step?"
+  offer_hint: "Yes, give me a hint"
+  offer_detour: "Go over an earlier idea first: {idea} (about {minutes} min)"
+  offer_not_now: "Not now, I'll keep trying"
+  # A matched misconception the pack links to an earlier skill (its `root_gap`): one line naming what the mistake is
+  # really about, and practice on that skill first, then back to the problem (LRN-23's detour). {idea} is the pack's
+  # short phrase for the skill.
+  root_gap_prompt: "This is really about {idea}."
+  root_gap_practise: "Practise {idea} first"
+  # The first-session interview of the hand-off (UXS-10, JRN-03): one question per card, the same while the tutor
+  # warms up. The goal labels are stored as the student's goals; {subject} is a subject name.
+  interview_goals_prompt: "What would you most like help with? Pick any, or write your own."
+  interview_goal_exams: "Preparing for an exam, such as O level or university entry"
+  interview_goal_catch_up: "Refreshing topics I studied before"
+  interview_goal_understand: "Understanding why the methods work"
+  interview_goal_faster: "Getting quicker and more accurate in exams"
+  interview_confidence_prompt: "How confident do you feel about {subject} right now?"
+  interview_confident_very: "Very confident"
+  interview_confident_fairly: "Fairly confident"
+  interview_confident_not_very: "Not very confident"
+  interview_confident_not_at_all: "Not confident at all"
+  interview_confidence_goal: "Feeling more confident in {subject}"
+# The method a student's own route showed when the tutor accepts it (ASM-09): the tutor names it in plain words, so a
+# different valid route is praised, never steered back to the plan's.
+methods:
+  substitution: "substitution: you put one equation into the other"
+  elimination: "elimination: you combined the two equations to remove one unknown"
+  divide_first: "dividing both sides first, before opening the brackets"
+  expand_first: "opening the brackets first"
+  givens_formula: "putting the given values straight into a formula"
+  other_formula: "a different formula that also works"
+# The Last time card on Home and in Study (SPEC §19.5.2, W8 phase 1): facts chosen by code, worded here. Every number
+# is a fact beside its label; the date is the session's own day. `modes` says where a session of each mode happened.
+companion:
+  opener:
+    first_time: "When you've studied here, this card will say where you left off."
+    # The first bubble of Your tutor when there is nothing yet to recall: a greeting, not the card's own words.
+    first_time_thread: "Hi, I'm your tutor in Study. Ask me what to study next, what's due, or about your materials."
+    last_time: "Last time you worked on {subject} {where} {when}"
+    due_only: "{facts}."
+    pack_ready: "a research pack you asked for is ready in Study"
+    due: "{count} cards are due"
+    due_one: "1 card is due"
+    exam: "your exam is in {days} days"
+    exam_one: "your exam is tomorrow"
+    exam_today: "your exam is today"
+    joiner: " and "
+    when_today: "today"
+    when_date: "on {date}"
+    no_subject: "your studies"
+    no_subject_study: "your own materials"
+    # SPEC §19.5.5 (phase 3): a check-in opens the thread with its own question, already in Jana's words.
+    checkin: "{question}"
+    modes:
+      guided: "with the tutor"
+      solution: "with the tutor"
+      check_working: "checking your working"
+      learn: "in a lesson"
+      practice: "in practice"
+      mock: "on a mock exam"
+      revision: "in revision"
+      diagnostic: "on a placement check"
+      mastery_check: "on a mastery check"
+      review: "in a review"
+      study: "in Study"
+      study_companion: "with your tutor in Study"
+      other: "here"
+  # The thread's engine-written turns (SPEC §19.5.1, phase 2): homework goes to the guided tutor, material to the study
+  # area, and a reply that fails its gates twice is this canned line. No numbers.
+  turn:
+    to_tutor: "That one is for the tutor: they'll work through it with you step by step. Open it below."
+    to_study: "That looks like material to study from. Add it to Study and I can help you work through it."
+    canned: "Sorry, I couldn't put that together just now. Could you ask me again in a different way?"
+    # When this computer's own model cannot answer in time (a machine with no graphics processor, for example).
+    too_slow: "This computer is taking too long to answer with its own model. Try a shorter question, or go online if you can."
+    # When the reply was refused but the turn started an aid (SPEC §19 fix, 2026-10-30): what was made, by code.
+    made:
+      flashcards: "I've started {count} flashcards from {source}. Open them below."
+      quiz: "I've started a quiz of {count} questions from {source}. Open it below."
+      other: "I've started your {kind} from {source}. Open it below."
+      pack: "your study pack"
+      own: "your material"
+    # When the reply was refused and no outline is in hand but `progress_read` gave the learner's bands (live-run fix
+    # 2026-11-01, second pass): this line, then the records' own statements, each with its source; no numbers.
+    progress:
+      intro: "I couldn't put a fuller answer together, so here is where your checked practice records stand:"
+    # When the reply was refused and a teaching outline is ready (live-run fix 2026-11-01): what the video teaches
+    # that is not yet secure, by code from the outline's skills and the learner's bands; never the canned line then.
+    outline:
+      not_yet: "Of this video's {skills}, {count} are not yet secure: {statements}."
+      not_yet_one: "Of this video's {skills}, 1 is not yet secure: {statements}."
+      all_secure: "All {skills} skills this video teaches are secure for you."
+      all_secure_one: "The one skill this video teaches is secure for you."
+  # Check-ins (SPEC §19.5.5, phase 3): the heartbeat's questions and every desktop notification's body, one per kind,
+  # word for word the app's home.checkin.notify.* (the shell's checkins.rs is tested against those). Never the
+  # check-in's own text; no numbers, no names.
+  checkin:
+    event_checkin: "Your tutor would like to hear how it went."
+    deadline_check: "Your tutor has a question about something due today."
+    open_loop: "Your tutor has a question about something you left open."
+    due_reviews: "You have review cards due today."
+    pack_ready: "A research pack you asked for is ready."

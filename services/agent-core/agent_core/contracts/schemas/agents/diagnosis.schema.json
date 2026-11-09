@@ -1,0 +1,166 @@
+{
+ "$comment": "GENERATED from contracts/agents/diagnosis.schema.json sha256 1d01821c049d76db527c613cf688a6dc0deec3741717d6bff502ff0cbcb59835; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/diagnosis",
+ "title": "Diagnosis",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "in_scope",
+  "subject",
+  "topic_ref",
+  "kc_refs",
+  "question_kind",
+  "knowns",
+  "unknowns",
+  "clarifying_question",
+  "misconception_ref",
+  "evidence",
+  "inference",
+  "prerequisite_gap_refs",
+  "confidence"
+ ],
+ "properties": {
+  "in_scope": {
+   "type": "boolean"
+  },
+  "subject": {
+   "enum": [
+    "mathematics",
+    "physics",
+    "chemistry",
+    "biology",
+    "accounting",
+    "none"
+   ]
+  },
+  "topic_ref": {
+   "type": [
+    "integer",
+    "null"
+   ],
+   "minimum": 1
+  },
+  "kc_refs": {
+   "type": "array",
+   "maxItems": 5,
+   "items": {
+    "type": "integer",
+    "minimum": 1
+   }
+  },
+  "question_kind": {
+   "enum": [
+    "calculation",
+    "derivation",
+    "explanation",
+    "definition",
+    "diagram",
+    "data_analysis",
+    "ledger",
+    "student_answer",
+    "student_working",
+    "other"
+   ]
+  },
+  "knowns": {
+   "type": "array",
+   "maxItems": 12,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "symbol",
+     "value",
+     "unit",
+     "quote"
+    ],
+    "properties": {
+     "symbol": {
+      "type": "string",
+      "maxLength": 20
+     },
+     "value": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "unit": {
+      "type": "string",
+      "maxLength": 20
+     },
+     "quote": {
+      "type": "string",
+      "maxLength": 120
+     }
+    }
+   }
+  },
+  "unknowns": {
+   "type": "array",
+   "maxItems": 6,
+   "items": {
+    "type": "string",
+    "maxLength": 40
+   }
+  },
+  "clarifying_question": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "maxLength": 200
+  },
+  "misconception_ref": {
+   "type": [
+    "integer",
+    "null"
+   ],
+   "minimum": 1
+  },
+  "evidence": {
+   "type": "array",
+   "maxItems": 4,
+   "items": {
+    "type": "string",
+    "maxLength": 200
+   }
+  },
+  "inference": {
+   "type": "string",
+   "maxLength": 300
+  },
+  "prerequisite_gap_refs": {
+   "type": "array",
+   "maxItems": 3,
+   "items": {
+    "type": "integer",
+    "minimum": 1
+   }
+  },
+  "confidence": {
+   "enum": [
+    "low",
+    "medium",
+    "high"
+   ]
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "misconception_ref": {
+      "type": "integer"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "evidence": {
+      "minItems": 1
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,354 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "task": {
+      "enum": [
+        "constant",
+        "extent",
+        "electrode_potential"
+      ]
+    },
+    "reaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "species": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64,
+                "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+              },
+              "formula": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "state": {
+                "enum": [
+                  "gas",
+                  "aqueous",
+                  "solid",
+                  "liquid"
+                ]
+              },
+              "coefficient": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "side": {
+                "enum": [
+                  "reactant",
+                  "product"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "formula",
+              "state",
+              "coefficient",
+              "side"
+            ]
+          },
+          "minItems": 2,
+          "maxItems": 12
+        }
+      },
+      "required": [
+        "species"
+      ]
+    },
+    "basis": {
+      "enum": [
+        "Kc",
+        "Kp"
+      ]
+    },
+    "temperature_k": {
+      "type": "number",
+      "minimum": 1e-06
+    },
+    "values": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "species_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+          },
+          "quantity": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0
+              },
+              "unit": {
+                "enum": [
+                  "mol/L",
+                  "mol/m3",
+                  "Pa",
+                  "kPa",
+                  "bar",
+                  "mol",
+                  "K",
+                  "J/mol",
+                  "kJ/mol",
+                  "V"
+                ]
+              }
+            },
+            "required": [
+              "value",
+              "unit"
+            ]
+          }
+        },
+        "required": [
+          "species_id",
+          "quantity"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 12
+    },
+    "constant": {
+      "type": "number",
+      "minimum": 0
+    },
+    "initial": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "species_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+          },
+          "quantity": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0
+              },
+              "unit": {
+                "enum": [
+                  "mol/L",
+                  "mol/m3",
+                  "Pa",
+                  "kPa",
+                  "bar",
+                  "mol",
+                  "K",
+                  "J/mol",
+                  "kJ/mol",
+                  "V"
+                ]
+              }
+            },
+            "required": [
+              "value",
+              "unit"
+            ]
+          }
+        },
+        "required": [
+          "species_id",
+          "quantity"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 12
+    },
+    "electrode_potentials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+          },
+          "standard_potential_v": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "role": {
+            "enum": [
+              "anode",
+              "cathode"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "standard_potential_v",
+          "role"
+        ]
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "volume_l": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    }
+  },
+  "required": [
+    "task"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "enum": [
+              "constant",
+              "extent"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "reaction",
+          "basis",
+          "temperature_k"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "constant"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "values"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "constant"
+              ]
+            },
+            {
+              "required": [
+                "initial"
+              ]
+            },
+            {
+              "required": [
+                "electrode_potentials"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "extent"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "constant",
+          "initial"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "values"
+              ]
+            },
+            {
+              "required": [
+                "electrode_potentials"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "electrode_potential"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "electrode_potentials"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "reaction"
+              ]
+            },
+            {
+              "required": [
+                "basis"
+              ]
+            },
+            {
+              "required": [
+                "temperature_k"
+              ]
+            },
+            {
+              "required": [
+                "values"
+              ]
+            },
+            {
+              "required": [
+                "constant"
+              ]
+            },
+            {
+              "required": [
+                "initial"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

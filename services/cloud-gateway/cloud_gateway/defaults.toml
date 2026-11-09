@@ -1,0 +1,62 @@
+# Packaged gateway defaults. A deployment file is merged over this one; `slots` and `providers` are replaced whole.
+# Quotas, the online tier's allowance (D33, D121), objectives, token lifetimes and retention take their declared
+# defaults from config.py; the plans and prices are TABLE BIZ-18a in plans.toml, merged under this file.
+
+environment = "production"
+study_model = "primary/strong-model"
+
+# No vendor/model is selected by the product. A reviewed deployment supplies slots,
+# providers, model capabilities, prices and product-wide service permissions.
+slots = {}
+providers = {}
+prices = {}
+
+[sam]
+enabled = false
+
+# A deployment can enable research with an explicitly configured search service.
+[research]
+enabled = false
+per_job_usd = 0.30
+daily_jobs_per_learner = 5
+max_searches = 12
+max_pages = 30
+parallel = 4
+search_usd_per_1000 = 2.50
+search_timeout_s = 90.0
+page_timeout_s = 8.0
+page_max_bytes = 1_000_000
+page_max_chars = 60_000
+job_timeout_s = 900.0
+retention_s = 86_400.0
+# The source policy (§18.10): no allow-list. Never fetched: social media, forums, video pages and answer-selling sites.
+excluded_domains = [
+    # social media
+    "facebook.com", "fb.com", "instagram.com", "x.com", "twitter.com", "tiktok.com", "linkedin.com", "pinterest.com",
+    "snapchat.com", "threads.net", "tumblr.com", "telegram.org", "t.me", "whatsapp.com", "discord.com",
+    # forums and question sites
+    "reddit.com", "quora.com", "stackexchange.com", "stackoverflow.com", "answers.yahoo.com", "answers.com",
+    "nairaland.com", "studentroom.co.uk", "thestudentroom.co.uk",
+    # video
+    "youtube.com", "youtu.be", "vimeo.com", "dailymotion.com", "twitch.tv",
+    # answer-selling and homework-dump sites
+    "chegg.com", "coursehero.com", "brainly.com", "brainly.in", "studocu.com", "scribd.com", "bartleby.com",
+    "numerade.com", "quizlet.com", "transtutors.com", "studypool.com", "homeworklib.com", "toppr.com",
+    "gauthmath.com", "askfilo.com", "doubtnut.com", "sarthaks.com", "kunduz.com", "studyx.ai", "homework.study.com",
+]
+# Hosts under these were only ever spam or mirrors in the live searches (2026-10-27): never fetched.
+excluded_suffixes = [".lat", ".quest", ".live", ".top", ".xyz", ".click", ".icu", ".buzz", ".pages.dev"]
+# Ranked first: encyclopaedias, universities, governments, examination boards and open textbooks.
+preferred_suffixes = [".edu", ".gov", ".ac.uk", ".gov.uk", ".edu.au", ".gov.au", ".edu.ng", ".gov.ng", ".ac.za", ".int"]
+preferred_domains = [
+    "wikipedia.org", "britannica.com", "openstax.org", "khanacademy.org", "bbc.co.uk/bitesize", "libretexts.org",
+    "ck12.org", "physicsclassroom.com", "rsc.org", "iop.org", "nature.com", "ncbi.nlm.nih.gov", "who.int",
+    "cambridgeinternational.org", "aqa.org.uk", "ocr.org.uk", "pearson.com/qualifications", "waecdirect.org",
+    "waec.org.ng", "nhs.uk", "ifrs.org", "accaglobal.com", "icaew.com", "mathsisfun.com", "nrich.maths.org",
+]
+
+# The personal learning agent (W8, SPEC §19.4, §19.7): every Study companion turn and Reflector job holds its upper
+# bound against this daily spend, per session pseudonym, before it is sent. The turn and job counts per day are the
+# plan's limits in plans.toml (60 and 20).
+[companion]
+per_day_usd = 0.50

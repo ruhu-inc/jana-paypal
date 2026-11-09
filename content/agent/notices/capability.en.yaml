@@ -1,0 +1,17 @@
+# Per-turn capability notices (PRM-17) and one-shot reminder lines (PRM-16), in our own words. A notice is one line
+# telling the model a capability is off, so it never narrates an action it cannot take; it is decided per turn and
+# goes in the tutor-context block, never in tiers 1 to 7. A reminder is sent once per value of its key.
+notices:
+  memory_off: "Saving notes is off: do not say you will remember anything."
+  vision_off: "Reading photos is off: ask the student to type the question instead."
+  cloud_off: "The online tutor is off: do not offer it."
+  visuals_off: "Diagrams are unavailable: explain in words and do not offer to draw."
+  checks_off: "Tool checks are unavailable: do not say a step was checked and give no new numbers."
+reminders:
+  checker.first_wrong_step: "The checker found the first step that needs another look: line {value}."
+  mode.changed: "The mode is now {value}."
+  rung.changed: "The hint rung is now {value}."
+  budget.threshold: "{value} of this turn's budget is used: finish the current move."
+  gate.nudge: "{value}"
+  capability.changed: "Capabilities changed: {value}."
+  compaction.done: "Earlier messages were summarised above; do not guess an exact earlier value."

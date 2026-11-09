@@ -1,0 +1,803 @@
+{
+ "$comment": "GENERATED from contracts/learning/mock-exam.schema.json sha256 d17b7e336b5f54eb9f9ca9339a334e812c25d08abf167a3cbc1a248d9cb36910; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/learning/mock-exam",
+ "title": "MockExam",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "schema_version",
+  "paper"
+ ],
+ "properties": {
+  "schema_version": {
+   "const": "1.0"
+  },
+  "paper": {
+   "$ref": "#/$defs/paper"
+  },
+  "sitting": {
+   "$ref": "#/$defs/sitting"
+  },
+  "result": {
+   "$ref": "#/$defs/result"
+  }
+ },
+ "$defs": {
+  "id": {
+   "type": "string",
+   "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "paper": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "paper_id",
+    "level",
+    "subject",
+    "paper_kind",
+    "title",
+    "duration_minutes",
+    "total_marks",
+    "calculator",
+    "blueprint",
+    "sections",
+    "source"
+   ],
+   "properties": {
+    "paper_id": {
+     "type": "string",
+     "pattern": "^[a-z0-9_.-]{3,64}$"
+    },
+    "level": {
+     "enum": [
+      "O",
+      "A"
+     ]
+    },
+    "subject": {
+     "enum": [
+      "mathematics",
+      "physics",
+      "chemistry",
+      "biology",
+      "accounting"
+     ]
+    },
+    "paper_kind": {
+     "enum": [
+      "paper_1_objective",
+      "paper_2_structured",
+      "paper_3_structured",
+      "section_mock"
+     ]
+    },
+    "title": {
+     "type": "string",
+     "maxLength": 120
+    },
+    "duration_minutes": {
+     "type": "integer",
+     "minimum": 10,
+     "maximum": 240
+    },
+    "total_marks": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "calculator": {
+     "type": "boolean"
+    },
+    "constants_convention": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string",
+      "maxLength": 40
+     }
+    },
+    "blueprint": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "topic_weights"
+     ],
+     "properties": {
+      "topic_weights": {
+       "type": "object",
+       "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       }
+      },
+      "generated_from_pool": {
+       "type": "string",
+       "maxLength": 64
+      },
+      "seed": {
+       "type": "integer"
+      }
+     }
+    },
+    "sections": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "section_id",
+       "title",
+       "item_types",
+       "marks",
+       "questions"
+      ],
+      "properties": {
+       "section_id": {
+        "type": "string",
+        "maxLength": 16
+       },
+       "title": {
+        "type": "string",
+        "maxLength": 80
+       },
+       "item_types": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+         "enum": [
+          "mcq",
+          "mcq_diagnostic",
+          "multi_select",
+          "numeric",
+          "algebraic",
+          "equation_solutions",
+          "chemical_equation",
+          "journal_entry",
+          "accounting_table",
+          "diagram_label",
+          "ordering",
+          "structured",
+          "short_text"
+         ]
+        }
+       },
+       "marks": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "choose": {
+        "type": [
+         "integer",
+         "null"
+        ],
+        "minimum": 1
+       },
+       "questions": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "question_id",
+          "item_id",
+          "marks",
+          "kc_ids"
+         ],
+         "properties": {
+          "question_id": {
+           "type": "string",
+           "maxLength": 16
+          },
+          "item_id": {
+           "type": "string",
+           "pattern": "^[a-z0-9_.:-]{3,64}$"
+          },
+          "marks": {
+           "type": "integer",
+           "minimum": 1
+          },
+          "kc_ids": {
+           "type": "array",
+           "minItems": 1,
+           "items": {
+            "type": "string",
+            "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+           }
+          },
+          "parts": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+             "part_id",
+             "marks",
+             "criteria"
+            ],
+            "properties": {
+             "part_id": {
+              "type": "string",
+              "maxLength": 8
+             },
+             "marks": {
+              "type": "integer",
+              "minimum": 1
+             },
+             "depends_on": {
+              "type": "array",
+              "items": {
+               "type": "string",
+               "maxLength": 8
+              }
+             },
+             "command_word": {
+              "enum": [
+               "state",
+               "explain",
+               "calculate",
+               "deduce",
+               "sketch",
+               "show_that",
+               "describe",
+               "define",
+               "draw",
+               "complete"
+              ]
+             },
+             "criteria": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+               "type": "object",
+               "additionalProperties": false,
+               "required": [
+                "criterion_id",
+                "mark_type",
+                "marks",
+                "pass_if",
+                "fail_if",
+                "method"
+               ],
+               "properties": {
+                "criterion_id": {
+                 "type": "string",
+                 "pattern": "^[A-Za-z0-9_.-]{1,32}$"
+                },
+                "mark_type": {
+                 "enum": [
+                  "M",
+                  "A",
+                  "B"
+                 ]
+                },
+                "marks": {
+                 "type": "integer",
+                 "minimum": 1,
+                 "maximum": 10
+                },
+                "requires": {
+                 "type": "array",
+                 "items": {
+                  "type": "string",
+                  "maxLength": 32
+                 }
+                },
+                "follow_through": {
+                 "type": "boolean"
+                },
+                "pass_if": {
+                 "type": "string",
+                 "maxLength": 300
+                },
+                "fail_if": {
+                 "type": "string",
+                 "maxLength": 300
+                },
+                "method": {
+                 "enum": [
+                  "tool",
+                  "key",
+                  "deterministic_match",
+                  "judge_pair"
+                 ]
+                },
+                "judge_allowed": {
+                 "type": "boolean"
+                },
+                "check": {
+                 "type": "object"
+                }
+               }
+              }
+             }
+            }
+           }
+          },
+          "criteria": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+             "criterion_id",
+             "mark_type",
+             "marks",
+             "pass_if",
+             "fail_if",
+             "method"
+            ],
+            "properties": {
+             "criterion_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.-]{1,32}$"
+             },
+             "mark_type": {
+              "enum": [
+               "M",
+               "A",
+               "B"
+              ]
+             },
+             "marks": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+             },
+             "requires": {
+              "type": "array",
+              "items": {
+               "type": "string",
+               "maxLength": 32
+              }
+             },
+             "follow_through": {
+              "type": "boolean"
+             },
+             "pass_if": {
+              "type": "string",
+              "maxLength": 300
+             },
+             "fail_if": {
+              "type": "string",
+              "maxLength": 300
+             },
+             "method": {
+              "enum": [
+               "tool",
+               "key",
+               "deterministic_match",
+               "judge_pair"
+              ]
+             },
+             "judge_allowed": {
+              "type": "boolean"
+             },
+             "check": {
+              "type": "object"
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "source": {
+     "enum": [
+      "generated",
+      "pack_fixed"
+     ]
+    },
+    "grade_boundaries": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "band",
+       "min_percent"
+      ],
+      "properties": {
+       "band": {
+        "type": "string",
+        "maxLength": 16
+       },
+       "min_percent": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+       }
+      }
+     }
+    }
+   }
+  },
+  "sitting": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "sitting_id",
+    "paper_id",
+    "profile_id",
+    "state",
+    "duration_ms",
+    "remaining_ms",
+    "answers"
+   ],
+   "properties": {
+    "sitting_id": {
+     "$ref": "#/$defs/id"
+    },
+    "paper_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "profile_id": {
+     "$ref": "#/$defs/id"
+    },
+    "state": {
+     "enum": [
+      "ready",
+      "in_progress",
+      "paused",
+      "interrupted",
+      "submitted",
+      "marked",
+      "reviewed",
+      "abandoned"
+     ]
+    },
+    "started_at": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "format": "date-time"
+    },
+    "duration_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "extra_time_percent": {
+     "enum": [
+      0,
+      25,
+      50
+     ]
+    },
+    "remaining_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "pauses": {
+     "type": "array",
+     "maxItems": 2,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "at",
+       "length_ms"
+      ],
+      "properties": {
+       "at": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "length_ms": {
+        "type": "integer",
+        "minimum": 0
+       }
+      }
+     }
+    },
+    "interruptions": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "at",
+       "remaining_ms"
+      ],
+      "properties": {
+       "at": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "remaining_ms": {
+        "type": "integer",
+        "minimum": 0
+       }
+      }
+     }
+    },
+    "current_question": {
+     "type": "string",
+     "maxLength": 16
+    },
+    "answers": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "question_id",
+       "saved_at"
+      ],
+      "properties": {
+       "question_id": {
+        "type": "string",
+        "maxLength": 16
+       },
+       "part_id": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "maxLength": 8
+       },
+       "response_ref": {
+        "type": "string",
+        "maxLength": 64
+       },
+       "normalised_response": {
+        "type": "string",
+        "maxLength": 200
+       },
+       "flagged": {
+        "type": "boolean"
+       },
+       "saved_at": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     }
+    },
+    "integrity": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "focus_losses",
+      "large_pastes"
+     ],
+     "properties": {
+      "focus_losses": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "large_pastes": {
+       "type": "integer",
+       "minimum": 0
+      }
+     }
+    },
+    "submitted_at": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "format": "date-time"
+    },
+    "submit_reason": {
+     "enum": [
+      "student",
+      "time_up",
+      "abandoned"
+     ]
+    }
+   }
+  },
+  "result": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "sitting_id",
+    "marks_awarded",
+    "marks_available",
+    "by_question",
+    "by_topic",
+    "unresolved_criteria"
+   ],
+   "properties": {
+    "sitting_id": {
+     "$ref": "#/$defs/id"
+    },
+    "marks_awarded": {
+     "type": "number",
+     "minimum": 0
+    },
+    "marks_available": {
+     "type": "number",
+     "minimum": 1
+    },
+    "method_marks_lost": {
+     "type": "number",
+     "minimum": 0
+    },
+    "accuracy_marks_lost": {
+     "type": "number",
+     "minimum": 0
+    },
+    "by_question": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "question_id",
+       "marks_awarded",
+       "marks_available",
+       "criteria"
+      ],
+      "properties": {
+       "question_id": {
+        "type": "string",
+        "maxLength": 16
+       },
+       "part_id": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "maxLength": 8
+       },
+       "marks_awarded": {
+        "type": "number",
+        "minimum": 0
+       },
+       "marks_available": {
+        "type": "number",
+        "minimum": 0
+       },
+       "verdict_id": {
+        "$ref": "#/$defs/id"
+       },
+       "criteria": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "criterion_id",
+          "result",
+          "marks_awarded",
+          "method"
+         ],
+         "properties": {
+          "criterion_id": {
+           "type": "string",
+           "maxLength": 32
+          },
+          "result": {
+           "enum": [
+            "pass",
+            "fail",
+            "unresolved"
+           ]
+          },
+          "marks_awarded": {
+           "type": "integer",
+           "minimum": 0
+          },
+          "method": {
+           "enum": [
+            "tool",
+            "key",
+            "deterministic_match",
+            "judge_pair"
+           ]
+          },
+          "check_ids": {
+           "type": "array",
+           "items": {
+            "type": "string",
+            "maxLength": 64
+           }
+          },
+          "follow_through_applied": {
+           "type": "boolean"
+          }
+         }
+        }
+       },
+       "time_ms": {
+        "type": "integer",
+        "minimum": 0
+       }
+      }
+     }
+    },
+    "by_topic": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "topic_id",
+       "marks_awarded",
+       "marks_available"
+      ],
+      "properties": {
+       "topic_id": {
+        "type": "string",
+        "maxLength": 64
+       },
+       "marks_awarded": {
+        "type": "number",
+        "minimum": 0
+       },
+       "marks_available": {
+        "type": "number",
+        "minimum": 0
+       }
+      }
+     }
+    },
+    "unresolved_criteria": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "grade_band": {
+     "anyOf": [
+      {
+       "type": "null"
+      },
+      {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "likely",
+        "low",
+        "high",
+        "interval"
+       ],
+       "properties": {
+        "likely": {
+         "type": "string",
+         "maxLength": 16
+        },
+        "low": {
+         "type": "string",
+         "maxLength": 16
+        },
+        "high": {
+         "type": "string",
+         "maxLength": 16
+        },
+        "interval": {
+         "type": "number",
+         "minimum": 0.5,
+         "maximum": 0.99
+        }
+       }
+      }
+     ]
+    },
+    "review_set_item_ids": {
+     "type": "array",
+     "maxItems": 30,
+     "items": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.:-]{3,64}$"
+     }
+    },
+    "notes": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "taken_with_pauses",
+       "taken_with_extra_time",
+       "interrupted"
+      ]
+     }
+    }
+   }
+  }
+ }
+}

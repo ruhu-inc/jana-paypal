@@ -1,0 +1,145 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/free_body.schema.json sha256 e713b4deb8c25ee9013335e535adf321a182f29ceaab06481c99026c107f0d89; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/free_body",
+ "title": "free_body params",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "object",
+  "forces"
+ ],
+ "properties": {
+  "object": {
+   "enum": [
+    "block",
+    "sphere",
+    "particle",
+    "car",
+    "person",
+    "beam",
+    "box_on_string",
+    "lift"
+   ]
+  },
+  "surface": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "incline_deg": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 90
+    },
+    "friction": {
+     "type": "boolean"
+    },
+    "kind": {
+     "enum": [
+      "none",
+      "horizontal",
+      "incline",
+      "vertical_wall",
+      "hanging"
+     ]
+    }
+   }
+  },
+  "forces": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 8,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "name",
+     "magnitude",
+     "direction_deg"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_]{0,7}$"
+     },
+     "name": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "magnitude": {
+      "$ref": "https://jana.dev/contracts/visuals/visual-spec#/$defs/quantity"
+     },
+     "direction_deg": {
+      "type": "number",
+      "minimum": 0,
+      "exclusiveMaximum": 360
+     },
+     "applied_at": {
+      "enum": [
+       "centre",
+       "top",
+       "bottom",
+       "left",
+       "right",
+       "contact"
+      ],
+      "default": "centre"
+     }
+    }
+   }
+  },
+  "scale": {
+   "enum": [
+    "to_scale",
+    "schematic"
+   ],
+   "default": "to_scale"
+  },
+  "axes": {
+   "enum": [
+    "standard",
+    "along_incline",
+    "none"
+   ],
+   "default": "standard"
+  },
+  "show_resultant": {
+   "type": "boolean",
+   "default": false
+  }
+ },
+ "$defs": {
+  "add": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "element"
+   ],
+   "properties": {
+    "element": {
+     "enum": [
+      "components_of",
+      "resultant",
+      "angle_marker"
+     ]
+    },
+    "of": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number",
+       "boolean"
+      ]
+     }
+    }
+   }
+  }
+ }
+}

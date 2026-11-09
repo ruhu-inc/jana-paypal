@@ -1,0 +1,39 @@
+{
+ "$comment": "GENERATED from contracts/agents/aux-judge.schema.json sha256 b42fdb47555c4468ee08650c1f55e69d6a07124e9b3eac91159949602bf07869; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/aux-judge",
+ "title": "Auxiliary output: judge",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "criteria"
+ ],
+ "properties": {
+  "criteria": {
+   "type": "array",
+   "maxItems": 32,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "pass",
+     "evidence"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "pass": {
+      "type": "boolean"
+     },
+     "evidence": {
+      "type": "string",
+      "maxLength": 400
+     }
+    }
+   }
+  }
+ }
+}

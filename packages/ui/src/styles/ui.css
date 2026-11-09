@@ -1,0 +1,270 @@
+/* The UI stylesheet: Tailwind generated from the role tokens (DSN-01), the bundled fonts (DSN-06) and the motion
+   primitives (DSN-10). Components use Tailwind keys or var(--…) only. */
+@import "tailwindcss";
+@import "../generated/theme.css";
+@import "../generated/tokens.css";
+/* Funnel Sans, Funnel Display and Geist Mono (D89), copied into the package; Noto Sans follows Funnel Sans in the stack
+   for the symbols it lacks; KaTeX's fonts load with the first maths. */
+@import "../../assets/fonts/fonts.css";
+@import "@fontsource/noto-sans/latin-400.css";
+@import "@fontsource/noto-sans/latin-500.css";
+@import "@fontsource/noto-sans/latin-600.css";
+@import "@fontsource/noto-sans/latin-ext-400.css";
+@import "@fontsource/noto-sans/latin-ext-500.css";
+@import "@fontsource/noto-sans/latin-ext-600.css";
+@import "@fontsource/noto-sans/greek-400.css";
+@import "@fontsource/noto-sans/greek-500.css";
+@import "@fontsource/noto-sans/greek-600.css";
+@import "katex/dist/katex.min.css";
+@import "../primitives/motion.css";
+@import "../tutor/presence.css";
+@import "../learn/mastery.css";
+@import "../learn/study.css";
+
+@source "../";
+
+/* The board shares the full reading height with the conversation. At medium
+   widths, allow two readable columns without reserving the desktop's 440 px. */
+.jana-tutor-board {
+  width: 40%;
+  min-width: min(var(--layout-tutorSplit-minBoardPx), 48%);
+  max-width: var(--layout-tutorSplit-maxBoardPx);
+}
+
+@media (560px <= width < 960px) {
+  .jana-tutor-board {
+    width: 48%;
+    min-width: 280px;
+    max-width: none;
+  }
+  [data-tutor-conversation] [data-region="conversation"],
+  [data-tutor-conversation] [data-region="dock"] {
+    padding-inline: calc(var(--spacing) * 3);
+  }
+}
+
+/* The theme (DSN-05): the root carries data-theme="light" or "dark", resolved from the student's choice or this
+   computer's setting; `dark:` styles follow it, never the media query alone. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Native checkboxes, radios and progress bars draw "on" in ink, like a Switch that is on, never the browser's blue
+   (DSN-02). */
+:root, [data-theme] {
+  color-scheme: light;
+  accent-color: var(--color-action);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+/* Text selection is the one blue fill (DSN-02: `accent-soft` behind selected text). */
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
+}
+
+/* Placeholder text in its own role, which meets 4.5:1 on every surface (DSN-03); the rich editor draws its
+   placeholder the same way. */
+::placeholder {
+  color: var(--color-placeholder);
+  opacity: 1;
+}
+
+/* Laid over the empty first line, so the caret stays at its start; at a large "Board and chat text size" a long
+   placeholder ends in an ellipsis instead of being cut mid-word. */
+.ProseMirror p.is-editor-empty:first-child {
+  position: relative;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--color-placeholder);
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Easy-read text (LOC-18): the easy-read face, WCAG 1.4.12 spacing, ragged left-aligned text and a 70-character
+   measure, on everything but typeset maths. Unlayered, so it wins over the utilities. */
+[data-easy-read="true"] body,
+[data-easy-read="true"] body *:not(.katex, .katex *) {
+  font-family: var(--font-easyRead);
+  letter-spacing: 0.12em;
+  word-spacing: 0.16em;
+  line-height: 1.8;
+  text-align: start;
+}
+
+[data-easy-read="true"] p {
+  max-width: 70ch;
+}
+
+:focus-visible {
+  outline: var(--border-focus) solid var(--color-focus);
+  outline-offset: var(--border-focusOffset);
+}
+
+/* Text fields (owner, 2026-10-20): focus is the field's own 1 px border turning to the focus colour, never a second
+   ring or an offset outline stacked on it, and never a thicker border that moves the layout. The focus colour is
+   at least 3:1 against the field and the surface around it in both themes (WCAG 1.4.11, 2.4.7). Buttons, links and
+   other controls keep the ring above. A field drawn as a box around a borderless input (search, the composer) takes
+   the same colour on its box. */
+:is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="color"], [type="button"], [type="submit"]), textarea, select, [contenteditable="true"]):focus-visible {
+  outline: none;
+}
+
+:is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="color"], [type="button"], [type="submit"]), textarea, select, [contenteditable="true"]):focus {
+  border-color: var(--color-focus);
+}
+
+/* A heading or region the app moves focus to (tabindex="-1", for screen readers on a new screen or step) is not a
+   control: it never takes a ring, which after a keyboard action would box a title as if it could be pressed. */
+[tabindex="-1"]:focus-visible:not(button, a, input, textarea, select) {
+  outline: none;
+}
+
+/* Maths sizes come only from the math tokens (DSN-07): inline maths 1.15× the text around it and display maths 1.25×,
+   in place of KaTeX's own 1.21× for both; on the board the line's own size is the maths size. */
+:root {
+  --math-katex-inline: calc(var(--math-inline-scale) * 1em);
+  --math-katex-display: calc(var(--math-display-scale) * 1em);
+  --math-katex-board: 1em;
+}
+
+.katex {
+  font-size: var(--math-katex-inline);
+}
+
+.katex-display > .katex {
+  font-size: var(--math-katex-display);
+}
+
+.board-math .katex {
+  font-size: var(--math-katex-board);
+}
+
+/* Board maths (DSN-07): 20 px on a 32 px line, scaled by "Board and chat text size" with the body text. */
+.board-math {
+  --math-board-scaled: calc(var(--math-board) * var(--text-scale));
+  font-size: var(--math-board-scaled);
+  line-height: calc(var(--space-8) * var(--text-scale));
+}
+
+/* Printing an opened saved question includes only its pinned local snapshot. */
+@media print {
+  body:has([data-print-question]) * { visibility: hidden; }
+  [data-print-question], [data-print-question] * { visibility: visible !important; }
+  [data-print-question] { position: absolute; inset: 0; overflow: visible; }
+}
+
+/* UIA-19: the same highlight fill as diagrams, with an underline independent of colour. */
+.katex-html .changed {
+  background-color: var(--color-highlight-soft);
+  color: var(--color-ink);
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-highlight-line);
+  text-underline-offset: 0.15em;
+}
+
+/* DSN-17: compact controls keep their drawing while their transparent target reaches 44 px. */
+:where(button, a[href], [role="button"], [role="radio"]):not(svg *, .absolute, .fixed, .sticky) {
+  position: relative;
+}
+:where(button, a[href], [role="button"], [role="radio"]):not(svg *)::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: max(100%, var(--target-pointerMin));
+  height: max(100%, var(--target-pointerMin));
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+input:not([type="checkbox"], [type="radio"], [type="hidden"]), select, textarea, [role="textbox"] {
+  min-width: var(--target-pointerMin);
+  min-height: var(--target-pointerMin);
+}
+label:has(input[type="checkbox"], input[type="radio"]) {
+  display: flex;
+  align-items: center;
+  min-width: var(--target-pointerMin);
+  min-height: var(--target-pointerMin);
+}
+/* Table parts activate on click/Enter too; their full cell or row is the target. */
+:where(td, th, tr)[data-part][tabindex] {
+  min-width: var(--target-pointerMin);
+  height: var(--target-pointerMin);
+}
+/* Punnett ratio parts need their own box; an inline span has only the text's hit area. */
+[data-kind="punnett_square"] span[data-part][role="button"] {
+  display: inline-flex;
+  align-items: center;
+  min-width: var(--target-pointerMin);
+  min-height: var(--target-pointerMin);
+}
+
+/* DSN-22: a printed report (the parent summary, UXS-33) prints alone on A4 portrait with 15 mm margins and "Page n of
+   m" at the foot, in the print theme of tokens.json whatever the screen theme: inside the report the colour roles take
+   the print colours and the type the point scale. Mastery marks keep their patterns, icons and words (DSN-23), never
+   colour alone. The footer's words are set on the document by the report as it prints (they are catalogue strings). */
+@page report {
+  size: A4 portrait;
+  margin: 15mm;
+  @bottom-center {
+    content: var(--print-page-label, "Page") " " counter(page) " " var(--print-page-of, "of") " " counter(pages);
+    color: var(--print-color-muted);
+  }
+}
+
+@media print {
+  body:has([data-print-report]) * { visibility: hidden; }
+  [data-print-report], [data-print-report] * { visibility: visible !important; }
+  [data-print-report] {
+    page: report;
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    padding: 0;
+    --text-scale: 1;
+    --color-canvas: var(--print-color-paper);
+    --color-paper: var(--print-color-paper);
+    --color-panel: var(--print-color-fill);
+    --color-wash: var(--print-color-fill);
+    --color-ink: var(--print-color-ink);
+    --color-muted: var(--print-color-muted);
+    --color-faint: var(--print-color-muted);
+    --color-line: var(--print-color-rule);
+    --color-line-strong: var(--print-color-rule);
+    --text-title: var(--print-text-title);
+    --leading-title: var(--print-leading-title);
+    --text-heading: var(--print-text-heading);
+    --leading-heading: var(--print-leading-heading);
+    --text-ui: var(--print-text-body);
+    --leading-ui: var(--print-leading-body);
+    --text-body: var(--print-text-body);
+    --leading-body: var(--print-leading-body);
+    --text-meta: var(--print-text-meta);
+    --leading-meta: var(--print-leading-meta);
+    --text-label: var(--print-text-label);
+    --leading-label: var(--print-leading-label);
+    --math-katex-inline: var(--print-text-math);
+    --math-katex-display: var(--print-text-math);
+    background: var(--print-color-paper);
+    color: var(--print-color-ink);
+  }
+  [data-print-report] [data-mastery] { print-color-adjust: exact; }
+  [data-print-report] [data-print-hide] { display: none; }
+}

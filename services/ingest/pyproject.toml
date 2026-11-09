@@ -1,0 +1,31 @@
+[project]
+name = "jana-ingest"
+version = "0.0.0"
+license = "Apache-2.0"
+description = "Telemetry, crash-report and support-bundle intake: receives the core's outbox uploads and support uploads, validated against their contracts, with retention, access logging and deletion (OBS-17, OBS-20, OPS-24)."
+requires-python = "==3.12.*"
+dependencies = [
+    "pydantic>=2.12,<3",
+    "jsonschema>=4.25,<5",
+    "fastapi>=0.118,<1",
+    "uvicorn>=0.37,<1",
+    "cryptography>=46,<47",
+]
+
+[dependency-groups]
+# The tests drive the service with the device's own outbox, egress client and crash-report and bundle builders.
+dev = ["jana-agent-core"]
+
+[tool.uv.sources]
+jana-agent-core = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.10,<0.11"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "ingest"
+module-root = ""
+
+[tool.jana]
+layer = "connectivity"

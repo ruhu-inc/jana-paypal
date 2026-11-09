@@ -1,0 +1,157 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/function_transform_sim.schema.json sha256 eb2e00465621e7b6974621f2130603cf0c34e3ae5d69322b40fdbe69ce535559; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/function_transform_sim",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "expression": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 200
+  },
+  "x_range": {
+   "type": "array",
+   "items": {
+    "type": "number"
+   },
+   "minItems": 2,
+   "maxItems": 2
+  },
+  "parameters": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "a": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "min": {
+       "type": "number"
+      },
+      "max": {
+       "type": "number"
+      },
+      "step": {
+       "type": "number",
+       "minimum": 1e-06
+      },
+      "value": {
+       "type": "number"
+      }
+     },
+     "required": [
+      "min",
+      "max",
+      "step",
+      "value"
+     ]
+    },
+    "b": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "min": {
+       "type": "number"
+      },
+      "max": {
+       "type": "number"
+      },
+      "step": {
+       "type": "number",
+       "minimum": 1e-06
+      },
+      "value": {
+       "type": "number"
+      }
+     },
+     "required": [
+      "min",
+      "max",
+      "step",
+      "value"
+     ]
+    },
+    "c": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "min": {
+       "type": "number"
+      },
+      "max": {
+       "type": "number"
+      },
+      "step": {
+       "type": "number",
+       "minimum": 1e-06
+      },
+      "value": {
+       "type": "number"
+      }
+     },
+     "required": [
+      "min",
+      "max",
+      "step",
+      "value"
+     ]
+    },
+    "d": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "min": {
+       "type": "number"
+      },
+      "max": {
+       "type": "number"
+      },
+      "step": {
+       "type": "number",
+       "minimum": 1e-06
+      },
+      "value": {
+       "type": "number"
+      }
+     },
+     "required": [
+      "min",
+      "max",
+      "step",
+      "value"
+     ]
+    }
+   },
+   "required": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ]
+  },
+  "locked": {
+   "type": "array",
+   "items": {
+    "enum": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ]
+   },
+   "maxItems": 4,
+   "uniqueItems": true
+  },
+  "predict": {
+   "enum": [
+    "poe.mth.function_shift_left.v1"
+   ]
+  }
+ },
+ "required": [
+  "expression",
+  "x_range",
+  "parameters"
+ ]
+}

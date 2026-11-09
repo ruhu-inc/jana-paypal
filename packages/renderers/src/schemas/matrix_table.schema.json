@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/matrix_table",
+  "$comment": "Params for matrix_table, owned by the vetted renderer (VSL-03). Cells are givens (N1, known ids) or results cited by check id. Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "matrix_table params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "table",
+    "rows"
+  ],
+  "properties": {
+    "table": {
+      "enum": [
+        "matrix",
+        "frequency",
+        "truth"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[A-Z]$"
+    },
+    "headers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 24
+      },
+      "maxItems": 8
+    },
+    "row_headers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 24
+      },
+      "maxItems": 8
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 24,
+              "pattern": "^-?[0-9]+(\\.[0-9]+)?(/[0-9]+)?$"
+            },
+            {
+              "enum": [
+                "T",
+                "F"
+              ]
+            },
+            {
+              "type": "string",
+              "maxLength": 24
+            }
+          ]
+        },
+        "maxItems": 8,
+        "minItems": 1
+      },
+      "maxItems": 8,
+      "minItems": 1
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "row_total"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

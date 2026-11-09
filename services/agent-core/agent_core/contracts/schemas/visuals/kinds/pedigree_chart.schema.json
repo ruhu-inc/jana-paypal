@@ -1,0 +1,88 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/pedigree_chart.schema.json sha256 94f5334363f19f4aeb75c20e26a5a6e7105aa16c04fc8be65e432770dc6d340a; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/pedigree_chart",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "individuals": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+     },
+     "generation": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 20
+     },
+     "sex": {
+      "enum": [
+       "female",
+       "male",
+       "unspecified"
+      ]
+     },
+     "phenotype": {
+      "enum": [
+       "affected",
+       "unaffected",
+       "unknown"
+      ]
+     },
+     "carrier": {
+      "type": [
+       "boolean",
+       "null"
+      ]
+     }
+    },
+    "required": [
+     "id",
+     "generation",
+     "sex",
+     "phenotype",
+     "carrier"
+    ]
+   },
+   "minItems": 1,
+   "maxItems": 100
+  },
+  "parents": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "child": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+     },
+     "parent1": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+     },
+     "parent2": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+     }
+    },
+    "required": [
+     "child",
+     "parent1",
+     "parent2"
+    ]
+   },
+   "minItems": 0,
+   "maxItems": 100
+  }
+ },
+ "required": [
+  "individuals",
+  "parents"
+ ]
+}

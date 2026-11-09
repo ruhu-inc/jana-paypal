@@ -1,0 +1,99 @@
+{
+ "$comment": "GENERATED from contracts/ops/web-deployment.schema.json sha256 df6fe9ac991b0ff6d829973e15bb59cd3c1b9bb2c3a1672c304d8b99abb179c1; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/web-deployment",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "public_origin",
+  "api_origin",
+  "oidc_issuer",
+  "oidc_client_id",
+  "callback_path",
+  "region",
+  "secret_refs",
+  "store",
+  "session_seconds",
+  "canary_percent",
+  "rollback_minutes"
+ ],
+ "properties": {
+  "public_origin": {
+   "type": "string",
+   "pattern": "^https://[^/?#]+$"
+  },
+  "api_origin": {
+   "type": "string",
+   "pattern": "^https://[^/?#]+$"
+  },
+  "oidc_issuer": {
+   "type": "string",
+   "pattern": "^https://[^?#]+$"
+  },
+  "oidc_client_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 200
+  },
+  "callback_path": {
+   "type": "string",
+   "pattern": "^/[A-Za-z0-9/_-]+$"
+  },
+  "region": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 80
+  },
+  "secret_refs": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "session_signing",
+    "gateway_credential"
+   ],
+   "properties": {
+    "session_signing": {
+     "type": "string",
+     "pattern": "^secret:[A-Za-z0-9/_-]+$"
+    },
+    "gateway_credential": {
+     "type": "string",
+     "pattern": "^secret:[A-Za-z0-9/_-]+$"
+    }
+   }
+  },
+  "store": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "learner_uri_ref",
+    "ephemeral_upload_root"
+   ],
+   "properties": {
+    "learner_uri_ref": {
+     "type": "string",
+     "pattern": "^secret:[A-Za-z0-9/_-]+$"
+    },
+    "ephemeral_upload_root": {
+     "type": "string",
+     "pattern": "^/[A-Za-z0-9/_-]+$"
+    }
+   }
+  },
+  "session_seconds": {
+   "type": "integer",
+   "minimum": 300,
+   "maximum": 43200
+  },
+  "canary_percent": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 10
+  },
+  "rollback_minutes": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 15
+  }
+ }
+}

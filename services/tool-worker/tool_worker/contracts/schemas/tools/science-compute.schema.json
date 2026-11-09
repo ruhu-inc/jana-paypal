@@ -1,0 +1,1354 @@
+{
+ "$comment": "GENERATED from contracts/tools/science-compute.schema.json sha256 dd2c243bd7268f2eefd8eff702fbcc8448bb927836eea8c98dbca2b0f8fb3600; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/tools/science-compute",
+ "$defs": {
+  "Species": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 64,
+     "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+    },
+    "formula": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 80
+    },
+    "state": {
+     "enum": [
+      "gas",
+      "aqueous",
+      "solid",
+      "liquid"
+     ]
+    },
+    "coefficient": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 100
+    },
+    "side": {
+     "enum": [
+      "reactant",
+      "product"
+     ]
+    }
+   },
+   "required": [
+    "id",
+    "formula",
+    "state",
+    "coefficient",
+    "side"
+   ]
+  },
+  "Reaction": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "species": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+       },
+       "formula": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+       },
+       "state": {
+        "enum": [
+         "gas",
+         "aqueous",
+         "solid",
+         "liquid"
+        ]
+       },
+       "coefficient": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+       },
+       "side": {
+        "enum": [
+         "reactant",
+         "product"
+        ]
+       }
+      },
+      "required": [
+       "id",
+       "formula",
+       "state",
+       "coefficient",
+       "side"
+      ]
+     },
+     "minItems": 2,
+     "maxItems": 12
+    }
+   },
+   "required": [
+    "species"
+   ]
+  },
+  "Quantity": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "value": {
+     "type": "number",
+     "minimum": 0
+    },
+    "unit": {
+     "enum": [
+      "mol/L",
+      "mol/m3",
+      "Pa",
+      "kPa",
+      "bar",
+      "mol",
+      "K",
+      "J/mol",
+      "kJ/mol",
+      "V"
+     ]
+    }
+   },
+   "required": [
+    "value",
+    "unit"
+   ]
+  },
+  "EquilibriumArgs": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "task": {
+     "enum": [
+      "constant",
+      "extent",
+      "electrode_potential"
+     ]
+    },
+    "reaction": {
+     "$ref": "https://jana.dev/contracts/tools/science-compute#/$defs/Reaction"
+    },
+    "basis": {
+     "enum": [
+      "Kc",
+      "Kp"
+     ]
+    },
+    "temperature_k": {
+     "type": "number",
+     "minimum": 1e-06
+    },
+    "values": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "species_id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+       },
+       "quantity": {
+        "$ref": "https://jana.dev/contracts/tools/science-compute#/$defs/Quantity"
+       }
+      },
+      "required": [
+       "species_id",
+       "quantity"
+      ]
+     },
+     "minItems": 0,
+     "maxItems": 12
+    },
+    "constant": {
+     "type": "number",
+     "minimum": 0
+    },
+    "initial": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "species_id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+       },
+       "quantity": {
+        "$ref": "https://jana.dev/contracts/tools/science-compute#/$defs/Quantity"
+       }
+      },
+      "required": [
+       "species_id",
+       "quantity"
+      ]
+     },
+     "minItems": 1,
+     "maxItems": 12
+    },
+    "electrode_potentials": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+       },
+       "standard_potential_v": {
+        "type": "number",
+        "minimum": -20,
+        "maximum": 20
+       },
+       "role": {
+        "enum": [
+         "anode",
+         "cathode"
+        ]
+       }
+      },
+      "required": [
+       "id",
+       "standard_potential_v",
+       "role"
+      ]
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "volume_l": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    }
+   },
+   "required": [
+    "task"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "enum": [
+         "constant",
+         "extent"
+        ]
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "reaction",
+       "basis",
+       "temperature_k"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "const": "constant"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "values"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "constant"
+         ]
+        },
+        {
+         "required": [
+          "initial"
+         ]
+        },
+        {
+         "required": [
+          "electrode_potentials"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "const": "extent"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "constant",
+       "initial"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "values"
+         ]
+        },
+        {
+         "required": [
+          "electrode_potentials"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "const": "electrode_potential"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "electrode_potentials"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "reaction"
+         ]
+        },
+        {
+         "required": [
+          "basis"
+         ]
+        },
+        {
+         "required": [
+          "temperature_k"
+         ]
+        },
+        {
+         "required": [
+          "values"
+         ]
+        },
+        {
+         "required": [
+          "constant"
+         ]
+        },
+        {
+         "required": [
+          "initial"
+         ]
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "CheckedValue": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "value": {
+     "type": "number"
+    },
+    "unit": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 80
+    },
+    "check_id": {
+     "type": "string",
+     "pattern": "^chk_[0-9A-HJKMNP-TV-Z]{26}$"
+    }
+   },
+   "required": [
+    "value",
+    "unit",
+    "check_id"
+   ]
+  },
+  "EquilibriumResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "status": {
+     "enum": [
+      "ok",
+      "unknown"
+     ]
+    },
+    "constant": {
+     "$ref": "https://jana.dev/contracts/tools/science-compute#/$defs/CheckedValue"
+    },
+    "ice": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "species_id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+       },
+       "initial": {
+        "type": "number",
+        "minimum": 0
+       },
+       "change": {
+        "type": "number"
+       },
+       "equilibrium": {
+        "type": "number",
+        "minimum": 0
+       }
+      },
+      "required": [
+       "species_id",
+       "initial",
+       "change",
+       "equilibrium"
+      ]
+     },
+     "minItems": 1,
+     "maxItems": 12
+    },
+    "extent": {
+     "$ref": "https://jana.dev/contracts/tools/science-compute#/$defs/CheckedValue"
+    },
+    "cell_potential": {
+     "$ref": "https://jana.dev/contracts/tools/science-compute#/$defs/CheckedValue"
+    },
+    "reason": {
+     "enum": [
+      "no_physical_root",
+      "ambiguous_roots",
+      "missing_activity_model",
+      "unsupported_reaction",
+      "budget_exceeded"
+     ]
+    }
+   },
+   "required": [
+    "status"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "status": {
+        "const": "unknown"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "reason"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "constant"
+         ]
+        },
+        {
+         "required": [
+          "ice"
+         ]
+        },
+        {
+         "required": [
+          "extent"
+         ]
+        },
+        {
+         "required": [
+          "cell_potential"
+         ]
+        }
+       ]
+      }
+     },
+     "else": {
+      "oneOf": [
+       {
+        "required": [
+         "constant"
+        ]
+       },
+       {
+        "required": [
+         "ice",
+         "extent"
+        ]
+       },
+       {
+        "required": [
+         "cell_potential"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "OrganicArgs": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "task": {
+     "enum": [
+      "structure",
+      "compare"
+     ]
+    },
+    "representation": {
+     "enum": [
+      "skeletal",
+      "displayed"
+     ]
+    },
+    "inputs": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "kind": {
+        "enum": [
+         "smiles",
+         "name"
+        ]
+       },
+       "value": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+       }
+      },
+      "required": [
+       "kind",
+       "value"
+      ]
+     },
+     "minItems": 1,
+     "maxItems": 2
+    }
+   },
+   "required": [
+    "task",
+    "inputs"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "const": "compare"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "inputs": {
+        "minItems": 2,
+        "maxItems": 2
+       }
+      }
+     },
+     "else": {
+      "properties": {
+       "inputs": {
+        "minItems": 1,
+        "maxItems": 1
+       }
+      }
+     }
+    }
+   ]
+  },
+  "OrganicResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "status": {
+     "enum": [
+      "ok",
+      "unknown"
+     ]
+    },
+    "structures": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "canonical_smiles": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+       },
+       "formula": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+       },
+       "functional_groups": {
+        "type": "array",
+        "items": {
+         "type": "string",
+         "minLength": 1,
+         "maxLength": 80
+        },
+        "minItems": 0,
+        "maxItems": 30
+       },
+       "svg": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100000
+       },
+       "atom_ids": {
+        "type": "array",
+        "items": {
+         "type": "string",
+         "minLength": 1,
+         "maxLength": 64,
+         "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+        },
+        "minItems": 1,
+        "maxItems": 200
+       },
+       "bond_ids": {
+        "type": "array",
+        "items": {
+         "type": "string",
+         "minLength": 1,
+         "maxLength": 64,
+         "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+        },
+        "minItems": 0,
+        "maxItems": 300
+       }
+      },
+      "required": [
+       "canonical_smiles",
+       "formula",
+       "functional_groups",
+       "svg",
+       "atom_ids",
+       "bond_ids"
+      ]
+     },
+     "minItems": 1,
+     "maxItems": 2
+    },
+    "relationship": {
+     "enum": [
+      "same",
+      "structural_isomers",
+      "stereoisomers",
+      "different"
+     ]
+    },
+    "reason": {
+     "enum": [
+      "unknown_name",
+      "invalid_smiles",
+      "unsupported_structure"
+     ]
+    }
+   },
+   "required": [
+    "status"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "status": {
+        "const": "ok"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "structures"
+      ]
+     },
+     "else": {
+      "required": [
+       "reason"
+      ],
+      "not": {
+       "required": [
+        "structures"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "GeneticsArgs": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "task": {
+     "enum": [
+      "cross",
+      "chi_squared",
+      "hardy_weinberg"
+     ]
+    },
+    "parents": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "alleles": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "symbol": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 8
+       },
+       "phenotype": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+       },
+       "dominance": {
+        "enum": [
+         "dominant",
+         "recessive",
+         "codominant"
+        ]
+       }
+      },
+      "required": [
+       "symbol",
+       "phenotype",
+       "dominance"
+      ]
+     },
+     "minItems": 2,
+     "maxItems": 8
+    },
+    "observed": {
+     "type": "array",
+     "items": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2147483647
+     },
+     "minItems": 2,
+     "maxItems": 20
+    },
+    "expected": {
+     "type": "array",
+     "items": {
+      "type": "number",
+      "minimum": 0
+     },
+     "minItems": 2,
+     "maxItems": 20
+    },
+    "recessive_frequency": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    }
+   },
+   "required": [
+    "task"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "const": "cross"
+       }
+      },
+      "required": [
+       "task"
+      ]
+     },
+     "then": {
+      "required": [
+       "parents",
+       "alleles"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "expected"
+         ]
+        },
+        {
+         "required": [
+          "observed"
+         ]
+        },
+        {
+         "required": [
+          "recessive_frequency"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "const": "chi_squared"
+       }
+      },
+      "required": [
+       "task"
+      ]
+     },
+     "then": {
+      "required": [
+       "observed",
+       "expected"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "alleles"
+         ]
+        },
+        {
+         "required": [
+          "parents"
+         ]
+        },
+        {
+         "required": [
+          "recessive_frequency"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "const": "hardy_weinberg"
+       }
+      },
+      "required": [
+       "task"
+      ]
+     },
+     "then": {
+      "required": [
+       "recessive_frequency"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "alleles"
+         ]
+        },
+        {
+         "required": [
+          "expected"
+         ]
+        },
+        {
+         "required": [
+          "observed"
+         ]
+        },
+        {
+         "required": [
+          "parents"
+         ]
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "GeneticsResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "task": {
+     "enum": [
+      "cross",
+      "chi_squared",
+      "hardy_weinberg"
+     ]
+    },
+    "genotypes": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "genotype": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 40
+       },
+       "probability": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       }
+      },
+      "required": [
+       "genotype",
+       "probability"
+      ]
+     },
+     "minItems": 1,
+     "maxItems": 64
+    },
+    "phenotypes": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "phenotype": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+       },
+       "probability": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       }
+      },
+      "required": [
+       "phenotype",
+       "probability"
+      ]
+     },
+     "minItems": 1,
+     "maxItems": 32
+    },
+    "gametes": {
+     "type": "array",
+     "items": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 20
+      },
+      "minItems": 1,
+      "maxItems": 16
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "statistic": {
+     "$ref": "https://jana.dev/contracts/tools/science-compute#/$defs/CheckedValue"
+    },
+    "degrees_of_freedom": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 2147483647
+    },
+    "frequencies": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "p": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "q": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "p_squared": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "two_pq": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "q_squared": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      }
+     },
+     "required": [
+      "p",
+      "q",
+      "p_squared",
+      "two_pq",
+      "q_squared"
+     ]
+    }
+   },
+   "required": [
+    "task"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "const": "cross"
+       }
+      },
+      "required": [
+       "task"
+      ]
+     },
+     "then": {
+      "required": [
+       "genotypes",
+       "phenotypes",
+       "gametes"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "degrees_of_freedom"
+         ]
+        },
+        {
+         "required": [
+          "frequencies"
+         ]
+        },
+        {
+         "required": [
+          "statistic"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "const": "chi_squared"
+       }
+      },
+      "required": [
+       "task"
+      ]
+     },
+     "then": {
+      "required": [
+       "statistic",
+       "degrees_of_freedom"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "frequencies"
+         ]
+        },
+        {
+         "required": [
+          "gametes"
+         ]
+        },
+        {
+         "required": [
+          "genotypes"
+         ]
+        },
+        {
+         "required": [
+          "phenotypes"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "task": {
+        "const": "hardy_weinberg"
+       }
+      },
+      "required": [
+       "task"
+      ]
+     },
+     "then": {
+      "required": [
+       "frequencies"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "degrees_of_freedom"
+         ]
+        },
+        {
+         "required": [
+          "gametes"
+         ]
+        },
+        {
+         "required": [
+          "genotypes"
+         ]
+        },
+        {
+         "required": [
+          "phenotypes"
+         ]
+        },
+        {
+         "required": [
+          "statistic"
+         ]
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "BioCalcArgs": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "task": {
+       "const": "magnification"
+      },
+      "image_length": {
+       "type": "number",
+       "minimum": 1e-06
+      },
+      "image_unit": {
+       "enum": [
+        "mm",
+        "um"
+       ]
+      },
+      "actual_length": {
+       "type": "number",
+       "minimum": 1e-06
+      },
+      "actual_unit": {
+       "enum": [
+        "mm",
+        "um"
+       ]
+      }
+     },
+     "required": [
+      "task",
+      "image_length",
+      "image_unit",
+      "actual_length",
+      "actual_unit"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "task": {
+       "const": "percentage_change"
+      },
+      "initial": {
+       "type": "number"
+      },
+      "final": {
+       "type": "number"
+      }
+     },
+     "required": [
+      "task",
+      "initial",
+      "final"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "task": {
+       "const": "rate"
+      },
+      "change": {
+       "type": "number"
+      },
+      "duration": {
+       "type": "number",
+       "minimum": 1e-06
+      },
+      "unit": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 80
+      }
+     },
+     "required": [
+      "task",
+      "change",
+      "duration",
+      "unit"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "task": {
+       "const": "recapture"
+      },
+      "marked_first": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 2147483647
+      },
+      "second_catch": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 2147483647
+      },
+      "marked_second": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 2147483647
+      }
+     },
+     "required": [
+      "task",
+      "marked_first",
+      "second_catch",
+      "marked_second"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "task": {
+       "const": "simpson"
+      },
+      "counts": {
+       "type": "array",
+       "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 2147483647
+       },
+       "minItems": 2,
+       "maxItems": 1000
+      }
+     },
+     "required": [
+      "task",
+      "counts"
+     ]
+    }
+   ]
+  },
+  "BioCalcResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "task": {
+     "enum": [
+      "magnification",
+      "percentage_change",
+      "rate",
+      "recapture",
+      "simpson"
+     ]
+    },
+    "result": {
+     "$ref": "https://jana.dev/contracts/tools/science-compute#/$defs/CheckedValue"
+    },
+    "convention": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    }
+   },
+   "required": [
+    "task",
+    "result",
+    "convention"
+   ]
+  }
+ }
+}

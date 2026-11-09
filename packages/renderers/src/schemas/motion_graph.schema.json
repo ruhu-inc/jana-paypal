@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/motion_graph",
+  "$comment": "Params for motion_graph, owned by the vetted renderer (VSL-03). Vertices are givens (N1) or results cited by check id; a curve given as an expression is sampled by math_plot_points (VER-14) during resolution. Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "motion_graph params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "graph"
+  ],
+  "properties": {
+    "graph": {
+      "enum": [
+        "distance_time",
+        "displacement_time",
+        "velocity_time",
+        "speed_time"
+      ]
+    },
+    "points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "t",
+          "value"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+          },
+          "t": {
+            "type": "string",
+            "maxLength": 24,
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?(/[0-9]+)?$"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 24,
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?(/[0-9]+)?$"
+          }
+        }
+      },
+      "maxItems": 12
+    },
+    "curve": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expr",
+        "domain"
+      ],
+      "properties": {
+        "expr": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "domain": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 2
+        }
+      }
+    },
+    "shade": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+          }
+        }
+      },
+      "maxItems": 3
+    },
+    "gradient": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+          }
+        }
+      },
+      "maxItems": 3
+    },
+    "units": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {
+        "t": {
+          "type": "string",
+          "maxLength": 24
+        },
+        "value": {
+          "type": "string",
+          "maxLength": 24
+        }
+      }
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "gradient_triangle",
+            "area_shading"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

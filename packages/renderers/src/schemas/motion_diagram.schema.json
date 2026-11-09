@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/motion_diagram",
+  "$comment": "Params for motion_diagram, owned by the vetted renderer (VSL-04). Positions at each time mark are computed by math_evaluate from s = ut + at^2/2 during resolution; u and a are givens (N1). Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "motion_diagram params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "axis",
+    "initial_velocity",
+    "acceleration",
+    "interval",
+    "marks"
+  ],
+  "properties": {
+    "axis": {
+      "enum": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "initial_velocity": {
+      "type": "string",
+      "maxLength": 40,
+      "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?( ?[^\\s].{0,30})?$"
+    },
+    "acceleration": {
+      "type": "string",
+      "maxLength": 40,
+      "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?( ?[^\\s].{0,30})?$"
+    },
+    "interval": {
+      "type": "string",
+      "maxLength": 40,
+      "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?( ?[^\\s].{0,30})?$"
+    },
+    "marks": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 10
+    },
+    "show": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "velocity",
+          "acceleration"
+        ]
+      },
+      "maxItems": 2,
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "velocity_arrows"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

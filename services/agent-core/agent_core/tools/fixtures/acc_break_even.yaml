@@ -1,0 +1,89 @@
+# Tool fixtures (TOL-05): synthetic, hand-written.
+tool: acc_break_even
+version: 1
+valid_args:
+- fixed_costs: 10000
+  variable_cost_per_unit: 6
+  selling_price: 10
+- fixed_costs: 12,000
+  variable_cost_per_unit: '4.50'
+  selling_price: '7.50'
+  output_units: 6000
+  target_profit: 3000
+  chart_max_units: 8000
+invalid_args:
+- fixed_costs: 10000
+  selling_price: 10
+- fixed_costs: 10000
+  variable_cost_per_unit: 6
+  selling_price: 10.5
+- fixed_costs: 10000
+  variable_cost_per_unit: 6
+  selling_price: 10
+  output_units: -1
+description_lint:
+  sections:
+  - what
+  - use_when
+  - parameters
+  - returns
+  - limits
+  - recovery
+  max_chars_full: 600
+repairs:
+- mistake: arguments sent as a JSON string
+  input: '{"text": "x+1"}'
+  repaired:
+    note: same pattern on this tool's arguments
+- mistake: argument names in camelCase
+  input:
+    Text: x+1
+  repaired:
+    note: same pattern on this tool's arguments
+envelopes:
+  unknown_tool:
+    first_clause: No action was taken.
+    retryable: false
+  unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  invalid_args:
+    first_clause: No action was taken.
+    retryable: true
+  truncated_args:
+    first_clause: No action was taken.
+    retryable: true
+  policy_denied:
+    first_clause: No action was taken.
+    retryable: false
+  student_declined:
+    first_clause: The action completed, but
+    retryable: false
+  timeout:
+    first_clause: No action was taken.
+    retryable: true
+  cancelled:
+    first_clause: No action was taken.
+    retryable: false
+  worker_crashed:
+    first_clause: No action was taken.
+    retryable: true
+  worker_unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  limit_exceeded:
+    first_clause: No action was taken.
+    retryable: false
+  domain_error:
+    first_clause: No action was taken.
+    retryable: false
+  execution_error:
+    first_clause: No action was taken.
+    retryable: false
+  result_too_large:
+    first_clause: The action completed, but
+    retryable: false
+  repeated_failure_blocked:
+    first_clause: No action was taken.
+    retryable: false
+golden: services/tool-worker/tool_worker/golden/acc_break_even.yaml

@@ -1,0 +1,108 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/punnett_square.schema.json sha256 3f775c6b8da08fe9664567e223f1a66da3a29b47957b4633b5a59fa848f9b580; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/punnett_square",
+ "title": "punnett_square params",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "cross",
+  "parent1",
+  "parent2",
+  "alleles"
+ ],
+ "properties": {
+  "cross": {
+   "enum": [
+    "monohybrid",
+    "dihybrid",
+    "sex_linked",
+    "codominance",
+    "multiple_alleles"
+   ]
+  },
+  "parent1": {
+   "type": "string",
+   "pattern": "^(X[A-Za-z]?X[A-Za-z]?|X[A-Za-z]?Y|[A-Za-z]{2}([A-Za-z]{2})?|I[ABO]I[ABO])$"
+  },
+  "parent2": {
+   "type": "string",
+   "pattern": "^(X[A-Za-z]?X[A-Za-z]?|X[A-Za-z]?Y|[A-Za-z]{2}([A-Za-z]{2})?|I[ABO]I[ABO])$"
+  },
+  "alleles": {
+   "type": "array",
+   "minItems": 2,
+   "maxItems": 6,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "symbol",
+     "phenotype",
+     "dominance"
+    ],
+    "properties": {
+     "symbol": {
+      "type": "string",
+      "pattern": "^[A-Za-z]{1,2}$"
+     },
+     "phenotype": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "dominance": {
+      "enum": [
+       "dominant",
+       "recessive",
+       "codominant"
+      ]
+     }
+    }
+   }
+  },
+  "show": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "gametes",
+     "genotype_ratio",
+     "phenotype_ratio",
+     "probabilities"
+    ]
+   }
+  }
+ },
+ "$defs": {
+  "add": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "element"
+   ],
+   "properties": {
+    "element": {
+     "enum": [
+      "ratio_row",
+      "highlight_genotype"
+     ]
+    },
+    "of": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number",
+       "boolean"
+      ]
+     }
+    }
+   }
+  }
+ }
+}

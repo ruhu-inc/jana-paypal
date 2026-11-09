@@ -1,0 +1,187 @@
+{
+  "$comment": "The network policy of the connectivity layer as data (ARC-06, ARC-07, DAT-18, PRV-08, SEC-21, SEC-31). One row per online feature of TABLE ARC-07a, with the service it may reach, the payload classes it may send, the data classes its egress notice names (API-15), how its work behaves offline, whose consent it needs and its DPIA gate. Both enforcement points read this table: agent_core.net resolves it with the adult switches and serves the resolved policy to the shell's net module. Hosts and pins are per environment; placeholder hosts end in .invalid (RFC 2606) until operations names the real ones (OPS-35), and a service with no pin is refused in pilot and production builds.",
+  "version": 1,
+  "features": {
+    "cloud_tier": {
+      "stage": "S2",
+      "service": "gateway",
+      "payload_classes": ["cloud_prompt", "service_auth", "consent_withdrawal"],
+      "data_classes": ["question_text", "board", "image", "learner_summary"],
+      "queued": "never",
+      "consent": "profile",
+      "authenticated": true,
+      "dpia_gate": "cloud_tier",
+      "destination_label": "Cloud tutor"
+    },
+    "downloads": {
+      "stage": "S2",
+      "service": "downloads",
+      "payload_classes": ["download_request", "licence_activation"],
+      "data_classes": [],
+      "queued": "resume",
+      "consent": "none",
+      "authenticated": false,
+      "dpia_gate": "pilot_start",
+      "destination_label": "Downloads"
+    },
+    "update_checks": {
+      "stage": "S2",
+      "service": "updates",
+      "payload_classes": ["update_check"],
+      "data_classes": [],
+      "queued": "next_check",
+      "consent": "none",
+      "authenticated": false,
+      "dpia_gate": "pilot_start",
+      "destination_label": "Update check"
+    },
+    "cloud_backup": {
+      "stage": "S4",
+      "service": "backup",
+      "payload_classes": ["backup_snapshot", "tombstone", "consent_withdrawal", "service_auth"],
+      "data_classes": ["learner_summary", "progress_report"],
+      "queued": "latest_only",
+      "consent": "profile",
+      "authenticated": true,
+      "dpia_gate": "s4_launch",
+      "destination_label": "Backup"
+    },
+    "multi_device": {
+      "stage": "S4",
+      "service": "relay",
+      "payload_classes": ["multi_device_segment", "tombstone", "consent_withdrawal", "service_auth"],
+      "data_classes": ["progress_report"],
+      "queued": "outbox",
+      "consent": "profile",
+      "authenticated": true,
+      "dpia_gate": "s4_launch",
+      "destination_label": "Your other devices"
+    },
+    "parent_remote_view": {
+      "stage": "S4",
+      "service": "parent_view",
+      "payload_classes": ["parent_digest", "tombstone", "consent_withdrawal", "service_auth"],
+      "data_classes": ["progress_report"],
+      "queued": "latest_only",
+      "consent": "profile",
+      "authenticated": true,
+      "dpia_gate": "s4_launch",
+      "destination_label": "Parent view"
+    },
+    "cloud_voice": {
+      "stage": "S4",
+      "service": "voice",
+      "payload_classes": ["voice_stream", "service_auth", "consent_withdrawal"],
+      "data_classes": ["audio", "transcript"],
+      "queued": "never",
+      "consent": "profile",
+      "authenticated": true,
+      "dpia_gate": "s4_voice",
+      "destination_label": "Cloud voice"
+    },
+    "study_materials": {
+      "stage": "S3",
+      "service": "gateway",
+      "payload_classes": ["study_material", "tombstone", "consent_withdrawal", "service_auth"],
+      "data_classes": ["document", "image", "audio", "transcript"],
+      "queued": "outbox",
+      "consent": "profile",
+      "authenticated": true,
+      "dpia_gate": "s3_launch",
+      "destination_label": "Online study service"
+    },
+    "telemetry": {
+      "stage": "S2",
+      "service": "telemetry",
+      "payload_classes": ["telemetry_aggregate", "consent_withdrawal"],
+      "data_classes": ["diagnostics"],
+      "queued": "outbox",
+      "consent": "device",
+      "authenticated": false,
+      "dpia_gate": "pilot_start",
+      "destination_label": "Usage reports"
+    },
+    "crash_reports": {
+      "stage": "S2",
+      "service": "crash",
+      "payload_classes": ["crash_report", "consent_withdrawal"],
+      "data_classes": ["diagnostics"],
+      "queued": "outbox",
+      "consent": "device",
+      "authenticated": false,
+      "dpia_gate": "pilot_start",
+      "destination_label": "Crash reports"
+    },
+    "tutor_memory_online": {
+      "stage": "S2",
+      "service": "gateway",
+      "payload_classes": ["cloud_prompt", "service_auth", "consent_withdrawal"],
+      "data_classes": ["tutor_notes", "learner_summary"],
+      "queued": "never",
+      "consent": "profile",
+      "authenticated": true,
+      "dpia_gate": "cloud_tier",
+      "destination_label": "Online tutor memory"
+    }
+  },
+  "probe_payload_class": "probe",
+  "lan_compute": {
+    "feature": "lan_compute",
+    "payload_classes": ["lan_session", "probe"],
+    "data_classes": ["question_text", "board", "image", "learner_summary"],
+    "destination_label": "School server"
+  },
+  "services": {
+    "dev": {
+      "gateway": "gateway.dev.jana.invalid",
+      "downloads": "downloads.dev.jana.invalid",
+      "updates": "updates.dev.jana.invalid",
+      "backup": "backup.dev.jana.invalid",
+      "relay": "relay.dev.jana.invalid",
+      "parent_view": "parent.dev.jana.invalid",
+      "voice": "voice.dev.jana.invalid",
+      "telemetry": "telemetry.dev.jana.invalid",
+      "crash": "crash.dev.jana.invalid"
+    },
+    "staging": {
+      "gateway": "gateway.staging.jana.invalid",
+      "downloads": "downloads.staging.jana.invalid",
+      "updates": "updates.staging.jana.invalid",
+      "backup": "backup.staging.jana.invalid",
+      "relay": "relay.staging.jana.invalid",
+      "parent_view": "parent.staging.jana.invalid",
+      "voice": "voice.staging.jana.invalid",
+      "telemetry": "telemetry.staging.jana.invalid",
+      "crash": "crash.staging.jana.invalid"
+    },
+    "pilot": {
+      "gateway": "gateway.pilot.jana.invalid",
+      "downloads": "downloads.pilot.jana.invalid",
+      "updates": "updates.pilot.jana.invalid",
+      "backup": "backup.pilot.jana.invalid",
+      "relay": "relay.pilot.jana.invalid",
+      "parent_view": "parent.pilot.jana.invalid",
+      "voice": "voice.pilot.jana.invalid",
+      "telemetry": "telemetry.pilot.jana.invalid",
+      "crash": "crash.pilot.jana.invalid"
+    },
+    "production": {
+      "gateway": "gateway.jana.invalid",
+      "downloads": "downloads.jana.invalid",
+      "updates": "updates.jana.invalid",
+      "backup": "backup.jana.invalid",
+      "relay": "relay.jana.invalid",
+      "parent_view": "parent.jana.invalid",
+      "voice": "voice.jana.invalid",
+      "telemetry": "telemetry.jana.invalid",
+      "crash": "crash.jana.invalid"
+    }
+  },
+  "pins": {
+    "$comment": "SHA-256 of the SubjectPublicKeyInfo of our intermediate CAs, base64, with a backup pin, per environment (SEC-31). Empty until operations issues the CAs: a release build then refuses every connection to our services.",
+    "dev": [],
+    "staging": [],
+    "pilot": [],
+    "production": []
+  }
+}

@@ -1,0 +1,470 @@
+{
+ "$comment": "GENERATED from contracts/ops/safety-configuration.schema.json sha256 5e2fadc434d210761004827cd2782a015375c12aebf9b0775ceddbc74e8dc240; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/safety-configuration",
+ "title": "Safety configuration",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "sequence",
+  "channel",
+  "issued_at",
+  "entries",
+  "signature"
+ ],
+ "properties": {
+  "sequence": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "channel": {
+   "enum": [
+    "dev",
+    "pilot",
+    "stable"
+   ]
+  },
+  "issued_at": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "entries": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/RawEntry"
+   }
+  },
+  "signature": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "alg": {
+     "const": "ed25519"
+    },
+    "key_id": {
+     "type": "string",
+     "minLength": 1
+    },
+    "value": {
+     "type": "string",
+     "minLength": 1
+    }
+   },
+   "required": [
+    "alg",
+    "key_id",
+    "value"
+   ]
+  }
+ },
+ "$defs": {
+  "RawEntry": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "entry_id": {
+     "type": "string",
+     "minLength": 1
+    },
+    "target_kind": {
+     "type": "string",
+     "minLength": 1
+    },
+    "target": {
+     "type": "string",
+     "minLength": 1
+    },
+    "action": {
+     "type": "string",
+     "minLength": 1
+    },
+    "reason_code": {
+     "type": "string",
+     "minLength": 1
+    },
+    "incident_id": {
+     "type": "string",
+     "minLength": 1
+    },
+    "lift_when": {
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "notice_key": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "min_version": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "max_version_exclusive": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "entry_id",
+    "target_kind",
+    "target",
+    "action",
+    "reason_code",
+    "incident_id"
+   ]
+  },
+  "Entry": {
+   "additionalProperties": false,
+   "properties": {
+    "entry_id": {
+     "minLength": 1,
+     "type": "string"
+    },
+    "target_kind": {
+     "type": "string",
+     "enum": [
+      "item",
+      "lesson",
+      "worked_example",
+      "diagram",
+      "visual_kind",
+      "skill",
+      "model_pack",
+      "router_candidate",
+      "tool",
+      "online_feature",
+      "app_version"
+     ]
+    },
+    "target": {
+     "minLength": 1,
+     "type": "string"
+    },
+    "action": {
+     "type": "string"
+    },
+    "reason_code": {
+     "minLength": 1,
+     "type": "string"
+    },
+    "incident_id": {
+     "minLength": 1,
+     "type": "string"
+    },
+    "lift_when": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Lift"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "notice_key": {
+     "anyOf": [
+      {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 96
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "min_version": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "max_version_exclusive": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "entry_id",
+    "target_kind",
+    "target",
+    "action",
+    "reason_code",
+    "incident_id",
+    "lift_when"
+   ],
+   "type": "object",
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "item"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "withdraw"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "lesson"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "withdraw"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "worked_example"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "withdraw"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "diagram"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "withdraw"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "visual_kind"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "disable"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "skill"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "disable",
+         "pin_previous"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "model_pack"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "disable"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "router_candidate"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "disable"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "tool"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "disable"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "online_feature"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "force_off"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "target_kind": {
+        "const": "app_version"
+       }
+      },
+      "required": [
+       "target_kind"
+      ]
+     },
+     "then": {
+      "properties": {
+       "action": {
+        "enum": [
+         "advise_update"
+        ]
+       }
+      }
+     }
+    }
+   ]
+  },
+  "Lift": {
+   "additionalProperties": false,
+   "properties": {
+    "artefact_id": {
+     "minLength": 1,
+     "type": "string"
+    },
+    "version": {
+     "pattern": "^\\d+\\.\\d+\\.\\d+$",
+     "type": "string"
+    }
+   },
+   "required": [
+    "artefact_id",
+    "version"
+   ],
+   "type": "object"
+  }
+ }
+}

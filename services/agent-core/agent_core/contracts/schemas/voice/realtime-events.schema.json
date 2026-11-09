@@ -1,0 +1,1083 @@
+{
+ "$comment": "GENERATED from contracts/voice/realtime-events.schema.json sha256 938a316c4e3458d9aa156c4aa91d631cecbfd7d903d2d95e52becb8ae230d9d3; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/voice/realtime-events",
+ "title": "Realtime event subset (voice bridge)",
+ "oneOf": [
+  {
+   "$ref": "#/$defs/client_event"
+  },
+  {
+   "$ref": "#/$defs/server_event"
+  },
+  {
+   "$ref": "#/$defs/tolerated_server_event"
+  }
+ ],
+ "$defs": {
+  "event_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 128
+  },
+  "item_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 128
+  },
+  "response_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 128
+  },
+  "audio_base64": {
+   "type": "string",
+   "contentEncoding": "base64",
+   "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+   "maxLength": 6400
+  },
+  "audio_base64_out": {
+   "type": "string",
+   "contentEncoding": "base64",
+   "pattern": "^[A-Za-z0-9+/]*={0,2}$"
+  },
+  "pcm24k": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "audio/pcm"
+    },
+    "rate": {
+     "const": 24000
+    }
+   },
+   "required": [
+    "type",
+    "rate"
+   ]
+  },
+  "binding_instructions": {
+   "type": "string",
+   "pattern": "^jana-voice-binding: vb_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "speak_directive_text": {
+   "type": "string",
+   "pattern": "^jana-speak: utt_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "language": {
+   "enum": [
+    "en",
+    "fr",
+    "pt",
+    "ar"
+   ]
+  },
+  "turn_detection": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "server_vad"
+    },
+    "threshold": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "silence_duration_ms": {
+     "type": "integer",
+     "minimum": 32,
+     "maximum": 10000
+    },
+    "interrupt_response": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "type"
+   ]
+  },
+  "session_config": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "realtime"
+    },
+    "instructions": {
+     "$ref": "#/$defs/binding_instructions"
+    },
+    "tools": {
+     "type": "array",
+     "maxItems": 0
+    },
+    "output_modalities": {
+     "type": "array",
+     "items": {
+      "const": "audio"
+     },
+     "minItems": 1,
+     "maxItems": 1
+    },
+    "audio": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "input": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "format": {
+         "$ref": "#/$defs/pcm24k"
+        },
+        "transcription": {
+         "type": "object",
+         "additionalProperties": false,
+         "properties": {
+          "language": {
+           "$ref": "#/$defs/language"
+          }
+         },
+         "required": [
+          "language"
+         ]
+        },
+        "turn_detection": {
+         "$ref": "#/$defs/turn_detection"
+        }
+       },
+       "required": []
+      },
+      "output": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "format": {
+         "$ref": "#/$defs/pcm24k"
+        },
+        "voice": {
+         "type": "string",
+         "minLength": 1,
+         "maxLength": 64
+        }
+       },
+       "required": []
+      }
+     },
+     "required": []
+    },
+    "extensions": {
+     "type": "array",
+     "items": {
+      "const": "speech_to_speech.input_audio_transcription.snapshot"
+     },
+     "maxItems": 1
+    }
+   },
+   "required": [
+    "type"
+   ]
+  },
+  "speak_item": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "message"
+    },
+    "role": {
+     "const": "user"
+    },
+    "content": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "type": {
+        "const": "input_text"
+       },
+       "text": {
+        "$ref": "#/$defs/speak_directive_text"
+       }
+      },
+      "required": [
+       "type",
+       "text"
+      ]
+     }
+    }
+   },
+   "required": [
+    "type",
+    "role",
+    "content"
+   ]
+  },
+  "function_call_error_item": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "function_call_output"
+    },
+    "call_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 128
+    },
+    "output": {
+     "const": "{\"error\":\"not_supported\"}"
+    }
+   },
+   "required": [
+    "type",
+    "call_id",
+    "output"
+   ]
+  },
+  "client_event": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/input_audio_buffer_append"
+    },
+    {
+     "$ref": "#/$defs/session_update"
+    },
+    {
+     "$ref": "#/$defs/conversation_item_create"
+    },
+    {
+     "$ref": "#/$defs/response_create"
+    },
+    {
+     "$ref": "#/$defs/response_cancel"
+    }
+   ]
+  },
+  "input_audio_buffer_append": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "input_audio_buffer.append"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "audio": {
+     "$ref": "#/$defs/audio_base64"
+    }
+   },
+   "required": [
+    "type",
+    "audio"
+   ]
+  },
+  "session_update": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "session.update"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "session": {
+     "$ref": "#/$defs/session_config"
+    }
+   },
+   "required": [
+    "type",
+    "session"
+   ]
+  },
+  "conversation_item_create": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "conversation.item.create"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "item": {
+     "oneOf": [
+      {
+       "$ref": "#/$defs/speak_item"
+      },
+      {
+       "$ref": "#/$defs/function_call_error_item"
+      }
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "item"
+   ]
+  },
+  "response_create": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "response.create"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    }
+   },
+   "required": [
+    "type"
+   ]
+  },
+  "response_cancel": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "response.cancel"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "response_id": {
+     "$ref": "#/$defs/response_id"
+    }
+   },
+   "required": [
+    "type"
+   ]
+  },
+  "realtime_response": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "object": {
+     "enum": [
+      "realtime.response",
+      null
+     ]
+    },
+    "status": {
+     "enum": [
+      "completed",
+      "cancelled",
+      "failed",
+      "incomplete",
+      "in_progress",
+      null
+     ]
+    },
+    "status_details": {
+     "oneOf": [
+      {
+       "type": "null"
+      },
+      {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "type": {
+         "enum": [
+          "completed",
+          "cancelled",
+          "incomplete",
+          "failed",
+          null
+         ]
+        },
+        "reason": {
+         "enum": [
+          "turn_detected",
+          "client_cancelled",
+          "max_output_tokens",
+          "content_filter",
+          null
+         ]
+        },
+        "error": {
+         "oneOf": [
+          {
+           "type": "null"
+          },
+          {
+           "type": "object",
+           "additionalProperties": false,
+           "properties": {
+            "type": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "code": {
+             "type": [
+              "string",
+              "null"
+             ]
+            }
+           },
+           "required": []
+          }
+         ]
+        }
+       },
+       "required": []
+      }
+     ]
+    },
+    "metadata": {
+     "oneOf": [
+      {
+       "type": "null"
+      },
+      {
+       "type": "object",
+       "maxProperties": 16,
+       "additionalProperties": {
+        "type": "string",
+        "maxLength": 512
+       }
+      }
+     ]
+    },
+    "output": {
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": "object"
+     }
+    },
+    "usage": {
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "audio": {
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "conversation_id": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "output_modalities": {
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "enum": [
+       "text",
+       "audio"
+      ]
+     }
+    },
+    "max_output_tokens": {
+     "oneOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "const": "inf"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": []
+  },
+  "server_event": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/session_created"
+    },
+    {
+     "$ref": "#/$defs/error"
+    },
+    {
+     "$ref": "#/$defs/conversation_item_created"
+    },
+    {
+     "$ref": "#/$defs/speech_started"
+    },
+    {
+     "$ref": "#/$defs/speech_stopped"
+    },
+    {
+     "$ref": "#/$defs/input_transcription_delta"
+    },
+    {
+     "$ref": "#/$defs/input_transcription_completed"
+    },
+    {
+     "$ref": "#/$defs/response_created"
+    },
+    {
+     "$ref": "#/$defs/output_audio_delta"
+    },
+    {
+     "$ref": "#/$defs/output_audio_done"
+    },
+    {
+     "$ref": "#/$defs/output_audio_transcript_done"
+    },
+    {
+     "$ref": "#/$defs/function_call_arguments_done"
+    },
+    {
+     "$ref": "#/$defs/response_done"
+    }
+   ]
+  },
+  "session_created": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "session.created"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "session": {
+     "type": "object",
+     "required": [
+      "type"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "session"
+   ]
+  },
+  "error": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "error"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "error": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "type": {
+       "type": "string"
+      },
+      "code": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "message": {
+       "type": "string"
+      },
+      "param": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "event_id": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     },
+     "required": [
+      "type",
+      "message"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "error"
+   ]
+  },
+  "conversation_item_created": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "conversation.item.created"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "previous_item_id": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "item": {
+     "type": "object"
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "item"
+   ]
+  },
+  "speech_started": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "input_audio_buffer.speech_started"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "audio_start_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "item_id": {
+     "$ref": "#/$defs/item_id"
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "audio_start_ms",
+    "item_id"
+   ]
+  },
+  "speech_stopped": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "input_audio_buffer.speech_stopped"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "audio_end_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "item_id": {
+     "$ref": "#/$defs/item_id"
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "audio_end_ms",
+    "item_id"
+   ]
+  },
+  "input_transcription_delta": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "conversation.item.input_audio_transcription.delta"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "item_id": {
+     "$ref": "#/$defs/item_id"
+    },
+    "content_index": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 0
+    },
+    "delta": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "logprobs": {
+     "type": [
+      "array",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "item_id"
+   ]
+  },
+  "input_transcription_completed": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "conversation.item.input_audio_transcription.completed"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "item_id": {
+     "$ref": "#/$defs/item_id"
+    },
+    "content_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "transcript": {
+     "type": "string"
+    },
+    "usage": {
+     "type": "object"
+    },
+    "languages": {
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "logprobs": {
+     "type": [
+      "array",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "item_id",
+    "content_index",
+    "transcript",
+    "usage"
+   ]
+  },
+  "response_created": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "response.created"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "response": {
+     "$ref": "#/$defs/realtime_response"
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "response"
+   ]
+  },
+  "output_audio_delta": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "response.output_audio.delta"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "response_id": {
+     "$ref": "#/$defs/response_id"
+    },
+    "item_id": {
+     "$ref": "#/$defs/item_id"
+    },
+    "output_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "content_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "delta": {
+     "$ref": "#/$defs/audio_base64_out"
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "response_id",
+    "item_id",
+    "output_index",
+    "content_index",
+    "delta"
+   ]
+  },
+  "output_audio_done": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "response.output_audio.done"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "response_id": {
+     "$ref": "#/$defs/response_id"
+    },
+    "item_id": {
+     "$ref": "#/$defs/item_id"
+    },
+    "output_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "content_index": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "response_id",
+    "item_id",
+    "output_index",
+    "content_index"
+   ]
+  },
+  "output_audio_transcript_done": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "response.output_audio_transcript.done"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "response_id": {
+     "$ref": "#/$defs/response_id"
+    },
+    "item_id": {
+     "$ref": "#/$defs/item_id"
+    },
+    "output_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "content_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "transcript": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "response_id",
+    "item_id",
+    "output_index",
+    "content_index",
+    "transcript"
+   ]
+  },
+  "function_call_arguments_done": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "response.function_call_arguments.done"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "response_id": {
+     "$ref": "#/$defs/response_id"
+    },
+    "item_id": {
+     "$ref": "#/$defs/item_id"
+    },
+    "output_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "call_id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "arguments": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "response_id",
+    "item_id",
+    "output_index",
+    "call_id",
+    "name",
+    "arguments"
+   ]
+  },
+  "response_done": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "response.done"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "response": {
+     "$ref": "#/$defs/realtime_response"
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "response"
+   ]
+  },
+  "tolerated_server_event": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/session_updated"
+    },
+    {
+     "$ref": "#/$defs/output_audio_transcript_delta"
+    },
+    {
+     "$ref": "#/$defs/input_transcription_snapshot"
+    }
+   ]
+  },
+  "session_updated": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "session.updated"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "session": {
+     "type": "object",
+     "required": [
+      "type"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "session"
+   ]
+  },
+  "output_audio_transcript_delta": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "response.output_audio_transcript.delta"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "response_id": {
+     "$ref": "#/$defs/response_id"
+    },
+    "item_id": {
+     "$ref": "#/$defs/item_id"
+    },
+    "output_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "content_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "delta": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "response_id",
+    "item_id",
+    "output_index",
+    "content_index",
+    "delta"
+   ]
+  },
+  "input_transcription_snapshot": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "speech_to_speech.input_audio_transcription.snapshot"
+    },
+    "event_id": {
+     "$ref": "#/$defs/event_id"
+    },
+    "item_id": {
+     "$ref": "#/$defs/item_id"
+    },
+    "content_index": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "transcript": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "type",
+    "event_id",
+    "item_id",
+    "transcript"
+   ]
+  }
+ }
+}

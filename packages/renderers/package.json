@@ -1,0 +1,26 @@
+{
+  "name": "@jana/renderers",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Vetted visual renderers: pure functions of a resolved spec to SVG (M5 function_graph; the catalogue grows in M17).",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests"
+  },
+  "jana": {
+    "layer": "experience"
+  },
+  "dependencies": {
+    "@jana/contracts-ts": "workspace:*",
+    "react": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "axe-core": "^4.14.0",
+    "react-dom": "19.3.0"
+  }
+}

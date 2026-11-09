@@ -1,0 +1,228 @@
+# Provider-neutral runtime candidates. Available installed models are optional; no offline model is recommended.
+# Online aliases resolve through the explicit operator deployment catalogue; no vendor is selected here.
+version: 1
+tiers:
+  fast:
+  - local:qwen3-vl-8b
+  - local:gemma-4-12b
+  - cloud:primary/fast-model
+  strong:
+  - cloud:primary/strong-model
+  - local:gemma-4-26b-a4b
+  - local:qwen3-vl-30b
+  - local:gemma-4-12b
+  - local:qwen3-vl-8b
+  judge:
+  - cloud:primary/strong-model
+  - local:qwen3-vl-8b
+  - local:gemma-4-12b
+roles:
+  coach:
+    tier: fast
+    prefer: cloud
+    reasoning: none
+    stream: true
+    max_iter: 3
+    temperature: 0.6
+    output: tutor-turn.schema.json
+    output_retries: 1
+    prompt_mode: by_class
+    priority: 9
+    concurrency: 1
+  diagnoser:
+    tier: fast
+    prefer: cloud
+    reasoning: low
+    max_iter: 2
+    temperature: 0.2
+    output: diagnosis.schema.json
+    output_retries: 1
+    prompt_mode: minimal
+    priority: 7
+  solver:
+    tier: strong
+    prefer: cloud
+    reasoning: high
+    max_iter: 12
+    temperature: 0.2
+    output: solution-plan.schema.json
+    output_retries: 1
+    prompt_mode: minimal
+    requires:
+      tools: true
+      min_context: 6144
+    priority: 6
+  checker:
+    tier: judge
+    prefer: cloud
+    reasoning: medium
+    max_iter: 3
+    temperature: 0.0
+    output: verdict.schema.json
+    output_retries: 1
+    prompt_mode: minimal
+    requires:
+      tools: true
+    priority: 7
+    concurrency: 4
+  # The Study companion's thread (SPEC §19.4, W8 phase 2): one move per turn, at most two tool rounds.
+  companion:
+    tier: fast
+    prefer: cloud
+    reasoning: low
+    max_iter: 3
+    temperature: 0.5
+    output: companion-turn.schema.json
+    output_retries: 1
+    prompt_mode: by_class
+    priority: 8
+  reflector:
+    tier: strong
+    prefer: local
+    reasoning: medium
+    max_iter: 4
+    temperature: 0.3
+    output: reflection.schema.json
+    output_retries: 1
+    prompt_mode: minimal
+    background: true
+    priority: 1
+    concurrency: 1
+auxiliary:
+  # The Coach's local model first and Muse Spark after it, so a computer with no local model still screens input,
+  # matches rules, titles and compacts on Spark (subject to consent and connectivity) instead of failing open; a
+  # computer with a local model keeps these on the device.
+  rule_matcher:
+    inherit: true
+    model: cloud:primary/fast-model
+    reasoning: none
+    priority: 8
+  input_guard:
+    inherit: true
+    model: cloud:primary/fast-model
+    reasoning: none
+    priority: 8
+  title:
+    inherit: true
+    model: cloud:primary/fast-model
+    reasoning: none
+    priority: 2
+  compaction:
+    inherit: true
+    model: cloud:primary/fast-model
+    reasoning: none
+    priority: 2
+  research_chat:
+    # The research agent's conversation before a study pack (SPEC §18.1a): online only, as the research is.
+    model: cloud:primary/fast-model
+    reasoning: low
+    priority: 6
+  checkin:
+    # The check-in extractor (SPEC §19.5.5): one structured call after a companion turn whose words name a day. It
+    # runs where the turn ran: a turn served on this computer keeps its extraction here.
+    inherit: true
+    model: cloud:primary/fast-model
+    reasoning: none
+    priority: 2
+  judge:
+    tier: judge
+    reasoning: low
+    priority: 5
+  reflection:
+    tier: strong
+    reasoning: medium
+    priority: 1
+  vision:
+    inherit: true
+    tier: fast # the local vision model first; Muse Spark reads a photo only after its notice (JM-D10)
+    requires:
+      vision: true
+    priority: 8
+retry:
+  same_model: 2
+  backoff:
+    initial_s: 2
+    factor: 2
+    max_s: 60
+    jitter: 0.25
+  honor_retry_after: true
+fallback:
+  triggers:
+  - rate_limit
+  - overloaded
+  - server_error
+  - timeout
+  - network_unavailable
+  - auth
+  - quota_or_billing
+  - model_not_found
+  - content_filter
+  - format_error
+  - runtime_down
+  - out_of_memory
+  - schema_invalid_twice
+  - empty_twice
+  - unparsed_tool_call_twice
+  - unknown
+  never_after_tool_side_effect: true
+  offline_to_local: true
+local:
+  readiness: real_generation
+  context: auto_by_memory
+  context_shift: false
+  ladder:
+  - 4096
+  - 6144
+  - 8192
+  - 12288
+  - 16384
+  - 24576
+  - 32768
+  min_agent_context: 6144
+  memory_headroom_gb: 2
+  slots:
+    low: 1
+    mid: 1
+    high: 2
+  # 0 is the lowest reasoning the model allows: off where it can be turned off; Muse Glimmer always reasons, so it runs
+  # at reasoning_strength low (SPEC §7: ~150-250 tokens per call).
+  thinking_budget:
+    low: 0
+    mid: 0
+    high: 0
+  restart:
+    backoff_s:
+    - 1
+    - 2
+    - 4
+    max_restarts: 3
+    window_s: 300
+cloud:
+  enabled: true # Still gated by the online switch, consent, connectivity and budgets at runtime.
+  probe_interval_s: 60
+  send_photos: true # still per photo: the local privacy pass and the photo notice come first (SPEC §5)
+  redaction_check: true
+  roles_allowed:
+  - coach
+  - diagnoser
+  - solver
+  - checker
+  - rule_matcher
+  - input_guard
+  - title
+  - compaction
+  - judge
+  - vision
+  - research_chat
+  - companion
+  - checkin
+  # The Reflector reaches the cloud only while tutor_memory_online is effective (SPEC §19.4, JM-D21): the router's
+  # memory_online() gate; it stays a background role.
+  - reflector
+budget:
+  per_session_usd: 3.0
+  per_student_day_usd: 10.0
+  per_school_month_usd: 200
+  reminders_at:
+  - 0.5
+  - 0.85

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "student",
+    "key"
+  ],
+  "properties": {
+    "student": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "quantity": {
+          "enum": [
+            "measurement",
+            "money",
+            "angle",
+            "exact",
+            "probability"
+          ]
+        },
+        "sf": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 15
+        },
+        "min_sf": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 15
+        },
+        "dp": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 6
+        },
+        "carried": {
+          "type": "boolean"
+        },
+        "carried_share": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 0.5
+        },
+        "angle_tolerance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "tolerance": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "enum": [
+                "absolute",
+                "relative"
+              ]
+            },
+            "value": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            }
+          },
+          "required": [
+            "mode",
+            "value"
+          ]
+        },
+        "unit_policy": {
+          "enum": [
+            "convertible",
+            "exact",
+            "none"
+          ]
+        },
+        "form": {
+          "enum": [
+            "simplest",
+            "factorised",
+            "expanded",
+            "single_fraction",
+            "surd_simplest",
+            "standard_form",
+            "exact",
+            "decimal",
+            "mixed_number",
+            "bearing"
+          ]
+        },
+        "on_form_unmet": {
+          "enum": [
+            "ignore",
+            "partial",
+            "incorrect"
+          ]
+        },
+        "on_unit_missing": {
+          "enum": [
+            "ignore",
+            "partial",
+            "incorrect"
+          ]
+        },
+        "on_precision_unmet": {
+          "enum": [
+            "ignore",
+            "partial",
+            "incorrect"
+          ]
+        }
+      }
+    },
+    "variables": {
+      "type": "array",
+      "maxItems": 20,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}(_[A-Za-z0-9]{1,8})?$"
+      }
+    },
+    "assumptions": {
+      "type": "object",
+      "maxProperties": 20,
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "enum": [
+            "positive",
+            "nonzero",
+            "integer",
+            "nonnegative"
+          ]
+        }
+      }
+    },
+    "level": {
+      "enum": [
+        "O",
+        "A"
+      ]
+    },
+    "log_base": {
+      "enum": [
+        2,
+        10
+      ]
+    },
+    "decimal_comma": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/gas_laws_sim.schema.json sha256 53a348f5b51be13ff36b52d4aafb37cc134f2b3a89f963c3ebeac3e23a3151fb; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/gas_laws_sim",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "amount_mol": {
+   "type": "number",
+   "exclusiveMinimum": 0
+  },
+  "temperature_k": {
+   "type": "number",
+   "exclusiveMinimum": 0
+  },
+  "volume_m3": {
+   "type": "number",
+   "exclusiveMinimum": 0
+  },
+  "control": {
+   "enum": [
+    "temperature",
+    "volume"
+   ]
+  },
+  "preset_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100
+  },
+  "predict": {
+   "enum": [
+    "poe.phy.gas_heated_flask.v1"
+   ]
+  }
+ },
+ "required": [
+  "amount_mol",
+  "temperature_k",
+  "volume_m3",
+  "control",
+  "preset_id"
+ ]
+}

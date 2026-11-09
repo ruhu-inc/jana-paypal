@@ -1,0 +1,466 @@
+{
+ "$comment": "GENERATED from contracts/visuals/sketch.schema.json sha256 b11e10d36b9a1f5a38172a3e7938039731ad117a1637e25a09e9d5ebb3dd601f; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/sketch",
+ "title": "Online sketch request",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "sketch_version": {
+   "const": 1
+  },
+  "frame": {
+   "$ref": "#/$defs/frame"
+  },
+  "elements": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 40,
+   "items": {
+    "$ref": "#/$defs/element"
+   }
+  },
+  "checks": {
+   "type": "array",
+   "maxItems": 12,
+   "items": {
+    "$ref": "#/$defs/check"
+   }
+  },
+  "caption": {
+   "type": "string",
+   "maxLength": 120
+  }
+ },
+ "required": [
+  "sketch_version",
+  "frame",
+  "elements",
+  "checks"
+ ],
+ "$defs": {
+  "xy": {
+   "type": "array",
+   "prefixItems": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "number"
+    }
+   ],
+   "minItems": 2,
+   "maxItems": 2
+  },
+  "frame": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "visual_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^vis_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "x_min": {
+     "type": "number"
+    },
+    "x_max": {
+     "type": "number"
+    },
+    "y_min": {
+     "type": "number"
+    },
+    "y_max": {
+     "type": "number"
+    }
+   },
+   "required": [
+    "visual_id",
+    "x_min",
+    "x_max",
+    "y_min",
+    "y_max"
+   ]
+  },
+  "element": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/el_line"
+    },
+    {
+     "$ref": "#/$defs/el_arrow"
+    },
+    {
+     "$ref": "#/$defs/el_arc"
+    },
+    {
+     "$ref": "#/$defs/el_circle"
+    },
+    {
+     "$ref": "#/$defs/el_polygon"
+    },
+    {
+     "$ref": "#/$defs/el_point"
+    },
+    {
+     "$ref": "#/$defs/el_label"
+    },
+    {
+     "$ref": "#/$defs/el_axis"
+    }
+   ]
+  },
+  "el_line": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "line"
+    },
+    "from": {
+     "$ref": "#/$defs/xy"
+    },
+    "to": {
+     "$ref": "#/$defs/xy"
+    },
+    "dashed": {
+     "type": "boolean",
+     "default": false
+    }
+   },
+   "required": [
+    "kind",
+    "from",
+    "to"
+   ]
+  },
+  "el_arrow": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "arrow"
+    },
+    "from": {
+     "$ref": "#/$defs/xy"
+    },
+    "to": {
+     "$ref": "#/$defs/xy"
+    }
+   },
+   "required": [
+    "kind",
+    "from",
+    "to"
+   ]
+  },
+  "el_arc": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "arc"
+    },
+    "center": {
+     "$ref": "#/$defs/xy"
+    },
+    "radius": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    },
+    "start_deg": {
+     "type": "number",
+     "minimum": -360,
+     "maximum": 360
+    },
+    "end_deg": {
+     "type": "number",
+     "minimum": -360,
+     "maximum": 360
+    }
+   },
+   "required": [
+    "kind",
+    "center",
+    "radius",
+    "start_deg",
+    "end_deg"
+   ]
+  },
+  "el_circle": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "circle"
+    },
+    "center": {
+     "$ref": "#/$defs/xy"
+    },
+    "radius": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    }
+   },
+   "required": [
+    "kind",
+    "center",
+    "radius"
+   ]
+  },
+  "el_polygon": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "polygon"
+    },
+    "points": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 12,
+     "items": {
+      "$ref": "#/$defs/xy"
+     }
+    }
+   },
+   "required": [
+    "kind",
+    "points"
+   ]
+  },
+  "el_point": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "point"
+    },
+    "at": {
+     "$ref": "#/$defs/xy"
+    },
+    "name": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]{0,15}$"
+    }
+   },
+   "required": [
+    "kind",
+    "at"
+   ]
+  },
+  "el_label": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "label"
+    },
+    "at": {
+     "$ref": "#/$defs/xy"
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 40
+    }
+   },
+   "required": [
+    "kind",
+    "at",
+    "text"
+   ]
+  },
+  "el_axis": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "axis"
+    },
+    "axis": {
+     "enum": [
+      "x",
+      "y"
+     ]
+    },
+    "from": {
+     "type": "number"
+    },
+    "to": {
+     "type": "number"
+    },
+    "ticks": {
+     "type": "array",
+     "maxItems": 20,
+     "items": {
+      "type": "number"
+     }
+    },
+    "title": {
+     "type": "string",
+     "maxLength": 24
+    }
+   },
+   "required": [
+    "kind",
+    "axis",
+    "from",
+    "to"
+   ]
+  },
+  "check": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "element": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 39
+    },
+    "claim": {
+     "enum": [
+      "point_value",
+      "point_on_curve",
+      "intersection",
+      "length",
+      "angle",
+      "direction",
+      "label_value"
+     ]
+    },
+    "against": {
+     "type": "string",
+     "maxLength": 160,
+     "pattern": "^(chk_[A-Za-z0-9_]{3,64}|kn_[A-Za-z0-9]{2,32}|[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*)$"
+    }
+   },
+   "required": [
+    "element",
+    "claim",
+    "against"
+   ]
+  },
+  "resolved": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "sketch_id": {
+     "type": "string",
+     "pattern": "^skt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "sketch_version": {
+     "const": 1
+    },
+    "frame": {
+     "$ref": "#/$defs/frame"
+    },
+    "elements": {
+     "type": "array",
+     "maxItems": 40,
+     "items": {
+      "$ref": "#/$defs/element"
+     }
+    },
+    "dropped": {
+     "type": "array",
+     "maxItems": 40,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "element": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "reason": {
+        "enum": [
+         "out_of_bounds",
+         "over_cap",
+         "guard_refused",
+         "unverified_number",
+         "check_failed"
+        ]
+       }
+      },
+      "required": [
+       "element",
+       "reason"
+      ]
+     }
+    },
+    "checks": {
+     "type": "array",
+     "maxItems": 12,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "element": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "claim": {
+        "$ref": "#/$defs/check/properties/claim"
+       },
+       "result": {
+        "enum": [
+         "pass",
+         "fail",
+         "not_checkable"
+        ]
+       },
+       "check_id": {
+        "anyOf": [
+         {
+          "type": "string",
+          "pattern": "^chk_[A-Za-z0-9_]{3,64}$"
+         },
+         {
+          "type": "null"
+         }
+        ]
+       }
+      },
+      "required": [
+       "element",
+       "claim",
+       "result",
+       "check_id"
+      ]
+     }
+    },
+    "status": {
+     "enum": [
+      "checked",
+      "not_checked"
+     ]
+    },
+    "caption": {
+     "type": "string",
+     "maxLength": 120
+    },
+    "alt": {
+     "type": "string",
+     "maxLength": 600
+    }
+   },
+   "required": [
+    "sketch_id",
+    "sketch_version",
+    "frame",
+    "elements",
+    "dropped",
+    "checks",
+    "status",
+    "alt"
+   ]
+  }
+ }
+}

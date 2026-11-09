@@ -1,0 +1,571 @@
+{
+ "$comment": "GENERATED from contracts/learning/student-records.schema.json sha256 685d670568fa3abd94b4307ab47358a77f319a479d821f663dce7d08eb45ad27; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/learning/student-records",
+ "title": "Student records",
+ "$defs": {
+  "question_snapshot": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "const": "saved_question"
+    },
+    "question_id": {
+     "type": "string",
+     "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "subject": {
+     "enum": [
+      "mathematics",
+      "physics",
+      "chemistry",
+      "biology",
+      "accounting"
+     ]
+    },
+    "topic_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 96
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "problem": {
+     "type": "string",
+     "maxLength": 8000
+    },
+    "board": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "latex": {
+        "type": "string",
+        "maxLength": 300
+       },
+       "reason": {
+        "type": "string",
+        "maxLength": 120
+       }
+      },
+      "required": [
+       "latex",
+       "reason"
+      ]
+     },
+     "maxItems": 100
+    },
+    "reason": {
+     "enum": [
+      "stuck",
+      "repeated_error",
+      "verification_disagreement",
+      "outside_content",
+      "student_requested"
+     ]
+    },
+    "created_at": {
+     "type": "string",
+     "format": "date-time"
+    }
+   },
+   "required": [
+    "kind",
+    "question_id",
+    "subject",
+    "topic_id",
+    "problem",
+    "board",
+    "reason",
+    "created_at"
+   ]
+  },
+  "SavedQuestion": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "question_id": {
+     "type": "string",
+     "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "session_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "snapshot": {
+     "$ref": "#/$defs/question_snapshot"
+    },
+    "status": {
+     "enum": [
+      "kept",
+      "sorted"
+     ]
+    },
+    "expires_at": {
+     "type": "string",
+     "format": "date-time"
+    }
+   },
+   "required": [
+    "question_id",
+    "session_id",
+    "snapshot",
+    "status",
+    "expires_at"
+   ]
+  },
+  "CreateSavedQuestion": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "session_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "turn_id": {
+     "type": "string",
+     "maxLength": 64
+    }
+   },
+   "required": [
+    "session_id",
+    "turn_id"
+   ]
+  },
+  "UpdateSavedQuestion": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "status": {
+     "enum": [
+      "sorted",
+      "kept"
+     ]
+    }
+   },
+   "required": [
+    "status"
+   ]
+  },
+  "ProblemReport": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "report_id": {
+     "type": "string",
+     "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "session_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "turn_ids": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 64
+     },
+     "minItems": 1,
+     "maxItems": 20
+    },
+    "category": {
+     "enum": [
+      "incorrect",
+      "confusing",
+      "unsafe"
+     ]
+    },
+    "note": {
+     "type": "string",
+     "maxLength": 300
+    },
+    "created_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "expires_at": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "allow_support_export": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "report_id",
+    "session_id",
+    "turn_ids",
+    "category",
+    "note",
+    "created_at",
+    "expires_at",
+    "allow_support_export"
+   ]
+  },
+  "CreateProblemReport": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "session_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "turn_ids": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 64
+     },
+     "minItems": 1,
+     "maxItems": 20
+    },
+    "category": {
+     "enum": [
+      "incorrect",
+      "confusing",
+      "unsafe"
+     ]
+    },
+    "note": {
+     "type": "string",
+     "maxLength": 300
+    },
+    "allow_support_export": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "session_id",
+    "turn_ids",
+    "category",
+    "note",
+    "allow_support_export"
+   ]
+  },
+  "AssessmentStart": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "enum": [
+      "diagnostic",
+      "mastery_check"
+     ]
+    },
+    "subject": {
+     "enum": [
+      "mathematics",
+      "physics",
+      "chemistry",
+      "biology",
+      "accounting"
+     ]
+    },
+    "kc_id": {
+     "type": "string",
+     "maxLength": 96
+    }
+   },
+   "required": [
+    "kind",
+    "subject"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "mastery_check"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "kc_id"
+      ]
+     }
+    }
+   ]
+  },
+  "AssessmentAnswer": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "client_answer_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "item_id": {
+     "type": "string",
+     "maxLength": 96
+    },
+    "action": {
+     "enum": [
+      "answer",
+      "not_learned"
+     ]
+    },
+    "answer": {
+     "$ref": "https://jana.dev/contracts/api/commands#/$defs/Answer"
+    }
+   },
+   "required": [
+    "client_answer_id",
+    "item_id",
+    "action"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "action": {
+        "const": "answer"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "answer"
+      ]
+     },
+     "else": {
+      "not": {
+       "required": [
+        "answer"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "AssessmentState": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "assessment_id": {
+     "type": "string",
+     "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "kind": {
+     "enum": [
+      "diagnostic",
+      "mastery_check"
+     ]
+    },
+    "subject": {
+     "enum": [
+      "mathematics",
+      "physics",
+      "chemistry",
+      "biology",
+      "accounting"
+     ]
+    },
+    "kc_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 96
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "state": {
+     "enum": [
+      "in_progress",
+      "waiting",
+      "stopped",
+      "completed",
+      "failed",
+      "explaining"
+     ]
+    },
+    "answered_count": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "current_item": {
+     "anyOf": [
+      {
+       "$ref": "https://jana.dev/contracts/api/commands#/$defs/PracticeItem"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "available_at": {
+     "anyOf": [
+      {
+       "type": "string",
+       "format": "date-time"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "retry_at": {
+     "anyOf": [
+      {
+       "type": "string",
+       "format": "date-time"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "outcome_topics": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "topic_id": {
+        "type": "string",
+        "maxLength": 96
+       },
+       "status": {
+        "enum": [
+         "not_started",
+         "learning",
+         "ready_to_check",
+         "mastered",
+         "needs_review",
+         "moved_on"
+        ]
+       }
+      },
+      "required": [
+       "topic_id",
+       "status"
+      ]
+     }
+    },
+    "answered_items": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "item_id": {
+        "type": "string",
+        "maxLength": 96
+       },
+       "attempt_id": {
+        "anyOf": [
+         {
+          "type": "string",
+          "maxLength": 64
+         },
+         {
+          "type": "null"
+         }
+        ]
+       },
+       "answered_at": {
+        "type": "string",
+        "format": "date-time"
+       }
+      },
+      "required": [
+       "item_id",
+       "attempt_id",
+       "answered_at"
+      ]
+     },
+     "maxItems": 40
+    },
+    "explain": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "statement",
+      "follow_up",
+      "attempts",
+      "outcome"
+     ],
+     "properties": {
+      "statement": {
+       "type": "string",
+       "maxLength": 200
+      },
+      "follow_up": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 300
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "attempts": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 2
+      },
+      "outcome": {
+       "enum": [
+        "awaiting",
+        "follow_up",
+        "passed",
+        "not_yet",
+        "unavailable"
+       ]
+      }
+     }
+    }
+   },
+   "required": [
+    "assessment_id",
+    "kind",
+    "subject",
+    "kc_id",
+    "state",
+    "answered_count",
+    "current_item",
+    "available_at",
+    "retry_at",
+    "outcome_topics",
+    "answered_items"
+   ]
+  },
+  "ExplainBack": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "client_explain_id",
+    "text",
+    "modality"
+   ],
+   "properties": {
+    "client_explain_id": {
+     "type": "string",
+     "maxLength": 64
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 1200
+    },
+    "modality": {
+     "enum": [
+      "typed",
+      "spoken"
+     ]
+    }
+   }
+  }
+ }
+}

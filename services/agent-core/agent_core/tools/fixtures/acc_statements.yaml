@@ -1,0 +1,111 @@
+# Tool fixtures (TOL-05): synthetic, hand-written.
+tool: acc_statements
+version: 2
+valid_args:
+- trial_balance:
+  - account: Sales
+    role: revenue
+    credit: 9000
+  - account: Purchases
+    role: purchases
+    debit: 5000
+  - account: Capital
+    role: capital
+    credit: 1000
+  - account: Bank
+    role: bank
+    debit: 5000
+  adjustments:
+  - kind: closing_inventory
+    amount: 700
+- trial_balance:
+  - account: Sales
+    role: revenue
+    credit: 100
+  - account: Cash
+    role: cash
+    debit: 100
+  student:
+    statement: income_statement
+    lines:
+    - label: Revenue
+      amount: 100
+invalid_args:
+- adjustments: []
+- trial_balance:
+  - account: Sales
+    role: turnover
+    credit: 100
+- trial_balance:
+  - account: Sales
+    role: revenue
+    credit: 100
+  adjustments:
+  - kind: accrual
+    amount: 5
+description_lint:
+  sections:
+  - what
+  - use_when
+  - parameters
+  - returns
+  - limits
+  - recovery
+  max_chars_full: 600
+repairs:
+- mistake: arguments sent as a JSON string
+  input: '{"text": "x+1"}'
+  repaired:
+    note: same pattern on this tool's arguments
+- mistake: argument names in camelCase
+  input:
+    Text: x+1
+  repaired:
+    note: same pattern on this tool's arguments
+envelopes:
+  unknown_tool:
+    first_clause: No action was taken.
+    retryable: false
+  unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  invalid_args:
+    first_clause: No action was taken.
+    retryable: true
+  truncated_args:
+    first_clause: No action was taken.
+    retryable: true
+  policy_denied:
+    first_clause: No action was taken.
+    retryable: false
+  student_declined:
+    first_clause: The action completed, but
+    retryable: false
+  timeout:
+    first_clause: No action was taken.
+    retryable: true
+  cancelled:
+    first_clause: No action was taken.
+    retryable: false
+  worker_crashed:
+    first_clause: No action was taken.
+    retryable: true
+  worker_unavailable:
+    first_clause: No action was taken.
+    retryable: false
+  limit_exceeded:
+    first_clause: No action was taken.
+    retryable: false
+  domain_error:
+    first_clause: No action was taken.
+    retryable: false
+  execution_error:
+    first_clause: No action was taken.
+    retryable: false
+  result_too_large:
+    first_clause: The action completed, but
+    retryable: false
+  repeated_failure_blocked:
+    first_clause: No action was taken.
+    retryable: false
+golden: services/tool-worker/tool_worker/golden/acc_statements.yaml

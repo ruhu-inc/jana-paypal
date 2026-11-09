@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jana.dev/renderers/kinds/periodic_table",
+  "$comment": "Params for periodic_table, owned by the vetted renderer (VSL-03). Group and period numbers are presentation labels; any figure shown for an element is pack reference data (N3). Free-form drawing fields (svg, path, html, points_raw) are not allowed (VSL-01).",
+  "title": "periodic_table params",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [],
+  "properties": {
+    "highlight": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "values"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "group",
+            "period",
+            "block",
+            "elements"
+          ]
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^([0-9]{1,2}|[spdf]|[A-Z][a-z]?)$"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "trend": {
+      "enum": [
+        "atomic_radius",
+        "reactivity_metals",
+        "reactivity_halogens",
+        "metallic_character"
+      ]
+    },
+    "show_relative_mass": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "$defs": {
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "enum": [
+            "trend_arrow"
+          ]
+        },
+        "of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+          "maxLength": 64
+        },
+        "params": {
+          "type": "object",
+          "maxProperties": 8,
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

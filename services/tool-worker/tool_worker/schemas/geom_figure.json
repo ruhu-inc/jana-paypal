@@ -1,0 +1,512 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "template",
+    "givens"
+  ],
+  "properties": {
+    "template": {
+      "enum": [
+        "triangle",
+        "circle",
+        "circle_theorem",
+        "bearing",
+        "coordinates",
+        "vector",
+        "transformation",
+        "mensuration",
+        "similar"
+      ]
+    },
+    "givens": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "a": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "b": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "c": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "A": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "B": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "C": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "r": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "d": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "angle": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "chord": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "arc": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "bearing": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "distance": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "gradient": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "k": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+          "maxLength": 40
+        },
+        "right_angle": {
+          "enum": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        "theorem": {
+          "enum": [
+            "angle_at_centre",
+            "angle_at_circumference",
+            "same_segment",
+            "semicircle",
+            "cyclic_quadrilateral",
+            "tangent_radius",
+            "alternate_segment",
+            "tangents_from_point",
+            "isosceles_radii"
+          ]
+        },
+        "from": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+            "maxLength": 40
+          }
+        },
+        "to": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+            "maxLength": 40
+          }
+        },
+        "p1": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+            "maxLength": 40
+          }
+        },
+        "p2": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+            "maxLength": 40
+          }
+        },
+        "point": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+            "maxLength": 40
+          }
+        },
+        "u": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+            "maxLength": 40
+          }
+        },
+        "v": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+            "maxLength": 40
+          }
+        },
+        "points": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            }
+          }
+        },
+        "transformation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "translation",
+                "reflection",
+                "rotation",
+                "enlargement"
+              ]
+            },
+            "vector": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": [
+                  "number",
+                  "string"
+                ],
+                "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+                "maxLength": 40
+              }
+            },
+            "line": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 60
+            },
+            "centre": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": [
+                  "number",
+                  "string"
+                ],
+                "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+                "maxLength": 40
+              }
+            },
+            "angle": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "direction": {
+              "enum": [
+                "clockwise",
+                "anticlockwise"
+              ]
+            },
+            "scale": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            }
+          },
+          "required": [
+            "kind"
+          ]
+        },
+        "shape": {
+          "enum": [
+            "rectangle",
+            "square",
+            "triangle",
+            "parallelogram",
+            "trapezium",
+            "circle",
+            "cuboid",
+            "cube",
+            "prism",
+            "cylinder",
+            "cone",
+            "sphere",
+            "hemisphere",
+            "pyramid"
+          ]
+        },
+        "dims": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "length": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "width": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "height": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "side": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "base": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "a": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "b": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "radius": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "cross_section_area": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "base_area": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            }
+          }
+        },
+        "scale_from": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "length",
+                "area",
+                "volume"
+              ]
+            },
+            "a": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            },
+            "b": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            }
+          },
+          "required": [
+            "kind",
+            "a",
+            "b"
+          ]
+        },
+        "convert": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "length",
+                "area",
+                "volume"
+              ]
+            },
+            "a": {
+              "type": [
+                "number",
+                "string"
+              ],
+              "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+              "maxLength": 40
+            }
+          },
+          "required": [
+            "kind",
+            "a"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/equilibrium_sim.schema.json sha256 52f9f906b0ae3820c9c3250f68fe6e97f9d8cd7f612df6ca3ed5894c21a12491; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/equilibrium_sim",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "reaction": {
+   "$ref": "https://jana.dev/contracts/tools/science-compute#/$defs/Reaction"
+  },
+  "initial_concentrations": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "species_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+     },
+     "value": {
+      "type": "number",
+      "minimum": 0
+     }
+    },
+    "required": [
+     "species_id",
+     "value"
+    ]
+   },
+   "minItems": 2,
+   "maxItems": 6
+  },
+  "temperature_k": {
+   "type": "number",
+   "minimum": 1,
+   "maximum": 3000
+  },
+  "reference_temperature_k": {
+   "type": "number",
+   "minimum": 1,
+   "maximum": 3000
+  },
+  "reference_kc": {
+   "type": "number",
+   "minimum": 1e-09
+  },
+  "forward_enthalpy_j_mol": {
+   "type": "number"
+  },
+  "volume_l": {
+   "type": "number",
+   "minimum": 1e-06
+  },
+  "forward_rate_constant": {
+   "type": "number",
+   "minimum": 1e-09
+  },
+  "controls": {
+   "type": "array",
+   "items": {
+    "enum": [
+     "temperature",
+     "volume",
+     "add_reactant",
+     "add_product",
+     "catalyst"
+    ]
+   },
+   "minItems": 1,
+   "maxItems": 5
+  },
+  "predict": {
+   "enum": [
+    "poe.chm.equilibrium_catalyst.v1"
+   ]
+  }
+ },
+ "required": [
+  "reaction",
+  "initial_concentrations",
+  "temperature_k",
+  "reference_temperature_k",
+  "reference_kc",
+  "forward_enthalpy_j_mol",
+  "volume_l",
+  "forward_rate_constant",
+  "controls"
+ ]
+}

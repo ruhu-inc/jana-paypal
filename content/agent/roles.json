@@ -1,0 +1,560 @@
+{
+  "roles": [
+    {
+      "id": "compaction",
+      "version": "0.1",
+      "name": "Compaction",
+      "kind": "auxiliary",
+      "audience": "team",
+      "model_role": "compaction",
+      "toolsets": [],
+      "tools": [],
+      "output_mode": "structured",
+      "output_schema": "aux-compaction.schema.json",
+      "soul": "none",
+      "prompt_mode": "minimal",
+      "permissions": {
+        "address_student": false,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 1,
+        "max_tool_rounds": 0,
+        "max_output_tokens": {
+          "low": 200,
+          "mid": 300,
+          "high": 300,
+          "cloud": 400
+        },
+        "wall_clock_s": 10
+      },
+      "background": false,
+      "owner": "Engine lead",
+      "last_reviewed_by": "Engine lead",
+      "last_reviewed_at": "2026-10-13",
+      "status": "draft",
+      "stage": "S1"
+    },
+    {
+      "id": "input_guard",
+      "version": "0.1",
+      "name": "Input guard",
+      "kind": "auxiliary",
+      "audience": "team",
+      "model_role": "input_guard",
+      "toolsets": [],
+      "tools": [],
+      "output_mode": "structured",
+      "output_schema": "aux-input-guard.schema.json",
+      "soul": "none",
+      "prompt_mode": "minimal",
+      "permissions": {
+        "address_student": false,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 1,
+        "max_tool_rounds": 0,
+        "max_output_tokens": {
+          "low": 40,
+          "mid": 40,
+          "high": 40,
+          "cloud": 80
+        },
+        "wall_clock_s": 3
+      },
+      "background": false,
+      "owner": "Safety lead",
+      "last_reviewed_by": "Safety lead",
+      "last_reviewed_at": "2026-10-13",
+      "status": "draft",
+      "stage": "S2"
+    },
+    {
+      "id": "judge",
+      "version": "0.1",
+      "name": "Judge",
+      "kind": "auxiliary",
+      "audience": "team",
+      "model_role": "judge",
+      "toolsets": [],
+      "tools": [],
+      "output_mode": "structured",
+      "output_schema": "aux-judge.schema.json",
+      "soul": "none",
+      "prompt_mode": "minimal",
+      "permissions": {
+        "address_student": false,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 1,
+        "max_tool_rounds": 0,
+        "max_output_tokens": {
+          "low": 300,
+          "mid": 400,
+          "high": 400,
+          "cloud": 600
+        },
+        "wall_clock_s": 20
+      },
+      "background": false,
+      "owner": "Eval and safety lead",
+      "last_reviewed_by": "Subject leads",
+      "last_reviewed_at": "2026-10-13",
+      "status": "draft",
+      "stage": "S2"
+    },
+    {
+      "id": "rule_matcher",
+      "version": "0.1",
+      "name": "Rule matcher",
+      "kind": "auxiliary",
+      "audience": "team",
+      "model_role": "rule_matcher",
+      "toolsets": [],
+      "tools": [],
+      "output_mode": "structured",
+      "output_schema": "aux-rule-match.schema.json",
+      "soul": "none",
+      "prompt_mode": "minimal",
+      "permissions": {
+        "address_student": false,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 1,
+        "max_tool_rounds": 0,
+        "max_output_tokens": {
+          "low": 120,
+          "mid": 160,
+          "high": 160,
+          "cloud": 240
+        },
+        "wall_clock_s": 4
+      },
+      "background": false,
+      "owner": "Engine lead",
+      "last_reviewed_by": "Learning lead",
+      "last_reviewed_at": "2026-10-13",
+      "status": "draft",
+      "stage": "S2"
+    },
+    {
+      "id": "title",
+      "version": "0.1",
+      "name": "Title",
+      "kind": "auxiliary",
+      "audience": "team",
+      "model_role": "title",
+      "toolsets": [],
+      "tools": [],
+      "output_mode": "structured",
+      "output_schema": "aux-title.schema.json",
+      "soul": "none",
+      "prompt_mode": "minimal",
+      "permissions": {
+        "address_student": false,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 1,
+        "max_tool_rounds": 0,
+        "max_output_tokens": {
+          "low": 24,
+          "mid": 24,
+          "high": 24,
+          "cloud": 40
+        },
+        "wall_clock_s": 4
+      },
+      "background": true,
+      "owner": "Engine lead",
+      "last_reviewed_by": "Content lead",
+      "last_reviewed_at": "2026-10-13",
+      "status": "draft",
+      "stage": "S2"
+    },
+    {
+      "id": "vision",
+      "version": "0.1",
+      "name": "Vision reader",
+      "kind": "auxiliary",
+      "audience": "team",
+      "model_role": "vision",
+      "toolsets": [],
+      "tools": [],
+      "output_mode": "structured",
+      "output_schema": "aux-vision-regions.schema.json",
+      "soul": "none",
+      "prompt_mode": "minimal",
+      "permissions": {
+        "address_student": false,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 1,
+        "max_tool_rounds": 0,
+        "max_output_tokens": {
+          "low": 1200,
+          "mid": 1600,
+          "high": 2000,
+          "cloud": 3000
+        },
+        "wall_clock_s": 60
+      },
+      "background": false,
+      "owner": "Engine lead",
+      "last_reviewed_by": "Engine lead",
+      "last_reviewed_at": "2026-10-13",
+      "status": "draft",
+      "stage": "S2"
+    },
+    {
+      "id": "checker",
+      "version": "0.2",
+      "name": "Checker",
+      "kind": "specialist",
+      "audience": "team",
+      "model_role": "checker",
+      "toolsets": [
+        "compute",
+        "knowledge"
+      ],
+      "tools": [
+        "math_parse",
+        "math_solve",
+        "math_simplify",
+        "math_check_equivalence",
+        "math_check_step",
+        "math_evaluate",
+        "math_check_answer",
+        "math_differentiate",
+        "math_integrate",
+        "math_plot_points",
+        "math_solve_ode",
+        "stats_compute",
+        "stats_distribution",
+        "units_convert",
+        "units_check_dimensions",
+        "geom_figure",
+        "phys_optics",
+        "phys_circuit",
+        "phys_projectile",
+        "phys_mechanics",
+        "chem_molar_mass",
+        "chem_balance",
+        "chem_stoichiometry",
+        "chem_acid_base",
+        "chem_energetics",
+        "chem_equilibrium",
+        "chem_organic",
+        "acc_double_entry",
+        "acc_statements",
+        "acc_depreciation",
+        "acc_inventory",
+        "acc_ratios",
+        "acc_break_even",
+        "acc_cash_flow",
+        "acc_appraisal",
+        "bio_genetics",
+        "bio_calc",
+        "skill"
+      ],
+      "output_mode": "structured",
+      "output_schema": "verdict.schema.json",
+      "soul": "values",
+      "prompt_mode": "minimal",
+      "permissions": {
+        "address_student": false,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 3,
+        "max_tool_rounds": 3,
+        "max_output_tokens": {
+          "low": 200,
+          "mid": 300,
+          "high": 300,
+          "cloud": 600
+        },
+        "wall_clock_s": 10
+      },
+      "background": false,
+      "owner": "Engine lead",
+      "last_reviewed_by": "Curriculum lead",
+      "last_reviewed_at": "2026-10-08",
+      "status": "draft",
+      "stage": "S2"
+    },
+    {
+      "id": "coach",
+      "version": "0.3",
+      "name": "Coach",
+      "kind": "specialist",
+      "audience": "student",
+      "model_role": "coach",
+      "toolsets": [
+        "knowledge",
+        "memory"
+      ],
+      "tools": [
+        "skill",
+        "content_search",
+        "memory_recall",
+        "session_recall"
+      ],
+      "output_mode": "structured",
+      "output_schema": "tutor-turn.schema.json",
+      "soul": "full",
+      "prompt_mode": "by_class",
+      "permissions": {
+        "address_student": true,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": true
+      },
+      "limits": {
+        "max_iterations": 3,
+        "max_tool_rounds": 2,
+        "max_output_tokens": {
+          "low": 200,
+          "mid": 300,
+          "high": 400,
+          "cloud": 800
+        },
+        "wall_clock_s": 20,
+        "first_token_s": 3
+      },
+      "background": false,
+      "owner": "Engine lead",
+      "last_reviewed_by": "Curriculum lead",
+      "last_reviewed_at": "2026-10-08",
+      "status": "draft",
+      "stage": "S2"
+    },
+    {
+      "id": "diagnoser",
+      "version": "0.3",
+      "name": "Diagnoser",
+      "kind": "specialist",
+      "audience": "team",
+      "model_role": "diagnoser",
+      "toolsets": [
+        "knowledge"
+      ],
+      "tools": [
+        "curriculum_lookup"
+      ],
+      "output_mode": "structured",
+      "output_schema": "diagnosis.schema.json",
+      "soul": "values",
+      "prompt_mode": "minimal",
+      "permissions": {
+        "address_student": false,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 2,
+        "max_tool_rounds": 1,
+        "max_output_tokens": {
+          "low": 300,
+          "mid": 400,
+          "high": 400,
+          "cloud": 800
+        },
+        "wall_clock_s": 30
+      },
+      "background": false,
+      "owner": "Engine lead",
+      "last_reviewed_by": "Curriculum lead",
+      "last_reviewed_at": "2026-10-08",
+      "status": "draft",
+      "stage": "S2"
+    },
+    {
+      "id": "reflector",
+      "version": "0.2",
+      "name": "Reflector",
+      "kind": "specialist",
+      "audience": "team",
+      "model_role": "reflector",
+      "toolsets": [
+        "memory"
+      ],
+      "tools": [],
+      "output_mode": "structured",
+      "output_schema": "reflection.schema.json",
+      "soul": "values_boundaries",
+      "prompt_mode": "minimal",
+      "permissions": {
+        "address_student": false,
+        "delegate": false,
+        "write_memory": "notes_gated",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 4,
+        "max_tool_rounds": 2,
+        "max_output_tokens": {
+          "low": 600,
+          "mid": 600,
+          "high": 600,
+          "cloud": 600
+        },
+        "wall_clock_s": 120
+      },
+      "background": true,
+      "owner": "Engine lead",
+      "last_reviewed_by": "Safety lead",
+      "last_reviewed_at": "2026-10-08",
+      "status": "draft",
+      "stage": "S2"
+    },
+    {
+      "id": "solver",
+      "version": "0.4",
+      "name": "Solver",
+      "kind": "specialist",
+      "audience": "team",
+      "model_role": "solver",
+      "toolsets": [
+        "compute",
+        "knowledge"
+      ],
+      "tools": [
+        "math_parse",
+        "math_solve",
+        "math_simplify",
+        "math_check_equivalence",
+        "math_check_step",
+        "math_evaluate",
+        "math_check_answer",
+        "math_differentiate",
+        "math_integrate",
+        "math_plot_points",
+        "math_solve_ode",
+        "stats_compute",
+        "stats_distribution",
+        "units_convert",
+        "units_check_dimensions",
+        "geom_figure",
+        "phys_optics",
+        "phys_circuit",
+        "phys_projectile",
+        "phys_mechanics",
+        "chem_molar_mass",
+        "chem_balance",
+        "chem_stoichiometry",
+        "chem_acid_base",
+        "chem_energetics",
+        "chem_equilibrium",
+        "chem_organic",
+        "acc_double_entry",
+        "acc_statements",
+        "acc_depreciation",
+        "acc_inventory",
+        "acc_ratios",
+        "acc_break_even",
+        "acc_cash_flow",
+        "acc_appraisal",
+        "bio_genetics",
+        "bio_calc",
+        "python_run",
+        "skill"
+      ],
+      "output_mode": "structured",
+      "output_schema": "solution-plan.schema.json",
+      "soul": "values",
+      "prompt_mode": "minimal",
+      "permissions": {
+        "address_student": false,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 12,
+        "max_tool_rounds": 8,
+        "max_output_tokens": {
+          "low": 600,
+          "mid": 800,
+          "high": 1000,
+          "cloud": 2000
+        },
+        "wall_clock_s": 60
+      },
+      "background": false,
+      "owner": "Engine lead",
+      "last_reviewed_by": "Curriculum lead",
+      "last_reviewed_at": "2026-10-08",
+      "status": "draft",
+      "stage": "S2"
+    },
+    {
+      "id": "companion",
+      "version": "0.1",
+      "name": "Companion",
+      "kind": "specialist",
+      "audience": "student",
+      "model_role": "companion",
+      "toolsets": [
+        "memory",
+        "study"
+      ],
+      "tools": [
+        "memory_recall",
+        "session_recall",
+        "study_search",
+        "progress_read",
+        "plan",
+        "make_aid",
+        "start_research"
+      ],
+      "output_mode": "structured",
+      "output_schema": "companion-turn.schema.json",
+      "soul": "full",
+      "prompt_mode": "by_class",
+      "permissions": {
+        "address_student": true,
+        "delegate": false,
+        "write_memory": "none",
+        "open_cards": false
+      },
+      "limits": {
+        "max_iterations": 3,
+        "max_tool_rounds": 2,
+        "max_output_tokens": {
+          "low": 300,
+          "mid": 300,
+          "high": 400,
+          "cloud": 400
+        },
+        "wall_clock_s": 20,
+        "first_token_s": 3
+      },
+      "background": false,
+      "owner": "Engine lead",
+      "last_reviewed_by": "Safety lead",
+      "last_reviewed_at": "2026-10-29",
+      "status": "draft",
+      "stage": "S2"
+    }
+  ]
+}

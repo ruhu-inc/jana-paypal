@@ -1,0 +1,5 @@
+# Packaged ingest defaults. A deployment file is merged over this one; `staff` is replaced whole.
+# Limits, retention and rates take their declared defaults from config.py.
+
+environment = "production"
+storage_key_secret = "ingest_storage_key"

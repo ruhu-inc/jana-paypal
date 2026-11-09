@@ -1,0 +1,6 @@
+# apps/prototype-s0 is frozen and deliberately not a workspace member (excluded from builds and releases).
+packages:
+  - apps/desktop
+  - apps/studio
+  - packages/*
+engineStrict: true

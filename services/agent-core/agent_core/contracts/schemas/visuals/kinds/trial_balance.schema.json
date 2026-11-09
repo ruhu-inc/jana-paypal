@@ -1,0 +1,102 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/trial_balance.schema.json sha256 e3aa1fbbfb2dfcecff1e5756c0a95352c0f19767703480adbcd68521fac5fb4e; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/trial_balance",
+ "title": "trial_balance params",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "as_at",
+  "source"
+ ],
+ "properties": {
+  "as_at": {
+   "type": "string",
+   "maxLength": 32
+  },
+  "source": {
+   "enum": [
+    "from_t_accounts",
+    "from_question"
+   ]
+  },
+  "t_accounts_visual": {
+   "type": "string",
+   "pattern": "^vis_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "balances": {
+   "type": "array",
+   "maxItems": 40,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "account",
+     "side",
+     "amount"
+    ],
+    "properties": {
+     "account": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "side": {
+      "enum": [
+       "debit",
+       "credit"
+      ]
+     },
+     "amount": {
+      "type": "string",
+      "pattern": "^-?[0-9]{1,12}(\\.[0-9]{1,2})?$"
+     }
+    }
+   }
+  },
+  "currency": {
+   "type": "string",
+   "maxLength": 4
+  },
+  "flag_mismatch": {
+   "type": "boolean",
+   "default": true
+  },
+  "show_totals": {
+   "type": "boolean",
+   "default": true
+  }
+ },
+ "$defs": {
+  "add": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "element"
+   ],
+   "properties": {
+    "element": {
+     "enum": [
+      "totals_row",
+      "mismatch_note",
+      "suspense_account"
+     ]
+    },
+    "of": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number",
+       "boolean"
+      ]
+     }
+    }
+   }
+  }
+ }
+}

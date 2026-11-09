@@ -1,0 +1,231 @@
+{
+ "$comment": "GENERATED from contracts/design/gallery-state.schema.json sha256 db2b8c14ab268a1253fd02ccbd7658a9729022153431754c99750bd721f188b1; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/design/gallery-state",
+ "title": "GalleryState",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "id",
+  "title",
+  "component",
+  "state",
+  "payload",
+  "payloadContract",
+  "context",
+  "placements"
+ ],
+ "properties": {
+  "id": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)?$",
+   "maxLength": 96
+  },
+  "title": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 80
+  },
+  "note": {
+   "type": "string",
+   "maxLength": 600
+  },
+  "component": {
+   "type": "string",
+   "pattern": "^[A-Z][A-Za-z0-9]+$"
+  },
+  "state": {
+   "enum": [
+    "canonical",
+    "empty",
+    "loading",
+    "model-loading",
+    "slow",
+    "stalled",
+    "long-stalled",
+    "error-retriable",
+    "error-final",
+    "stopped",
+    "offline",
+    "online-unavailable",
+    "queued",
+    "locked",
+    "reduced-motion"
+   ]
+  },
+  "variant": {
+   "type": "string",
+   "pattern": "^[a-z0-9][a-z0-9-]*$",
+   "maxLength": 40
+  },
+  "payload": {
+   "type": "object"
+  },
+  "payloadContract": {
+   "oneOf": [
+    {
+     "type": "string",
+     "format": "uri",
+     "pattern": "^https://jana\\.dev/contracts/"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "context": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "theme": {
+     "enum": [
+      "light",
+      "dark",
+      "high-contrast"
+     ],
+     "default": "light"
+    },
+    "reducedMotion": {
+     "type": "boolean",
+     "default": false
+    },
+    "reducedTransparency": {
+     "type": "boolean",
+     "default": false
+    },
+    "lowPower": {
+     "type": "boolean",
+     "default": false
+    },
+    "locale": {
+     "type": "string",
+     "pattern": "^[a-z]{2,3}(-[A-Z]{2}|-[a-z]{4})?$",
+     "default": "en"
+    },
+    "textScale": {
+     "type": "number",
+     "minimum": 1.0,
+     "maximum": 1.5,
+     "default": 1.0
+    },
+    "easyReadFont": {
+     "type": "boolean",
+     "default": false
+    },
+    "viewport": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "width",
+      "height"
+     ],
+     "properties": {
+      "width": {
+       "type": "integer",
+       "minimum": 320,
+       "maximum": 3840
+      },
+      "height": {
+       "type": "integer",
+       "minimum": 360,
+       "maximum": 2160
+      }
+     }
+    },
+    "inputMode": {
+     "enum": [
+      "pointer",
+      "keyboard",
+      "touch"
+     ],
+     "default": "pointer"
+    },
+    "hardwareClass": {
+     "enum": [
+      "content-only",
+      "low",
+      "mid",
+      "high"
+     ],
+     "default": "mid"
+    },
+    "cloudTier": {
+     "type": "boolean",
+     "default": false
+    },
+    "connectivity": {
+     "enum": [
+      "all-off",
+      "offline",
+      "limited",
+      "metered",
+      "online-idle",
+      "sending",
+      "cloud-tutor",
+      "online-unavailable"
+     ],
+     "default": "all-off"
+    },
+    "elapsedMs": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "now": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "role": {
+     "enum": [
+      "student",
+      "author"
+     ],
+     "default": "student"
+    }
+   }
+  },
+  "placements": {
+   "type": "array",
+   "minItems": 1,
+   "uniqueItems": true,
+   "items": {
+    "enum": [
+     "conversation",
+     "board",
+     "dock",
+     "side-pane",
+     "page",
+     "dialog",
+     "banner",
+     "sheet",
+     "overlay",
+     "rail",
+     "status-bar"
+    ]
+   }
+  },
+  "expectText": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "minLength": 1
+   },
+   "uniqueItems": true
+  },
+  "expectRoles": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "pattern": "^[a-z]+$"
+   },
+   "uniqueItems": true
+  },
+  "tags": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "pattern": "^[a-z0-9-]+$"
+   },
+   "uniqueItems": true
+  }
+ }
+}

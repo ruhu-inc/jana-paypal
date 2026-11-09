@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "note": "No offline model is selected or qualified by this integration. Install an explicitly selected, separately qualified and signed model pack to enable local inference.",
+  "models": []
+}

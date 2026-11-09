@@ -1,0 +1,70 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/born_haber_cycle.schema.json sha256 3f761105dfa94bc05a3afbc59eebb8bf2349f77914564b62fee9741fa8eef3cd; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/born_haber_cycle",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "compound": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 80
+  },
+  "steps": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+     },
+     "kind": {
+      "enum": [
+       "formation",
+       "atomisation",
+       "ionisation",
+       "electron_affinity",
+       "lattice"
+      ]
+     },
+     "enthalpy_kj_mol": {
+      "type": "number"
+     },
+     "coefficient": {
+      "type": "number",
+      "minimum": 1e-06
+     },
+     "orientation": {
+      "enum": [
+       -1,
+       1
+      ]
+     }
+    },
+    "required": [
+     "id",
+     "kind",
+     "coefficient",
+     "orientation"
+    ]
+   },
+   "minItems": 2,
+   "maxItems": 20
+  },
+  "unknown_step": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 64,
+   "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+  }
+ },
+ "required": [
+  "compound",
+  "steps",
+  "unknown_step"
+ ]
+}

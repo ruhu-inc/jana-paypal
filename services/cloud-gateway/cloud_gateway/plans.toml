@@ -1,0 +1,94 @@
+# TABLE BIZ-18a (BIZ-18, D121, superseding D10's single US$20 price): the plans, their prices by band and what each
+# gives. This is the one table: the checkout quotes from it (`cloud_gateway.plans`), signs its features and limits into
+# the entitlement, and the gateway computes the one monthly allowance from it (`cloud_gateway.tier`). A deployment file
+# may override any figure under `[plans]`.
+#
+# The fair-use limits are proposals until BIZ-08's cost model runs on measured provider prices (the owner decides cloud
+# cost later). If a plan cannot cover its cost, the allowance changes before the price does
+# (`tier.allowance_usd_per_student_month`). There is no model picker and no premium quota: every paid plan and band
+# gives the same features from one allowance.
+
+# The band is chosen at checkout from the billing country, never from the device. Every country not listed below is in
+# the international band.
+nigeria_countries = ["NG"]
+# PROPOSAL (2026-10-20, for the product lead to confirm): the other purchasing-power band, low and lower-middle income
+# countries where O level and IGCSE students are many. D121 names the band, not its countries.
+purchasing_power_countries = [
+  "BD", "CM", "ET", "GH", "GM", "KE", "LK", "LR", "LS", "MW", "MZ", "NP", "PK", "RW", "SL", "SZ", "TZ", "UG", "ZM",
+  "ZW",
+]
+
+# Units of each currency per US dollar, for the allowance only (prices are never converted for the payer). PROPOSAL:
+# D121's own comparison, US$20 at about NGN 30,000. Recheck with BIZ-08.
+[per_usd]
+USD = 1.0
+NGN = 1500.0
+
+# Free: the whole offline product (BIZ-02) plus the online taste.
+[free]
+features = ["ask_anything", "uploads"]
+limits = { ask_anything_per_day = 3, uploads_per_week = 1, upload_max_pages = 50 }
+
+[paid.jana_online]
+name = "Jana Online"
+priced_per = "student"
+max_students = 20
+features = ["cloud_tier", "ask_anything", "study_area", "uploads", "recordings", "podcasts", "past_paper_import",
+            "online_voice", "exam_reminders"]
+
+[paid.jana_online.limits]
+ask_anything_per_day = 150
+uploads_per_day = 30
+upload_max_pages = 1000  # a file up to 1,000 pages or 100 MB
+upload_max_mb = 100  # the study worker's source cap (study_worker/__main__.py) until it is raised (SPEC §20.3, W9)
+recording_hours_per_month = 10  # video minutes a month are drawn from this pool: 600 (JM-D44)
+podcasts_per_day = 5
+voice_minutes_per_month = 300  # online voice
+# The personal learning agent (W8, SPEC §19.7): held by the gateway per session pseudonym per day, never signed
+# into the entitlement.
+companion_turns_per_day = 60
+tutor_memory_jobs_per_day = 20
+
+[paid.jana_online.prices.nigeria]
+month = { currency = "NGN", amount = 9000 }
+term = { currency = "NGN", amount = 24000 }
+year = { currency = "NGN", amount = 75000 }
+
+[paid.jana_online.prices.purchasing_power]
+month = { currency = "USD", amount = 6 }
+
+[paid.jana_online.prices.international]
+month = { currency = "USD", amount = 12 }
+year = { currency = "USD", amount = 96 }
+
+# Jana Online for each of up to four students, each with their own allowance and the guardian's consent per profile
+# under 18.
+[paid.jana_family]
+name = "Jana Family"
+priced_per = "subscription"
+max_students = 4
+features = ["cloud_tier", "ask_anything", "study_area", "uploads", "recordings", "podcasts", "past_paper_import",
+            "online_voice", "exam_reminders"]
+
+[paid.jana_family.limits]
+ask_anything_per_day = 150
+uploads_per_day = 30
+upload_max_pages = 1000  # a file up to 1,000 pages or 100 MB
+upload_max_mb = 100  # the study worker's source cap (study_worker/__main__.py) until it is raised (SPEC §20.3, W9)
+recording_hours_per_month = 10  # video minutes a month are drawn from this pool: 600 (JM-D44)
+podcasts_per_day = 5
+voice_minutes_per_month = 300  # online voice
+# The personal learning agent (W8, SPEC §19.7): held by the gateway per session pseudonym per day, never signed
+# into the entitlement.
+companion_turns_per_day = 60
+tutor_memory_jobs_per_day = 20
+
+[paid.jana_family.prices.nigeria]
+month = { currency = "NGN", amount = 22000 }
+year = { currency = "NGN", amount = 180000 }
+
+[paid.jana_family.prices.purchasing_power]
+month = { currency = "USD", amount = 15 }
+
+[paid.jana_family.prices.international]
+month = { currency = "USD", amount = 25 }

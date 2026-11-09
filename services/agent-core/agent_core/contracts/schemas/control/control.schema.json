@@ -1,0 +1,992 @@
+{
+ "$comment": "GENERATED from contracts/control/control.schema.json sha256 22a641809ddaddddbd437c0130e56f142bf20779935be30a6c49cfd3b27b4e3e; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/control/control",
+ "title": "Shell-core control frame",
+ "oneOf": [
+  {
+   "$ref": "#/$defs/ToCore"
+  },
+  {
+   "$ref": "#/$defs/ToShell"
+  }
+ ],
+ "$defs": {
+  "ProtocolVersion": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "major",
+    "minor"
+   ],
+   "properties": {
+    "major": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "minor": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "Origin": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9+.-]*://[^/\\s]+$",
+   "maxLength": 200
+  },
+  "LoopbackHttpUrl": {
+   "type": "string",
+   "pattern": "^http://127\\.0\\.0\\.1:[0-9]{1,5}$"
+  },
+  "ToCore": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/Hello"
+    },
+    {
+     "$ref": "#/$defs/Config"
+    },
+    {
+     "$ref": "#/$defs/Secret"
+    },
+    {
+     "$ref": "#/$defs/RuntimeEndpoint"
+    },
+    {
+     "$ref": "#/$defs/NetState"
+    },
+    {
+     "$ref": "#/$defs/Shutdown"
+    },
+    {
+     "$ref": "#/$defs/DownloadState"
+    },
+    {
+     "$ref": "#/$defs/EgressNotice"
+    },
+    {
+     "$ref": "#/$defs/EgressLedger"
+    },
+    {
+     "$ref": "#/$defs/VoiceEndpoint"
+    },
+    {
+     "$ref": "#/$defs/VoiceFailed"
+    },
+    {
+     "$ref": "#/$defs/Keys"
+    },
+    {
+     "$ref": "#/$defs/KeyResult"
+    }
+   ]
+  },
+  "Hello": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "protocol"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.hello"
+    },
+    "protocol": {
+     "$ref": "#/$defs/ProtocolVersion"
+    },
+    "shell_version": {
+     "type": "string",
+     "maxLength": 40
+    }
+   }
+  },
+  "Config": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "data_dir",
+    "content_root",
+    "skills_root",
+    "release"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.config"
+    },
+    "data_dir": {
+     "type": "string",
+     "minLength": 1
+    },
+    "content_root": {
+     "type": "string",
+     "minLength": 1
+    },
+    "skills_root": {
+     "type": "string",
+     "minLength": 1
+    },
+    "release": {
+     "type": "boolean"
+    },
+    "dev_origins": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/Origin"
+     },
+     "maxItems": 8
+    },
+    "scripted": {
+     "type": "boolean"
+    },
+    "pilot_country_file": {
+     "type": "string",
+     "minLength": 1
+    }
+   },
+   "if": {
+    "properties": {
+     "release": {
+      "const": true
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "dev_origins": {
+      "maxItems": 0
+     },
+     "scripted": {
+      "const": false
+     }
+    }
+   }
+  },
+  "Secret": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "name",
+    "value"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.secret"
+    },
+    "name": {
+     "enum": [
+      "launch_token",
+      "device_db_key",
+      "profile_db_key"
+     ]
+    },
+    "profile_id": {
+     "type": "string",
+     "pattern": "^prf_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "value": {
+     "type": "string",
+     "minLength": 32,
+     "maxLength": 512,
+     "pattern": "^[A-Za-z0-9_-]+$"
+    }
+   },
+   "if": {
+    "properties": {
+     "name": {
+      "const": "profile_db_key"
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "profile_id"
+    ]
+   },
+   "else": {
+    "not": {
+     "required": [
+      "profile_id"
+     ]
+    }
+   }
+  },
+  "RuntimeEndpoint": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "url",
+    "key",
+    "model"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.runtime_endpoint"
+    },
+    "url": {
+     "$ref": "#/$defs/LoopbackHttpUrl"
+    },
+    "key": {
+     "type": "string",
+     "minLength": 32,
+     "maxLength": 512
+    },
+    "model": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    }
+   }
+  },
+  "NetState": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "online"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.net_state"
+    },
+    "online": {
+     "type": "boolean"
+    }
+   }
+  },
+  "Shutdown": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.shutdown"
+    },
+    "grace_ms": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 5000,
+     "default": 1000
+    }
+   }
+  },
+  "ToShell": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/Ready"
+    },
+    {
+     "$ref": "#/$defs/Readiness"
+    },
+    {
+     "$ref": "#/$defs/Bye"
+    },
+    {
+     "$ref": "#/$defs/Error"
+    },
+    {
+     "$ref": "#/$defs/Download"
+    },
+    {
+     "$ref": "#/$defs/DownloadControl"
+    },
+    {
+     "$ref": "#/$defs/ExitRequested"
+    },
+    {
+     "$ref": "#/$defs/UpdateInstall"
+    },
+    {
+     "$ref": "#/$defs/VoiceStart"
+    },
+    {
+     "$ref": "#/$defs/VoiceStop"
+    },
+    {
+     "$ref": "#/$defs/KeyPut"
+    },
+    {
+     "$ref": "#/$defs/KeyDelete"
+    }
+   ]
+  },
+  "Ready": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "protocol",
+    "api_port",
+    "epoch"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.ready"
+    },
+    "protocol": {
+     "$ref": "#/$defs/ProtocolVersion"
+    },
+    "api_port": {
+     "type": "integer",
+     "minimum": 1024,
+     "maximum": 65535
+    },
+    "epoch": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{16}$"
+    }
+   }
+  },
+  "Readiness": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "readiness"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.readiness"
+    },
+    "readiness": {
+     "enum": [
+      "starting",
+      "core_ready",
+      "model_loading",
+      "ready",
+      "degraded"
+     ]
+    },
+    "components": {
+     "type": "object",
+     "additionalProperties": {
+      "enum": [
+       "ok",
+       "down",
+       "starting"
+      ]
+     },
+     "maxProperties": 16
+    }
+   }
+  },
+  "Bye": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.bye"
+    }
+   }
+  },
+  "Error": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "code"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.error"
+    },
+    "code": {
+     "type": "string",
+     "pattern": "^[A-Za-z_][A-Za-z0-9_]{0,63}$"
+    },
+    "expected_protocol": {
+     "$ref": "#/$defs/ProtocolVersion"
+    }
+   }
+  },
+  "Download": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "download_id",
+    "item",
+    "files",
+    "target"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.download"
+    },
+    "download_id": {
+     "type": "string",
+     "pattern": "^dl_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "item": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "kind",
+      "id"
+     ],
+     "properties": {
+      "kind": {
+       "enum": [
+        "model_pack",
+        "content_pack",
+        "speech_pack",
+        "app_update"
+       ]
+      },
+      "id": {
+       "type": "string",
+       "maxLength": 120
+      }
+     }
+    },
+    "files": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 16,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "name",
+       "url",
+       "size_bytes",
+       "sha256",
+       "chunk_sha256",
+       "chunk_bytes"
+      ],
+      "properties": {
+       "name": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9._-]{1,120}$"
+       },
+       "url": {
+        "type": "string",
+        "pattern": "^https://",
+        "maxLength": 1024
+       },
+       "size_bytes": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       },
+       "chunk_sha256": {
+        "type": "array",
+        "items": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        }
+       },
+       "chunk_bytes": {
+        "anyOf": [
+         {
+          "type": "integer",
+          "minimum": 1
+         },
+         {
+          "type": "null"
+         }
+        ]
+       }
+      }
+     }
+    },
+    "target": {
+     "type": "string",
+     "maxLength": 1024
+    }
+   }
+  },
+  "DownloadControl": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "download_id",
+    "action"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.download_control"
+    },
+    "download_id": {
+     "type": "string",
+     "pattern": "^dl_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "action": {
+     "enum": [
+      "pause",
+      "resume",
+      "cancel",
+      "configure"
+     ]
+    },
+    "limits": {
+     "$ref": "https://jana.dev/contracts/api/commands#/$defs/DownloadLimits"
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "action": {
+        "const": "configure"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "limits"
+      ]
+     }
+    }
+   ]
+  },
+  "DownloadState": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "download_id",
+    "state",
+    "bytes_done",
+    "bytes_total"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.download_state"
+    },
+    "download_id": {
+     "type": "string",
+     "pattern": "^dl_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "state": {
+     "enum": [
+      "queued",
+      "downloading",
+      "waiting_for_network",
+      "paused",
+      "verifying",
+      "installing",
+      "done",
+      "failed",
+      "cancelled"
+     ]
+    },
+    "bytes_done": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "bytes_total": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "eta_s": {
+     "anyOf": [
+      {
+       "type": "integer",
+       "minimum": 0
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "error_code": {
+     "anyOf": [
+      {
+       "type": "string",
+       "maxLength": 64
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   }
+  },
+  "EgressNotice": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "control.egress_notice"
+    },
+    "notice": {
+     "$ref": "https://jana.dev/contracts/api/events#/$defs/ev_egress_notice"
+    }
+   },
+   "required": [
+    "type",
+    "notice"
+   ]
+  },
+  "EgressLedger": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "control.egress_ledger"
+    },
+    "at_ms": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "feature": {
+     "enum": [
+      "downloads",
+      "update_checks"
+     ]
+    },
+    "destination": {
+     "type": "string",
+     "maxLength": 253,
+     "pattern": "^[A-Za-z0-9.-]+$"
+    },
+    "bytes": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "payload_class": {
+     "enum": [
+      "download_request",
+      "update_check"
+     ]
+    }
+   },
+   "required": [
+    "type",
+    "at_ms",
+    "feature",
+    "destination",
+    "bytes",
+    "payload_class"
+   ]
+  },
+  "ExitRequested": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.exit_requested"
+    }
+   }
+  },
+  "UpdateInstall": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "installer",
+    "sha256",
+    "size_bytes",
+    "version",
+    "action"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.update_install"
+    },
+    "installer": {
+     "type": "string",
+     "maxLength": 1024
+    },
+    "sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "size_bytes": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "version": {
+     "type": "string",
+     "pattern": "^\\d+\\.\\d+\\.\\d+(-rc\\.\\d+)?$"
+    },
+    "action": {
+     "enum": [
+      "update",
+      "rollback"
+     ]
+    }
+   }
+  },
+  "VoiceStart": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "request_id",
+    "program",
+    "program_sha256",
+    "pack_dir",
+    "hardware",
+    "platform",
+    "app_version",
+    "environment",
+    "adapter_url",
+    "adapter_token"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.voice_start"
+    },
+    "request_id": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{32}$"
+    },
+    "program": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 2000
+    },
+    "program_sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "pack_dir": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 2000
+    },
+    "hardware": {
+     "enum": [
+      "low",
+      "mid",
+      "high"
+     ]
+    },
+    "platform": {
+     "enum": [
+      "macos-aarch64",
+      "macos-x86_64",
+      "linux-x86_64",
+      "windows-x86_64"
+     ]
+    },
+    "app_version": {
+     "type": "string",
+     "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "environment": {
+     "enum": [
+      "dev",
+      "staging",
+      "pilot",
+      "production"
+     ]
+    },
+    "adapter_url": {
+     "type": "string",
+     "pattern": "^http://127\\.0\\.0\\.1:[0-9]{1,5}/v1/voice/llm$"
+    },
+    "adapter_token": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9_-]{32,256}$"
+    }
+   }
+  },
+  "VoiceStop": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "request_id"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.voice_stop"
+    },
+    "request_id": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{32}$"
+    }
+   }
+  },
+  "VoiceEndpoint": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "request_id",
+    "url",
+    "token"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.voice_endpoint"
+    },
+    "request_id": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{32}$"
+    },
+    "url": {
+     "type": "string",
+     "pattern": "^ws://127\\.0\\.0\\.1:[0-9]{1,5}/v1/realtime$"
+    },
+    "token": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9_-]{32,256}$"
+    }
+   }
+  },
+  "VoiceFailed": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "request_id",
+    "code"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.voice_failed"
+    },
+    "request_id": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{32}$"
+    },
+    "code": {
+     "enum": [
+      "voice_start_failed",
+      "voice_gave_up"
+     ]
+    }
+   }
+  },
+  "KeyRef": {
+   "type": "string",
+   "pattern": "^jana-meta\\.[a-z0-9._-]{2,76}$"
+  },
+  "KeyValue": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 4096,
+   "pattern": "^[A-Za-z0-9_-]+$"
+  },
+  "KeyStoreKind": {
+   "enum": [
+    "os_keychain",
+    "user_file"
+   ]
+  },
+  "Keys": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "store",
+    "entries"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.keys"
+    },
+    "store": {
+     "$ref": "#/$defs/KeyStoreKind"
+    },
+    "entries": {
+     "type": "array",
+     "maxItems": 64,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "ref",
+       "value"
+      ],
+      "properties": {
+       "ref": {
+        "$ref": "#/$defs/KeyRef"
+       },
+       "value": {
+        "$ref": "#/$defs/KeyValue"
+       }
+      }
+     }
+    }
+   }
+  },
+  "KeyPut": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "ref",
+    "value"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.key_put"
+    },
+    "ref": {
+     "$ref": "#/$defs/KeyRef"
+    },
+    "value": {
+     "$ref": "#/$defs/KeyValue"
+    }
+   }
+  },
+  "KeyDelete": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "ref"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.key_delete"
+    },
+    "ref": {
+     "$ref": "#/$defs/KeyRef"
+    }
+   }
+  },
+  "KeyResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "ref",
+    "op",
+    "ok",
+    "store"
+   ],
+   "properties": {
+    "type": {
+     "const": "control.key_result"
+    },
+    "ref": {
+     "$ref": "#/$defs/KeyRef"
+    },
+    "op": {
+     "enum": [
+      "put",
+      "delete"
+     ]
+    },
+    "ok": {
+     "type": "boolean"
+    },
+    "store": {
+     "$ref": "#/$defs/KeyStoreKind"
+    }
+   }
+  }
+ }
+}

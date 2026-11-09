@@ -1,0 +1,18 @@
+[project]
+name = "jana-tool-worker"
+version = "0.0.0"
+license = "Apache-2.0"
+description = "Sandboxed verification and computation worker (placeholder until M2)."
+requires-python = "==3.12.*"
+dependencies = ["pydantic>=2.12,<3", "jsonschema>=4.25,<5", "sympy>=1.14,<2", "pint>=0.25,<1"]
+
+[build-system]
+requires = ["uv_build>=0.10,<0.11"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "tool_worker"
+module-root = ""
+
+[tool.jana]
+layer = "capabilities"

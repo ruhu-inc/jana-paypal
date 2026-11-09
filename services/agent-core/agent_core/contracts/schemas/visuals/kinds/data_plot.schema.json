@@ -1,0 +1,74 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/data_plot.schema.json sha256 edf530299cb0c10e0798a991fb961fb7b6b7219351ae06f4464801015b3f59f2; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/data_plot",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "points": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+     },
+     "x": {
+      "type": "number"
+     },
+     "y": {
+      "type": "number"
+     }
+    },
+    "required": [
+     "id",
+     "x",
+     "y"
+    ]
+   },
+   "minItems": 2,
+   "maxItems": 500
+  },
+  "x_label": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 80
+  },
+  "y_label": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 80
+  },
+  "x_unit": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 30
+  },
+  "y_unit": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 30
+  },
+  "fit": {
+   "enum": [
+    "none",
+    "linear"
+   ]
+  },
+  "show_gradient": {
+   "type": "boolean"
+  }
+ },
+ "required": [
+  "points",
+  "x_label",
+  "y_label",
+  "x_unit",
+  "y_unit",
+  "fit"
+ ]
+}

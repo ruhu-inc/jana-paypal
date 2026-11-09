@@ -1,0 +1,107 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/balanced_equation.schema.json sha256 0574bc0bf7c4f64db9d1f5c6d94dc5ed5ddfe54a054d336d86fae149226078f4; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/balanced_equation",
+ "title": "balanced_equation params",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "reactants",
+  "products"
+ ],
+ "properties": {
+  "reactants": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 6,
+   "items": {
+    "$ref": "#/$defs/species"
+   }
+  },
+  "products": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 6,
+   "items": {
+    "$ref": "#/$defs/species"
+   }
+  },
+  "form": {
+   "enum": [
+    "full",
+    "ionic",
+    "net_ionic",
+    "half_equation"
+   ],
+   "default": "full"
+  },
+  "arrow": {
+   "enum": [
+    "forward",
+    "equilibrium"
+   ],
+   "default": "forward"
+  },
+  "show_states": {
+   "type": "boolean",
+   "default": true
+  },
+  "show_atom_table": {
+   "type": "boolean",
+   "default": true
+  }
+ },
+ "$defs": {
+  "add": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "element"
+   ],
+   "properties": {
+    "element": {
+     "enum": [
+      "atom_count_row",
+      "electron_count"
+     ]
+    },
+    "of": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number",
+       "boolean"
+      ]
+     }
+    }
+   }
+  },
+  "species": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "formula"
+   ],
+   "properties": {
+    "formula": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9()\\[\\]+\\-^\u00b7.]{1,40}$"
+    },
+    "state": {
+     "enum": [
+      "s",
+      "l",
+      "g",
+      "aq"
+     ]
+    }
+   }
+  }
+ }
+}

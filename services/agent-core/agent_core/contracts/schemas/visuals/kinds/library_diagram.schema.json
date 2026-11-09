@@ -1,0 +1,70 @@
+{
+ "$comment": "GENERATED from contracts/visuals/kinds/library_diagram.schema.json sha256 01af4cf979f35270daeb7e6fad2c47b57c1cfee9ed4d798d0a78a91b1dd10c2b; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/library_diagram",
+ "title": "library_diagram params",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [],
+ "properties": {
+  "sequence": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9_]{1,40}$"
+  },
+  "start_step": {
+   "type": "integer",
+   "minimum": 0,
+   "maximum": 40
+  },
+  "region": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9_]{1,40}$"
+  },
+  "quiz_parts": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+    "maxLength": 64
+   },
+   "maxItems": 24,
+   "uniqueItems": true
+  },
+  "show_scale_bar": {
+   "type": "boolean",
+   "default": false
+  }
+ },
+ "$defs": {
+  "add": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "element"
+   ],
+   "properties": {
+    "element": {
+     "enum": [
+      "arrow",
+      "callout"
+     ]
+    },
+    "of": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    },
+    "params": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number",
+       "boolean"
+      ]
+     }
+    }
+   }
+  }
+ }
+}

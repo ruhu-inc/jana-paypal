@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "task": {
+          "const": "magnification"
+        },
+        "image_length": {
+          "type": "number",
+          "minimum": 1e-06
+        },
+        "image_unit": {
+          "enum": [
+            "mm",
+            "um"
+          ]
+        },
+        "actual_length": {
+          "type": "number",
+          "minimum": 1e-06
+        },
+        "actual_unit": {
+          "enum": [
+            "mm",
+            "um"
+          ]
+        }
+      },
+      "required": [
+        "task",
+        "image_length",
+        "image_unit",
+        "actual_length",
+        "actual_unit"
+      ]
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "task": {
+          "const": "percentage_change"
+        },
+        "initial": {
+          "type": "number"
+        },
+        "final": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "task",
+        "initial",
+        "final"
+      ]
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "task": {
+          "const": "rate"
+        },
+        "change": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 1e-06
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        }
+      },
+      "required": [
+        "task",
+        "change",
+        "duration",
+        "unit"
+      ]
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "task": {
+          "const": "recapture"
+        },
+        "marked_first": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "second_catch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "marked_second": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      },
+      "required": [
+        "task",
+        "marked_first",
+        "second_catch",
+        "marked_second"
+      ]
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "task": {
+          "const": "simpson"
+        },
+        "counts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "minItems": 2,
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "task",
+        "counts"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "$comment": "Predict, observe, explain scenarios for the simulations (VSL-47). Each is human-authored around a case where the usual guess is wrong, tied to a misconception of the pack; the engine fills a request's starting values from `start` (they win over the request's own), and the renderer runs `run` once the student's prediction is locked in. Words come from the locale catalogue under poe.<key>.*; numbers come from the model.",
+  "scenarios": [
+    {
+      "id": "poe.phy.circuit_series_to_parallel.v1",
+      "key": "circuit_parallel",
+      "kind": "circuit_sim",
+      "subject": "phy",
+      "misconception_id": "mc.phy.o.parallel_adding_branch_raises_resistance",
+      "kc_ids": ["kc.phy.o.circuits.parallel_circuits"],
+      "start": {
+        "emf": 6,
+        "resistors": [{ "id": "R1", "resistance": 10 }, { "id": "R2", "resistance": 10 }],
+        "arrangement": "series",
+        "switch_closed": true,
+        "locked": ["emf", "R1", "R2", "switch"]
+      },
+      "run": { "set": { "arrangement": "parallel" }, "until": "now" },
+      "observe": "out.current",
+      "choices": [
+        { "id": "falls", "common_guess": true },
+        { "id": "same" },
+        { "id": "rises", "correct": true }
+      ],
+      "explain": { "chart": "bars", "readouts": ["out.current", "out.resistance"] }
+    },
+    {
+      "id": "poe.chm.titration_double_strength_alkali.v1",
+      "key": "titration_double",
+      "kind": "titration_sim",
+      "subject": "chm",
+      "misconception_id": "mc.chm.o.acids_titration_values_swapped",
+      "kc_ids": ["kc.chm.o.acids.titration_calculations"],
+      "start": {
+        "acid": { "formula": "HCl", "concentration": 0.1 },
+        "base": { "formula": "NaOH", "concentration": 0.2 },
+        "acid_volume": 25,
+        "indicator": "phenolphthalein",
+        "locked": ["acid", "base", "acid_volume", "indicator"]
+      },
+      "run": { "set": { "tap": true }, "until": "done", "speed": 8 },
+      "observe": "out.end_point",
+      "choices": [
+        { "id": "half", "value": 12.5, "correct": true },
+        { "id": "same", "value": 25 },
+        { "id": "double", "value": 50, "common_guess": true }
+      ],
+      "explain": { "chart": "curve", "x": "out.volume", "y": "out.ph", "mark": "out.end_point" }
+    },
+    {
+      "id": "poe.phy.gas_heated_flask.v1",
+      "key": "gas_heated",
+      "kind": "gas_laws_sim",
+      "subject": "phy",
+      "misconception_id": "mc.phy.o.celsius_used_for_ratio",
+      "kc_ids": ["kc.phy.o.particles.temperature_scales", "kc.phy.o.particles.gas_pressure_particles"],
+      "start": {
+        "amount_mol": 0.00411,
+        "temperature_k": 293,
+        "volume_m3": 0.0001,
+        "control": "temperature",
+        "preset_id": "sim.phy.gas_sealed_flask.v1"
+      },
+      "run": {"set": {"temperature": 313}, "until": "now"},
+      "observe": "out.pressure",
+      "choices": [
+        {"id": "double", "value": 200, "common_guess": true},
+        {"id": "same", "value": 100},
+        {"id": "little", "value": 107, "correct": true}
+      ],
+      "explain": {"chart": "bars", "readouts": ["out.celsius", "out.temperature", "out.pressure"]}
+    },
+    {
+      "id": "poe.mth.function_shift_left.v1",
+      "key": "function_shift",
+      "kind": "function_transform_sim",
+      "subject": "mth",
+      "misconception_id": "mc.mth.o.turning_point_sign",
+      "kc_ids": ["kc.mth.o.algebra_and_graphs.quadratic_features"],
+      "start": {
+        "expression": "x^2",
+        "x_range": [-6, 6],
+        "parameters": {
+          "a": {"min": -3, "max": 3, "step": 0.5, "value": 1},
+          "b": {"min": -3, "max": 3, "step": 0.5, "value": 1},
+          "c": {"min": -5, "max": 5, "step": 1, "value": 0},
+          "d": {"min": -5, "max": 5, "step": 1, "value": 0}
+        },
+        "locked": ["a", "b", "d"]
+      },
+      "run": {"set": {"c": 3}, "until": "now"},
+      "observe": "out.point_x",
+      "choices": [
+        {"id": "right", "value": 3, "labelled": true, "common_guess": true},
+        {"id": "same", "value": 0, "labelled": true},
+        {"id": "left", "value": -3, "labelled": true, "correct": true}
+      ],
+      "explain": {"chart": "overlay", "mark": ["out.point_x", "out.point_y"]}
+    },
+    {
+      "id": "poe.chm.electrolysis_brine_cathode.v1",
+      "key": "electrolysis_brine",
+      "kind": "electrolysis_sim",
+      "subject": "chm",
+      "misconception_id": "mc.chm.o.electrolysis_reactive_metal_from_solution",
+      "kc_ids": ["kc.chm.o.electrolysis.aqueous_products"],
+      "start": {
+        "preset_id": "sim.chm.electrolysis_brine.v1",
+        "electrolyte": "concentrated sodium chloride",
+        "phase": "aqueous",
+        "electrodes": "inert",
+        "current_a": 1,
+        "duration_s": 600,
+        "locked": ["current"]
+      },
+      "run": {"set": {}, "until": "done", "speed": 2},
+      "observe": "out.cathode_gas",
+      "choices": [
+        {"id": "sodium", "readout": "out.cathode_mass", "common_guess": true},
+        {"id": "hydrogen", "readout": "out.cathode_gas", "correct": true}
+      ],
+      "explain": {"chart": "bars", "readouts": ["out.cathode_mass", "out.cathode_gas"]}
+    },
+    {
+      "id": "poe.chm.equilibrium_catalyst.v1",
+      "key": "equilibrium_catalyst",
+      "kind": "equilibrium_sim",
+      "subject": "chm",
+      "misconception_id": "mc.chm.o.reactions_catalyst_shifts_equilibrium",
+      "kc_ids": ["kc.chm.o.reactions.equilibrium"],
+      "start": {
+        "reaction": {
+          "species": [
+            {"id": "H2", "formula": "H2", "state": "gas", "coefficient": 1, "side": "reactant"},
+            {"id": "I2", "formula": "I2", "state": "gas", "coefficient": 1, "side": "reactant"},
+            {"id": "HI", "formula": "HI", "state": "gas", "coefficient": 2, "side": "product"}
+          ]
+        },
+        "initial_concentrations": [{"species_id": "H2", "value": 1}, {"species_id": "I2", "value": 1}, {"species_id": "HI", "value": 0}],
+        "temperature_k": 698,
+        "reference_temperature_k": 698,
+        "reference_kc": 54,
+        "forward_enthalpy_j_mol": -9500,
+        "volume_l": 1,
+        "forward_rate_constant": 0.05,
+        "controls": ["temperature", "catalyst"]
+      },
+      "run": {"set": {"catalyst": true}, "until": "done", "before": "end"},
+      "observe": "out.c_HI",
+      "choices": [{"id": "rises", "common_guess": true}, {"id": "same", "correct": true}, {"id": "falls"}],
+      "explain": {"chart": "runs", "x": "out.time", "y": "out.c_HI"}
+    },
+    {
+      "id": "poe.chm.rates_hotter_same_amount.v1",
+      "key": "rates_hotter",
+      "kind": "rates_sim",
+      "subject": "chm",
+      "misconception_id": "mc.chm.o.reactions_rate_changes_amount",
+      "kc_ids": ["kc.chm.o.reactions.rate_factors"],
+      "start": {
+        "temperature_k": 293,
+        "concentration_mol_l": 0.5,
+        "activation_energy_j_mol": 50000,
+        "pre_exponential_s": 8200000,
+        "catalysed_activation_energy_j_mol": 35000,
+        "locked": ["concentration", "catalyst"]
+      },
+      "run": {"set": {"temperature": 313}, "until": "done", "before": "end"},
+      "observe": "out.product",
+      "choices": [{"id": "rises", "common_guess": true}, {"id": "same", "correct": true}, {"id": "falls"}],
+      "explain": {"chart": "runs", "x": "out.time", "y": "out.product"}
+    },
+    {
+      "id": "poe.phy.projectile_angle_30_60.v1",
+      "key": "projectile_angle",
+      "kind": "projectile_sim",
+      "subject": "phy",
+      "misconception_id": "mc.phy.o.steeper_launch_goes_further",
+      "kc_ids": ["kc.phy.o.motion.free_fall"],
+      "start": {"mode": "angled", "speed": 20, "angle": 30, "height": 0, "locked": ["mode", "speed", "angle", "height"]},
+      "run": {"set": {"angle": 60}, "until": "done", "before": "end"},
+      "observe": "out.range",
+      "choices": [{"id": "further", "common_guess": true}, {"id": "same", "correct": true}, {"id": "shorter"}],
+      "explain": {"chart": "runs", "x": "out.x", "y": "out.y", "mark": "out.range"}
+    }
+  ]
+}

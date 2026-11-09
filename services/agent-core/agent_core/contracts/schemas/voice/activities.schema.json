@@ -1,0 +1,397 @@
+{
+ "$comment": "GENERATED from contracts/voice/activities.schema.json sha256 6ccb36bbbd9d51c8e7097487d04602914eaf2b586c8f463e1b17d56d285a3477; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/voice/activities",
+ "title": "Read-aloud and dictation commands",
+ "oneOf": [
+  {
+   "$ref": "#/$defs/read_aloud"
+  },
+  {
+   "$ref": "#/$defs/utterance"
+  },
+  {
+   "$ref": "#/$defs/read_aloud_playback"
+  },
+  {
+   "$ref": "#/$defs/create_dictation"
+  },
+  {
+   "$ref": "#/$defs/confirm_dictation"
+  },
+  {
+   "$ref": "#/$defs/stop_read_aloud"
+  },
+  {
+   "$ref": "#/$defs/read_content"
+  },
+  {
+   "$ref": "#/$defs/save_note"
+  },
+  {
+   "$ref": "#/$defs/study_note"
+  }
+ ],
+ "$defs": {
+  "stop_read_aloud": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "stop"
+    },
+    "utterance_id": {
+     "type": "string",
+     "pattern": "^utt_[0-9A-HJKMNP-TV-Z]{26}$"
+    }
+   },
+   "required": [
+    "type",
+    "utterance_id"
+   ]
+  },
+  "confirm_dictation": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "confirm_dictation"
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 8000
+    }
+   },
+   "required": [
+    "type",
+    "text"
+   ]
+  },
+  "read_aloud": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "read_aloud"
+    },
+    "part_id": {
+     "type": "string",
+     "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+    }
+   },
+   "required": [
+    "type",
+    "part_id"
+   ]
+  },
+  "utterance": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "utterance"
+    },
+    "utterance_id": {
+     "type": "string",
+     "pattern": "^utt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "turn_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^trn_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "part_id": {
+     "anyOf": [
+      {
+       "type": "string",
+       "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "text": {
+     "type": "string",
+     "maxLength": 4000,
+     "minLength": 1
+    },
+    "transport": {
+     "enum": [
+      "os",
+      "sidecar"
+     ]
+    },
+    "expires_at": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "type",
+    "utterance_id",
+    "turn_id",
+    "part_id",
+    "text",
+    "transport",
+    "expires_at"
+   ]
+  },
+  "read_aloud_playback": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "read_aloud_playback"
+    },
+    "phase": {
+     "enum": [
+      "start",
+      "progress",
+      "end",
+      "stop",
+      "error"
+     ]
+    },
+    "char_index": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 4000
+    },
+    "elapsed_ms": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 3600000
+    }
+   },
+   "required": [
+    "type",
+    "phase",
+    "char_index",
+    "elapsed_ms"
+   ]
+  },
+  "create_dictation": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "create_dictation"
+    },
+    "client_capture_id": {
+     "type": "string",
+     "pattern": "^cli_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "purpose": {
+     "enum": [
+      "question",
+      "answer"
+     ]
+    },
+    "destination": {
+     "enum": [
+      "question",
+      "note"
+     ],
+     "default": "question"
+    }
+   },
+   "required": [
+    "type",
+    "client_capture_id",
+    "purpose"
+   ]
+  },
+  "read_source": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "const": "lesson_block"
+      },
+      "lesson_id": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 256
+      },
+      "version": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 32
+      },
+      "block_index": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 99
+      }
+     },
+     "required": [
+      "kind",
+      "lesson_id",
+      "version",
+      "block_index"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "const": "lesson_question"
+      },
+      "lesson_id": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 256
+      },
+      "version": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 32
+      },
+      "block_index": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 99
+      },
+      "item_id": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 256
+      }
+     },
+     "required": [
+      "kind",
+      "lesson_id",
+      "version",
+      "block_index",
+      "item_id"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "const": "note"
+      },
+      "note_id": {
+       "type": "string",
+       "pattern": "^nt_[0-9A-HJKMNP-TV-Z]{26}$"
+      }
+     },
+     "required": [
+      "kind",
+      "note_id"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "const": "session_card"
+      },
+      "part_id": {
+       "type": "string",
+       "pattern": "^prt_[0-9A-HJKMNP-TV-Z]{26}$"
+      }
+     },
+     "required": [
+      "kind",
+      "part_id"
+     ]
+    }
+   ]
+  },
+  "read_content": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "read_content"
+    },
+    "source": {
+     "$ref": "#/$defs/read_source"
+    }
+   },
+   "required": [
+    "type",
+    "source"
+   ]
+  },
+  "save_note": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "type": {
+     "const": "save_note"
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 8000
+    },
+    "capture_id": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^cap_[0-9A-HJKMNP-TV-Z]{26}$"
+    }
+   },
+   "required": [
+    "type",
+    "text"
+   ]
+  },
+  "study_note": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "note_id": {
+     "type": "string",
+     "pattern": "^nt_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 8000
+    },
+    "source": {
+     "enum": [
+      "typed",
+      "voice"
+     ]
+    },
+    "created_at": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "updated_at": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "private": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "note_id",
+    "text",
+    "source",
+    "created_at",
+    "updated_at"
+   ]
+  }
+ }
+}

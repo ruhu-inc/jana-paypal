@@ -1,0 +1,286 @@
+{
+ "$comment": "GENERATED from contracts/cloud/catalogue.schema.json sha256 7fac51abf93560eb3cc32b1a16738cbd2771eb3de2a3dddb5025a688c329d233; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/cloud/catalogue",
+ "title": "DeploymentCatalogue",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "version": {
+   "const": 1
+  },
+  "host": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 253,
+   "pattern": "^[A-Za-z0-9.-]+$"
+  },
+  "voice_host": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "maxLength": 253,
+   "pattern": "^[A-Za-z0-9.-]+$"
+  },
+  "services": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "tutor": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "expires_at_ms": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "permission_sha256": {
+       "type": "string",
+       "pattern": "^[a-f0-9]{64}$"
+      }
+     },
+     "required": [
+      "expires_at_ms",
+      "permission_sha256"
+     ]
+    },
+    "study": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "expires_at_ms": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "permission_sha256": {
+       "type": "string",
+       "pattern": "^[a-f0-9]{64}$"
+      }
+     },
+     "required": [
+      "expires_at_ms",
+      "permission_sha256"
+     ]
+    },
+    "ask": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "expires_at_ms": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "permission_sha256": {
+       "type": "string",
+       "pattern": "^[a-f0-9]{64}$"
+      }
+     },
+     "required": [
+      "expires_at_ms",
+      "permission_sha256"
+     ]
+    },
+    "research": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "expires_at_ms": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "permission_sha256": {
+       "type": "string",
+       "pattern": "^[a-f0-9]{64}$"
+      }
+     },
+     "required": [
+      "expires_at_ms",
+      "permission_sha256"
+     ]
+    },
+    "segmentation": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "expires_at_ms": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "permission_sha256": {
+       "type": "string",
+       "pattern": "^[a-f0-9]{64}$"
+      }
+     },
+     "required": [
+      "expires_at_ms",
+      "permission_sha256"
+     ]
+    },
+    "voice": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "expires_at_ms": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "permission_sha256": {
+       "type": "string",
+       "pattern": "^[a-f0-9]{64}$"
+      }
+     },
+     "required": [
+      "expires_at_ms",
+      "permission_sha256"
+     ]
+    },
+    "narration": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "expires_at_ms": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "permission_sha256": {
+       "type": "string",
+       "pattern": "^[a-f0-9]{64}$"
+      }
+     },
+     "required": [
+      "expires_at_ms",
+      "permission_sha256"
+     ]
+    }
+   }
+  },
+  "slots": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "primary": {
+     "type": "object",
+     "maxProperties": 32,
+     "additionalProperties": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "context": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "max_output": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "capabilities": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+         "enum": [
+          "text",
+          "structured_output",
+          "tool_calls",
+          "vision",
+          "audio",
+          "streaming"
+         ]
+        }
+       },
+       "price_in_per_mtok": {
+        "type": "number",
+        "minimum": 0
+       },
+       "price_out_per_mtok": {
+        "type": "number",
+        "minimum": 0
+       },
+       "expires_at_ms": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "permission_sha256": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+       }
+      },
+      "required": [
+       "context",
+       "max_output",
+       "capabilities",
+       "price_in_per_mtok",
+       "price_out_per_mtok",
+       "expires_at_ms",
+       "permission_sha256"
+      ]
+     }
+    },
+    "fallback": {
+     "type": "object",
+     "maxProperties": 32,
+     "additionalProperties": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "context": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "max_output": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "capabilities": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+         "enum": [
+          "text",
+          "structured_output",
+          "tool_calls",
+          "vision",
+          "audio",
+          "streaming"
+         ]
+        }
+       },
+       "price_in_per_mtok": {
+        "type": "number",
+        "minimum": 0
+       },
+       "price_out_per_mtok": {
+        "type": "number",
+        "minimum": 0
+       },
+       "expires_at_ms": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "permission_sha256": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+       }
+      },
+      "required": [
+       "context",
+       "max_output",
+       "capabilities",
+       "price_in_per_mtok",
+       "price_out_per_mtok",
+       "expires_at_ms",
+       "permission_sha256"
+      ]
+     }
+    }
+   }
+  }
+ },
+ "required": [
+  "version",
+  "host",
+  "voice_host",
+  "services",
+  "slots"
+ ]
+}

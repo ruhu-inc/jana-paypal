@@ -1,0 +1,35 @@
+{
+ "$comment": "GENERATED from contracts/agents/aux-rule-match.schema.json sha256 7856e4ce5fba57894595af97a2157dd6a1c02f37cec71d115c12f1a2207bcbf7; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/aux-rule-match",
+ "title": "Auxiliary output: rule matcher",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "applies"
+ ],
+ "properties": {
+  "applies": {
+   "type": "array",
+   "maxItems": 16,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "rule_ref",
+     "reason"
+    ],
+    "properties": {
+     "rule_ref": {
+      "type": "integer",
+      "minimum": 1
+     },
+     "reason": {
+      "type": "string",
+      "maxLength": 160
+     }
+    }
+   }
+  }
+ }
+}

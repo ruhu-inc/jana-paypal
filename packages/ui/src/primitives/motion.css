@@ -1,0 +1,174 @@
+/* The only motion primitives (DSN-10). Keyframes and transitions live here and nowhere else. Durations come from the
+   tokens, which are 0 under reduced motion except for the spinner (DSN-09). */
+@keyframes jana-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes jana-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes jana-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes jana-drawer-in {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes jana-drawer-in-rtl {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes jana-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes jana-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(var(--space-6));
+  }
+}
+
+.jana-spinner {
+  animation: jana-spin var(--duration-spinnerRotation) linear infinite;
+}
+
+.jana-shimmer {
+  background-image: linear-gradient(90deg, var(--color-muted) 40%, var(--color-ink) 50%, var(--color-muted) 60%);
+  background-size: 200% 100%;
+  background-clip: text;
+  color: transparent;
+  animation: jana-shimmer var(--duration-shimmerPeriod) linear infinite;
+}
+
+.jana-reveal {
+  animation: jana-reveal var(--duration-reveal) var(--ease-outExpo) both;
+}
+
+/* The label morph (DSN-10): a changed label cross-fades in; the only motion of the connectivity indicator (DSN-19). */
+.jana-morph {
+  animation: jana-reveal var(--duration-base) var(--ease-standard) both;
+}
+
+/* The app frame's disclosures (DSN-09): the overlay drawer slides in from the reading-start edge, the board's bottom
+   sheet rises, and the board panel fades in beside the conversation; each takes the disclosure duration. */
+.jana-drawer {
+  animation: jana-drawer-in var(--duration-disclosure) var(--ease-standard) both;
+}
+
+[dir="rtl"] .jana-drawer {
+  animation-name: jana-drawer-in-rtl;
+}
+
+.jana-sheet {
+  animation: jana-sheet-in var(--duration-disclosure) var(--ease-standard) both;
+}
+
+.jana-panel {
+  animation: jana-panel-in var(--duration-disclosure) var(--ease-standard) both;
+}
+
+.jana-disclosure {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-disclosure) var(--ease-outExpo);
+}
+
+.jana-disclosure[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.jana-press {
+  transition:
+    opacity var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+/* Pressed moves half a pixel (D89); under reduced motion nothing moves. */
+.jana-press:active:not(:disabled) {
+  transform: translateY(0.5px);
+}
+
+/* The pointer ring (TABLE DSN-10a, UXS-63): the tutor's temporary pointer on a board line, a solid ring inside the line's
+   own rounded edge that fades in over 200 ms and clears with its cue; under reduced motion it is a static ring with the
+   same clear. */
+.jana-pointer {
+  box-shadow: inset 0 0 0 2px var(--color-highlight-line);
+  transition: box-shadow var(--duration-reveal) var(--ease-standard);
+}
+
+/* The student's selection (UXS-63, UXS-58): a dashed outline outside the line, so it never hides the pointer's ring
+   or the current step's rule and differs from both in shape. Static. */
+.jana-selected {
+  outline: 2px dashed var(--color-line-strong);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jana-pointer {
+    transition: none;
+  }
+  .jana-shimmer {
+    animation: none;
+    background-image: none;
+    color: var(--color-muted);
+  }
+  .jana-reveal,
+  .jana-morph,
+  .jana-disclosure,
+  .jana-drawer,
+  .jana-sheet,
+  .jana-panel,
+  .jana-press {
+    animation: none;
+    transition: none;
+  }
+  .jana-press:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+[data-reduced-motion="true"] .jana-shimmer {
+  animation: none;
+  background-image: none;
+  color: var(--color-muted);
+}
+
+[data-reduced-motion="true"] .jana-reveal,
+[data-reduced-motion="true"] .jana-morph,
+[data-reduced-motion="true"] .jana-disclosure,
+[data-reduced-motion="true"] .jana-drawer,
+[data-reduced-motion="true"] .jana-sheet,
+[data-reduced-motion="true"] .jana-panel,
+[data-reduced-motion="true"] .jana-press {
+  animation: none;
+  transition: none;
+}
+
+[data-reduced-motion="true"] .jana-press:active:not(:disabled) {
+  transform: none;
+}
+
+[data-reduced-motion="true"] .jana-pointer {
+  transition: none;
+}

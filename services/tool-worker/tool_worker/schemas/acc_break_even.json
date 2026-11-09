@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fixed_costs",
+    "variable_cost_per_unit",
+    "selling_price"
+  ],
+  "properties": {
+    "fixed_costs": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "pattern": "^\\s*[-(]?\\s*([$£€₦¥]|[A-Z]{3}\\s*)?\\s*(\\d{1,3}(,\\d{3})+|\\d+)(\\.\\d+)?\\s*\\)?\\s*$",
+      "maxLength": 30
+    },
+    "variable_cost_per_unit": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "pattern": "^\\s*[-(]?\\s*([$£€₦¥]|[A-Z]{3}\\s*)?\\s*(\\d{1,3}(,\\d{3})+|\\d+)(\\.\\d+)?\\s*\\)?\\s*$",
+      "maxLength": 30
+    },
+    "selling_price": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "pattern": "^\\s*[-(]?\\s*([$£€₦¥]|[A-Z]{3}\\s*)?\\s*(\\d{1,3}(,\\d{3})+|\\d+)(\\.\\d+)?\\s*\\)?\\s*$",
+      "maxLength": 30
+    },
+    "output_units": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100000000
+    },
+    "target_profit": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "pattern": "^\\s*[-(]?\\s*([$£€₦¥]|[A-Z]{3}\\s*)?\\s*(\\d{1,3}(,\\d{3})+|\\d+)(\\.\\d+)?\\s*\\)?\\s*$",
+      "maxLength": 30
+    },
+    "chart_max_units": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100000000
+    },
+    "dp": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    }
+  }
+}

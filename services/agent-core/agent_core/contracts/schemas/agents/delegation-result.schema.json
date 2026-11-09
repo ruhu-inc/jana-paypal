@@ -1,0 +1,250 @@
+{
+ "$comment": "GENERATED from contracts/agents/delegation-result.schema.json sha256 2aba701b46dceafa2976b21b9b96e1b0fe637466f9129c75f82a6ce059a7cd51; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/delegation-result",
+ "title": "Delegation result",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "delegation_id",
+  "role",
+  "status",
+  "stop_reason",
+  "schema_valid",
+  "output",
+  "errors",
+  "usage",
+  "served_by",
+  "fingerprints",
+  "duration_ms"
+ ],
+ "properties": {
+  "delegation_id": {
+   "type": "string",
+   "pattern": "^[0-9A-Za-z_-]{8,40}$"
+  },
+  "role": {
+   "enum": [
+    "diagnoser",
+    "solver",
+    "checker",
+    "reflector",
+    "rule_matcher",
+    "input_guard",
+    "vision",
+    "title",
+    "compaction",
+    "judge"
+   ]
+  },
+  "status": {
+   "enum": [
+    "completed",
+    "partial",
+    "error"
+   ]
+  },
+  "stop_reason": {
+   "enum": [
+    "done",
+    "max_steps",
+    "tool_failures",
+    "empty_handoff",
+    "schema_invalid",
+    "provider_error",
+    "cancelled",
+    "timeout",
+    "blocked"
+   ]
+  },
+  "schema_valid": {
+   "type": "boolean"
+  },
+  "correction_used": {
+   "type": "boolean"
+  },
+  "output": {
+   "type": [
+    "object",
+    "null"
+   ]
+  },
+  "raw_text": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "maxLength": 20000
+  },
+  "errors": {
+   "type": "array",
+   "maxItems": 20,
+   "items": {
+    "type": "string",
+    "maxLength": 500
+   }
+  },
+  "tool_calls": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "name",
+     "status",
+     "duration_ms"
+    ],
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "ok",
+       "error",
+       "partial",
+       "cancelled"
+      ]
+     },
+     "check_id": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "duration_ms": {
+      "type": "integer",
+      "minimum": 0
+     }
+    }
+   }
+  },
+  "usage": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "calls",
+    "input_tokens",
+    "output_tokens"
+   ],
+   "properties": {
+    "calls": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "input_tokens": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "output_tokens": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "cache_read_tokens": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "cost_usd": {
+     "type": "number",
+     "minimum": 0
+    }
+   }
+  },
+  "served_by": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "locality": {
+   "enum": [
+    "local",
+    "cloud",
+    "mixed"
+   ]
+  },
+  "fingerprints": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "prompt",
+    "tools"
+   ],
+   "properties": {
+    "prompt": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "tools": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "skills": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "name",
+       "version",
+       "sha256"
+      ],
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       },
+       "sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       }
+      }
+     }
+    }
+   }
+  },
+  "duration_ms": {
+   "type": "integer",
+   "minimum": 0
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "schema_valid": {
+      "const": true
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "output": {
+      "type": "object"
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "status": {
+      "const": "completed"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "schema_valid": {
+      "const": true
+     },
+     "stop_reason": {
+      "const": "done"
+     }
+    }
+   }
+  }
+ ]
+}
