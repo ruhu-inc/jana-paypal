@@ -1,0 +1,19 @@
+demo/workshop.py
+  s_7936d1cd23c5b8::t_3a8a4df2d1f08c 91-92
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5cc37cf257081bca3df73feb919e9645d9b936b8",
+  "prompts": {},
+  "sessions": {
+    "s_7936d1cd23c5b8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14c2b-824a-7022-bb86-0bc2c1b99e22",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
